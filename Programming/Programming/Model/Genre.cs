@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    public enum Weekday
+    public enum Genre
     {
-        Monday,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday,
-        Saturday,
-        Sunday
+        Сomedy, 
+        Вrama, 
+        Еhriller, 
+        Action, 
+        Horror, 
+        Blockbuster
     }
 }

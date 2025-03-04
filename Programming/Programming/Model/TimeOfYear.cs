@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    public enum Weekday
+   public enum TimeOfYear
     {
-        Monday,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday,
-        Saturday,
-        Sunday
+        Summer,
+        Autumn,
+        Winter,
+        Spring
     }
 }

@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    public enum Weekday
+    public enum FormOfStudyOfTheStudent
     {
-        Monday,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday,
-        Saturday,
-        Sunday
+        FullTime,
+        Correspondence,
+        Evening,
+        Distance
     }
 }
