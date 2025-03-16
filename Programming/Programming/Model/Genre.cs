@@ -8,11 +8,11 @@ namespace Programming.Model
 {
     public enum Genre
     {
-        Сomedy, 
-        Вrama, 
-        Еhriller, 
-        Action, 
-        Horror, 
+        Comedy,
+        Drama,
+        Thriller,
+        Action,
+        Horror,
         Blockbuster
     }
 }
