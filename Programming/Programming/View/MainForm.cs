@@ -95,7 +95,7 @@ namespace Programming
                 string selectedValue = ValuesListBox.SelectedItem.ToString();
                 string selectedEnum = EnumsListBox.SelectedItem.ToString();
 
-                // Определяем соответствующее перечисление и получаем его числовое значение
+                // Определяем соответствующии перечисления и получаем их числовые значения
                 switch (selectedEnum)
                 {
                     case "Weekday":
@@ -124,6 +124,27 @@ namespace Programming
                         break;
 
                 }
+            }
+        }
+
+        private void ParseButton_Click(object sender, EventArgs e)
+        {
+            //Получение текста из текстового поля
+            string inputText = InputWeekdayTextBox.Text;
+
+            Weekday parsedWeekday;
+
+            //Попытка разбора текста в перечисление
+            if (Enum.TryParse(inputText, out parsedWeekday))
+            {
+                // Разбор успешен
+                int weekdayValue = (int)parsedWeekday;
+                WeekdayLabel.Text = $"Это день недели ({parsedWeekday} = {weekdayValue})";
+            }
+            else
+            {
+                // Разбор не успешен
+                WeekdayLabel.Text = "Нет такого дня недели";
             }
         }
     }
