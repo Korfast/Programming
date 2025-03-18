@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-   public enum TimeOfYear
+    public enum EducationForm
     {
-        Summer,
-        Autumn,
-        Winter,
-        Spring
+        FullTime,
+        Correspondence,
+        Evening,
+        Distance
     }
 }

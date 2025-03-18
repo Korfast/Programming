@@ -46,10 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\FormOfStudyOfTheStudent.cs" />
+    <Compile Include="Model\EducationForm.cs" />
     <Compile Include="Model\Genre.cs" />
-    <Compile Include="Model\SmartphoneManufacturers.cs" />
-    <Compile Include="Model\TimeOfYear.cs" />
+    <Compile Include="Model\SmartphoneManufacturer.cs" />
+    <Compile Include="Model\Season.cs" />
     <Compile Include="Model\Weekday.cs" />
     <Compile Include="Model\Сolor.cs" />
     <Compile Include="View\MainForm.cs">

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,28 +17,48 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
+            
 
             // Подпискка на событие изменения выбора
-            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
-            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
+            //EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
+            //ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            InitializeEnumsList();
+            /* Плохоф вариант:
             // Добавление названий всех перечислений в EnumsListBox
             EnumsListBox.Items.Add("Weekday");
             EnumsListBox.Items.Add("Genre");
             EnumsListBox.Items.Add("Color");
-            EnumsListBox.Items.Add("FormOfStudyOfTheStudent");
-            EnumsListBox.Items.Add("SmartphoneManufacturers");
-            EnumsListBox.Items.Add("TimeOfYear");
+            EnumsListBox.Items.Add("EducationForm");
+            EnumsListBox.Items.Add("SmartphoneManufacturer");
+            EnumsListBox.Items.Add("Season");
 
             // Первый элемент по умолчанию
-            EnumsListBox.SelectedIndex = 0;
+            EnumsListBox.SelectedIndex = 0;*/                                                                                                                        
         }
+                                      
+        private void InitializeEnumsList()
+        {
+            var enumTypes = Assembly.GetExecutingAssembly().GetTypes().Where
+                (t => t.IsEnum && t.Namespace == "Programming.Model").ToList();
+            
+            EnumsListBox.DataSource = enumTypes;
+            EnumsListBox.DisplayMember = "Name";
 
+            if (EnumsListBox.Items.Count > 0)
+            {
+                EnumsListBox.SelectedIndex = 0;
+                UpdateValuesListBox();
+            }
+        }
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            UpdateValuesListBox();
+
+            /*
             // Очищаем ValuesListBox
             ValuesListBox.Items.Clear();
 
@@ -65,29 +86,43 @@ namespace Programming
                         ValuesListBox.Items.Add(value);
                     }
                     break;
-                case "FormOfStudyOfTheStudent":
-                    foreach (var value in Enum.GetValues(typeof(FormOfStudyOfTheStudent)))
+                case "EducationForm":
+                    foreach (var value in Enum.GetValues(typeof(EducationForm)))
                     {
                         ValuesListBox.Items.Add(value);
                     }
                     break;
-                case "SmartphoneManufacturers":
-                    foreach (var value in Enum.GetValues(typeof(SmartphoneManufacturers)))
+                case "SmartphoneManufacturer":
+                    foreach (var value in Enum.GetValues(typeof(SmartphoneManufacturer)))
                     {
                         ValuesListBox.Items.Add(value);
                     }
                     break;
-                case "TimeOfYear":
-                    foreach (var value in Enum.GetValues(typeof(TimeOfYear)))
+                case "Season":
+                    foreach (var value in Enum.GetValues(typeof(Season)))
                     {
                         ValuesListBox.Items.Add(value);
                     }
                     break;
+            }*/
+        }
+
+        private void UpdateValuesListBox()
+        {
+            if (EnumsListBox.SelectedItem is Enum selectedEnum)
+            {
+                ValuesListBox.DataSource = Enum.GetValues(selectedEnum);   
             }
         }
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (ValuesListBox.SelectedItem is Enum selectedValue)
+            {
+                ValueTextBox.Text = Convert.ToInt32(selectedValue).ToString();
+            }
+
+            /*
             // Проверяем, чтобы что-то было выбрано
             if (ValuesListBox.SelectedItem != null)
             {
@@ -110,27 +145,51 @@ namespace Programming
                         Model.Color color = (Model.Color)Enum.Parse(typeof(Model.Color), selectedValue);
                         ValueTextBox.Text = ((int)color).ToString();
                         break;
-                    case "FormOfStudyOfTheStudent":
-                        FormOfStudyOfTheStudent formOfStudyOfTheStudent = (FormOfStudyOfTheStudent)Enum.Parse(typeof(FormOfStudyOfTheStudent), selectedValue);
+                    case "EducationForm":
+                        EducationForm formOfStudyOfTheStudent = (EducationForm)Enum.Parse(typeof(EducationForm), selectedValue);
                         ValueTextBox.Text = ((int)formOfStudyOfTheStudent).ToString();
                         break;
-                    case "SmartphoneManufacturers":
-                        SmartphoneManufacturers manufacturers = (SmartphoneManufacturers)Enum.Parse(typeof(SmartphoneManufacturers), selectedValue);
+                    case "SmartphoneManufacturer":
+                        SmartphoneManufacturer manufacturers = (SmartphoneManufacturer)Enum.Parse(typeof(SmartphoneManufacturer), selectedValue);
                         ValueTextBox.Text = ((int)manufacturers).ToString();
                         break;
-                    case "TimeOfYear":
-                        TimeOfYear timeOfYear = (TimeOfYear)Enum.Parse(typeof(TimeOfYear), selectedValue);
+                    case "Season":
+                        Season timeOfYear = (Season)Enum.Parse(typeof(Season), selectedValue);
                         ValueTextBox.Text = ((int)timeOfYear).ToString();
                         break;
 
                 }
-            }
+            }*/
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
             //Получение текста из текстового поля
-            string inputText = InputWeekdayTextBox.Text;
+            string input = WeekdayTextBox.Text.Trim();
+            if (!int.TryParse(input, out _))
+            {
+                //Попытка разбора текста в перечисление
+                if (Enum.TryParse<Weekday>(input, true, out Weekday result) && Enum.IsDefined(typeof(Weekday), result))
+                {
+                    // Разбор успешен
+                    int weekdayValue = (int)result;
+                    WeekdayLabel.Text = $"Это день недели ({result} = {weekdayValue})";
+                }
+                else
+                {
+                    // Разбор не успешен
+                    WeekdayLabel.Text = "Нет такого дня недели";
+                }
+            }
+            else 
+            {
+                WeekdayLabel.Text = "";
+            }    
+            
+            /* Прошлый вариант:
+             * 
+            //Получение текста из текстового поля
+            string inputText = WeekdayTextBox.Text;
 
             Weekday parsedWeekday;
 
@@ -146,6 +205,7 @@ namespace Programming
                 // Разбор не успешен
                 WeekdayLabel.Text = "Нет такого дня недели";
             }
+            */
         }
     }
 }

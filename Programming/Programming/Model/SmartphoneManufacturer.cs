@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    public enum SmartphoneManufacturers
+    public enum SmartphoneManufacturer
     {
         Xiaomi,
         Samsung,
