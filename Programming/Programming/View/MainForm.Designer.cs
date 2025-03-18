@@ -200,6 +200,7 @@
             this.ValueTextBox.Name = "ValueTextBox";
             this.ValueTextBox.Size = new System.Drawing.Size(150, 20);
             this.ValueTextBox.TabIndex = 2;
+            this.ValueTextBox.Text = "0";
             // 
             // ValuesListBox
             // 

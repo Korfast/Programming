@@ -17,7 +17,9 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
-            
+            InitializeEnumsList();
+            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
+            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
 
             // Подпискка на событие изменения выбора
             //EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
@@ -26,10 +28,8 @@ namespace Programming
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            InitializeEnumsList();
-            EnumsListBox.SelectedIndexChanged += new EventHandler(EnumsListBox_SelectedIndexChanged);
-            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
-            /* Плохой вариант:
+            /* 
+            // Плохой вариант:
             // Добавление названий всех перечислений в EnumsListBox
             EnumsListBox.Items.Add("Weekday");
             EnumsListBox.Items.Add("Genre");
@@ -111,6 +111,7 @@ namespace Programming
 
         private void UpdateValuesListBox()
         {
+
             if (EnumsListBox.SelectedItem != null)
             {
                 Type selectedType = ((Type)EnumsListBox.SelectedItem);
@@ -172,6 +173,8 @@ namespace Programming
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
+            /*
+            //Вариант Голубчикка 
             //Получение текста из текстового поля
             string input = WeekdayTextBox.Text.Trim();
             if (!int.TryParse(input, out _))
@@ -192,13 +195,11 @@ namespace Programming
             else 
             {
                 WeekdayLabel.Text = "";
-            }    
+            } */
             
-            /* Прошлый вариант:
-             * 
+            // Мой вариант:
             //Получение текста из текстового поля
             string inputText = WeekdayTextBox.Text;
-
             Weekday parsedWeekday;
 
             //Попытка разбора текста в перечисление
@@ -213,7 +214,7 @@ namespace Programming
                 // Разбор не успешен
                 WeekdayLabel.Text = "Нет такого дня недели";
             }
-            */
+            
         }
     }
 }
