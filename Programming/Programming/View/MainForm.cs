@@ -27,7 +27,9 @@ namespace Programming
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitializeEnumsList();
-            /* Плохоф вариант:
+            EnumsListBox.SelectedIndexChanged += new EventHandler(EnumsListBox_SelectedIndexChanged);
+            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
+            /* Плохой вариант:
             // Добавление названий всех перечислений в EnumsListBox
             EnumsListBox.Items.Add("Weekday");
             EnumsListBox.Items.Add("Genre");
@@ -37,7 +39,7 @@ namespace Programming
             EnumsListBox.Items.Add("Season");
 
             // Первый элемент по умолчанию
-            EnumsListBox.SelectedIndex = 0;*/                                                                                                                        
+            EnumsListBox.SelectedIndex = 0;*/
         }
                                       
         private void InitializeEnumsList()
@@ -109,10 +111,16 @@ namespace Programming
 
         private void UpdateValuesListBox()
         {
-            if (EnumsListBox.SelectedItem is Enum selectedEnum)
+            if (EnumsListBox.SelectedItem != null)
+            {
+                Type selectedType = ((Type)EnumsListBox.SelectedItem);
+                Array values = Enum.GetValues(selectedType);
+                ValuesListBox.DataSource = values;
+            }
+            /*if (EnumsListBox.SelectedItem is Enum selectedEnum)
             {
                 ValuesListBox.DataSource = Enum.GetValues(selectedEnum);   
-            }
+            }*/
         }
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
