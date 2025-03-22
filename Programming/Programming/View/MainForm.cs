@@ -18,12 +18,7 @@ namespace Programming
         {
             InitializeComponent();
             InitializeEnumsList();
-            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
-            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
-
-            // Подпискка на событие изменения выбора
-            //EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
-            //ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
+            InitializeSeasonComboBox();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -56,6 +51,7 @@ namespace Programming
                 UpdateValuesListBox();
             }
         }
+
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateValuesListBox();
@@ -215,6 +211,55 @@ namespace Programming
                 WeekdayLabel.Text = "Нет такого дня недели";
             }
             
+        }
+
+        private void InitializeSeasonComboBox()
+        {
+            // Получаем тип перечисления Season
+            Type seasonType = typeof(Season);
+
+            // Получаем все значения перечисления Season
+            Array seasonValues = Enum.GetValues(seasonType);
+
+            // Устанавливаем источник данных для SeasonComboBox
+            SeasonComboBox.DataSource = seasonValues;
+            SeasonComboBox.DisplayMember = "Name"; // Если у вас есть свойство Name, иначе просто уберите эту строку
+
+            // Устанавливаем выбранный элемент, если есть значения
+            if (SeasonComboBox.Items.Count > 0)
+            {
+                SeasonComboBox.SelectedIndex = 0; // Устанавливаем первый элемент как выбранный
+            }
+        }
+
+        private void GoButton_Click(object sender, EventArgs e)
+        {
+            // Получаем выбранное значение из SeasonComboBox
+            Season selectedSeason = (Season)SeasonComboBox.SelectedItem;
+
+            // Используем оператор switch-case для выполнения действий в зависимости от выбранного времени года
+            switch (selectedSeason)
+            {
+                case Season.Summer:
+                    MessageBox.Show("Ура! Солнце!");
+                    break;
+
+                case Season.Autumn:
+                    this.BackColor = ColorTranslator.FromHtml("#e29c45"); // Меняем цвет фона на оранжевый
+                    break;
+
+                case Season.Winter:
+                    MessageBox.Show("Бррр! Холодно!");
+                    break;
+
+                case Season.Spring:
+                    this.BackColor = ColorTranslator.FromHtml("#559c45"); // Меняем цвет фона на зеленый
+                    break;
+
+                default:
+                    MessageBox.Show("Выберите время года.");
+                    break;
+            }
         }
     }
 }
