@@ -23,18 +23,6 @@ namespace Programming
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            /* 
-            // Плохой вариант:
-            // Добавление названий всех перечислений в EnumsListBox
-            EnumsListBox.Items.Add("Weekday");
-            EnumsListBox.Items.Add("Genre");
-            EnumsListBox.Items.Add("Color");
-            EnumsListBox.Items.Add("EducationForm");
-            EnumsListBox.Items.Add("SmartphoneManufacturer");
-            EnumsListBox.Items.Add("Season");
-
-            // Первый элемент по умолчанию
-            EnumsListBox.SelectedIndex = 0;*/
         }
                                       
         private void InitializeEnumsList()
@@ -55,54 +43,6 @@ namespace Programming
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateValuesListBox();
-
-            /*
-            // Очищаем ValuesListBox
-            ValuesListBox.Items.Clear();
-
-            // Получаем название выбранного перечисления
-            string selectedEnum = EnumsListBox.SelectedItem.ToString();
-
-            // Получаем значения выбранного перечисления и добавляем их в ValuesListBox
-            switch (selectedEnum)
-            {
-                case "Weekday":
-                    foreach (var value in Enum.GetValues(typeof(Weekday)))
-                    {
-                        ValuesListBox.Items.Add(value);
-                    }
-                    break;
-                case "Genre":
-                    foreach (var value in Enum.GetValues(typeof(Genre)))
-                    {
-                        ValuesListBox.Items.Add(value);
-                    }
-                    break;
-                case "Color":
-                    foreach (var value in Enum.GetValues(typeof(Model.Color)))
-                    {
-                        ValuesListBox.Items.Add(value);
-                    }
-                    break;
-                case "EducationForm":
-                    foreach (var value in Enum.GetValues(typeof(EducationForm)))
-                    {
-                        ValuesListBox.Items.Add(value);
-                    }
-                    break;
-                case "SmartphoneManufacturer":
-                    foreach (var value in Enum.GetValues(typeof(SmartphoneManufacturer)))
-                    {
-                        ValuesListBox.Items.Add(value);
-                    }
-                    break;
-                case "Season":
-                    foreach (var value in Enum.GetValues(typeof(Season)))
-                    {
-                        ValuesListBox.Items.Add(value);
-                    }
-                    break;
-            }*/
         }
 
         private void UpdateValuesListBox()
@@ -114,10 +54,6 @@ namespace Programming
                 Array values = Enum.GetValues(selectedType);
                 ValuesListBox.DataSource = values;
             }
-            /*if (EnumsListBox.SelectedItem is Enum selectedEnum)
-            {
-                ValuesListBox.DataSource = Enum.GetValues(selectedEnum);   
-            }*/
         }
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,45 +62,6 @@ namespace Programming
             {
                 ValueTextBox.Text = Convert.ToInt32(selectedValue).ToString();
             }
-
-            /*
-            // Проверяем, чтобы что-то было выбрано
-            if (ValuesListBox.SelectedItem != null)
-            {
-                // Получаем выбранное значение
-                string selectedValue = ValuesListBox.SelectedItem.ToString();
-                string selectedEnum = EnumsListBox.SelectedItem.ToString();
-
-                // Определяем соответствующии перечисления и получаем их числовые значения
-                switch (selectedEnum)
-                {
-                    case "Weekday":
-                        Weekday weekday = (Weekday)Enum.Parse(typeof(Weekday), selectedValue);
-                        ValueTextBox.Text = ((int)weekday).ToString(); // Преобразуем в целочисленное значение
-                        break;
-                    case "Genre":
-                        Genre genre = (Genre)Enum.Parse(typeof(Genre), selectedValue);
-                        ValueTextBox.Text = ((int)genre).ToString();
-                        break;
-                    case "Color":
-                        Model.Color color = (Model.Color)Enum.Parse(typeof(Model.Color), selectedValue);
-                        ValueTextBox.Text = ((int)color).ToString();
-                        break;
-                    case "EducationForm":
-                        EducationForm formOfStudyOfTheStudent = (EducationForm)Enum.Parse(typeof(EducationForm), selectedValue);
-                        ValueTextBox.Text = ((int)formOfStudyOfTheStudent).ToString();
-                        break;
-                    case "SmartphoneManufacturer":
-                        SmartphoneManufacturer manufacturers = (SmartphoneManufacturer)Enum.Parse(typeof(SmartphoneManufacturer), selectedValue);
-                        ValueTextBox.Text = ((int)manufacturers).ToString();
-                        break;
-                    case "Season":
-                        Season timeOfYear = (Season)Enum.Parse(typeof(Season), selectedValue);
-                        ValueTextBox.Text = ((int)timeOfYear).ToString();
-                        break;
-
-                }
-            }*/
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
