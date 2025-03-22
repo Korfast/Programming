@@ -46,12 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\EducationForm.cs" />
-    <Compile Include="Model\Genre.cs" />
-    <Compile Include="Model\SmartphoneManufacturer.cs" />
-    <Compile Include="Model\Season.cs" />
-    <Compile Include="Model\Weekday.cs" />
-    <Compile Include="Model\Сolor.cs" />
+    <Compile Include="Model\Enums\EducationForm.cs" />
+    <Compile Include="Model\Enums\Genre.cs" />
+    <Compile Include="Model\Enums\SmartphoneManufacturer.cs" />
+    <Compile Include="Model\Enums\Season.cs" />
+    <Compile Include="Model\Enums\Weekday.cs" />
+    <Compile Include="Model\Enums\Сolor.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
