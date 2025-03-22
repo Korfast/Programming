@@ -65,32 +65,7 @@ namespace Programming
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
-        {
-            /*
-            //Вариант Голубчикка 
-            //Получение текста из текстового поля
-            string input = WeekdayTextBox.Text.Trim();
-            if (!int.TryParse(input, out _))
-            {
-                //Попытка разбора текста в перечисление
-                if (Enum.TryParse<Weekday>(input, true, out Weekday result) && Enum.IsDefined(typeof(Weekday), result))
-                {
-                    // Разбор успешен
-                    int weekdayValue = (int)result;
-                    WeekdayLabel.Text = $"Это день недели ({result} = {weekdayValue})";
-                }
-                else
-                {
-                    // Разбор не успешен
-                    WeekdayLabel.Text = "Нет такого дня недели";
-                }
-            }
-            else 
-            {
-                WeekdayLabel.Text = "";
-            } */
-            
-            // Мой вариант:
+        {   
             //Получение текста из текстового поля
             string inputText = WeekdayTextBox.Text;
             Weekday parsedWeekday;
