@@ -46,11 +46,23 @@
             this.ValuesListBox = new System.Windows.Forms.ListBox();
             this.EnumsListBox = new System.Windows.Forms.ListBox();
             this.MainTabControl = new System.Windows.Forms.TabControl();
+            this.ClassesTabPage = new System.Windows.Forms.TabPage();
+            this.RectanglesGroupBox = new System.Windows.Forms.GroupBox();
+            this.PopulateListBox = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.FindButton = new System.Windows.Forms.Button();
             this.EnumsTabPage.SuspendLayout();
             this.SeasonHandleGroupBox.SuspendLayout();
             this.WeekdayParsingGroupBox.SuspendLayout();
             this.EnumsGroupBox.SuspendLayout();
             this.MainTabControl.SuspendLayout();
+            this.ClassesTabPage.SuspendLayout();
+            this.RectanglesGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // EnumsTabPage
@@ -224,12 +236,105 @@
             // MainTabControl
             // 
             this.MainTabControl.Controls.Add(this.EnumsTabPage);
+            this.MainTabControl.Controls.Add(this.ClassesTabPage);
             this.MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTabControl.Location = new System.Drawing.Point(0, 0);
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
             this.MainTabControl.Size = new System.Drawing.Size(624, 441);
             this.MainTabControl.TabIndex = 0;
+            // 
+            // ClassesTabPage
+            // 
+            this.ClassesTabPage.Controls.Add(this.RectanglesGroupBox);
+            this.ClassesTabPage.Location = new System.Drawing.Point(4, 22);
+            this.ClassesTabPage.Name = "ClassesTabPage";
+            this.ClassesTabPage.Size = new System.Drawing.Size(616, 415);
+            this.ClassesTabPage.TabIndex = 1;
+            this.ClassesTabPage.Text = "Classes";
+            this.ClassesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // RectanglesGroupBox
+            // 
+            this.RectanglesGroupBox.Controls.Add(this.FindButton);
+            this.RectanglesGroupBox.Controls.Add(this.textBox3);
+            this.RectanglesGroupBox.Controls.Add(this.textBox2);
+            this.RectanglesGroupBox.Controls.Add(this.textBox1);
+            this.RectanglesGroupBox.Controls.Add(this.label3);
+            this.RectanglesGroupBox.Controls.Add(this.label2);
+            this.RectanglesGroupBox.Controls.Add(this.label1);
+            this.RectanglesGroupBox.Controls.Add(this.PopulateListBox);
+            this.RectanglesGroupBox.Location = new System.Drawing.Point(4, 6);
+            this.RectanglesGroupBox.Name = "RectanglesGroupBox";
+            this.RectanglesGroupBox.Size = new System.Drawing.Size(335, 230);
+            this.RectanglesGroupBox.TabIndex = 0;
+            this.RectanglesGroupBox.TabStop = false;
+            this.RectanglesGroupBox.Text = "Rectangles";
+            // 
+            // PopulateListBox
+            // 
+            this.PopulateListBox.FormattingEnabled = true;
+            this.PopulateListBox.Location = new System.Drawing.Point(7, 20);
+            this.PopulateListBox.Name = "PopulateListBox";
+            this.PopulateListBox.Size = new System.Drawing.Size(150, 199);
+            this.PopulateListBox.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(163, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Lenght:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(163, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Width:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(163, 99);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Color:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(163, 37);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 4;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(163, 76);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 5;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(163, 115);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 6;
+            // 
+            // FindButton
+            // 
+            this.FindButton.Location = new System.Drawing.Point(163, 195);
+            this.FindButton.Name = "FindButton";
+            this.FindButton.Size = new System.Drawing.Size(100, 23);
+            this.FindButton.TabIndex = 7;
+            this.FindButton.Text = "Find";
+            this.FindButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -248,6 +353,9 @@
             this.EnumsGroupBox.ResumeLayout(false);
             this.EnumsGroupBox.PerformLayout();
             this.MainTabControl.ResumeLayout(false);
+            this.ClassesTabPage.ResumeLayout(false);
+            this.RectanglesGroupBox.ResumeLayout(false);
+            this.RectanglesGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -271,6 +379,16 @@
         private System.Windows.Forms.ComboBox SeasonComboBox;
         private System.Windows.Forms.Label ChooseSeasonLabel;
         private System.Windows.Forms.Button GoButton;
+        private System.Windows.Forms.TabPage ClassesTabPage;
+        private System.Windows.Forms.GroupBox RectanglesGroupBox;
+        private System.Windows.Forms.ListBox PopulateListBox;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button FindButton;
     }
 }
 
