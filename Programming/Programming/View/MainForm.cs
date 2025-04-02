@@ -14,11 +14,18 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
+        // Массив прямоугольников
+        private Model.Rectangle[] _rectangles; 
+        // Текущий прямоугольник
+        private Model.Rectangle _currentRectangle; 
+
         public MainForm()
         {
             InitializeComponent();
             InitializeEnumsList();
             InitializeSeasonComboBox();
+            InitializeRectangles();
+            PopulateListBox();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -28,7 +35,7 @@ namespace Programming
         private void InitializeEnumsList()
         {
             var enumTypes = Assembly.GetExecutingAssembly().GetTypes().Where
-                (t => t.IsEnum && t.Namespace == "Programming.Model").ToList();
+                (type => type.IsEnum && type.Namespace == "Programming.Model").ToList();
             
             EnumsListBox.DataSource = enumTypes;
             EnumsListBox.DisplayMember = "Name";
@@ -133,5 +140,122 @@ namespace Programming
                     break;
             }
         }
+
+        private void InitializeRectangles()
+        {
+            Random random = new Random();
+            _rectangles = new Model.Rectangle[5];
+
+            for (int i = 0; i < _rectangles.Length; i++)
+            {
+                // Генерация случайной длины
+                double length = random.Next(1, 100); 
+                // Генерация случайной ширины
+                double width = random.Next(1, 100);
+                // Выбор цвета по умолчанию из перечисления: Red
+                string color = Convert.ToString(Model.Color.Red);
+
+                _rectangles[i] = new Model.Rectangle(length, width, color);
+            }
+        }
+
+        private void PopulateListBox()
+        {
+            // Очистка списка перед добавлением новых элементов
+            RectanglesListBox.Items.Clear(); 
+            // Счетчик для имен прямоугольников
+            int index = 1; 
+
+            foreach (var rectangle in _rectangles)
+            {
+                // Добавление имени в нужном формате
+                RectanglesListBox.Items.Add($"Rectangle {index}"); 
+                index++; 
+            }
+        }
+
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (RectanglesListBox.SelectedIndex >= 0)
+            {
+                _currentRectangle = _rectangles[RectanglesListBox.SelectedIndex];
+                UpdateTextBoxes();
+            }
+        }
+
+        private void UpdateTextBoxes()
+        {
+            LenghTextBox.Text = _currentRectangle.Length.ToString();
+            WidthTextBox.Text = _currentRectangle.Width.ToString();
+            ColorTextBox.Text = _currentRectangle.Color.ToString();
+        }
+
+        private void LenghTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateRectangleProperty(LenghTextBox, (value) => _currentRectangle.Length = value);
+        }
+
+        private void WidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateRectangleProperty(WidthTextBox, (value) => _currentRectangle.Width = value);
+        }
+
+        private void ColorTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateRectangleProperty(TextBox textBox, Action<int> updateAction)
+        {
+            try
+            {
+                int value = int.Parse(textBox.Text);
+                if (value < 1 || value > 100) throw new ArgumentOutOfRangeException();
+                updateAction(value);
+                textBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                textBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private int FindRectangleWithMaxWidth()
+        {
+            // Проверка на пустой массив
+            if (_rectangles.Length == 0) 
+            {
+                // Возвращаем -1, если массив пустой
+                return -1; 
+            }
+
+            // Индекс прямоугольника с максимальной шириной
+            int maxIndex = 0;
+            // Начальная максимальная ширина
+            double maxWidth = _rectangles[0].Width; 
+
+            for (int i = 1; i < _rectangles.Length; i++)
+            {
+                // Если текущая ширина больше максимальной
+                if (_rectangles[i].Width > maxWidth) 
+                {
+                    // Обновляем максимальную ширину
+                    maxWidth = _rectangles[i].Width;
+                    // Обновляем индекс
+                    maxIndex = i; 
+                }
+            }
+
+            // Возвращаем индекс прямоугольника с максимальной шириной
+            return maxIndex; 
+        }
+
+        private void FindButton_Click(object sender, EventArgs e)
+        {
+            int index = FindRectangleWithMaxWidth();
+            RectanglesListBox.SelectedIndex = index;
+        }
+
+        private int
     }
 }
