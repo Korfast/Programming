@@ -250,12 +250,10 @@ namespace Programming
             return maxIndex; 
         }
 
-        private void FindButton_Click(object sender, EventArgs e)
+        private void FindRectangleButton_Click(object sender, EventArgs e)
         {
             int index = FindRectangleWithMaxWidth();
             RectanglesListBox.SelectedIndex = index;
         }
-
-        private int
     }
 }

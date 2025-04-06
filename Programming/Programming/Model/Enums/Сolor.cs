@@ -9,7 +9,7 @@ namespace Programming.Model
     public enum Color
     {
         Red,
-        orange,
+        Orange,
         Yellow,
         Green,
         Blue,
