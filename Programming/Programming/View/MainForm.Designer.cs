@@ -298,6 +298,7 @@
             this.FindMovieButton.TabIndex = 11;
             this.FindMovieButton.Text = "Find";
             this.FindMovieButton.UseVisualStyleBackColor = true;
+            this.FindMovieButton.Click += new System.EventHandler(this.FindMovieButton_Click);
             // 
             // RatingTextBox
             // 
@@ -305,6 +306,7 @@
             this.RatingTextBox.Name = "RatingTextBox";
             this.RatingTextBox.Size = new System.Drawing.Size(100, 20);
             this.RatingTextBox.TabIndex = 10;
+            this.RatingTextBox.TextChanged += new System.EventHandler(this.RatingTextBox_TextChanged);
             // 
             // GenreTextBox
             // 
@@ -312,6 +314,7 @@
             this.GenreTextBox.Name = "GenreTextBox";
             this.GenreTextBox.Size = new System.Drawing.Size(100, 20);
             this.GenreTextBox.TabIndex = 9;
+            this.GenreTextBox.TextChanged += new System.EventHandler(this.GenreTextBox_TextChanged);
             // 
             // ReleaseYearTextBox
             // 
@@ -319,6 +322,7 @@
             this.ReleaseYearTextBox.Name = "ReleaseYearTextBox";
             this.ReleaseYearTextBox.Size = new System.Drawing.Size(100, 20);
             this.ReleaseYearTextBox.TabIndex = 8;
+            this.ReleaseYearTextBox.TextChanged += new System.EventHandler(this.ReleaseYearTextBox_TextChanged);
             // 
             // DurationInMinutesTextBox
             // 
@@ -326,6 +330,7 @@
             this.DurationInMinutesTextBox.Name = "DurationInMinutesTextBox";
             this.DurationInMinutesTextBox.Size = new System.Drawing.Size(100, 20);
             this.DurationInMinutesTextBox.TabIndex = 7;
+            this.DurationInMinutesTextBox.TextChanged += new System.EventHandler(this.DurationInMinutesTextBox_TextChanged);
             // 
             // TitleTextBox
             // 
@@ -333,6 +338,7 @@
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(100, 20);
             this.TitleTextBox.TabIndex = 6;
+            this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
             // RatingLabel
             // 
@@ -386,6 +392,7 @@
             this.MoviesListBox.Name = "MoviesListBox";
             this.MoviesListBox.Size = new System.Drawing.Size(175, 225);
             this.MoviesListBox.TabIndex = 0;
+            this.MoviesListBox.SelectedIndexChanged += new System.EventHandler(this.MoviesListBox_SelectedIndexChanged);
             // 
             // RectanglesGroupBox
             // 

@@ -14,10 +14,16 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
+        // Экземпляр обЪекта random вынесен для удобства
+        Random random = new Random();
         // Массив прямоугольников
         private Model.Rectangle[] _rectangles; 
         // Текущий прямоугольник
         private Model.Rectangle _currentRectangle; 
+        // Массив фильмов
+        private Model.Movie[] _movies;
+        // Текущий фильм
+        private Model.Movie _currentMovie;
 
         public MainForm()
         {
@@ -25,7 +31,9 @@ namespace Programming
             InitializeEnumsList();
             InitializeSeasonComboBox();
             InitializeRectangles();
-            PopulateListBox();
+            InitializeMovies();
+            PopulateRectanglesListBox();
+            PopulateMoviesListBox();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -75,10 +83,9 @@ namespace Programming
         {   
             //Получение текста из текстового поля
             string inputText = WeekdayTextBox.Text;
-            Weekday parsedWeekday;
 
             //Попытка разбора текста в перечисление
-            if (Enum.TryParse(inputText, out parsedWeekday))
+            if (Enum.TryParse(inputText, out Weekday parsedWeekday))
             {
                 // Разбор успешен
                 int weekdayValue = (int)parsedWeekday;
@@ -89,7 +96,7 @@ namespace Programming
                 // Разбор не успешен
                 WeekdayLabel.Text = "Нет такого дня недели";
             }
-            
+
         }
 
         private void InitializeSeasonComboBox()
@@ -143,7 +150,6 @@ namespace Programming
 
         private void InitializeRectangles()
         {
-            Random random = new Random();
             _rectangles = new Model.Rectangle[5];
 
             for (int i = 0; i < _rectangles.Length; i++)
@@ -159,7 +165,7 @@ namespace Programming
             }
         }
 
-        private void PopulateListBox()
+        private void PopulateRectanglesListBox()
         {
             // Очистка списка перед добавлением новых элементов
             RectanglesListBox.Items.Clear(); 
@@ -179,11 +185,11 @@ namespace Programming
             if (RectanglesListBox.SelectedIndex >= 0)
             {
                 _currentRectangle = _rectangles[RectanglesListBox.SelectedIndex];
-                UpdateTextBoxes();
+                UpdateRectangleFiledsTextBoxes();
             }
         }
 
-        private void UpdateTextBoxes()
+        private void UpdateRectangleFiledsTextBoxes()
         {
             LenghTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
@@ -192,20 +198,21 @@ namespace Programming
 
         private void LenghTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateRectangleProperty(LenghTextBox, (value) => _currentRectangle.Length = value);
+            UpdateIntLimitsProperty(LenghTextBox, 1, 100, (value) => _currentRectangle.Length = value);
         }
 
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateRectangleProperty(WidthTextBox, (value) => _currentRectangle.Width = value);
+            UpdateIntLimitsProperty(WidthTextBox, 1, 100, (value) => _currentRectangle.Width = value);
         }
 
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            UpdateEnumTypeProperty<Model.Color>(ColorTextBox, (value) => _currentRectangle.Color = value);
         }
 
-        private void UpdateRectangleProperty(TextBox textBox, Action<int> updateAction)
+        // Старая необобщённая функция
+        private void UpdateRectangleSizeProperty(TextBox textBox, Action<int> updateAction)
         {
             try
             {
@@ -213,6 +220,46 @@ namespace Programming
                 if (value < 1 || value > 100) throw new ArgumentOutOfRangeException();
                 updateAction(value);
                 textBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                textBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        // Новая функция с задаваемыми лимитами
+        private void UpdateIntLimitsProperty(TextBox textBox, int LowerLimit, int UpperLimit, Action<int> updateAction)
+        {
+            try
+            {
+                int value = int.Parse(textBox.Text);
+                if (value < LowerLimit || value > UpperLimit) throw new ArgumentOutOfRangeException();
+                updateAction(value);
+                textBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                textBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        // Функция для валидации текстбоксов ColorTextBox и GenreTextBox
+        private void UpdateEnumTypeProperty<EnumType>(TextBox textBox, Action<string> updateAction) where EnumType : struct, Enum
+        {
+
+            try
+            {
+                // Проверяет является ли текст текстбокса элементом перечисления
+                string value = textBox.Text;
+                if (Enum.TryParse(value.Trim(), true, out EnumType result))
+                {
+                    updateAction(value);
+                    textBox.BackColor = System.Drawing.Color.White;
+                }
+                else
+                {
+                    throw new ArgumentException($"Invalid {typeof(EnumType).Name} name.");
+                }
             }
             catch
             {
@@ -254,6 +301,157 @@ namespace Programming
         {
             int index = FindRectangleWithMaxWidth();
             RectanglesListBox.SelectedIndex = index;
+        }
+
+        private string GenerateName(int lowerLimit, int upperLimit)
+        {
+            // Генерация случайного названия
+            string alphabet = "abcdefghijklmnopqrstuvwxyz";
+            string name = "";
+            int nameLenght = random.Next(lowerLimit, upperLimit);
+            
+            for (int i = 0; i < nameLenght; i++)
+            {
+                int symbol = random.Next(26);
+                name += alphabet.ElementAt(symbol);
+                if (i == 0)
+                {
+                    name = name.ToUpper();
+                }
+            }
+            return name;
+        }
+
+        private void InitializeMovies()
+        {
+            _movies = new Model.Movie[5];
+
+            for (int i = 0; i < _movies.Length; i++)
+            {
+                // Генерация случайного названия
+                string title = GenerateName(3, 12);
+                // Генерация случайной продолжительности
+                int durationInMinutes = random.Next(1, 200);
+                // Генерация случайного года выпуска
+                int releaseYear = random.Next(1888, 2026);
+                // Выбор жанра по умолчанию из перечисления: Comedy
+                string genre = Convert.ToString(Model.Genre.Comedy);
+                // Генерация случайного рейтинга
+                double rating = random.Next(0, 11);
+
+                _movies[i] = new Model.Movie(title, durationInMinutes, releaseYear, genre, rating);
+                Console.WriteLine(_movies[i].Title);
+            }
+        }
+
+        private void PopulateMoviesListBox()
+        {
+            // Очистка списка перед добавлением новых элементов
+            MoviesListBox.Items.Clear();
+
+            foreach (var movie in _movies)
+            {
+                // Добавление имени в нужном формате
+                MoviesListBox.Items.Add($"{movie.Title}");
+            }
+        }
+
+        private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (MoviesListBox.SelectedIndex >= 0)
+            {
+                _currentMovie = _movies[MoviesListBox.SelectedIndex];
+                UpdateMovieFiledsTextBoxes();
+            }
+        }
+
+        private void UpdateMovieFiledsTextBoxes()
+        {
+            TitleTextBox.Text = _currentMovie.Title;
+            DurationInMinutesTextBox.Text = _currentMovie.DurationInMinutes.ToString();
+            ReleaseYearTextBox.Text = _currentMovie.ReleaseYear.ToString();
+            GenreTextBox.Text = _currentMovie.Genre.ToString();
+            RatingTextBox.Text = _currentMovie.Rating.ToString();
+        }
+
+        // Самое длинное название фильма = 156 символов
+        private void TitleTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateMovieNameProperty(TitleTextBox, 156, (value) => _currentMovie.Title = value);
+        }
+
+        private void DurationInMinutesTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateIntLimitsProperty(DurationInMinutesTextBox, 1, 999, (value) => _currentMovie.DurationInMinutes = value);
+        }
+        
+        // Самый ранний фильм датируется 1888 годом
+        private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateIntLimitsProperty(ReleaseYearTextBox, 1888 , 2025, (value) => _currentMovie.ReleaseYear = value);
+        }
+
+        private void GenreTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateEnumTypeProperty<Genre>(GenreTextBox, (value) => _currentMovie.Genre = value);
+        }
+
+        private void RatingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdateIntLimitsProperty(RatingTextBox, 0, 10, (vlue) => _currentMovie.Rating = vlue);
+        }
+
+        private void UpdateMovieNameProperty(TextBox textBox, int length, Action<string> updateAction) 
+        {
+            try
+            {
+                //string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                // Название должно начинаться с заглавной буквы
+                string value = textBox.Text;
+                if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".Contains(textBox.Text[0])) throw new ArgumentOutOfRangeException();
+                if (value.Length > length) throw new ArgumentOutOfRangeException();
+                updateAction(value);
+                textBox.BackColor = System.Drawing.Color.White;
+            }
+            catch 
+            {
+                textBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private int FindMovieWithMaxRating()
+        {
+            // Проверка на пустой массив
+            if (_movies.Length == 0)
+            {
+                // Возвращаем -1, если массив пустой
+                return -1;
+            }
+
+            // Индекс фильма с максимальным рейтингом
+            int maxIndex = 0;
+            // Начальный макксимальый рейтинг
+            double maxRating = _movies[0].Rating;
+
+            for (int i = 1; i < _movies.Length; i++)
+            {
+                // Если текущая ширина больше максимальной
+                if (_movies[i].Rating > maxRating)
+                {
+                    // Обновляем максимальную ширину
+                    maxRating = _movies[i].Rating;
+                    // Обновляем индекс
+                    maxIndex = i;
+                }
+            }
+            // Возвращаем индекс фильма с наибольшим рейтингом
+            return maxIndex;
+        }
+
+        private void FindMovieButton_Click(object sender, EventArgs e)
+        {
+            int index = FindMovieWithMaxRating();
+            MoviesListBox.SelectedIndex = index;
         }
     }
 }
