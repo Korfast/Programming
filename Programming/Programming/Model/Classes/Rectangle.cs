@@ -13,7 +13,7 @@ namespace Programming.Model
         private double _length; 
         // Вещественное поле Ширина
         private double _width;
-        // Поле для хранения центра прямоугольника
+        // Поле Центр типа Point2D
         private readonly Point2D _center;
         // Строковое поле Цвет
         private string _color;
