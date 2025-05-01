@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Classes
+namespace Programming.Model
 {
     // Клас Кольцо
-    internal class Ring
+    public class Ring
     {
         // Поле Центр типа Point2D
         private Point2D _center;
@@ -50,15 +50,7 @@ namespace Programming.Model.Classes
                 _innerRadius = value;
             }
         }
-
-        // Конструктор класса Ring
-        public Ring(Point2D center, double outerRadius, double innerRadius)
-        {
-            Center = center;
-            OuterRadius = outerRadius;
-            InnerRadius = innerRadius;
-        }
-
+        
         // Свойство для вычисления площади кольца
         public double Area
         {
@@ -66,6 +58,14 @@ namespace Programming.Model.Classes
             {
                 return Math.PI * (Math.Pow(OuterRadius, 2) - Math.Pow(InnerRadius, 2));
             }
+        }
+
+        // Конструктор класса Ring
+        public Ring(Point2D center, double outerRadius, double innerRadius)
+        {
+            Center = center;
+            OuterRadius = outerRadius;
+            InnerRadius = innerRadius;
         }
 
         // Конструктор без параметров

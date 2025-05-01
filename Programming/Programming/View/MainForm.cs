@@ -174,7 +174,7 @@ namespace Programming
             // Очистка списка перед добавлением новых элементов
             RectanglesListBox.Items.Clear(); 
             // Счетчик для имен прямоугольников
-            int index = 1; 
+            int index = 0; 
 
             foreach (var rectangle in _rectangles)
             {
@@ -195,6 +195,7 @@ namespace Programming
 
         private void UpdateRectangleFiledsTextBoxes()
         {
+            IdTextBox.Text = _currentRectangle.Id.ToString();
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             XTextBox.Text = _currentRectangle.Center.X.ToString();

@@ -9,6 +9,8 @@ namespace Programming.Model
     // Класс Прямоугольник
     public class Rectangle
     {
+        // Целочисленное поле Id
+        private readonly int _id;
         // Вещественное поле Длина
         private double _length; 
         // Вещественное поле Ширина
@@ -17,7 +19,12 @@ namespace Programming.Model
         private readonly Point2D _center;
         // Строковое поле Цвет
         private string _color;
-        
+        // Целочисленное поле Количество существующих объектов класса Прямоугольник
+        private static int _allRectanglesCount;
+
+        // Свойство для доступа к Id
+        public int Id => _id;
+
         // Свойство для доступа к длине
         public double Length
         {
@@ -52,13 +59,23 @@ namespace Programming.Model
             set { _color = value; }
         }
 
+        // Свойство возвращающее значение поля _allRectanglesCount
+        public static int AllRectanglesCount()
+        {
+            return _allRectanglesCount;
+        }
+
         // Конструктор с параметрами
         public Rectangle(double length, double width, string color)
         {
+            _id = _allRectanglesCount;
             Length = length;
             Width = width;
             _center = new Point2D(length / 2, width / 2);
             Color = color;
+
+            // Счётчик объектов класса Прямоугольник
+            _allRectanglesCount++;
         }
 
         // Конструктор без параметров
