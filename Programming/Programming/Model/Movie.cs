@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,8 +34,8 @@ namespace Programming.Model
             get { return _durationInMinutes; }
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("Продолжительность не может быть отрицательной.");
+                // Используем метод из Validator для проверки положительности продолжительности времени в минутах
+                Validator.AssertOnPositiveValue(value, nameof(DurationInMinutes));
                 _durationInMinutes = value;
             }
         }
@@ -45,8 +46,9 @@ namespace Programming.Model
             get { return _releaseYear; }
             set
             {
-                if (value < 1900 || value > DateTime.Now.Year)
-                    throw new ArgumentException("Год выпуска должен быть от 1900 до текущего года.");
+                // В задании сказано от 1900 года, но первый фильм вышел в 1888 году
+                if (value < 1888 || value > DateTime.Now.Year)
+                    throw new ArgumentException("Год выпуска должен быть от 1888 до текущего года.");
                 _releaseYear = value;
             }
         }
@@ -64,8 +66,8 @@ namespace Programming.Model
             get { return _rating; }
             set
             {
-                if (value < 0 || value > 10)
-                    throw new ArgumentException("Рейтинг должен быть от 0 до 10.");
+                // Используем метод из Validator для проверки 
+                Validator.AssertValueInRange(value, 0, 10, nameof(Rating));
                 _rating = value;
             }
         }

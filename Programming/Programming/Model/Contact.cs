@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Programming.Model
@@ -11,6 +13,8 @@ namespace Programming.Model
     {
         // Строковое поле Имя
         private string _name;
+        // Строковое поле Фамилия
+        private string _surname;
         // Строковое поле Номер телефона
         private string _phoneNumber;
         // Строковое поле Email
@@ -21,8 +25,35 @@ namespace Programming.Model
         // Свойство для доступа к имени
         public string Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get 
+            { 
+                return _name; 
+            }
+            set 
+            {
+                AssertStringContainsOnlyLetters(value, nameof(Name));
+                if (_name != value)
+                {
+                    _name = value;
+                }
+            }
+        }
+
+        // Свойство для доступа к Фамилии
+        public string Surname
+        {
+            get 
+            { 
+                return _surname; 
+            }
+            set 
+            {
+                AssertStringContainsOnlyLetters(value, nameof(Surname));
+                if (_surname != value)
+                {
+                    _surname = value;
+                }
+            }
         }
 
         // Свойство для доступа к номеру телефона
@@ -47,9 +78,10 @@ namespace Programming.Model
         }
 
         // Конструктор с параметрами
-        public Contact(string name, string phoneNumber, string email, string address)
+        public Contact(string name, string surname, string phoneNumber, string email, string address)
         {
             Name = name;
+            Surname = surname;
             PhoneNumber = phoneNumber;
             Email = email;
             Address = address;
@@ -57,5 +89,14 @@ namespace Programming.Model
 
         // Конструктор без параметров
         public Contact() { }
+
+        // Закрытый метод валидации строки на наличие только английских букв
+        private void AssertStringContainsOnlyLetters(string value, string propertyName)
+        {
+            if (!Regex.IsMatch(value, @"^[a-zA-Z]+$"))
+            {
+                throw new ArgumentException($"{propertyName} must contain only English alphabet characters.");
+            }
+        }
     }
 }

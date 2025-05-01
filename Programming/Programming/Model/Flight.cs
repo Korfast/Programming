@@ -30,14 +30,14 @@ namespace Programming.Model
             set { _destinationPoint = value; }
         }
 
-        // Свойство для доступа к времени полета
+        // Свойство для доступа к времени полёта
         public int FlightTimeInMinutes
         {
             get { return _flightTimeInMinutes; }
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("Время полета не может быть отрицательным.");
+                // Используем метод из Validator для проверки положительности времени полёта
+                Validator.AssertOnPositiveValue(value, nameof(FlightTimeInMinutes));
                 _flightTimeInMinutes = value;
             }
         }

@@ -22,8 +22,8 @@ namespace Programming.Model
             get { return _length; }
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("Длина не может быть отрицательной.");
+                // Используем метод из Validator для проверки положительности длины
+                Validator.AssertOnPositiveValue(value, nameof(Length));
                 _length = value;
             }
         }
@@ -34,8 +34,8 @@ namespace Programming.Model
             get { return _width; }
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("Ширина не может быть отрицательной.");
+                // Используем метод из Validator для проверки положительности ширины
+                Validator.AssertOnPositiveValue(value, nameof(Width));
                 _width = value;
             }
         }

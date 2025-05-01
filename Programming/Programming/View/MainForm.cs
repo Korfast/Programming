@@ -191,19 +191,19 @@ namespace Programming
 
         private void UpdateRectangleFiledsTextBoxes()
         {
-            LenghTextBox.Text = _currentRectangle.Length.ToString();
+            LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color.ToString();
         }
 
-        private void LenghTextBox_TextChanged(object sender, EventArgs e)
+        private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty(LenghTextBox, 1, 100, (value) => _currentRectangle.Length = value);
+            UpdateIntLimitsProperty((value) => _currentRectangle.Length = value, LengthTextBox);
         }
 
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty(WidthTextBox, 1, 100, (value) => _currentRectangle.Width = value);
+            UpdateIntLimitsProperty((value) => _currentRectangle.Width = value, WidthTextBox);
         }
 
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
@@ -228,12 +228,13 @@ namespace Programming
         }
 
         // Новая функция с задаваемыми лимитами
-        private void UpdateIntLimitsProperty(TextBox textBox, int LowerLimit, int UpperLimit, Action<int> updateAction)
+        private void UpdateIntLimitsProperty(Action<int> updateAction, TextBox textBox, int LowerLimit = 0, int UpperLimit = int.MaxValue)
         {
             try
             {
                 int value = int.Parse(textBox.Text);
-                if (value < LowerLimit || value > UpperLimit) throw new ArgumentOutOfRangeException();
+                // Условие отключенно так как значения проверяются внутри классов
+                // if (value < LowerLimit || value > UpperLimit) throw new ArgumentOutOfRangeException();
                 updateAction(value);
                 textBox.BackColor = System.Drawing.Color.White;
             }
@@ -382,13 +383,13 @@ namespace Programming
 
         private void DurationInMinutesTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty(DurationInMinutesTextBox, 1, 999, (value) => _currentMovie.DurationInMinutes = value);
+            UpdateIntLimitsProperty((value) => _currentMovie.DurationInMinutes = value, DurationInMinutesTextBox);
         }
         
         // Самый ранний фильм датируется 1888 годом
         private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty(ReleaseYearTextBox, 1888 , 2025, (value) => _currentMovie.ReleaseYear = value);
+            UpdateIntLimitsProperty((value) => _currentMovie.ReleaseYear = value, ReleaseYearTextBox, 1888, DateTime.Now.Year);
         }
 
         private void GenreTextBox_TextChanged(object sender, EventArgs e)
@@ -398,7 +399,7 @@ namespace Programming
 
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty(RatingTextBox, 0, 10, (vlue) => _currentMovie.Rating = vlue);
+            UpdateIntLimitsProperty((vlue) => _currentMovie.Rating = vlue, RatingTextBox, 0, 10);
         }
 
         private void UpdateMovieNameProperty(TextBox textBox, int length, Action<string> updateAction) 

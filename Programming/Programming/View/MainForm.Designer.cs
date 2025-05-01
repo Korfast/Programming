@@ -64,7 +64,7 @@
             this.FindRectangleButton = new System.Windows.Forms.Button();
             this.ColorTextBox = new System.Windows.Forms.TextBox();
             this.WidthTextBox = new System.Windows.Forms.TextBox();
-            this.LenghTextBox = new System.Windows.Forms.TextBox();
+            this.LengthTextBox = new System.Windows.Forms.TextBox();
             this.ColorLabel = new System.Windows.Forms.Label();
             this.WidthLabel = new System.Windows.Forms.Label();
             this.LanghtLabel = new System.Windows.Forms.Label();
@@ -399,7 +399,7 @@
             this.RectanglesGroupBox.Controls.Add(this.FindRectangleButton);
             this.RectanglesGroupBox.Controls.Add(this.ColorTextBox);
             this.RectanglesGroupBox.Controls.Add(this.WidthTextBox);
-            this.RectanglesGroupBox.Controls.Add(this.LenghTextBox);
+            this.RectanglesGroupBox.Controls.Add(this.LengthTextBox);
             this.RectanglesGroupBox.Controls.Add(this.ColorLabel);
             this.RectanglesGroupBox.Controls.Add(this.WidthLabel);
             this.RectanglesGroupBox.Controls.Add(this.LanghtLabel);
@@ -437,13 +437,13 @@
             this.WidthTextBox.TabIndex = 5;
             this.WidthTextBox.TextChanged += new System.EventHandler(this.WidthTextBox_TextChanged);
             // 
-            // LenghTextBox
+            // LengthTextBox
             // 
-            this.LenghTextBox.Location = new System.Drawing.Point(187, 37);
-            this.LenghTextBox.Name = "LenghTextBox";
-            this.LenghTextBox.Size = new System.Drawing.Size(100, 20);
-            this.LenghTextBox.TabIndex = 4;
-            this.LenghTextBox.TextChanged += new System.EventHandler(this.LenghTextBox_TextChanged);
+            this.LengthTextBox.Location = new System.Drawing.Point(187, 37);
+            this.LengthTextBox.Name = "LengthTextBox";
+            this.LengthTextBox.Size = new System.Drawing.Size(100, 20);
+            this.LengthTextBox.TabIndex = 4;
+            this.LengthTextBox.TextChanged += new System.EventHandler(this.LengthTextBox_TextChanged);
             // 
             // ColorLabel
             // 
@@ -530,7 +530,7 @@
         private System.Windows.Forms.TabPage ClassesTabPage;
         private System.Windows.Forms.GroupBox RectanglesGroupBox;
         private System.Windows.Forms.ListBox RectanglesListBox;
-        private System.Windows.Forms.TextBox LenghTextBox;
+        private System.Windows.Forms.TextBox LengthTextBox;
         private System.Windows.Forms.Label ColorLabel;
         private System.Windows.Forms.Label WidthLabel;
         private System.Windows.Forms.Label LanghtLabel;

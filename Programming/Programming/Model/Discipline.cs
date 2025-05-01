@@ -31,8 +31,8 @@ namespace Programming.Model
             get { return _credits; }
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("Количество кредитов не может быть отрицательным.");
+                // Используем метод из Validator для проверки положительности кредитов.
+                Validator.AssertOnPositiveValue(value, nameof(Credits)); 
                 _credits = value;
             }
         }

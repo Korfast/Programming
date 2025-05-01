@@ -38,8 +38,8 @@ namespace Programming.Model
             get { return _duration; }
             set
             {
-                if (value < 0)
-                    throw new ArgumentException("Продолжительность не может быть отрицательной.");
+                // Используем метод из Validator для проверки положительности продолжительности
+                Validator.AssertOnPositiveValue(value, nameof(Duration));
                 _duration = value;
             }
         }
