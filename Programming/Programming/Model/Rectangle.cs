@@ -12,10 +12,12 @@ namespace Programming.Model
         // Вещественное поле Длина
         private double _length; 
         // Вещественное поле Ширина
-        private double _width; 
+        private double _width;
+        // Поле для хранения центра прямоугольника
+        private readonly Point2D _center;
         // Строковое поле Цвет
         private string _color;
-
+        
         // Свойство для доступа к длине
         public double Length
         {
@@ -40,6 +42,9 @@ namespace Programming.Model
             }
         }
 
+        // Свойство для доступа к центру прямоугольника
+        public Point2D Center => _center;
+
         // Свойство для доступа к цвету
         public string Color
         {
@@ -52,6 +57,7 @@ namespace Programming.Model
         {
             Length = length;
             Width = width;
+            _center = new Point2D(length / 2, width / 2);
             Color = color;
         }
 

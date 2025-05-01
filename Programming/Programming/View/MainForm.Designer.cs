@@ -61,14 +61,18 @@
             this.TatleLabel = new System.Windows.Forms.Label();
             this.MoviesListBox = new System.Windows.Forms.ListBox();
             this.RectanglesGroupBox = new System.Windows.Forms.GroupBox();
+            this.XLabel = new System.Windows.Forms.Label();
+            this.XTextBox = new System.Windows.Forms.TextBox();
             this.FindRectangleButton = new System.Windows.Forms.Button();
             this.ColorTextBox = new System.Windows.Forms.TextBox();
             this.WidthTextBox = new System.Windows.Forms.TextBox();
             this.LengthTextBox = new System.Windows.Forms.TextBox();
             this.ColorLabel = new System.Windows.Forms.Label();
             this.WidthLabel = new System.Windows.Forms.Label();
-            this.LanghtLabel = new System.Windows.Forms.Label();
+            this.LangthLabel = new System.Windows.Forms.Label();
             this.RectanglesListBox = new System.Windows.Forms.ListBox();
+            this.YLabel = new System.Windows.Forms.Label();
+            this.YTextBox = new System.Windows.Forms.TextBox();
             this.EnumsTabPage.SuspendLayout();
             this.SeasonHandleGroupBox.SuspendLayout();
             this.WeekdayParsingGroupBox.SuspendLayout();
@@ -292,7 +296,7 @@
             // 
             // FindMovieButton
             // 
-            this.FindMovieButton.Location = new System.Drawing.Point(187, 216);
+            this.FindMovieButton.Location = new System.Drawing.Point(187, 222);
             this.FindMovieButton.Name = "FindMovieButton";
             this.FindMovieButton.Size = new System.Drawing.Size(100, 23);
             this.FindMovieButton.TabIndex = 11;
@@ -302,7 +306,7 @@
             // 
             // RatingTextBox
             // 
-            this.RatingTextBox.Location = new System.Drawing.Point(187, 190);
+            this.RatingTextBox.Location = new System.Drawing.Point(187, 195);
             this.RatingTextBox.Name = "RatingTextBox";
             this.RatingTextBox.Size = new System.Drawing.Size(100, 20);
             this.RatingTextBox.TabIndex = 10;
@@ -310,7 +314,7 @@
             // 
             // GenreTextBox
             // 
-            this.GenreTextBox.Location = new System.Drawing.Point(187, 150);
+            this.GenreTextBox.Location = new System.Drawing.Point(187, 155);
             this.GenreTextBox.Name = "GenreTextBox";
             this.GenreTextBox.Size = new System.Drawing.Size(100, 20);
             this.GenreTextBox.TabIndex = 9;
@@ -334,7 +338,7 @@
             // 
             // TitleTextBox
             // 
-            this.TitleTextBox.Location = new System.Drawing.Point(187, 37);
+            this.TitleTextBox.Location = new System.Drawing.Point(187, 35);
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(100, 20);
             this.TitleTextBox.TabIndex = 6;
@@ -343,7 +347,7 @@
             // RatingLabel
             // 
             this.RatingLabel.AutoSize = true;
-            this.RatingLabel.Location = new System.Drawing.Point(187, 173);
+            this.RatingLabel.Location = new System.Drawing.Point(184, 180);
             this.RatingLabel.Name = "RatingLabel";
             this.RatingLabel.Size = new System.Drawing.Size(41, 13);
             this.RatingLabel.TabIndex = 5;
@@ -352,7 +356,7 @@
             // GenreLabel
             // 
             this.GenreLabel.AutoSize = true;
-            this.GenreLabel.Location = new System.Drawing.Point(187, 134);
+            this.GenreLabel.Location = new System.Drawing.Point(184, 140);
             this.GenreLabel.Name = "GenreLabel";
             this.GenreLabel.Size = new System.Drawing.Size(39, 13);
             this.GenreLabel.TabIndex = 4;
@@ -361,7 +365,7 @@
             // ReleaseYearLabel
             // 
             this.ReleaseYearLabel.AutoSize = true;
-            this.ReleaseYearLabel.Location = new System.Drawing.Point(187, 99);
+            this.ReleaseYearLabel.Location = new System.Drawing.Point(184, 100);
             this.ReleaseYearLabel.Name = "ReleaseYearLabel";
             this.ReleaseYearLabel.Size = new System.Drawing.Size(72, 13);
             this.ReleaseYearLabel.TabIndex = 3;
@@ -370,7 +374,7 @@
             // DurationInMinutesLabel
             // 
             this.DurationInMinutesLabel.AutoSize = true;
-            this.DurationInMinutesLabel.Location = new System.Drawing.Point(187, 60);
+            this.DurationInMinutesLabel.Location = new System.Drawing.Point(184, 60);
             this.DurationInMinutesLabel.Name = "DurationInMinutesLabel";
             this.DurationInMinutesLabel.Size = new System.Drawing.Size(50, 13);
             this.DurationInMinutesLabel.TabIndex = 2;
@@ -379,7 +383,7 @@
             // TatleLabel
             // 
             this.TatleLabel.AutoSize = true;
-            this.TatleLabel.Location = new System.Drawing.Point(187, 20);
+            this.TatleLabel.Location = new System.Drawing.Point(184, 20);
             this.TatleLabel.Name = "TatleLabel";
             this.TatleLabel.Size = new System.Drawing.Size(30, 13);
             this.TatleLabel.TabIndex = 1;
@@ -396,13 +400,17 @@
             // 
             // RectanglesGroupBox
             // 
-            this.RectanglesGroupBox.Controls.Add(this.FindRectangleButton);
+            this.RectanglesGroupBox.Controls.Add(this.YTextBox);
+            this.RectanglesGroupBox.Controls.Add(this.YLabel);
+            this.RectanglesGroupBox.Controls.Add(this.ColorLabel);
             this.RectanglesGroupBox.Controls.Add(this.ColorTextBox);
+            this.RectanglesGroupBox.Controls.Add(this.XLabel);
+            this.RectanglesGroupBox.Controls.Add(this.XTextBox);
+            this.RectanglesGroupBox.Controls.Add(this.FindRectangleButton);
             this.RectanglesGroupBox.Controls.Add(this.WidthTextBox);
             this.RectanglesGroupBox.Controls.Add(this.LengthTextBox);
-            this.RectanglesGroupBox.Controls.Add(this.ColorLabel);
             this.RectanglesGroupBox.Controls.Add(this.WidthLabel);
-            this.RectanglesGroupBox.Controls.Add(this.LanghtLabel);
+            this.RectanglesGroupBox.Controls.Add(this.LangthLabel);
             this.RectanglesGroupBox.Controls.Add(this.RectanglesListBox);
             this.RectanglesGroupBox.Location = new System.Drawing.Point(4, 6);
             this.RectanglesGroupBox.Name = "RectanglesGroupBox";
@@ -411,9 +419,26 @@
             this.RectanglesGroupBox.TabStop = false;
             this.RectanglesGroupBox.Text = "Rectangles";
             // 
+            // XLabel
+            // 
+            this.XLabel.AutoSize = true;
+            this.XLabel.Location = new System.Drawing.Point(184, 100);
+            this.XLabel.Name = "XLabel";
+            this.XLabel.Size = new System.Drawing.Size(17, 13);
+            this.XLabel.TabIndex = 9;
+            this.XLabel.Text = "X:";
+            // 
+            // XTextBox
+            // 
+            this.XTextBox.Location = new System.Drawing.Point(187, 115);
+            this.XTextBox.Name = "XTextBox";
+            this.XTextBox.ReadOnly = true;
+            this.XTextBox.Size = new System.Drawing.Size(100, 20);
+            this.XTextBox.TabIndex = 8;
+            // 
             // FindRectangleButton
             // 
-            this.FindRectangleButton.Location = new System.Drawing.Point(187, 216);
+            this.FindRectangleButton.Location = new System.Drawing.Point(187, 222);
             this.FindRectangleButton.Name = "FindRectangleButton";
             this.FindRectangleButton.Size = new System.Drawing.Size(100, 23);
             this.FindRectangleButton.TabIndex = 7;
@@ -423,7 +448,7 @@
             // 
             // ColorTextBox
             // 
-            this.ColorTextBox.Location = new System.Drawing.Point(187, 115);
+            this.ColorTextBox.Location = new System.Drawing.Point(187, 195);
             this.ColorTextBox.Name = "ColorTextBox";
             this.ColorTextBox.Size = new System.Drawing.Size(100, 20);
             this.ColorTextBox.TabIndex = 6;
@@ -431,7 +456,7 @@
             // 
             // WidthTextBox
             // 
-            this.WidthTextBox.Location = new System.Drawing.Point(187, 76);
+            this.WidthTextBox.Location = new System.Drawing.Point(187, 75);
             this.WidthTextBox.Name = "WidthTextBox";
             this.WidthTextBox.Size = new System.Drawing.Size(100, 20);
             this.WidthTextBox.TabIndex = 5;
@@ -439,7 +464,7 @@
             // 
             // LengthTextBox
             // 
-            this.LengthTextBox.Location = new System.Drawing.Point(187, 37);
+            this.LengthTextBox.Location = new System.Drawing.Point(187, 35);
             this.LengthTextBox.Name = "LengthTextBox";
             this.LengthTextBox.Size = new System.Drawing.Size(100, 20);
             this.LengthTextBox.TabIndex = 4;
@@ -448,7 +473,7 @@
             // ColorLabel
             // 
             this.ColorLabel.AutoSize = true;
-            this.ColorLabel.Location = new System.Drawing.Point(184, 99);
+            this.ColorLabel.Location = new System.Drawing.Point(184, 180);
             this.ColorLabel.Name = "ColorLabel";
             this.ColorLabel.Size = new System.Drawing.Size(34, 13);
             this.ColorLabel.TabIndex = 3;
@@ -463,14 +488,14 @@
             this.WidthLabel.TabIndex = 2;
             this.WidthLabel.Text = "Width:";
             // 
-            // LanghtLabel
+            // LangthLabel
             // 
-            this.LanghtLabel.AutoSize = true;
-            this.LanghtLabel.Location = new System.Drawing.Point(184, 20);
-            this.LanghtLabel.Name = "LanghtLabel";
-            this.LanghtLabel.Size = new System.Drawing.Size(43, 13);
-            this.LanghtLabel.TabIndex = 1;
-            this.LanghtLabel.Text = "Lenght:";
+            this.LangthLabel.AutoSize = true;
+            this.LangthLabel.Location = new System.Drawing.Point(184, 20);
+            this.LangthLabel.Name = "LangthLabel";
+            this.LangthLabel.Size = new System.Drawing.Size(43, 13);
+            this.LangthLabel.TabIndex = 1;
+            this.LangthLabel.Text = "Length:";
             // 
             // RectanglesListBox
             // 
@@ -480,6 +505,23 @@
             this.RectanglesListBox.Size = new System.Drawing.Size(175, 225);
             this.RectanglesListBox.TabIndex = 0;
             this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
+            // 
+            // YLabel
+            // 
+            this.YLabel.AutoSize = true;
+            this.YLabel.Location = new System.Drawing.Point(184, 140);
+            this.YLabel.Name = "YLabel";
+            this.YLabel.Size = new System.Drawing.Size(17, 13);
+            this.YLabel.TabIndex = 10;
+            this.YLabel.Text = "Y:";
+            // 
+            // YTextBox
+            // 
+            this.YTextBox.Location = new System.Drawing.Point(187, 155);
+            this.YTextBox.Name = "YTextBox";
+            this.YTextBox.ReadOnly = true;
+            this.YTextBox.Size = new System.Drawing.Size(100, 20);
+            this.YTextBox.TabIndex = 11;
             // 
             // MainForm
             // 
@@ -533,7 +575,7 @@
         private System.Windows.Forms.TextBox LengthTextBox;
         private System.Windows.Forms.Label ColorLabel;
         private System.Windows.Forms.Label WidthLabel;
-        private System.Windows.Forms.Label LanghtLabel;
+        private System.Windows.Forms.Label LangthLabel;
         private System.Windows.Forms.TextBox ColorTextBox;
         private System.Windows.Forms.TextBox WidthTextBox;
         private System.Windows.Forms.Button FindRectangleButton;
@@ -550,6 +592,10 @@
         private System.Windows.Forms.TextBox GenreTextBox;
         private System.Windows.Forms.TextBox ReleaseYearTextBox;
         private System.Windows.Forms.Button FindMovieButton;
+        private System.Windows.Forms.Label XLabel;
+        private System.Windows.Forms.TextBox XTextBox;
+        private System.Windows.Forms.TextBox YTextBox;
+        private System.Windows.Forms.Label YLabel;
     }
 }
 

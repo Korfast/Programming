@@ -162,6 +162,10 @@ namespace Programming
                 string color = Convert.ToString(Model.Color.Red);
 
                 _rectangles[i] = new Model.Rectangle(length, width, color);
+                Console.WriteLine($"Координаты центра прямоугольника {i}");
+                Console.Write(_rectangles[i].Center.X);
+                Console.Write(" ");
+                Console.WriteLine(_rectangles[i].Center.Y);
             }
         }
 
@@ -193,6 +197,8 @@ namespace Programming
         {
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
+            XTextBox.Text = _currentRectangle.Center.X.ToString();
+            YTextBox.Text = _currentRectangle.Center.Y.ToString();
             ColorTextBox.Text = _currentRectangle.Color.ToString();
         }
 
@@ -340,8 +346,8 @@ namespace Programming
                 // Генерация случайного рейтинга
                 double rating = random.Next(0, 11);
 
+                // Создание нового объекта фильма с сгенерированными параметрами и добавление его в массив _movies
                 _movies[i] = new Model.Movie(title, durationInMinutes, releaseYear, genre, rating);
-                Console.WriteLine(_movies[i].Title);
             }
         }
 
