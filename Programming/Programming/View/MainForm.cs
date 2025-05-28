@@ -34,6 +34,7 @@ namespace Programming
             InitializeMovies();
             PopulateRectanglesListBox();
             PopulateMoviesListBox();
+            PopulateRectanglesListBox5(); 
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -109,12 +110,12 @@ namespace Programming
 
             // Устанавливаем источник данных для SeasonComboBox
             SeasonComboBox.DataSource = seasonValues;
-            SeasonComboBox.DisplayMember = "Name"; // Если у вас есть свойство Name, иначе просто уберите эту строку
+            SeasonComboBox.DisplayMember = "Name"; 
 
             // Устанавливаем выбранный элемент, если есть значения
             if (SeasonComboBox.Items.Count > 0)
             {
-                SeasonComboBox.SelectedIndex = 0; // Устанавливаем первый элемент как выбранный
+                SeasonComboBox.SelectedIndex = 0; 
             }
         }
 
@@ -162,10 +163,6 @@ namespace Programming
                 string color = Convert.ToString(Model.Color.Red);
 
                 _rectangles[i] = new Model.Rectangle(length, width, color);
-                Console.WriteLine($"Координаты центра прямоугольника {i}");
-                Console.Write(_rectangles[i].Center.X);
-                Console.Write(" ");
-                Console.WriteLine(_rectangles[i].Center.Y);
             }
         }
 
@@ -460,6 +457,53 @@ namespace Programming
         {
             int index = FindMovieWithMaxRating();
             MoviesListBox.SelectedIndex = index;
+        }
+
+        private void PopulateRectanglesListBox5()
+        {
+            // Очистка списка перед добавлением новых элементов
+            RectanglesListBox5.Items.Clear();
+            // Счетчик для имен прямоугольников
+            int index = 0;
+
+            foreach (var rectangle in _rectangles)
+            {
+                // Добавление имени в нужном формате
+                RectanglesListBox5.Items.Add($"Rectangle {index}");
+                index++;
+            }
+        }
+
+        private void RectanglesListBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (RectanglesListBox5.SelectedIndex >= 0)
+            {
+                _currentRectangle = _rectangles[RectanglesListBox5.SelectedIndex];
+                UpdateRectangleFiledsTextBoxes5();
+            }
+        }
+
+        private void UpdateRectangleFiledsTextBoxes5()
+        {
+            IdTextBox5.Text = _currentRectangle.Id.ToString();
+            XTextBox5.Text = _currentRectangle.Center.X.ToString();
+            YTextBox5.Text = _currentRectangle.Center.Y.ToString();
+            LengthTextBox5.Text = _currentRectangle.Length.ToString();
+            WidthTextBox5.Text = _currentRectangle.Width.ToString();
+        }
+
+        private void AddRectangleButton5_Click(object sender, EventArgs e)
+        {
+            var _rectanglesList = _rectangles.ToList();
+
+            // Генерация случайной длины
+            double length = random.Next(1, 100);
+            // Генерация случайной ширины
+            double width = random.Next(1, 100);
+            // Выбор цвета по умолчанию из перечисления: Red
+            string color = Convert.ToString(Model.Color.Red);
+
+            _rectanglesList.Add(new Model.Rectangle(length, width, color));
         }
     }
 }

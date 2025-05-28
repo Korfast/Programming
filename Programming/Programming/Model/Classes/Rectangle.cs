@@ -9,6 +9,8 @@ namespace Programming.Model
     // Класс Прямоугольник
     public class Rectangle
     {
+        // Статичное поле объект класса Random
+        private static Random _random = new Random();
         // Целочисленное поле Id
         private readonly int _id;
         // Вещественное поле Длина
@@ -68,10 +70,11 @@ namespace Programming.Model
         // Конструктор с параметрами
         public Rectangle(double length, double width, string color)
         {
+            
             _id = _allRectanglesCount;
             Length = length;
             Width = width;
-            _center = new Point2D(length / 2, width / 2);
+            _center = new Point2D(_random.Next(500), _random.Next(400));
             Color = color;
 
             // Счётчик объектов класса Прямоугольник
