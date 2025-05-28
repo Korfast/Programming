@@ -463,14 +463,12 @@ namespace Programming
         {
             // Очистка списка перед добавлением новых элементов
             RectanglesListBox5.Items.Clear();
-            // Счетчик для имен прямоугольников
-            int index = 0;
 
             foreach (var rectangle in _rectangles)
             {
                 // Добавление имени в нужном формате
-                RectanglesListBox5.Items.Add($"Rectangle {index}");
-                index++;
+                RectanglesListBox5.Items.Add($"{rectangle.Id}: (X={rectangle.Center.X}; " +
+                    $"Y={rectangle.Center.Y}; L={rectangle.Length}; W={rectangle.Width})");
             }
         }
 
@@ -500,10 +498,13 @@ namespace Programming
             double length = random.Next(1, 100);
             // Генерация случайной ширины
             double width = random.Next(1, 100);
-            // Выбор цвета по умолчанию из перечисления: Red
-            string color = Convert.ToString(Model.Color.Red);
+            // Выбор цвета по умолчанию из перечисления: Orange
+            string color = Convert.ToString(Model.Color.Orange);
 
             _rectanglesList.Add(new Model.Rectangle(length, width, color));
+            _rectangles = _rectanglesList.ToArray();
+            PopulateRectanglesListBox();
+            PopulateRectanglesListBox5();
         }
     }
 }
