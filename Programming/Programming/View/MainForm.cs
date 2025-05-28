@@ -505,6 +505,7 @@ namespace Programming
             _rectangles = _rectanglesList.ToArray();
             PopulateRectanglesListBox();
             PopulateRectanglesListBox5();
+            // AAA
         }
     }
 }
