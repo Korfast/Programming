@@ -110,7 +110,7 @@
             this.EnumsTabPage.Controls.Add(this.EnumsGroupBox);
             this.EnumsTabPage.Location = new System.Drawing.Point(4, 22);
             this.EnumsTabPage.Name = "EnumsTabPage";
-            this.EnumsTabPage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.EnumsTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.EnumsTabPage.Size = new System.Drawing.Size(616, 415);
             this.EnumsTabPage.TabIndex = 0;
             this.EnumsTabPage.Text = "Enums";
@@ -582,9 +582,9 @@
             this.RectanglesTabPage.Controls.Add(this.SelectedRectangleLabel5);
             this.RectanglesTabPage.Controls.Add(this.RectanglesLabel5);
             this.RectanglesTabPage.Location = new System.Drawing.Point(4, 22);
-            this.RectanglesTabPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RectanglesTabPage.Margin = new System.Windows.Forms.Padding(2);
             this.RectanglesTabPage.Name = "RectanglesTabPage";
-            this.RectanglesTabPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RectanglesTabPage.Padding = new System.Windows.Forms.Padding(2);
             this.RectanglesTabPage.Size = new System.Drawing.Size(616, 415);
             this.RectanglesTabPage.TabIndex = 2;
             this.RectanglesTabPage.Text = "Rectangles";
@@ -594,7 +594,7 @@
             // 
             this.RectanglesPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RectanglesPanel5.Location = new System.Drawing.Point(240, 10);
-            this.RectanglesPanel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RectanglesPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.RectanglesPanel5.Name = "RectanglesPanel5";
             this.RectanglesPanel5.Size = new System.Drawing.Size(372, 403);
             this.RectanglesPanel5.TabIndex = 15;
@@ -602,7 +602,7 @@
             // DeleteRectangleButton5
             // 
             this.DeleteRectangleButton5.Location = new System.Drawing.Point(124, 242);
-            this.DeleteRectangleButton5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DeleteRectangleButton5.Margin = new System.Windows.Forms.Padding(2);
             this.DeleteRectangleButton5.Name = "DeleteRectangleButton5";
             this.DeleteRectangleButton5.Size = new System.Drawing.Size(94, 19);
             this.DeleteRectangleButton5.TabIndex = 14;
@@ -612,7 +612,7 @@
             // AddRectangleButton5
             // 
             this.AddRectangleButton5.Location = new System.Drawing.Point(11, 242);
-            this.AddRectangleButton5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddRectangleButton5.Margin = new System.Windows.Forms.Padding(2);
             this.AddRectangleButton5.Name = "AddRectangleButton5";
             this.AddRectangleButton5.Size = new System.Drawing.Size(94, 19);
             this.AddRectangleButton5.TabIndex = 13;
@@ -623,48 +623,53 @@
             // IdTextBox5
             // 
             this.IdTextBox5.Location = new System.Drawing.Point(53, 293);
-            this.IdTextBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.IdTextBox5.Margin = new System.Windows.Forms.Padding(2);
             this.IdTextBox5.Name = "IdTextBox5";
+            this.IdTextBox5.ReadOnly = true;
             this.IdTextBox5.Size = new System.Drawing.Size(76, 20);
             this.IdTextBox5.TabIndex = 12;
             // 
             // XTextBox5
             // 
             this.XTextBox5.Location = new System.Drawing.Point(53, 318);
-            this.XTextBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.XTextBox5.Margin = new System.Windows.Forms.Padding(2);
             this.XTextBox5.Name = "XTextBox5";
+            this.XTextBox5.ReadOnly = true;
             this.XTextBox5.Size = new System.Drawing.Size(76, 20);
             this.XTextBox5.TabIndex = 11;
             // 
             // YTextBox5
             // 
             this.YTextBox5.Location = new System.Drawing.Point(53, 340);
-            this.YTextBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.YTextBox5.Margin = new System.Windows.Forms.Padding(2);
             this.YTextBox5.Name = "YTextBox5";
+            this.YTextBox5.ReadOnly = true;
             this.YTextBox5.Size = new System.Drawing.Size(76, 20);
             this.YTextBox5.TabIndex = 10;
             // 
             // LengthTextBox5
             // 
             this.LengthTextBox5.Location = new System.Drawing.Point(53, 364);
-            this.LengthTextBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LengthTextBox5.Margin = new System.Windows.Forms.Padding(2);
             this.LengthTextBox5.Name = "LengthTextBox5";
             this.LengthTextBox5.Size = new System.Drawing.Size(76, 20);
             this.LengthTextBox5.TabIndex = 9;
+            this.LengthTextBox5.TextChanged += new System.EventHandler(this.LengthTextBox5_TextChanged);
             // 
             // WidthTextBox5
             // 
             this.WidthTextBox5.Location = new System.Drawing.Point(53, 388);
-            this.WidthTextBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.WidthTextBox5.Margin = new System.Windows.Forms.Padding(2);
             this.WidthTextBox5.Name = "WidthTextBox5";
             this.WidthTextBox5.Size = new System.Drawing.Size(76, 20);
             this.WidthTextBox5.TabIndex = 8;
+            this.WidthTextBox5.TextChanged += new System.EventHandler(this.WidthTextBox5_TextChanged);
             // 
             // RectanglesListBox5
             // 
             this.RectanglesListBox5.FormattingEnabled = true;
             this.RectanglesListBox5.Location = new System.Drawing.Point(11, 24);
-            this.RectanglesListBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RectanglesListBox5.Margin = new System.Windows.Forms.Padding(2);
             this.RectanglesListBox5.Name = "RectanglesListBox5";
             this.RectanglesListBox5.Size = new System.Drawing.Size(216, 199);
             this.RectanglesListBox5.TabIndex = 7;

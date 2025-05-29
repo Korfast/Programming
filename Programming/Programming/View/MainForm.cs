@@ -24,6 +24,8 @@ namespace Programming
         private Model.Movie[] _movies;
         // Текущий фильм
         private Model.Movie _currentMovie;
+        // Список 
+        private List<Panel> _rectanglePanels = new List<Panel>();
 
         public MainForm()
         {
@@ -32,6 +34,7 @@ namespace Programming
             InitializeSeasonComboBox();
             InitializeRectangles();
             InitializeMovies();
+            InitializeRectanglesListBox5();
             PopulateRectanglesListBox();
             PopulateMoviesListBox();
             PopulateRectanglesListBox5(); 
@@ -472,6 +475,25 @@ namespace Programming
             }
         }
 
+        private void InitializeRectanglesListBox5()
+        {
+            // Добавляем все изначально существующие прямоугольники
+            PopulateRectanglesListBox5();
+            
+            // Создаём для них панели
+            // Создаем панель через отдельную функцию
+            foreach (var rectangle in _rectangles)
+            {
+                Panel rectanglePanel = CreateRectanglePanel(rectangle);
+
+                // Добавляем панель на RectanglesPanel5
+                RectanglesPanel5.Controls.Add(rectanglePanel);
+
+                // Добавляем панель в список для дальнейшего управления
+                _rectanglePanels.Add(rectanglePanel);
+            }
+        }
+
         private void RectanglesListBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (RectanglesListBox5.SelectedIndex >= 0)
@@ -492,7 +514,7 @@ namespace Programming
 
         private void AddRectangleButton5_Click(object sender, EventArgs e)
         {
-            var _rectanglesList = _rectangles.ToList();
+            var _rectanglesList = _rectangles.ToList(); 
 
             // Генерация случайной длины
             double length = random.Next(1, 100);
@@ -501,11 +523,54 @@ namespace Programming
             // Выбор цвета по умолчанию из перечисления: Orange
             string color = Convert.ToString(Model.Color.Orange);
 
+            // Добавляем новый прямоугольник в список
             _rectanglesList.Add(new Model.Rectangle(length, width, color));
+            // Преобразуем список в массив
             _rectangles = _rectanglesList.ToArray();
+
+            // Обновляем RectanglesListBox
             PopulateRectanglesListBox();
+            // Обновляем RectanglesListBox5
             PopulateRectanglesListBox5();
-            // AAA
+
+            // Задаём последний элемент списка как выбранный
+            RectanglesListBox5.SelectedIndex = RectanglesListBox5.Items.Count - 1;
+            // Задаём текущий прямоугольник 
+            _currentRectangle = _rectangles[RectanglesListBox5.SelectedIndex];
+
+            // Создаем панель через отдельную функцию
+            Panel rectanglePanel = CreateRectanglePanel(_currentRectangle);
+
+            // Добавляем панель на RectanglesPanel5
+            RectanglesPanel5.Controls.Add(rectanglePanel);
+
+            // Добавляем панель в список для дальнейшего управления
+            _rectanglePanels.Add(rectanglePanel);
+        }
+
+        private Panel CreateRectanglePanel(Model.Rectangle rectangle)
+        {
+            // Создаем новый Panel
+            Panel rectanglePanel = new Panel();
+
+            // Устанавливаем размеры и позицию панели согласно Rectangle
+            rectanglePanel.Location = new Point(Convert.ToInt32(rectangle.Center.X), Convert.ToInt32(rectangle.Center.Y));
+            rectanglePanel.Size = new Size(Convert.ToInt32(rectangle.Length), Convert.ToInt32(rectangle.Width));
+
+            // Назначаем цвет фона (прозрачный зеленый)
+            rectanglePanel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+
+            return rectanglePanel;
+        }
+
+        private void LengthTextBox5_TextChanged(object sender, EventArgs e)
+        {
+            UpdateIntLimitsProperty((value) => _currentRectangle.Length = value, LengthTextBox5);
+        }
+
+        private void WidthTextBox5_TextChanged(object sender, EventArgs e)
+        {
+            UpdateIntLimitsProperty((value) => _currentRectangle.Width = value, WidthTextBox5);
         }
     }
 }
