@@ -608,6 +608,7 @@
             this.DeleteRectangleButton5.TabIndex = 14;
             this.DeleteRectangleButton5.Text = "Delete";
             this.DeleteRectangleButton5.UseVisualStyleBackColor = true;
+            this.DeleteRectangleButton5.Click += new System.EventHandler(this.DeleteRectangleButton5_Click);
             // 
             // AddRectangleButton5
             // 

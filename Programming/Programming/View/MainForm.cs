@@ -162,8 +162,8 @@ namespace Programming
                 double length = random.Next(1, 100); 
                 // Генерация случайной ширины
                 double width = random.Next(1, 100);
-                // Выбор цвета по умолчанию из перечисления: Red
-                string color = Convert.ToString(Model.Color.Red);
+                // Выбор цвета по умолчанию из перечисления: Green
+                string color = Convert.ToString(Model.Color.Green);
 
                 _rectangles[i] = new Model.Rectangle(length, width, color);
             }
@@ -173,15 +173,11 @@ namespace Programming
         {
             // Очистка списка перед добавлением новых элементов
             RectanglesListBox.Items.Clear(); 
-            // Счетчик для имен прямоугольников
-            int index = 0; 
 
             foreach (var rectangle in _rectangles)
             {
                 // Добавление имени в нужном формате
-                RectanglesListBox.Items.Add($"Rectangle {index}"); 
-                index++; 
-            }
+                RectanglesListBox.Items.Add($"Rectangle {rectangle.Id}");             }
         }
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -243,7 +239,7 @@ namespace Programming
                 // Условие отключенно так как значения проверяются внутри классов
                 // if (value < LowerLimit || value > UpperLimit) throw new ArgumentOutOfRangeException();
                 updateAction(value);
-                textBox.BackColor = System.Drawing.Color.White;
+                textBox.BackColor = SystemColors.Window;
             }
             catch
             {
@@ -262,7 +258,7 @@ namespace Programming
                 if (Enum.TryParse(value.Trim(), true, out EnumType result))
                 {
                     updateAction(value);
-                    textBox.BackColor = System.Drawing.Color.White;
+                    textBox.BackColor = SystemColors.Window;
                 }
                 else
                 {
@@ -496,11 +492,18 @@ namespace Programming
 
         private void RectanglesListBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (RectanglesListBox5.SelectedIndex >= 0)
             {
                 _currentRectangle = _rectangles[RectanglesListBox5.SelectedIndex];
                 UpdateRectangleFiledsTextBoxes5();
             }
+            else
+            {
+                _currentRectangle = null;
+                ClearRectangleFields();
+            }
+
         }
 
         private void UpdateRectangleFiledsTextBoxes5()
@@ -512,6 +515,44 @@ namespace Programming
             WidthTextBox5.Text = _currentRectangle.Width.ToString();
         }
 
+        private void ClearRectangleFields()
+        {
+            // Приведение изменяемых свойств текстбоксов к начальному состоянию
+
+            IdTextBox5.Text = "";
+            IdTextBox5.BackColor = SystemColors.Control;
+
+            XTextBox5.Text = "";
+            XTextBox5.BackColor = SystemColors.Control;
+
+            YTextBox5.Text = "";
+            YTextBox5.BackColor = SystemColors.Control;
+
+            LengthTextBox5.Text = "";
+            LengthTextBox5.BackColor = SystemColors.Window;
+
+            WidthTextBox5.Text = "";
+            WidthTextBox5.BackColor = SystemColors.Window;
+
+            IdTextBox.Text = "";
+            IdTextBox.BackColor = SystemColors.Control;
+
+            XTextBox.Text = "";
+            XTextBox.BackColor = SystemColors.Control;
+
+            YTextBox.Text = "";
+            YTextBox.BackColor = SystemColors.Control;
+
+            LengthTextBox.Text = "";
+            LengthTextBox.BackColor = SystemColors.Window;
+
+            WidthTextBox.Text = "";
+            WidthTextBox.BackColor = SystemColors.Window;
+
+            ColorTextBox.Text = "";
+            ColorTextBox.BackColor = SystemColors.Window;
+        }
+
         private void AddRectangleButton5_Click(object sender, EventArgs e)
         {
             var _rectanglesList = _rectangles.ToList(); 
@@ -520,8 +561,8 @@ namespace Programming
             double length = random.Next(1, 100);
             // Генерация случайной ширины
             double width = random.Next(1, 100);
-            // Выбор цвета по умолчанию из перечисления: Orange
-            string color = Convert.ToString(Model.Color.Orange);
+            // Выбор цвета по умолчанию из перечисления: Blue
+            string color = Convert.ToString(Model.Color.Blue);
 
             // Добавляем новый прямоугольник в список
             _rectanglesList.Add(new Model.Rectangle(length, width, color));
@@ -548,6 +589,42 @@ namespace Programming
             _rectanglePanels.Add(rectanglePanel);
         }
 
+        private void DeleteRectangleButton5_Click(object sender, EventArgs e)
+        {
+            // Проверяем, что есть выбранный элемент
+            int selectedIndex = RectanglesListBox5.SelectedIndex;
+            if (selectedIndex == -1)
+            {
+                // Ничего не выбрано, выходим
+                return;
+            }
+
+            // Удаляем из списка _rectangles
+            _rectangles = _rectangles.Where((rect, index) => index != selectedIndex).ToArray();
+
+            // Удаляем из ListBox
+            RectanglesListBox5.Items.RemoveAt(selectedIndex);
+
+            // Обновляем RectanglesListBox
+            PopulateRectanglesListBox();
+
+            // Удаляем соответствующую панель
+            if (_rectanglePanels.Count > selectedIndex)
+            {
+                var panelToRemove = _rectanglePanels[selectedIndex];
+                RectanglesPanel5.Controls.Remove(panelToRemove);
+                _rectanglePanels.RemoveAt(selectedIndex);
+                panelToRemove.Dispose();
+            }
+
+            // Обновляем текущий выбранный индекс (если нужно)
+            if (RectanglesListBox5.Items.Count > 0)
+            {
+                RectanglesListBox5.SelectedIndex = Math.Min(selectedIndex, RectanglesListBox5.Items.Count - 1);
+                _currentRectangle = _rectangles[RectanglesListBox5.SelectedIndex];
+            }
+        }
+
         private Panel CreateRectanglePanel(Model.Rectangle rectangle)
         {
             // Создаем новый Panel
@@ -572,5 +649,7 @@ namespace Programming
         {
             UpdateIntLimitsProperty((value) => _currentRectangle.Width = value, WidthTextBox5);
         }
+
+        
     }
 }
