@@ -489,6 +489,8 @@ namespace Programming
                 _rectanglePanels.Add(rectanglePanel);
             }
 
+            CheckTheCorrespondenceOfRectanglesAndPanelsElements();
+
             // Обновляем цвета панелей
             FindCollisions();
         }
@@ -590,6 +592,8 @@ namespace Programming
             // Добавляем панель в список для дальнейшего управления
             _rectanglePanels.Add(rectanglePanel);
 
+            CheckTheCorrespondenceOfRectanglesAndPanelsElements();
+
             // Обновляем цвета панелей
             FindCollisions();
         }
@@ -638,9 +642,13 @@ namespace Programming
             // Создаем новый Panel
             Panel rectanglePanel = new Panel();
 
+            // Вычисляем верхний левый угол так, чтобы центр совпадал с rectangle.Center
+            int x = Convert.ToInt32(rectangle.Center.X - rectangle.Width / 2);
+            int y = Convert.ToInt32(rectangle.Center.Y - rectangle.Length / 2);
+
             // Устанавливаем размеры и позицию панели согласно Rectangle
-            rectanglePanel.Location = new Point(Convert.ToInt32(rectangle.Center.X), Convert.ToInt32(rectangle.Center.Y));
-            rectanglePanel.Size = new Size(Convert.ToInt32(rectangle.Length), Convert.ToInt32(rectangle.Width));
+            rectanglePanel.Location = new Point(x, y);
+            rectanglePanel.Size = new Size(Convert.ToInt32(rectangle.Width), Convert.ToInt32(rectangle.Length));
 
             // Назначаем цвет фона (прозрачный зеленый)
             rectanglePanel.BackColor = System.Drawing.Color.LightGreen;
@@ -650,7 +658,7 @@ namespace Programming
 
         private void LengthTextBox5_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty((value) => _currentRectangle.Length = value, LengthTextBox5);
+            UpdateIntLimitsProperty((value) => _currentRectangle.Length = value, LengthTextBox5); 
         }
 
         private void WidthTextBox5_TextChanged(object sender, EventArgs e)
@@ -660,31 +668,51 @@ namespace Programming
 
         private void FindCollisions()
         {
+            
             // Перекрашиваем все панели в зеленый цвет
             foreach (Panel panel in _rectanglePanels)
             {
                 panel.BackColor = System.Drawing.Color.LightGreen;
             }
 
-            Model.Rectangle rect1;
-            Model.Rectangle rect2;
-
             // Перебираем все пары прямоугольников
             for (int i = 0; i < _rectangles.Length - 1; i++)
             {
-                rect1 = _rectangles[i];
-
                 for (int j = i + 1; j < _rectangles.Length; j++)
                 {
-                    rect2 = _rectangles[j];
-
                     // Проверка столкновения
-                    if (CollisionManager.IsCollision(rect1, rect2))
+                    if (CollisionManager.IsCollision(_rectangles[i], _rectangles[j]))
                     {
                         // Перекрашиваем панели в красный цвет
                         _rectanglePanels[i].BackColor = System.Drawing.Color.LightPink;
                         _rectanglePanels[j].BackColor = System.Drawing.Color.LightPink;
                     }
+                }
+            }
+        }
+
+        private void CheckTheCorrespondenceOfRectanglesAndPanelsElements()
+        {
+            for (int i = 0; i < _rectangles.Length; i++)
+            {
+                Model.Rectangle rect = _rectangles[i];
+                Panel panel = _rectanglePanels[i];
+
+                // Проверка размеров
+                bool sizeMatches = panel.Width == Convert.ToInt32(rect.Width) && panel.Height == Convert.ToInt32(rect.Length);
+
+                // Проверка позиции (учитывая, что позиция — это центр)
+                int expectedX = Convert.ToInt32(rect.Center.X - rect.Width / 2);
+                int expectedY = Convert.ToInt32(rect.Center.Y - rect.Length / 2);
+                bool positionMatches = panel.Location.X == expectedX && panel.Location.Y == expectedY;
+
+                if (sizeMatches || positionMatches)
+                {
+                    Console.WriteLine($"Несовпадение в элементе {i}:");
+                    if (sizeMatches)
+                        Console.WriteLine($"  Размеры: панель ({panel.Width},{panel.Height}), ожидаемые ({rect.Width},{rect.Length})");
+                    if (positionMatches)
+                        Console.WriteLine($"  Позиция: панель ({panel.Location.X},{panel.Location.Y}), ожидаемая ({expectedX},{expectedY})  начальные {rect.Center.X}, {rect.Center.Y}");
                 }
             }
         }
@@ -709,19 +737,17 @@ namespace Programming
                 RectanglesPanel5.Controls.Add(newPanel);
 
                 // Добавляем панель в список для дальнейшего управления
-                _rectanglePanels.Add(newPanel);
-
-                // Обновляем цвета панелей
-                FindCollisions();
+                //_rectanglePanels.Add(newPanel);
             }
+
+            // Обновляем цвета панелей
+            FindCollisions();
         }
 
         private void CheckButton_Click(object sender, EventArgs e)
         {
             // Пересоздаём все панели
             RecreateRectanglePanels();
-            // Обновляем цвета панелей
-            FindCollisions();
         }
     }
 }

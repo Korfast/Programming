@@ -17,7 +17,7 @@ namespace Programming.Model
 
             // Проверяем прямоугольники на пересечение
             if (xDistance < (rectangle1.Width + rectangle2.Width) / 2
-                && yDistance < (rectangle1.Length + rectangle2.Length))
+                && yDistance < (rectangle1.Length + rectangle2.Length) / 2)
             {
                 return true;
             }

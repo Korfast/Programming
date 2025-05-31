@@ -76,6 +76,7 @@
             this.LangthLabel = new System.Windows.Forms.Label();
             this.RectanglesListBox = new System.Windows.Forms.ListBox();
             this.RectanglesTabPage = new System.Windows.Forms.TabPage();
+            this.CheckButton = new System.Windows.Forms.Button();
             this.RectanglesPanel5 = new System.Windows.Forms.Panel();
             this.DeleteRectangleButton5 = new System.Windows.Forms.Button();
             this.AddRectangleButton5 = new System.Windows.Forms.Button();
@@ -92,7 +93,6 @@
             this.IdLabel5 = new System.Windows.Forms.Label();
             this.SelectedRectangleLabel5 = new System.Windows.Forms.Label();
             this.RectanglesLabel5 = new System.Windows.Forms.Label();
-            this.CheckButton = new System.Windows.Forms.Button();
             this.EnumsTabPage.SuspendLayout();
             this.SeasonHandleGroupBox.SuspendLayout();
             this.WeekdayParsingGroupBox.SuspendLayout();
@@ -592,8 +592,19 @@
             this.RectanglesTabPage.Text = "Rectangles";
             this.RectanglesTabPage.UseVisualStyleBackColor = true;
             // 
+            // CheckButton
+            // 
+            this.CheckButton.Location = new System.Drawing.Point(143, 293);
+            this.CheckButton.Name = "CheckButton";
+            this.CheckButton.Size = new System.Drawing.Size(84, 61);
+            this.CheckButton.TabIndex = 16;
+            this.CheckButton.Text = "Обновить состояние панелей";
+            this.CheckButton.UseVisualStyleBackColor = true;
+            this.CheckButton.Click += new System.EventHandler(this.CheckButton_Click);
+            // 
             // RectanglesPanel5
             // 
+            this.RectanglesPanel5.AutoScroll = true;
             this.RectanglesPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RectanglesPanel5.Location = new System.Drawing.Point(240, 10);
             this.RectanglesPanel5.Margin = new System.Windows.Forms.Padding(2);
@@ -747,16 +758,6 @@
             this.RectanglesLabel5.Size = new System.Drawing.Size(64, 13);
             this.RectanglesLabel5.TabIndex = 0;
             this.RectanglesLabel5.Text = "Rectangles:";
-            // 
-            // CheckButton
-            // 
-            this.CheckButton.Location = new System.Drawing.Point(143, 293);
-            this.CheckButton.Name = "CheckButton";
-            this.CheckButton.Size = new System.Drawing.Size(84, 61);
-            this.CheckButton.TabIndex = 16;
-            this.CheckButton.Text = "Обновить состояние панелей";
-            this.CheckButton.UseVisualStyleBackColor = true;
-            this.CheckButton.Click += new System.EventHandler(this.CheckButton_Click);
             // 
             // MainForm
             // 
