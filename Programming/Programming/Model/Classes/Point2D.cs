@@ -27,7 +27,7 @@ namespace Programming.Model
             if (x < 0) throw new ArgumentOutOfRangeException(nameof(x), "X coordinate must be non-negative.");
             if (y < 0) throw new ArgumentOutOfRangeException(nameof(y), "Y coordinate must be non-negative.");
 
-            // Присваивание значний полям
+            // Присваивание значений полям
             _x = x; 
             _y = y;
         }

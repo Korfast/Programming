@@ -92,6 +92,7 @@
             this.IdLabel5 = new System.Windows.Forms.Label();
             this.SelectedRectangleLabel5 = new System.Windows.Forms.Label();
             this.RectanglesLabel5 = new System.Windows.Forms.Label();
+            this.CheckButton = new System.Windows.Forms.Button();
             this.EnumsTabPage.SuspendLayout();
             this.SeasonHandleGroupBox.SuspendLayout();
             this.WeekdayParsingGroupBox.SuspendLayout();
@@ -565,6 +566,7 @@
             // 
             // RectanglesTabPage
             // 
+            this.RectanglesTabPage.Controls.Add(this.CheckButton);
             this.RectanglesTabPage.Controls.Add(this.RectanglesPanel5);
             this.RectanglesTabPage.Controls.Add(this.DeleteRectangleButton5);
             this.RectanglesTabPage.Controls.Add(this.AddRectangleButton5);
@@ -746,6 +748,16 @@
             this.RectanglesLabel5.TabIndex = 0;
             this.RectanglesLabel5.Text = "Rectangles:";
             // 
+            // CheckButton
+            // 
+            this.CheckButton.Location = new System.Drawing.Point(143, 293);
+            this.CheckButton.Name = "CheckButton";
+            this.CheckButton.Size = new System.Drawing.Size(84, 61);
+            this.CheckButton.TabIndex = 16;
+            this.CheckButton.Text = "Обновить состояние панелей";
+            this.CheckButton.UseVisualStyleBackColor = true;
+            this.CheckButton.Click += new System.EventHandler(this.CheckButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -840,6 +852,7 @@
         private System.Windows.Forms.TextBox YTextBox5;
         private System.Windows.Forms.Button DeleteRectangleButton5;
         private System.Windows.Forms.Panel RectanglesPanel5;
+        private System.Windows.Forms.Button CheckButton;
     }
 }
 

@@ -16,8 +16,8 @@ namespace Programming.Model
             double yDistance = Math.Abs(rectangle1.Center.Y - rectangle2.Center.Y);
 
             // Проверяем прямоугольники на пересечение
-            if (xDistance < (rectangle1.Length + rectangle2.Length) / 2
-                && yDistance < (rectangle1.Width + rectangle2.Width))
+            if (xDistance < (rectangle1.Width + rectangle2.Width) / 2
+                && yDistance < (rectangle1.Length + rectangle2.Length))
             {
                 return true;
             }

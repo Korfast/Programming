@@ -15,7 +15,7 @@ namespace Programming
     public partial class MainForm : Form
     {
         // Экземпляр обЪекта random вынесен для удобства
-        Random random = new Random();
+        private readonly Random random = new Random();
         // Массив прямоугольников
         private Model.Rectangle[] _rectangles; 
         // Текущий прямоугольник
@@ -24,7 +24,7 @@ namespace Programming
         private Model.Movie[] _movies;
         // Текущий фильм
         private Model.Movie _currentMovie;
-        // Список 
+        // Список панелей
         private List<Panel> _rectanglePanels = new List<Panel>();
 
         public MainForm()
@@ -135,7 +135,7 @@ namespace Programming
                     break;
 
                 case Season.Autumn:
-                    this.BackColor = ColorTranslator.FromHtml("#e29c45"); // Меняем цвет фона на оранжевый
+                    this.BackColor = System.Drawing.Color.Orange; // Меняем цвет фона на оранжевый
                     break;
 
                 case Season.Winter:
@@ -143,7 +143,7 @@ namespace Programming
                     break;
 
                 case Season.Spring:
-                    this.BackColor = ColorTranslator.FromHtml("#559c45"); // Меняем цвет фона на зеленый
+                    this.BackColor = System.Drawing.Color.Green; // Меняем цвет фона на зеленый
                     break;
 
                 default:
@@ -159,9 +159,9 @@ namespace Programming
             for (int i = 0; i < _rectangles.Length; i++)
             {
                 // Генерация случайной длины
-                double length = random.Next(1, 100); 
+                double length = random.Next(10, 100); 
                 // Генерация случайной ширины
-                double width = random.Next(1, 100);
+                double width = random.Next(10, 100);
                 // Выбор цвета по умолчанию из перечисления: Green
                 string color = Convert.ToString(Model.Color.Green);
 
@@ -415,7 +415,7 @@ namespace Programming
                 if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".Contains(textBox.Text[0])) throw new ArgumentOutOfRangeException();
                 if (value.Length > length) throw new ArgumentOutOfRangeException();
                 updateAction(value);
-                textBox.BackColor = System.Drawing.Color.White;
+                textBox.BackColor = SystemColors.Window;
             }
             catch 
             {
@@ -488,6 +488,9 @@ namespace Programming
                 // Добавляем панель в список для дальнейшего управления
                 _rectanglePanels.Add(rectanglePanel);
             }
+
+            // Обновляем цвета панелей
+            FindCollisions();
         }
 
         private void RectanglesListBox5_SelectedIndexChanged(object sender, EventArgs e)
@@ -503,7 +506,6 @@ namespace Programming
                 _currentRectangle = null;
                 ClearRectangleFields();
             }
-
         }
 
         private void UpdateRectangleFiledsTextBoxes5()
@@ -555,12 +557,12 @@ namespace Programming
 
         private void AddRectangleButton5_Click(object sender, EventArgs e)
         {
-            var _rectanglesList = _rectangles.ToList(); 
+            List<Model.Rectangle> _rectanglesList = _rectangles.ToList(); 
 
             // Генерация случайной длины
-            double length = random.Next(1, 100);
+            double length = random.Next(10, 100);
             // Генерация случайной ширины
-            double width = random.Next(1, 100);
+            double width = random.Next(10, 100);
             // Выбор цвета по умолчанию из перечисления: Blue
             string color = Convert.ToString(Model.Color.Blue);
 
@@ -587,6 +589,9 @@ namespace Programming
 
             // Добавляем панель в список для дальнейшего управления
             _rectanglePanels.Add(rectanglePanel);
+
+            // Обновляем цвета панелей
+            FindCollisions();
         }
 
         private void DeleteRectangleButton5_Click(object sender, EventArgs e)
@@ -611,18 +616,21 @@ namespace Programming
             // Удаляем соответствующую панель
             if (_rectanglePanels.Count > selectedIndex)
             {
-                var panelToRemove = _rectanglePanels[selectedIndex];
+                Panel panelToRemove = _rectanglePanels[selectedIndex];
                 RectanglesPanel5.Controls.Remove(panelToRemove);
                 _rectanglePanels.RemoveAt(selectedIndex);
                 panelToRemove.Dispose();
             }
 
-            // Обновляем текущий выбранный индекс (если нужно)
+            // Обновляем текущий выбранный индекс
             if (RectanglesListBox5.Items.Count > 0)
             {
                 RectanglesListBox5.SelectedIndex = Math.Min(selectedIndex, RectanglesListBox5.Items.Count - 1);
                 _currentRectangle = _rectangles[RectanglesListBox5.SelectedIndex];
             }
+
+            // Обновляем цвета панелей
+            FindCollisions();
         }
 
         private Panel CreateRectanglePanel(Model.Rectangle rectangle)
@@ -635,7 +643,7 @@ namespace Programming
             rectanglePanel.Size = new Size(Convert.ToInt32(rectangle.Length), Convert.ToInt32(rectangle.Width));
 
             // Назначаем цвет фона (прозрачный зеленый)
-            rectanglePanel.BackColor = System.Drawing.Color.FromArgb(127, 127, 255, 127);
+            rectanglePanel.BackColor = System.Drawing.Color.LightGreen;
 
             return rectanglePanel;
         }
@@ -650,6 +658,70 @@ namespace Programming
             UpdateIntLimitsProperty((value) => _currentRectangle.Width = value, WidthTextBox5);
         }
 
-        
+        private void FindCollisions()
+        {
+            // Перекрашиваем все панели в зеленый цвет
+            foreach (Panel panel in _rectanglePanels)
+            {
+                panel.BackColor = System.Drawing.Color.LightGreen;
+            }
+
+            Model.Rectangle rect1;
+            Model.Rectangle rect2;
+
+            // Перебираем все пары прямоугольников
+            for (int i = 0; i < _rectangles.Length - 1; i++)
+            {
+                rect1 = _rectangles[i];
+
+                for (int j = i + 1; j < _rectangles.Length; j++)
+                {
+                    rect2 = _rectangles[j];
+
+                    // Проверка столкновения
+                    if (CollisionManager.IsCollision(rect1, rect2))
+                    {
+                        // Перекрашиваем панели в красный цвет
+                        _rectanglePanels[i].BackColor = System.Drawing.Color.LightPink;
+                        _rectanglePanels[j].BackColor = System.Drawing.Color.LightPink;
+                    }
+                }
+            }
+        }
+
+        private void RecreateRectanglePanels()
+        {
+            // Удаляем старые панели из контейнера и очищаем список
+            foreach (Panel panel in _rectanglePanels)
+            {
+                if (panel.Parent != null)
+                    panel.Parent.Controls.Remove(panel);
+                panel.Dispose();
+            }
+            _rectanglePanels.Clear();
+
+            // Создаем новые панели для каждого прямоугольника
+            foreach (Model.Rectangle rectangle in _rectangles)
+            {
+                Panel newPanel = CreateRectanglePanel(rectangle);
+                _rectanglePanels.Add(newPanel);
+                // Добавляем панель в главный контейнер RectanglesPanel5
+                RectanglesPanel5.Controls.Add(newPanel);
+
+                // Добавляем панель в список для дальнейшего управления
+                _rectanglePanels.Add(newPanel);
+
+                // Обновляем цвета панелей
+                FindCollisions();
+            }
+        }
+
+        private void CheckButton_Click(object sender, EventArgs e)
+        {
+            // Пересоздаём все панели
+            RecreateRectanglePanels();
+            // Обновляем цвета панелей
+            FindCollisions();
+        }
     }
 }
