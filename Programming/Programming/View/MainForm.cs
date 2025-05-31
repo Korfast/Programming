@@ -506,7 +506,7 @@ namespace Programming
             else
             {
                 _currentRectangle = null;
-                ClearRectangleFields();
+                ClearRectangleInfo();
             }
         }
 
@@ -518,8 +518,13 @@ namespace Programming
             LengthTextBox5.Text = _currentRectangle.Length.ToString();
             WidthTextBox5.Text = _currentRectangle.Width.ToString();
         }
+        
+        private void UpdateRectangleInfo(Model.Rectangle rectangle)
+        {
 
-        private void ClearRectangleFields()
+        }
+
+        private void ClearRectangleInfo()
         {
             // Приведение изменяемых свойств текстбоксов к начальному состоянию
 

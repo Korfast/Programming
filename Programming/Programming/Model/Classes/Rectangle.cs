@@ -74,7 +74,7 @@ namespace Programming.Model
             _id = _allRectanglesCount;
             Length = length;
             Width = width;
-            _center = new Point2D(_random.Next(10, 360), _random.Next(10,390));
+            _center = new Point2D(_random.Next(20, 350), _random.Next(20,380));
             Color = color;
 
             // Счётчик объектов класса Прямоугольник
