@@ -158,14 +158,8 @@ namespace Programming
 
             for (int i = 0; i < _rectangles.Length; i++)
             {
-                // Генерация случайной длины
-                double length = random.Next(10, 100); 
-                // Генерация случайной ширины
-                double width = random.Next(10, 100);
-                // Выбор цвета по умолчанию из перечисления: Green
-                string color = Convert.ToString(Model.Color.Green);
-
-                _rectangles[i] = new Model.Rectangle(length, width, color);
+                // Создание прямоугольника с помощью класса RectangleFactory
+                _rectangles[i] = RectangleFactory.Randomize(10, 100);
             }
         }
 
@@ -521,7 +515,15 @@ namespace Programming
         
         private void UpdateRectangleInfo(Model.Rectangle rectangle)
         {
+            if (rectangle == null)
+                return;
 
+            // Обновляем текущий выбранный прямоугольник
+            _currentRectangle = rectangle;
+
+            // Обновляем отображение в текстовых полях
+            UpdateRectangleFiledsTextBoxes();
+            UpdateRectangleFiledsTextBoxes5();
         }
 
         private void ClearRectangleInfo()
@@ -564,17 +566,10 @@ namespace Programming
 
         private void AddRectangleButton5_Click(object sender, EventArgs e)
         {
-            List<Model.Rectangle> _rectanglesList = _rectangles.ToList(); 
+            List<Model.Rectangle> _rectanglesList = _rectangles.ToList();
 
-            // Генерация случайной длины
-            double length = random.Next(10, 100);
-            // Генерация случайной ширины
-            double width = random.Next(10, 100);
-            // Выбор цвета по умолчанию из перечисления: Blue
-            string color = Convert.ToString(Model.Color.Blue);
-
-            // Добавляем новый прямоугольник в список
-            _rectanglesList.Add(new Model.Rectangle(length, width, color));
+            // Создаём и добавляем новый прямоугольник в список
+            _rectanglesList.Add(RectangleFactory.Randomize(10, 100));
             // Преобразуем список в массив
             _rectangles = _rectanglesList.ToArray();
 
@@ -597,7 +592,7 @@ namespace Programming
             // Добавляем панель в список для дальнейшего управления
             _rectanglePanels.Add(rectanglePanel);
 
-            CheckTheCorrespondenceOfRectanglesAndPanelsElements();
+            //CheckTheCorrespondenceOfRectanglesAndPanelsElements();
 
             // Обновляем цвета панелей
             FindCollisions();

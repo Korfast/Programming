@@ -10,7 +10,7 @@ namespace Programming.Model
     public class Rectangle
     {
         // Статичное поле объект класса Random
-        private static Random _random = new Random();
+        private static readonly Random _random = new Random();
         // Целочисленное поле Id
         private readonly int _id;
         // Вещественное поле Длина

@@ -11,11 +11,14 @@ namespace Programming.Model
         Red,
         Orange,
         Yellow,
+        LightGreen,
         Green,
+        LightBlue,
         Blue,
         Violet,
         Black,
         White,
+        LightPink,
         Pink,
         Brown
     }
