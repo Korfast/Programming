@@ -53,7 +53,6 @@
             this.AddRectangleButton5 = new System.Windows.Forms.Button();
             this.DeleteRectangleButton5 = new System.Windows.Forms.Button();
             this.ClassesTabPage = new System.Windows.Forms.TabPage();
-            this.CheckButton = new System.Windows.Forms.Button();
             this.MoviesGroupBox = new System.Windows.Forms.GroupBox();
             this.FindMovieButton = new System.Windows.Forms.Button();
             this.RatingTextBox = new System.Windows.Forms.TextBox();
@@ -396,7 +395,6 @@
             // 
             // ClassesTabPage
             // 
-            this.ClassesTabPage.Controls.Add(this.CheckButton);
             this.ClassesTabPage.Controls.Add(this.MoviesGroupBox);
             this.ClassesTabPage.Controls.Add(this.RectanglesGroupBox);
             this.ClassesTabPage.Location = new System.Drawing.Point(4, 22);
@@ -405,15 +403,6 @@
             this.ClassesTabPage.TabIndex = 1;
             this.ClassesTabPage.Text = "Classes";
             this.ClassesTabPage.UseVisualStyleBackColor = true;
-            // 
-            // CheckButton
-            // 
-            this.CheckButton.Location = new System.Drawing.Point(264, 327);
-            this.CheckButton.Name = "CheckButton";
-            this.CheckButton.Size = new System.Drawing.Size(84, 61);
-            this.CheckButton.TabIndex = 17;
-            this.CheckButton.Text = "Обновить состояние панелей";
-            this.CheckButton.UseVisualStyleBackColor = true;
             // 
             // MoviesGroupBox
             // 
@@ -933,7 +922,6 @@
         private System.Windows.Forms.Button AddRectangleButton5;
         private System.Windows.Forms.Button DeleteRectangleButton5;
         private System.Windows.Forms.TabPage ClassesTabPage;
-        private System.Windows.Forms.Button CheckButton;
         private System.Windows.Forms.GroupBox MoviesGroupBox;
         private System.Windows.Forms.Button FindMovieButton;
         private System.Windows.Forms.TextBox RatingTextBox;

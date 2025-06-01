@@ -768,11 +768,5 @@ namespace Programming
             // Обновляем цвета панелей
             FindCollisions();
         }
-
-        private void CheckButton_Click(object sender, EventArgs e)
-        {
-            // Пересоздаём все панели
-            RecreateRectanglePanels();
-        }
     }
 }
