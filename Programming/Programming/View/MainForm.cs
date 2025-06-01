@@ -195,17 +195,26 @@ namespace Programming
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty((value) => _currentRectangle.Length = value, LengthTextBox);
+            if (RectanglesListBox.SelectedIndex >= 0)
+            {
+                UpdateIntLimitsProperty((value) => _currentRectangle.Length = value, LengthTextBox);
+            }
         }
 
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty((value) => _currentRectangle.Width = value, WidthTextBox);
+            if (RectanglesListBox.SelectedIndex >= 0)
+            {
+                UpdateIntLimitsProperty((value) => _currentRectangle.Width = value, WidthTextBox);
+            }
         }
 
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateEnumTypeProperty<Model.Color>(ColorTextBox, (value) => _currentRectangle.Color = value);
+            if (RectanglesListBox.SelectedIndex >= 0)
+            {
+                UpdateEnumTypeProperty<Model.Color>(ColorTextBox, (value) => _currentRectangle.Color = value);
+            }
         }
 
         // Старая необобщённая функция
@@ -375,28 +384,44 @@ namespace Programming
         // Самое длинное название фильма = 156 символов
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateMovieNameProperty(TitleTextBox, 156, (value) => _currentMovie.Title = value);
+            if (MoviesListBox.SelectedIndex >= 0)
+            {
+                UpdateMovieNameProperty(TitleTextBox, 156, (value) => _currentMovie.Title = value);
+            }
         }
 
         private void DurationInMinutesTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty((value) => _currentMovie.DurationInMinutes = value, DurationInMinutesTextBox);
+            if (MoviesListBox.SelectedIndex >= 0)
+            {
+                UpdateIntLimitsProperty((value) => _currentMovie.DurationInMinutes = value, DurationInMinutesTextBox);
+            }
         }
         
         // Самый ранний фильм датируется 1888 годом
         private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty((value) => _currentMovie.ReleaseYear = value, ReleaseYearTextBox, 1888, DateTime.Now.Year);
+            if (MoviesListBox.SelectedIndex >= 0)
+            {
+                UpdateIntLimitsProperty((value) => _currentMovie.ReleaseYear = value, ReleaseYearTextBox, 1888, DateTime.Now.Year);
+            }
         }
 
         private void GenreTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateEnumTypeProperty<Genre>(GenreTextBox, (value) => _currentMovie.Genre = value);
+            if (MoviesListBox.SelectedIndex >= 0)
+            {
+                UpdateEnumTypeProperty<Genre>(GenreTextBox, (value) => _currentMovie.Genre = value);
+            }
         }
 
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty((vlue) => _currentMovie.Rating = vlue, RatingTextBox, 0, 10);
+            if (MoviesListBox.SelectedIndex >= 0)
+            {
+                UpdateIntLimitsProperty((vlue) => _currentMovie.Rating = vlue, RatingTextBox, 0, 10);
+            }
+            
         }
 
         private void UpdateMovieNameProperty(TextBox textBox, int length, Action<string> updateAction) 
@@ -679,16 +704,20 @@ namespace Programming
 
         private void LengthTextBox5_TextChanged(object sender, EventArgs e)
         {
-            //UpdateIntLimitsProperty((value) => _currentRectangle.Length = value, LengthTextBox5); 
-
-            ValidateAndUpdateProperty((value) => _currentRectangle.Length = value, LengthTextBox5);
+            if (RectanglesListBox5.SelectedIndex >= 0)
+            {
+                ValidateAndUpdateProperty((value) => _currentRectangle.Length = value, LengthTextBox5);
+            }
+            
         }
 
         private void WidthTextBox5_TextChanged(object sender, EventArgs e)
         {
-            //UpdateIntLimitsProperty((value) => _currentRectangle.Width = value, WidthTextBox5);
-
-            ValidateAndUpdateProperty((value) => _currentRectangle.Width = value, WidthTextBox5);
+            if (RectanglesListBox5.SelectedIndex >= 0)
+            {
+                ValidateAndUpdateProperty((value) => _currentRectangle.Width = value, WidthTextBox5);
+            }
+                
         }
 
         private void FindCollisions()
