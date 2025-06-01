@@ -452,6 +452,30 @@ namespace Programming
             MoviesListBox.SelectedIndex = index;
         }
 
+        // ОТСЮДА начинается 5 лабораторная работа
+
+        private void ValidateAndUpdateProperty(Action<int> updateAction, TextBox textBox)
+        {
+            try
+            {
+                int value = int.Parse(textBox.Text);
+                updateAction(value);
+                textBox.BackColor = SystemColors.Window;
+
+                // После успешного обновления перерисовываем панель и ищем пересечения
+                if (_currentRectangle != null)
+                {
+                    RecreateRectanglePanels();
+                }
+            }
+            catch
+            {
+                // Ошибка преобразования
+                textBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+
         private void PopulateRectanglesListBox5()
         {
             // Очистка списка перед добавлением новых элементов
@@ -469,9 +493,8 @@ namespace Programming
         {
             // Добавляем все изначально существующие прямоугольники
             PopulateRectanglesListBox5();
-            
-            // Создаём для них панели
-            // Создаем панель через отдельную функцию
+
+            // Создаем для них панели через отдельную функцию
             foreach (var rectangle in _rectangles)
             {
                 Panel rectanglePanel = CreateRectanglePanel(rectangle);
@@ -483,8 +506,6 @@ namespace Programming
                 _rectanglePanels.Add(rectanglePanel);
             }
 
-            CheckTheCorrespondenceOfRectanglesAndPanelsElements();
-
             // Обновляем цвета панелей
             FindCollisions();
         }
@@ -495,7 +516,7 @@ namespace Programming
             if (RectanglesListBox5.SelectedIndex >= 0)
             {
                 _currentRectangle = _rectangles[RectanglesListBox5.SelectedIndex];
-                UpdateRectangleFiledsTextBoxes5();
+                UpdateRectangleFiledsTextBoxes5(); 
             }
             else
             {
@@ -658,12 +679,16 @@ namespace Programming
 
         private void LengthTextBox5_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty((value) => _currentRectangle.Length = value, LengthTextBox5); 
+            //UpdateIntLimitsProperty((value) => _currentRectangle.Length = value, LengthTextBox5); 
+
+            ValidateAndUpdateProperty((value) => _currentRectangle.Length = value, LengthTextBox5);
         }
 
         private void WidthTextBox5_TextChanged(object sender, EventArgs e)
         {
-            UpdateIntLimitsProperty((value) => _currentRectangle.Width = value, WidthTextBox5);
+            //UpdateIntLimitsProperty((value) => _currentRectangle.Width = value, WidthTextBox5);
+
+            ValidateAndUpdateProperty((value) => _currentRectangle.Width = value, WidthTextBox5);
         }
 
         private void FindCollisions()

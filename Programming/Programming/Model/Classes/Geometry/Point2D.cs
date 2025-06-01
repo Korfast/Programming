@@ -32,30 +32,5 @@ namespace Programming.Model
             _y = y;
         }
 
-        // Конструктор, который использует приватные сеттеры для валидации
-        /*public Point2D(double x, double y)
-        {
-            XCoordinate = x; // Используем приватный сеттер для проверки
-            YCoordinate = y; // Используем приватный сеттер для проверки
-        }
-
-        // Приватные сеттеры для валидации значений
-        private double XCoordinate
-        {
-            set
-            {
-                if (value < 0) throw new ArgumentOutOfRangeException(nameof(X), "X coordinate must be non-negative.");
-                _x = value;
-            }
-        }
-
-        private double YCoordinate
-        {
-            set
-            {
-                if (value < 0) throw new ArgumentOutOfRangeException(nameof(Y), "Y coordinate must be non-negative.");
-                _y = value;
-            }
-        }*/
     }
 }
