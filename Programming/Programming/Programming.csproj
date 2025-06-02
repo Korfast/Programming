@@ -70,6 +70,18 @@
     <Compile Include="View\Controls\EnumerationsControl.Designer.cs">
       <DependentUpon>EnumerationsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Controls\MoviesInformationUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\MoviesInformationUserControl.Designer.cs">
+      <DependentUpon>MoviesInformationUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\RectanglesInfarmationUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\RectanglesInfarmationUserControl.Designer.cs">
+      <DependentUpon>RectanglesInfarmationUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\SeasonHandleUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -107,6 +119,12 @@
     </Compile>
     <EmbeddedResource Include="View\Controls\EnumerationsControl.resx">
       <DependentUpon>EnumerationsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\MoviesInformationUserControl.resx">
+      <DependentUpon>MoviesInformationUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\RectanglesInfarmationUserControl.resx">
+      <DependentUpon>RectanglesInfarmationUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\SeasonHandleUserControl.resx">
       <DependentUpon>SeasonHandleUserControl.cs</DependentUpon>
