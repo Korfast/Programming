@@ -1,4 +1,4 @@
-﻿namespace Programming.View.Panels
+﻿namespace Programming.View.Controls
 {
     partial class RectanglesCollisionControl
     {
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.RectanglesTableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.WidthFlowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.WidthTextBox5 = new System.Windows.Forms.TextBox();
@@ -51,6 +52,7 @@
             this.AddDeleteFlowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.AddRectangleButton5 = new System.Windows.Forms.Button();
             this.DeleteRectangleButton5 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.RectanglesTableLayoutPanel5.SuspendLayout();
             this.WidthFlowLayoutPanel5.SuspendLayout();
             this.LengthFlowLayoutPanel5.SuspendLayout();
@@ -110,6 +112,7 @@
             this.WidthTextBox5.Name = "WidthTextBox5";
             this.WidthTextBox5.Size = new System.Drawing.Size(80, 20);
             this.WidthTextBox5.TabIndex = 8;
+            this.WidthTextBox5.TextChanged += new System.EventHandler(this.WidthTextBox5_TextChanged);
             // 
             // WidthLabel5
             // 
@@ -139,6 +142,7 @@
             this.LengthTextBox5.Name = "LengthTextBox5";
             this.LengthTextBox5.Size = new System.Drawing.Size(80, 20);
             this.LengthTextBox5.TabIndex = 9;
+            this.LengthTextBox5.TextChanged += new System.EventHandler(this.LengthTextBox5_TextChanged);
             // 
             // LengthLabel5
             // 
@@ -271,6 +275,7 @@
             this.RectanglesListBox5.Name = "RectanglesListBox5";
             this.RectanglesListBox5.Size = new System.Drawing.Size(215, 257);
             this.RectanglesListBox5.TabIndex = 8;
+            this.RectanglesListBox5.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox5_SelectedIndexChanged);
             // 
             // SelectedRectangleLabel5
             // 
@@ -306,6 +311,7 @@
             this.AddRectangleButton5.TabIndex = 15;
             this.AddRectangleButton5.Text = "Add";
             this.AddRectangleButton5.UseVisualStyleBackColor = true;
+            this.AddRectangleButton5.Click += new System.EventHandler(this.AddRectangleButton5_Click);
             // 
             // DeleteRectangleButton5
             // 
@@ -318,6 +324,12 @@
             this.DeleteRectangleButton5.TabIndex = 16;
             this.DeleteRectangleButton5.Text = "Delete";
             this.DeleteRectangleButton5.UseVisualStyleBackColor = true;
+            this.DeleteRectangleButton5.Click += new System.EventHandler(this.DeleteRectangleButton5_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // RectanglesCollisionControl
             // 
@@ -369,5 +381,6 @@
         private System.Windows.Forms.FlowLayoutPanel AddDeleteFlowLayoutPanel5;
         private System.Windows.Forms.Button AddRectangleButton5;
         private System.Windows.Forms.Button DeleteRectangleButton5;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
