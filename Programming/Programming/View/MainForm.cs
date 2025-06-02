@@ -29,8 +29,6 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
-            InitializeEnumsList();
-            InitializeSeasonComboBox();
             InitializeRectangles();
             InitializeMovies();
             PopulateRectanglesListBox();
@@ -39,114 +37,7 @@ namespace Programming
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-        }
-                                      
-        private void InitializeEnumsList()
-        {
-            var enumTypes = Assembly.GetExecutingAssembly().GetTypes().Where
-                (type => type.IsEnum && type.Namespace == "Programming.Model").ToList();
-            
-            EnumsListBox.DataSource = enumTypes;
-            EnumsListBox.DisplayMember = "Name";
 
-            if (EnumsListBox.Items.Count > 0)
-            {
-                EnumsListBox.SelectedIndex = 0;
-                UpdateValuesListBox();
-            }
-        }
-
-        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateValuesListBox();
-        }
-
-        private void UpdateValuesListBox()
-        {
-
-            if (EnumsListBox.SelectedItem != null)
-            {
-                Type selectedType = ((Type)EnumsListBox.SelectedItem);
-                Array values = Enum.GetValues(selectedType);
-                ValuesListBox.DataSource = values;
-            }
-        }
-
-        private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ValuesListBox.SelectedItem is Enum selectedValue)
-            {
-                ValueTextBox.Text = Convert.ToInt32(selectedValue).ToString();
-            }
-        }
-
-        private void ParseButton_Click(object sender, EventArgs e)
-        {   
-            //Получение текста из текстового поля
-            string inputText = WeekdayTextBox.Text;
-
-            //Попытка разбора текста в перечисление
-            if (Enum.TryParse(inputText, out Weekday parsedWeekday))
-            {
-                // Разбор успешен
-                int weekdayValue = (int)parsedWeekday;
-                WeekdayLabel.Text = $"Это день недели ({parsedWeekday} = {weekdayValue})";
-            }
-            else
-            {
-                // Разбор не успешен
-                WeekdayLabel.Text = "Нет такого дня недели";
-            }
-
-        }
-
-        private void InitializeSeasonComboBox()
-        {
-            // Получаем тип перечисления Season
-            Type seasonType = typeof(Season);
-
-            // Получаем все значения перечисления Season
-            Array seasonValues = Enum.GetValues(seasonType);
-
-            // Устанавливаем источник данных для SeasonComboBox
-            SeasonComboBox.DataSource = seasonValues;
-            SeasonComboBox.DisplayMember = "Name"; 
-
-            // Устанавливаем выбранный элемент, если есть значения
-            if (SeasonComboBox.Items.Count > 0)
-            {
-                SeasonComboBox.SelectedIndex = 0; 
-            }
-        }
-
-        private void GoButton_Click(object sender, EventArgs e)
-        {
-            // Получаем выбранное значение из SeasonComboBox
-            Season selectedSeason = (Season)SeasonComboBox.SelectedItem;
-
-            // Используем оператор switch-case для выполнения действий в зависимости от выбранного времени года
-            switch (selectedSeason)
-            {
-                case Season.Summer:
-                    MessageBox.Show("Ура! Солнце!");
-                    break;
-
-                case Season.Autumn:
-                    this.BackColor = System.Drawing.Color.Orange; // Меняем цвет фона на оранжевый
-                    break;
-
-                case Season.Winter:
-                    MessageBox.Show("Бррр! Холодно!");
-                    break;
-
-                case Season.Spring:
-                    this.BackColor = System.Drawing.Color.Green; // Меняем цвет фона на зеленый
-                    break;
-
-                default:
-                    MessageBox.Show("Выберите время года.");
-                    break;
-            }
         }
 
         private void InitializeRectangles()
