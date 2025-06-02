@@ -12,73 +12,91 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Programming.View.Controls
 {
+    /// <summary>
+    /// Пользовательский контроль для отображения и проверки столкновений прямоугольников.
+    /// </summary>
     public partial class RectanglesCollisionControl : UserControl
     {
-        // Массив прямоугольников
+        /// <summary>
+        /// Массив прямоугольников.
+        /// </summary>
         private Model.Rectangle[] _rectangles = new Model.Rectangle[0];
-        // Текущий прямоугольник
+
+        /// <summary>
+        /// Текущий выбранный прямоугольник.
+        /// </summary>
         private Model.Rectangle _currentRectangle;
-        // Список панелей
+
+        /// <summary>
+        /// Список панелей, представляющих прямоугольники.
+        /// </summary>
         private List<Panel> _rectanglePanels = new List<Panel>();
 
+        /// <summary>
+        /// Конструктор, инициализирующий компонент и список прямоугольников.
+        /// </summary>
         public RectanglesCollisionControl()
         {
             InitializeComponent();
             InitializeRectanglesListBox5();
         }
 
+        /// <summary>
+        /// Инициализация списка и панелей для отображения прямоугольников.
+        /// </summary>
         private void InitializeRectanglesListBox5()
         {
-            // Добавляем все изначально существующие прямоугольники
+            // Заполняем список элементов
             PopulateRectanglesListBox5();
 
-            // Создаем для них панели через отдельную функцию
+            // Создаем панели для каждого прямоугольника
             foreach (var rectangle in _rectangles)
             {
                 Panel rectanglePanel = CreateRectanglePanel(rectangle);
 
-                // Добавляем панель на RectanglesPanel5
+                // Добавляем панель на контрол
                 RectanglesPanel5.Controls.Add(rectanglePanel);
 
                 // Добавляем панель в список для дальнейшего управления
                 _rectanglePanels.Add(rectanglePanel);
             }
 
-            // Обновляем цвета панелей
+            // Обновляем цвета панелей в зависимости от столкновений
             FindCollisions();
         }
 
+        /// <summary>
+        /// Заполняет ListBox информацией о текущих прямоугольниках.
+        /// </summary>
         private void PopulateRectanglesListBox5()
         {
-            // Очистка списка перед добавлением новых элементов
             RectanglesListBox5.Items.Clear();
 
             foreach (var rectangle in _rectangles)
             {
-                // Добавление имени в нужном формате
-                RectanglesListBox5.Items.Add($"{rectangle.Id}: (X={rectangle.Center.X}; " +
-                    $"Y={rectangle.Center.Y}; L={rectangle.Length}; W={rectangle.Width})");
+                RectanglesListBox5.Items.Add($"{rectangle.Id}: (X={rectangle.Center.X}; Y={rectangle.Center.Y}; L={rectangle.Length}; W={rectangle.Width})");
             }
         }
 
+        /// <summary>
+        /// Проверяет столкновения между всеми парами прямоугольников и обновляет цвет панелей.
+        /// </summary>
         private void FindCollisions()
         {
-
-            // Перекрашиваем все панели в зеленый цвет
+            // Устанавливаем все панели в зеленый цвет по умолчанию
             foreach (Panel panel in _rectanglePanels)
             {
                 panel.BackColor = AppColors.LightGreen;
             }
 
-            // Перебираем все пары прямоугольников
+            // Перебираем все пары прямоугольников для проверки столкновений
             for (int i = 0; i < _rectangles.Length - 1; i++)
             {
                 for (int j = i + 1; j < _rectangles.Length; j++)
                 {
-                    // Проверка столкновения
                     if (CollisionManager.IsCollision(_rectangles[i], _rectangles[j]))
                     {
-                        // Перекрашиваем панели в красный цвет
+                        // Если есть столкновение, окрашиваем панели в красный
                         _rectanglePanels[i].BackColor = AppColors.LightPink;
                         _rectanglePanels[j].BackColor = AppColors.LightPink;
                     }
@@ -86,6 +104,11 @@ namespace Programming.View.Controls
             }
         }
 
+        /// <summary>
+        /// Валидирует введенное значение и обновляет соответствующее свойство прямоугольника.
+        /// </summary>
+        /// <param name="updateAction">Действие по обновлению свойства.</param>
+        /// <param name="textBox">Текстовое поле для ввода значения.</param>
         private void ValidateAndUpdateProperty(Action<int> updateAction, System.Windows.Forms.TextBox textBox)
         {
             try
@@ -94,7 +117,7 @@ namespace Programming.View.Controls
                 updateAction(value);
                 textBox.BackColor = SystemColors.Window;
 
-                // После успешного обновления перерисовываем панель и ищем пересечения
+                // После успешного обновления перерисовываем панели
                 if (_currentRectangle != null)
                 {
                     RecreateRectanglePanels();
@@ -102,30 +125,33 @@ namespace Programming.View.Controls
             }
             catch
             {
-                // Ошибка преобразования
-                textBox.BackColor = AppColors.LightPink;
+                // В случае ошибки выделяем поле розовым цветом
+                textBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Создает панель, представляющую прямоугольник.
+        /// </summary>
+        /// <param name="rectangle">Объект прямоугольника.</param>
+        /// <returns>Созданная панель с размерами и позицией, соответствующими прямоугольнику.</returns>
         private Panel CreateRectanglePanel(Model.Rectangle rectangle)
         {
-            // Создаем новый Panel
             Panel rectanglePanel = new Panel();
 
-            // Вычисляем верхний левый угол так, чтобы центр совпадал с rectangle.Center
             int x = Convert.ToInt32(rectangle.Center.X - rectangle.Width / 2);
             int y = Convert.ToInt32(rectangle.Center.Y - rectangle.Length / 2);
 
-            // Устанавливаем размеры и позицию панели согласно Rectangle
             rectanglePanel.Location = new Point(x, y);
             rectanglePanel.Size = new Size(Convert.ToInt32(rectangle.Width), Convert.ToInt32(rectangle.Length));
-
-            // Назначаем цвет фона (прозрачный зеленый)
             rectanglePanel.BackColor = AppColors.LightGreen;
 
             return rectanglePanel;
         }
 
+        /// <summary>
+        /// Обновляет текстовые поля информацией о текущем выбранном прямоугольнике.
+        /// </summary>
         private void UpdateRectangleFiledsTextBoxes5()
         {
             IdTextBox5.Text = _currentRectangle.Id.ToString();
@@ -135,58 +161,61 @@ namespace Programming.View.Controls
             WidthTextBox5.Text = _currentRectangle.Width.ToString();
         }
 
+
+        /// <summary>
+        /// Обработчик события нажатия на кнопку добавления нового прямоугольника.
+        /// Создает случайный прямоугольник, добавляет его в список, обновляет интерфейс и проверяет столкновения.
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие.</param>
+        /// <param name="e">Аргументы события.</param>
         private void AddRectangleButton5_Click(object sender, EventArgs e)
         {
+            // Создаем копию текущего списка прямоугольников
             List<Model.Rectangle> _rectanglesList = _rectangles.ToList();
 
-            // Создаём и добавляем новый прямоугольник в список
+            // Создаем и добавляем новый случайный прямоугольник
             _rectanglesList.Add(RectangleFactory.Randomize(10, 100));
-            // Преобразуем список в массив
+            // Обновляем массив прямоугольников
             _rectangles = _rectanglesList.ToArray();
 
-            // Обновляем RectanglesListBox
-            //PopulateRectanglesListBox();
-            // Обновляем RectanglesListBox5
+            // Обновляем список отображения
             PopulateRectanglesListBox5();
 
-            // Задаём последний элемент списка как выбранный
+            // Устанавливаем последний добавленный элемент как выбранный
             RectanglesListBox5.SelectedIndex = RectanglesListBox5.Items.Count - 1;
-            // Задаём текущий прямоугольник 
+            // Обновляем текущий выбранный прямоугольник
             _currentRectangle = _rectangles[RectanglesListBox5.SelectedIndex];
 
-            // Создаем панель через отдельную функцию
+            // Создаем панель для нового прямоугольника
             Panel rectanglePanel = CreateRectanglePanel(_currentRectangle);
 
-            // Добавляем панель на RectanglesPanel5
+            // Добавляем панель на основной контейнер
             RectanglesPanel5.Controls.Add(rectanglePanel);
 
             // Добавляем панель в список для дальнейшего управления
             _rectanglePanels.Add(rectanglePanel);
 
-            //CheckTheCorrespondenceOfRectanglesAndPanelsElements();
-
-            // Обновляем цвета панелей
+            // Проверяем столкновения и обновляем цвета панелей
             FindCollisions();
         }
 
+        /// <summary>
+        /// Обработчик события удаления выбранного прямоугольника.
+        /// Удаляет выбранный прямоугольник из списка, интерфейса и обновляет столкновения.
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие.</param>
+        /// <param name="e">Аргументы события.</param>
         private void DeleteRectangleButton5_Click(object sender, EventArgs e)
         {
-            // Проверяем, что есть выбранный элемент
             int selectedIndex = RectanglesListBox5.SelectedIndex;
             if (selectedIndex == -1)
-            {
-                // Ничего не выбрано, выходим
-                return;
-            }
+                return; // Нет выбранного элемента
 
-            // Удаляем из списка _rectangles
+            // Удаляем из массива прямоугольников
             _rectangles = _rectangles.Where((rect, index) => index != selectedIndex).ToArray();
 
             // Удаляем из ListBox
             RectanglesListBox5.Items.RemoveAt(selectedIndex);
-
-            // Обновляем RectanglesListBox
-            //PopulateRectanglesListBox();
 
             // Удаляем соответствующую панель
             if (_rectanglePanels.Count > selectedIndex)
@@ -197,21 +226,24 @@ namespace Programming.View.Controls
                 panelToRemove.Dispose();
             }
 
-            // Обновляем текущий выбранный индекс
+            // Обновляем текущий выбранный элемент после удаления
             if (RectanglesListBox5.Items.Count > 0)
             {
-                RectanglesListBox5.SelectedIndex = Math.Min(selectedIndex, RectanglesListBox5.Items.Count - 1);
-                _currentRectangle = _rectangles[RectanglesListBox5.SelectedIndex];
+                int newIndex = Math.Min(selectedIndex, RectanglesListBox5.Items.Count - 1);
+                RectanglesListBox5.SelectedIndex = newIndex;
+                _currentRectangle = _rectangles[newIndex];
+                UpdateRectangleFiledsTextBoxes5();
             }
 
-            // Обновляем цвета панелей
+            // Обновляем цвета панелей после удаления
             FindCollisions();
         }
 
+        /// <summary>
+        /// Очищает поля отображения информации о выбранном прямоугольнике.
+        /// </summary>
         private void ClearRectangleInfo()
         {
-            // Приведение изменяемых свойств текстбоксов к начальному состоянию
-
             IdTextBox5.Text = "";
             IdTextBox5.BackColor = SystemColors.Control;
 
@@ -226,28 +258,12 @@ namespace Programming.View.Controls
 
             WidthTextBox5.Text = "";
             WidthTextBox5.BackColor = SystemColors.Window;
-
-            /*
-            IdTextBox.Text = "";
-            IdTextBox.BackColor = SystemColors.Control;
-
-            XTextBox.Text = "";
-            XTextBox.BackColor = SystemColors.Control;
-
-            YTextBox.Text = "";
-            YTextBox.BackColor = SystemColors.Control;
-
-            LengthTextBox.Text = "";
-            LengthTextBox.BackColor = SystemColors.Window;
-
-            WidthTextBox.Text = "";
-            WidthTextBox.BackColor = SystemColors.Window;
-
-            ColorTextBox.Text = "";
-            ColorTextBox.BackColor = SystemColors.Window;
-            */
         }
 
+        /// <summary>
+        /// Обновляет информацию о текущем выбранном прямоугольнике в текстовых полях.
+        /// </summary>
+        /// <param name="rectangle">Объект прямоугольника для отображения.</param>
         private void UpdateRectangleInfo(Model.Rectangle rectangle)
         {
             if (rectangle == null)
@@ -256,14 +272,18 @@ namespace Programming.View.Controls
             // Обновляем текущий выбранный прямоугольник
             _currentRectangle = rectangle;
 
-            // Обновляем отображение в текстовых полях
-            //UpdateRectangleFiledsTextBoxes();
+            // Обновляем поля с информацией о нем
             UpdateRectangleFiledsTextBoxes5();
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного элемента в списке прямоугольников.
+        /// Обновляет отображение информации о выбранном объекте.
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RectanglesListBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (RectanglesListBox5.SelectedIndex >= 0)
             {
                 _currentRectangle = _rectangles[RectanglesListBox5.SelectedIndex];
@@ -276,24 +296,36 @@ namespace Programming.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле длины. Валидирует ввод и обновляет свойство.
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие.</param>
+        /// <param name="e">Аргументы события.</param>
         private void LengthTextBox5_TextChanged(object sender, EventArgs e)
         {
             if (RectanglesListBox5.SelectedIndex >= 0)
             {
                 ValidateAndUpdateProperty((value) => _currentRectangle.Length = value, LengthTextBox5);
             }
-
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле ширины. Валидирует ввод и обновляет свойство.
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие.</param>
+        /// <param name="e">Аргументы события.</param>
         private void WidthTextBox5_TextChanged(object sender, EventArgs e)
         {
             if (RectanglesListBox5.SelectedIndex >= 0)
             {
                 ValidateAndUpdateProperty((value) => _currentRectangle.Width = value, WidthTextBox5);
             }
-
         }
 
+        /// <summary>
+        /// Пересоздает панели для всех прямоугольников после изменений их свойств или структуры.
+        /// Удаляет старые панели и создает новые.
+        /// </summary>
         private void RecreateRectanglePanels()
         {
             // Удаляем старые панели из контейнера и очищаем список
@@ -310,16 +342,11 @@ namespace Programming.View.Controls
             {
                 Panel newPanel = CreateRectanglePanel(rectangle);
                 _rectanglePanels.Add(newPanel);
-                // Добавляем панель в главный контейнер RectanglesPanel5
                 RectanglesPanel5.Controls.Add(newPanel);
-
-                // Добавляем панель в список для дальнейшего управления
-                //_rectanglePanels.Add(newPanel);
             }
 
-            // Обновляем цвета панелей
+            // Проверяем столкновения и обновляем цвета панелей
             FindCollisions();
         }
-
     }
 }

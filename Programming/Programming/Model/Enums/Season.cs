@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-   public enum Season
+    /// <summary>
+    /// Обозначает сезоны года.
+    /// </summary>
+    public enum Season
     {
         Summer,
         Autumn,

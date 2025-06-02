@@ -6,33 +6,52 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    // Класс Песня
+    /// <summary>
+    /// Класс, представляющий песню.
+    /// </summary>
     public class Song
     {
-        // Строковое поле Название
+        /// <summary>
+        /// Поле для хранения названия песни.
+        /// </summary>
         private string _title;
-        // Строковое поле Исполнитель
+
+        /// <summary>
+        /// Поле для хранения исполнителя.
+        /// </summary>
         private string _artist;
-        // Вещественное поле Продолжительность
+
+        /// <summary>
+        /// Поле для хранения продолжительности песни в минутах.
+        /// </summary>
         private double _duration;
-        // Строковое поле Жанр
+
+        /// <summary>
+        /// Поле для хранения жанра.
+        /// </summary>
         private string _genre;
 
-        // Свойство для доступа к названию
+        /// <summary>
+        /// Возвращает и задаёт название песни.
+        /// </summary>
         public string Title
         {
             get { return _title; }
             set { _title = value; }
         }
 
-        // Свойство для доступа к исполнителю
+        /// <summary>
+        /// Возвращает и задаёт исполнителя.
+        /// </summary>
         public string Artist
         {
             get { return _artist; }
             set { _artist = value; }
         }
 
-        // Свойство для доступа к продолжительности
+        /// <summary>
+        /// Возвращает и задаёт продолжительность песни в минутах. Проверяет, что значение положительно.
+        /// </summary>
         public double Duration
         {
             get { return _duration; }
@@ -44,14 +63,22 @@ namespace Programming.Model
             }
         }
 
-        // Свойство для доступа к жанру
+        /// <summary>
+        /// Возвращает и задаёт жанр песни.
+        /// </summary>
         public string Genre
         {
             get { return _genre; }
             set { _genre = value; }
         }
 
-        // Конструктор с параметрами
+        /// <summary>
+        /// Конструктор с параметрами для инициализации всех свойств.
+        /// </summary>
+        /// <param name="title">Название песни.</param>
+        /// <param name="artist">Исполнитель.</param>
+        /// <param name="duration">Продолжительность в минутах.</param>
+        /// <param name="genre">Жанр.</param>
         public Song(string title, string artist, double duration, string genre)
         {
             Title = title;
@@ -60,7 +87,9 @@ namespace Programming.Model
             Genre = genre;
         }
 
-        // Конструктор без параметров
+        /// <summary>
+        /// Конструктор без параметров. Создает объект с пустыми значениями.
+        /// </summary>
         public Song() { }
     }
 }

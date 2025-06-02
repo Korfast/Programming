@@ -11,13 +11,24 @@ using System.Windows.Forms;
 
 namespace Programming.View.Controls
 {
+    /// <summary>
+    /// Пользовательский контроль для отображения и редактирования информации о прямоугольниках.
+    /// </summary>
     public partial class RectanglesInfarmationUserControl : UserControl
     {
-        // Массив прямоугольников
+        /// <summary>
+        /// Массив прямоугольников.
+        /// </summary>
         private Model.Rectangle[] _rectangles;
-        // Текущий прямоугольник
+
+        /// <summary>
+        /// Текущий выбранный прямоугольник.
+        /// </summary>
         private Model.Rectangle _currentRectangle;
 
+        /// <summary>
+        /// Инициализация нового экземпляра класса и подготовка данных.
+        /// </summary>
         public RectanglesInfarmationUserControl()
         {
             InitializeComponent();
@@ -25,6 +36,9 @@ namespace Programming.View.Controls
             PopulateRectanglesListBox();
         }
 
+        /// <summary>
+        /// Инициализирует массив прямоугольников случайными значениями.
+        /// </summary>
         private void InitializeRectangles()
         {
             _rectangles = new Model.Rectangle[5];
@@ -36,6 +50,9 @@ namespace Programming.View.Controls
             }
         }
 
+        /// <summary>
+        /// Заполняет ListBox названиями прямоугольников.
+        /// </summary>
         private void PopulateRectanglesListBox()
         {
             // Очистка списка перед добавлением новых элементов
@@ -43,11 +60,16 @@ namespace Programming.View.Controls
 
             foreach (var rectangle in _rectangles)
             {
-                // Добавление имени в нужном формате
+                // Добавление имени в формате "Rectangle {Id}"
                 RectanglesListBox.Items.Add($"Rectangle {rectangle.Id}");
             }
         }
 
+        /// <summary>
+        /// Обновляет свойства ограничений целых чисел из TextBox.
+        /// </summary>
+        /// <param name="updateAction">Делегат для обновления свойства.</param>
+        /// <param name="textBox">Текстовое поле для ввода значения.</param>
         private void UpdateIntLimitsProperty(Action<int> updateAction, TextBox textBox)
         {
             try
@@ -61,16 +83,21 @@ namespace Programming.View.Controls
                 else
                 {
                     // Не удалось преобразовать — выделяем поле
-                    textBox.BackColor = AppColors.LightPink;
+                    textBox.BackColor = System.Drawing.Color.LightPink;
                 }
             }
             catch
             {
                 // Обработка возможных исключений при обновлении свойства
-                textBox.BackColor = AppColors.LightPink;
+                textBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Обновляет свойства ограничений чисел с плавающей точкой из TextBox.
+        /// </summary>
+        /// <param name="updateAction">Делегат для обновления свойства.</param>
+        /// <param name="textBox">Текстовое поле для ввода значения.</param>
         private void UpdateDoubleLimitsProperty(Action<double> updateAction, TextBox textBox)
         {
             try
@@ -84,25 +111,38 @@ namespace Programming.View.Controls
                 else
                 {
                     // Не удалось преобразовать — выделяем поле
-                    textBox.BackColor = AppColors.LightPink;
+                    textBox.BackColor = System.Drawing.Color.LightPink;
                 }
             }
             catch
             {
                 // Обработка возможных исключений при обновлении свойства
-                textBox.BackColor = AppColors.LightPink;
+                textBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Обновляет свойство перечисления по имени, введенному в TextBox.
+        /// </summary>
+        /// <typeparam name="EnumType">Тип перечисления.</typeparam>
+        /// <param name="textBox">Текстовое поле для ввода имени элемента enum.</param>
+        /// <param name="updateAction">Делегат для обновления свойства.</param>
         private void UpdateEnumTypeProperty<EnumType>(TextBox textBox, Action<string> updateAction) where EnumType : struct, Enum
         {
-
             try
             {
-                // Проверяет является ли текст текстбокса элементом перечисления
-                string value = textBox.Text;
-                if (Enum.TryParse(value.Trim(), true, out EnumType result))
+                string value = textBox.Text.Trim();
+
+                // Проверка, что строка не число
+                if (double.TryParse(value, out _))
                 {
+                    throw new ArgumentException($"Invalid {typeof(EnumType).Name} name.");
+                }
+
+                // Проверка, что строка соответствует имени элемента enum
+                if (Enum.IsDefined(typeof(EnumType), value))
+                {
+                    // Передача строки в делегат для обновления свойства
                     updateAction(value);
                     textBox.BackColor = SystemColors.Window;
                 }
@@ -113,10 +153,15 @@ namespace Programming.View.Controls
             }
             catch
             {
-                textBox.BackColor = AppColors.LightPink;
+                // В случае ошибки выделяем поле красным цветом
+                textBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного элемента в ListBox.
+        /// Обновляет текущий выбранный прямоугольник и отображает его данные.
+        /// </summary>
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (RectanglesListBox.SelectedIndex >= 0)
@@ -126,6 +171,9 @@ namespace Programming.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обновляет текстовые поля информацией о текущем выбранном прямоугольнике.
+        /// </summary>
         private void UpdateRectangleFiledsTextBoxes()
         {
             IdTextBox.Text = _currentRectangle.Id.ToString();
@@ -136,6 +184,9 @@ namespace Programming.View.Controls
             ColorTextBox.Text = _currentRectangle.Color.ToString();
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в LengthTextBox. Обновляет длину текущего прямоугольника.
+        /// </summary>
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
             if (RectanglesListBox.SelectedIndex >= 0)
@@ -144,6 +195,9 @@ namespace Programming.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в WidthTextBox.Обновляет ширину текущего прямоугольника.
+        /// </summary>
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
             if (RectanglesListBox.SelectedIndex >= 0)
@@ -152,6 +206,9 @@ namespace Programming.View.Controls
             }
         }
 
+        ///<summary>
+        ///Обработчик изменения текста в ColorTextBox. Обновляет цвет текущего прямоугольника по имени.
+        ///</summary>
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
             if (RectanglesListBox.SelectedIndex >= 0)
@@ -160,6 +217,12 @@ namespace Programming.View.Controls
             }
         }
 
+        ///<summary>
+        ///Находит индекс прямоугольника с максимальной шириной.
+        ///</summary>
+        ///<returns>
+        ///Индекс с максимальной шириной или -1 если массив пустой.
+        ///</returns>
         private int FindRectangleWithMaxWidth()
         {
             // Проверка на пустой массив
@@ -179,56 +242,45 @@ namespace Programming.View.Controls
                 // Если текущая ширина больше максимальной
                 if (_rectangles[i].Width > maxWidth)
                 {
-                    // Обновляем максимальную ширину
+                    // Обновляем максимальную ширину и индекс
                     maxWidth = _rectangles[i].Width;
-                    // Обновляем индекс
                     maxIndex = i;
                 }
             }
 
-            // Возвращаем индекс прямоугольника с максимальной шириной
+            // Возвращаем индекс с максимальной шириной
             return maxIndex;
         }
 
+        ///<summary>
+        ///Обработчик кнопки поиска прямоугольника с максимальной шириной.
+        ///</summary>
         private void FindRectangleButton_Click(object sender, EventArgs e)
         {
             int index = FindRectangleWithMaxWidth();
             RectanglesListBox.SelectedIndex = index;
         }
 
+        ///<summary>
+        ///Обновление информации о выбранном прямоугольнике.
+        ///</summary>
         private void UpdateRectangleInfo(Model.Rectangle rectangle)
         {
             if (rectangle == null)
                 return;
 
-            // Обновляем текущий выбранный прямоугольник
+            // Обновляем текущий выбранный прямоугольник и отображение данных
             _currentRectangle = rectangle;
-
-            // Обновляем отображение в текстовых полях
             UpdateRectangleFiledsTextBoxes();
             //UpdateRectangleFiledsTextBoxes5();
         }
 
+        ///<summary>
+        ///Очистка информации о прямоугольнике.
+        ///</summary >
         private void ClearRectangleInfo()
         {
-            // Приведение изменяемых свойств текстбоксов к начальному состоянию
-
-            /*
-            IdTextBox5.Text = "";
-            IdTextBox5.BackColor = SystemColors.Control;
-
-            XTextBox5.Text = "";
-            XTextBox5.BackColor = SystemColors.Control;
-
-            YTextBox5.Text = "";
-            YTextBox5.BackColor = SystemColors.Control;
-
-            LengthTextBox5.Text = "";
-            LengthTextBox5.BackColor = SystemColors.Window;
-
-            WidthTextBox5.Text = "";
-            WidthTextBox5.BackColor = SystemColors.Window;
-            */
+            // Очистка текстовых полей и сброс цвета фона
 
             IdTextBox.Text = "";
             IdTextBox.BackColor = SystemColors.Control;

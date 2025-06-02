@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Обозначает формы обучения, доступные в системе.
+    /// </summary>
     public enum EducationForm
     {
         FullTime,

@@ -6,52 +6,79 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    // Класс Дисциплина
+    /// <summary>
+    /// Класс, представляющий учебную дисциплину.
+    /// </summary>
     public class Discipline
     {
-        // Строковое поле Название
+        /// <summary>
+        /// Поле для хранения названия дисциплины.
+        /// </summary>
         private string _name;
-        // Целочисленное поле Кредиты
+
+        /// <summary>
+        /// Поле для хранения количества кредитов.
+        /// </summary>
         private int _credits;
-        // Строковое поле Преподаватель
+
+        /// <summary>
+        /// Поле для хранения имени преподавателя.
+        /// </summary>
         private string _instructor;
-        // Строковое поле Семестр
+
+        /// <summary>
+        /// Поле для хранения семестра.
+        /// </summary>
         private string _semester;
 
-        // Свойство для доступа к названию
+        /// <summary>
+        /// Возвращает и задаёт название дисциплины.
+        /// </summary>
         public string Name
         {
             get { return _name; }
             set { _name = value; }
         }
 
-        // Свойство для доступа к кредитам
+        /// <summary>
+        /// Возвращает и задаёт количество кредитов. Проверяет, что значение положительно.
+        /// </summary>
         public int Credits
         {
             get { return _credits; }
             set
             {
                 // Используем метод из Validator для проверки положительности кредитов.
-                Validator.AssertOnPositiveValue(value, nameof(Credits)); 
+                Validator.AssertOnPositiveValue(value, nameof(Credits));
                 _credits = value;
             }
         }
 
-        // Свойство для доступа к преподавателю
+        /// <summary>
+        /// Возвращает и задаёт имя преподавателя.
+        /// </summary>
         public string Instructor
         {
             get { return _instructor; }
             set { _instructor = value; }
         }
 
-        // Свойство для доступа к семестру
+        /// <summary>
+        /// Возвращает и задаёт семестр.
+        /// </summary>
         public string Semester
         {
             get { return _semester; }
             set { _semester = value; }
         }
 
-        // Конструктор с параметрами
+        /// <summary>
+        /// Конструктор с параметрами для инициализации всех свойств.
+        /// </summary>
+        /// <param name="name">Название дисциплины.</param>
+        /// <param name="credits">Количество кредитов.</param>
+        /// <param name="instructor">Имя преподавателя.</param>
+        /// <param name="semester">Семестр.</param>
         public Discipline(string name, int credits, string instructor, string semester)
         {
             Name = name;
@@ -60,7 +87,9 @@ namespace Programming.Model
             Semester = semester;
         }
 
-        // Конструктор без параметров
+        /// <summary>
+        /// Конструктор без параметров. Создает объект с пустыми значениями.
+        /// </summary>
         public Discipline() { }
     }
 }

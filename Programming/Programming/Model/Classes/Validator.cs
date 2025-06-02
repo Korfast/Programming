@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Статический класс, содержащий методы для валидации данных.
+    /// </summary>
     public static class Validator
     {
-        // Метод для проверки положительного значения
+        /// <summary>
+        /// Проверяет, что значение положительное (больше нуля).
+        /// </summary>
+        /// <param name="value">Значение для проверки.</param>
+        /// <param name="propertyName">Имя свойства или параметра.</param>
         public static void AssertOnPositiveValue(int value, string propertyName)
         {
             if (value <= 0)
@@ -17,7 +24,11 @@ namespace Programming.Model
             }
         }
 
-        // Перегрузка метода для проверки положительного значения (double)
+        /// <summary>
+        /// Проверяет, что значение типа double положительное (больше нуля).
+        /// </summary>
+        /// <param name="value">Значение для проверки.</param>
+        /// <param name="propertyName">Имя свойства или параметра.</param>
         public static void AssertOnPositiveValue(double value, string propertyName)
         {
             if (value <= 0.0)
@@ -26,7 +37,13 @@ namespace Programming.Model
             }
         }
 
-        // Метод для проверки, находится ли значение в заданном диапазоне
+        /// <summary>
+        /// Проверяет, что значение находится в диапазоне от min до max.
+        /// </summary>
+        /// <param name="value">Значение для проверки.</param>
+        /// <param name="min">Минимальное допустимое значение.</param>
+        /// <param name="max">Максимальное допустимое значение.</param>
+        /// <param name="propertyName">Имя свойства или параметра.</param>
         public static void AssertValueInRange(int value, int min, int max, string propertyName)
         {
             if (value < min || value > max)
@@ -35,7 +52,13 @@ namespace Programming.Model
             }
         }
 
-        // Перегрузка метода для проверки, находится ли значение в заданном диапазоне(double)
+        /// <summary>
+        /// Перегрузка метода для проверки, что значение типа double находится в диапазоне от min до max.
+        /// </summary>
+        /// <param name="value">Значение для проверки.</param>
+        /// <param name="min">Минимальное допустимое значение.</param>
+        /// <param name="max">Максимальное допустимое значение.</param>
+        /// <param name="propertyName">Имя свойства или параметра.</param>
         public static void AssertValueInRange(double value, int min, int max, string propertyName)
         {
             if (value < min || value > max)

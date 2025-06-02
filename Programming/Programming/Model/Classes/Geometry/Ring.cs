@@ -6,24 +6,38 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    // Клас Кольцо
+    /// <summary>
+    /// Класс, представляющий кольцо с внутренним и внешним радиусами и центром.
+    /// </summary>
     public class Ring
     {
-        // Поле Центр типа Point2D
+        /// <summary>
+        /// Поле для хранения центра кольца типа Point2D.
+        /// </summary>
         private Point2D _center;
-        // Поле Внешний радиус
-        private double _outerRadius; 
-        // Поле Внутренний радиус
+
+        /// <summary>
+        /// Поле для хранения внешнего радиуса.
+        /// </summary>
+        private double _outerRadius;
+
+        /// <summary>
+        /// Поле для хранения внутреннего радиуса.
+        /// </summary>
         private double _innerRadius;
 
-        // Свойство для доступа к центру кольца
+        /// <summary>
+        /// Возвращает и задаёт центр кольца.
+        /// </summary>
         public Point2D Center
         {
             get { return _center; }
             set { _center = value; }
         }
 
-        // Свойство для доступа к внешнему радиусу с валидацией
+        /// <summary>
+        /// Возвращает и задаёт внешний радиус с валидацией.
+        /// </summary>
         public double OuterRadius
         {
             get { return _outerRadius; }
@@ -37,7 +51,9 @@ namespace Programming.Model
             }
         }
 
-        // Свойство для доступа к внутреннему радиусу с валидацией
+        /// <summary>
+        /// Возвращает и задаёт внутренний радиус с валидацией.
+        /// </summary>
         public double InnerRadius
         {
             get { return _innerRadius; }
@@ -50,8 +66,10 @@ namespace Programming.Model
                 _innerRadius = value;
             }
         }
-        
-        // Свойство для вычисления площади кольца
+
+        /// <summary>
+        /// Возвращает площадь кольца.
+        /// </summary>
         public double Area
         {
             get
@@ -60,7 +78,12 @@ namespace Programming.Model
             }
         }
 
-        // Конструктор класса Ring
+        ///<summary> 
+        /// Конструктор класса Ring с параметрами.
+        /// </summary>
+        ///<param name="center">Центр кольца типа Point2D.</param>
+        ///<param name="outerRadius">Внешний радиус.</param>
+        ///<param name="innerRadius">Внутренний радиус.</param> 
         public Ring(Point2D center, double outerRadius, double innerRadius)
         {
             Center = center;
@@ -68,7 +91,9 @@ namespace Programming.Model
             InnerRadius = innerRadius;
         }
 
-        // Конструктор без параметров
+        ///<summary> 
+        /// Конструктор без параметров. Инициализирует кольцо по умолчанию.
+        /// </summary> 
         public Ring() { }
     }
 }

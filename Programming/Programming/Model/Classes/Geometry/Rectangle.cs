@@ -6,82 +6,127 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    // Класс Прямоугольник
+    /// <summary>
+    /// Класс, представляющий прямоугольник.
+    /// </summary>
     public class Rectangle
     {
-        // Статичное поле объект класса Random
+        /// <summary>
+        /// Статичное поле, содержащее объект класса Random для генерации случайных чисел.
+        /// </summary>
         private static readonly Random _random = new Random();
-        // Целочисленное поле Id
+
+        /// <summary>
+        /// Уникальный идентификатор прямоугольника.
+        /// </summary>
         private readonly int _id;
-        // Вещественное поле Длина
-        private double _length; 
-        // Вещественное поле Ширина
+
+        /// <summary>
+        /// Длина прямоугольника.
+        /// </summary>
+        private double _length;
+
+        /// <summary>
+        /// Ширина прямоугольника.
+        /// </summary>
         private double _width;
-        // Поле Центр типа Point2D
+
+        /// <summary>
+        /// Центр прямоугольника, представленный точкой Point2D.
+        /// </summary>
         private readonly Point2D _center;
-        // Строковое поле Цвет
+
+        /// <summary>
+        /// Цвет прямоугольника.
+        /// </summary>
         private string _color;
-        // Целочисленное поле Количество существующих объектов класса Прямоугольник
+
+        /// <summary>
+        /// Общее количество созданных объектов класса Rectangle.
+        /// </summary>
         private static int _allRectanglesCount;
 
-        // Свойство для доступа к Id
+        /// <summary>
+        /// Возвращает уникальный идентификатор прямоугольника.
+        /// </summary>
         public int Id => _id;
 
-        // Свойство для доступа к длине
+        /// <summary>
+        /// Возвращает и задаёт длину прямоугольника. Значение должно быть положительным.
+        /// </summary>
         public double Length
         {
             get { return _length; }
             set
             {
-                // Используем метод из Validator для проверки положительности длины
+                // Проверка на положительное значение
                 Validator.AssertOnPositiveValue(value, nameof(Length));
                 _length = value;
             }
         }
 
-        // Свойство для доступа к ширине
+        /// <summary>
+        /// Возвращает и задаёт ширину прямоугольника. Значение должно быть положительным.
+        /// </summary>
         public double Width
         {
             get { return _width; }
             set
             {
-                // Используем метод из Validator для проверки положительности ширины
+                // Проверка на положительное значение
                 Validator.AssertOnPositiveValue(value, nameof(Width));
                 _width = value;
             }
         }
 
-        // Свойство для доступа к центру прямоугольника
+        /// <summary>
+        /// Возвращает центр прямоугольника в виде объекта Point2D.
+        /// </summary>
         public Point2D Center => _center;
 
-        // Свойство для доступа к цвету
+        /// <summary>
+        /// Возвращает и задаёт цвет прямоугольника.
+        /// </summary>
         public string Color
         {
             get { return _color; }
             set { _color = value; }
         }
 
-        // Свойство возвращающее значение поля _allRectanglesCount
+        ///<summary> 
+        /// Возвращает общее количество созданных объектов класса Rectangle.
+        /// </summary>
         public static int AllRectanglesCount()
         {
             return _allRectanglesCount;
         }
 
-        // Конструктор с параметрами
+        ///<summary> 
+        /// Конструктор с параметрами для создания нового экземпляра Rectangle.
+        /// </summary>
+        ///<param name="length">Длина прямоугольника. Должна быть положительной.</param>
+        ///<param name="width">Ширина прямоугольника. Должна быть положительной.</param>
+        ///<param name="color">Цвет прямоугольника.</param> 
         public Rectangle(double length, double width, string color)
         {
-            
+            // Установка уникального ID на основе текущего количества объектов
             _id = _allRectanglesCount;
+
+            // Инициализация свойств с проверками
             Length = length;
             Width = width;
-            _center = new Point2D(_random.Next(20, 350), _random.Next(20,380));
+
+            // Создание центра в случайных координатах в диапазоне [20, 350) для X и [20, 380) для Y
+            _center = new Point2D(_random.Next(20, 350), _random.Next(20, 380));
+
+            // Установка цвета
             Color = color;
 
-            // Счётчик объектов класса Прямоугольник
+            // Увеличение счетчика созданных объектов
             _allRectanglesCount++;
         }
 
-        // Конструктор без параметров
+        ///<summary>Конструктор без параметров.</ summary >
         public Rectangle() { }
     }
 }

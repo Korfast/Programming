@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Обозначает производителей смартфонов.
+    /// </summary>
     public enum SmartphoneManufacturer
     {
         Xiaomi,

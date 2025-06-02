@@ -6,31 +6,49 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    // Объявление статического класса для хранения цветов приложения
+    /// <summary>
+    /// Статический класс, хранящий определённые цвета приложения.
+    /// </summary>
     public static class AppColors
     {
-        // Объявление приватного статического поля для цвета "оранжевый"
+        /// <summary>
+        /// Цвет "оранжевый" (используется в приложении).
+        /// </summary>
         private static readonly System.Drawing.Color _orange = System.Drawing.Color.FromArgb(226, 156, 69);
 
-        // Объявление приватного статического поля для цвета "зеленый"
+        /// <summary>
+        /// Цвет "зеленый" (используется в приложении).
+        /// </summary>
         private static readonly System.Drawing.Color _green = System.Drawing.Color.FromArgb(85, 156, 69);
 
-        // Объявление приватного статического поля для светло-зеленого цвета
+        /// <summary>
+        /// Светло-зеленый цвет.
+        /// </summary>
         private static readonly System.Drawing.Color _lightGreen = System.Drawing.Color.FromArgb(127, 127, 255, 127);
 
-        // Объявление приватного статического поля для светло-розового цвета
+        /// <summary>
+        /// Светло-розовый цвет.
+        /// </summary>
         private static readonly System.Drawing.Color _lightPink = System.Drawing.Color.FromArgb(127, 255, 127, 127);
 
-        // Публичное свойство для получения цвета "оранжевый"
+        /// <summary>
+        /// Возвращает цвет "оранжевый".
+        /// </summary>
         public static System.Drawing.Color Orange => _orange;
 
-        // Публичное свойство для получения цвета "зеленый"
+        /// <summary>
+        /// Возвращает цвет "зеленый".
+        /// </summary>
         public static System.Drawing.Color Green => _green;
 
-        // Публичное свойство для получения светло-зеленого цвета
+        /// <summary>
+        /// Возвращает светло-зеленый цвет.
+        /// </summary>
         public static System.Drawing.Color LightGreen => _lightGreen;
 
-        // Публичное свойство для получения светло-розового цвета
+        /// <summary>
+        /// Возвращает светло-розовый цвет.
+        /// </summary>
         public static System.Drawing.Color LightPink => _lightPink;
     }
 }

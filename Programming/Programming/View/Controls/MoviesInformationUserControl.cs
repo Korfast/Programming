@@ -11,15 +11,29 @@ using System.Windows.Forms;
 
 namespace Programming.View.Controls
 {
+    /// <summary>
+    /// Пользовательский контроль для отображения и редактирования информации о фильмах.
+    /// </summary>
     public partial class MoviesInformationUserControl : UserControl
     {
-        // Экземпляр обЪекта random вынесен для удобства
+        /// <summary>
+        /// Экземпляр объекта Random для генерации случайных данных.
+        /// </summary>
         private readonly Random random = new Random();
-        // Массив фильмов
+
+        /// <summary>
+        /// Массив фильмов.
+        /// </summary>
         private Model.Movie[] _movies;
-        // Текущий фильм
+
+        /// <summary>
+        /// Текущий выбранный фильм.
+        /// </summary>
         private Model.Movie _currentMovie;
 
+        /// <summary>
+        /// Конструктор, инициализирующий контроль, генерирующий фильмы и заполняющий список.
+        /// </summary>
         public MoviesInformationUserControl()
         {
             InitializeComponent();
@@ -27,6 +41,9 @@ namespace Programming.View.Controls
             PopulateMoviesListBox();
         }
 
+        /// <summary>
+        /// Инициализация массива фильмов с случайными данными.
+        /// </summary>
         private void InitializeMovies()
         {
             _movies = new Model.Movie[5];
@@ -39,27 +56,32 @@ namespace Programming.View.Controls
                 int durationInMinutes = random.Next(1, 200);
                 // Генерация случайного года выпуска
                 int releaseYear = random.Next(1888, 2026);
-                // Выбор жанра по умолчанию из перечисления: Comedy
+                // Название жанра по умолчанию — Comedy
                 string genre = Convert.ToString(Model.Genre.Comedy);
                 // Генерация случайного рейтинга
                 double rating = random.Next(0, 11);
 
-                // Создание нового объекта фильма с сгенерированными параметрами и добавление его в массив _movies
+                // Создание нового фильма с сгенерированными параметрами
                 _movies[i] = new Model.Movie(title, durationInMinutes, releaseYear, genre, rating);
             }
         }
 
+        /// <summary>
+        /// Генерирует случайное название из букв алфавита.
+        /// </summary>
+        /// <param name="lowerLimit">Минимальная длина названия.</param>
+        /// <param name="upperLimit">Максимальная длина названия.</param>
+        /// <returns>Случайное название.</returns>
         private string GenerateName(int lowerLimit, int upperLimit)
         {
-            // Генерация случайного названия
             string alphabet = "abcdefghijklmnopqrstuvwxyz";
             string name = "";
-            int nameLenght = random.Next(lowerLimit, upperLimit);
+            int nameLength = random.Next(lowerLimit, upperLimit);
 
-            for (int i = 0; i < nameLenght; i++)
+            for (int i = 0; i < nameLength; i++)
             {
-                int symbol = random.Next(26);
-                name += alphabet.ElementAt(symbol);
+                int symbolIndex = random.Next(26);
+                name += alphabet.ElementAt(symbolIndex);
                 if (i == 0)
                 {
                     name = name.ToUpper();
@@ -68,91 +90,109 @@ namespace Programming.View.Controls
             return name;
         }
 
+        /// <summary>
+        /// Заполняет ListBox фильмами.
+        /// </summary>
         private void PopulateMoviesListBox()
         {
-            // Очистка списка перед добавлением новых элементов
             MoviesListBox.Items.Clear();
 
             foreach (var movie in _movies)
             {
-                // Добавление имени в нужном формате
                 MoviesListBox.Items.Add($"{movie.Title}");
             }
         }
 
+        /// <summary>
+        /// Обновляет свойства фильма на основе текста из TextBox с проверками.
+        /// </summary>
+        /// <param name="textBox">Текстовое поле для ввода.</param>
+        /// <param name="length">Максимальная длина названия.</param>
+        /// <param name="updateAction">Делегат для обновления свойства фильма.</param>
         private void UpdateMovieNameProperty(TextBox textBox, int length, Action<string> updateAction)
         {
             try
             {
-                //string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                // Название должно начинаться с заглавной буквы
                 string value = textBox.Text;
-                if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".Contains(textBox.Text[0])) throw new ArgumentOutOfRangeException();
+                if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".Contains(value[0])) throw new ArgumentOutOfRangeException();
                 if (value.Length > length) throw new ArgumentOutOfRangeException();
                 updateAction(value);
                 textBox.BackColor = SystemColors.Window;
             }
             catch
             {
-                textBox.BackColor = AppColors.LightPink;
+                textBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Обновляет целочисленное свойство фильма на основе текста из TextBox.
+        /// </summary>
+        /// <param name="updateAction">Делегат для обновления свойства.</param>
+        /// <param name="textBox">Текстовое поле для ввода.</param>
         private void UpdateIntLimitsProperty(Action<int> updateAction, TextBox textBox)
         {
             try
             {
                 if (int.TryParse(textBox.Text, out int value))
                 {
-                    // Попытка обновить свойство
                     updateAction(value);
                     textBox.BackColor = SystemColors.Window;
                 }
                 else
                 {
-                    // Не удалось преобразовать — выделяем поле
-                    textBox.BackColor = AppColors.LightPink;
+                    textBox.BackColor = System.Drawing.Color.LightPink;
                 }
             }
             catch
             {
-                // Обработка возможных исключений при обновлении свойства
-                textBox.BackColor = AppColors.LightPink;
+                textBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Обновляет числовое свойство типа double на основе текста из TextBox.
+        /// </summary>
+        /// <param name="updateAction">Делегат для обновления свойства.</param>
+        /// <param name="textBox">Текстовое поле для ввода.</param>
         private void UpdateDoubleLimitsProperty(Action<double> updateAction, TextBox textBox)
         {
             try
             {
                 if (double.TryParse(textBox.Text, out double value))
                 {
-                    // Попытка обновить свойство
                     updateAction(value);
                     textBox.BackColor = SystemColors.Window;
                 }
                 else
                 {
-                    // Не удалось преобразовать — выделяем поле
-                    textBox.BackColor = AppColors.LightPink;
+                    textBox.BackColor = System.Drawing.Color.LightPink;
                 }
             }
             catch
             {
-                // Обработка возможных исключений при обновлении свойства
-                textBox.BackColor = AppColors.LightPink;
+                textBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
-        
+        /// <summary>
+        /// Обновляет свойство перечисления по имени из TextBox.
+        /// </summary>
+        /// <typeparam name="EnumType">Тип перечисления.</typeparam>
+        /// <param name="textBox">Текстовое поле для ввода.</param>
+        /// <param name="updateAction">Делегат для обновления свойства.</param>
         private void UpdateEnumTypeProperty<EnumType>(TextBox textBox, Action<string> updateAction) where EnumType : struct, Enum
         {
-
             try
             {
-                // Проверяет является ли текст текстбокса элементом перечисления
-                string value = textBox.Text;
-                if (Enum.TryParse(value.Trim(), true, out EnumType result))
+                string value = textBox.Text.Trim();
+
+                if (double.TryParse(value, out _))
+                {
+                    throw new ArgumentException($"Invalid {typeof(EnumType).Name} name.");
+                }
+
+                if (Enum.IsDefined(typeof(EnumType), value))
                 {
                     updateAction(value);
                     textBox.BackColor = SystemColors.Window;
@@ -164,10 +204,16 @@ namespace Programming.View.Controls
             }
             catch
             {
-                textBox.BackColor = AppColors.LightPink;
+                textBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного элемента в списке фильмов.
+        /// Обновляет текущий фильм и отображает его данные в полях.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (MoviesListBox.SelectedIndex >= 0)
@@ -177,6 +223,9 @@ namespace Programming.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обновляет текстовые поля формы данными текущего выбранного фильма.
+        /// </summary>
         private void UpdateMovieFiledsTextBoxes()
         {
             TitleTextBox.Text = _currentMovie.Title;
@@ -186,7 +235,12 @@ namespace Programming.View.Controls
             RatingTextBox.Text = _currentMovie.Rating.ToString();
         }
 
-        // Самое длинное название фильма = 156 символов
+        /// <summary>
+        /// Обработчик изменения текста в поле Название фильма.
+        /// Проверяет и обновляет название текущего фильма.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
             if (MoviesListBox.SelectedIndex >= 0)
@@ -195,6 +249,12 @@ namespace Programming.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле Продолжительность.
+        /// Проверяет и обновляет продолжительность фильма.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void DurationInMinutesTextBox_TextChanged(object sender, EventArgs e)
         {
             if (MoviesListBox.SelectedIndex >= 0)
@@ -203,7 +263,12 @@ namespace Programming.View.Controls
             }
         }
 
-        // Самый ранний фильм датируется 1888 годом
+        /// <summary>
+        /// Обработчик изменения текста в поле Год выпуска.
+        /// Проверяет и обновляет год выпуска фильма.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
         {
             if (MoviesListBox.SelectedIndex >= 0)
@@ -212,52 +277,69 @@ namespace Programming.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле Жанр.
+        /// Проверяет и обновляет жанр фильма по имени перечисления.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void GenreTextBox_TextChanged(object sender, EventArgs e)
         {
             if (MoviesListBox.SelectedIndex >= 0)
             {
-                UpdateEnumTypeProperty<Genre>(GenreTextBox, (value) => _currentMovie.Genre = value);
+                UpdateEnumTypeProperty<Model.Genre>(GenreTextBox, (value) => _currentMovie.Genre = value);
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле Рейтинг.
+        /// Проверяет и обновляет рейтинг фильма.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
             if (MoviesListBox.SelectedIndex >= 0)
             {
-                UpdateIntLimitsProperty((vlue) => _currentMovie.Rating = vlue, RatingTextBox);
+                UpdateIntLimitsProperty((value) => _currentMovie.Rating = value, RatingTextBox);
             }
 
         }
 
+        /// <summary>
+        /// Ищет индекс фильма с максимальным рейтингом среди массива фильмов.
+        /// </summary>
+        /// <returns>
+        /// Индекс фильма с максимальным рейтингом, или -1, если массив пуст.
+        /// </returns> 
         private int FindMovieWithMaxRating()
         {
-            // Проверка на пустой массив
+            // Проверка на пустой массив фильмов
             if (_movies.Length == 0)
             {
-                // Возвращаем -1, если массив пустой
-                return -1;
+                return -1; // Возвращаем -1 при отсутствии фильмов
             }
 
-            // Индекс фильма с максимальным рейтингом
             int maxIndex = 0;
-            // Начальный макксимальый рейтинг
             double maxRating = _movies[0].Rating;
 
             for (int i = 1; i < _movies.Length; i++)
             {
-                // Если текущая ширина больше максимальной
                 if (_movies[i].Rating > maxRating)
                 {
-                    // Обновляем максимальную ширину
                     maxRating = _movies[i].Rating;
-                    // Обновляем индекс
                     maxIndex = i;
                 }
             }
-            // Возвращаем индекс фильма с наибольшим рейтингом
             return maxIndex;
         }
 
+        /// <summary>
+        /// Обработчик события нажатия кнопки поиска фильма с максимальным рейтингом.
+        /// Вызывает метод поиска и выделяет соответствующий элемент в списке.
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие (обычно кнопка).</param>
+        /// <param name="e">Аргументы события.</param>
         private void FindMovieButton_Click(object sender, EventArgs e)
         {
             int index = FindMovieWithMaxRating();

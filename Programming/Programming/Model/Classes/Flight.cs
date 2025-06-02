@@ -6,31 +6,47 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    // Класс Рейс
+    /// <summary>
+    /// Класс, представляющий рейс самолета.
+    /// </summary>
     public class Flight
     {
-        // Строковое поле Пункт Вылета
+        /// <summary>
+        /// Поле для хранения пункта вылета.
+        /// </summary>
         private string _departurePoint;
-        // Строковое поле Пункт назначения
+
+        /// <summary>
+        /// Поле для хранения пункта назначения.
+        /// </summary>
         private string _destinationPoint;
-        // Целочисленное поле Время полета в минутах
+
+        /// <summary>
+        /// Поле для хранения времени полета в минутах.
+        /// </summary>
         private int _flightTimeInMinutes;
 
-        // Свойство для доступа к пункту вылета
+        /// <summary>
+        /// Возвращает и задаёт пункт вылета.
+        /// </summary>
         public string DeparturePoint
         {
             get { return _departurePoint; }
             set { _departurePoint = value; }
         }
 
-        // Свойство для доступа к пункту назначения
+        /// <summary>
+        /// Возвращает и задаёт пункт назначения.
+        /// </summary>
         public string DestinationPoint
         {
             get { return _destinationPoint; }
             set { _destinationPoint = value; }
         }
 
-        // Свойство для доступа к времени полёта
+        /// <summary>
+        /// Возвращает и задаёт время полёта в минутах. Проверяет, что значение положительно.
+        /// </summary>
         public int FlightTimeInMinutes
         {
             get { return _flightTimeInMinutes; }
@@ -42,7 +58,12 @@ namespace Programming.Model
             }
         }
 
-        // Конструктор с параметрами
+        /// <summary>
+        /// Конструктор с параметрами для инициализации всех свойств рейса.
+        /// </summary>
+        /// <param name="departurePoint">Пункт вылета.</param>
+        /// <param name="destinationPoint">Пункт назначения.</param>
+        /// <param name="flightTimeInMinutes">Время полёта в минутах.</param>
         public Flight(string departurePoint, string destinationPoint, int flightTimeInMinutes)
         {
             DeparturePoint = departurePoint;
@@ -50,7 +71,9 @@ namespace Programming.Model
             FlightTimeInMinutes = flightTimeInMinutes;
         }
 
-        // Конструктор без параметров
+        /// <summary>
+        /// Конструктор без параметров. Создает объект с пустыми значениями.
+        /// </summary>
         public Flight() { }
     }
 }

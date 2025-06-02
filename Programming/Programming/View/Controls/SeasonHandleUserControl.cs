@@ -11,14 +11,23 @@ using System.Windows.Forms;
 
 namespace Programming.View.Controls
 {
+    /// <summary>
+    /// Пользовательский контроль для выбора и обработки времени года.
+    /// </summary>
     public partial class SeasonHandleUserControl : UserControl
     {
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="SeasonHandleUserControl"/> и настраивает ComboBox с сезонами.
+        /// </summary>
         public SeasonHandleUserControl()
         {
             InitializeComponent();
             InitializeSeasonComboBox();
         }
 
+        /// <summary>
+        /// Инициализирует ComboBox с перечислением сезонов.
+        /// </summary>
         private void InitializeSeasonComboBox()
         {
             // Получаем тип перечисления Season
@@ -38,6 +47,12 @@ namespace Programming.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик события нажатия на кнопку "Go".
+        /// Выполняет действия в зависимости от выбранного сезона.
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие.</param>
+        /// <param name="e">Аргументы события.</param>
         private void GoButton_Click(object sender, EventArgs e)
         {
             // Получаем выбранное значение из SeasonComboBox
@@ -52,7 +67,7 @@ namespace Programming.View.Controls
 
                 case Season.Autumn:
                     // Меняем цвет фона на оранжевый
-                    this.BackColor = AppColors.Orange; 
+                    this.BackColor = AppColors.Orange;
                     break;
 
                 case Season.Winter:
@@ -61,7 +76,7 @@ namespace Programming.View.Controls
 
                 case Season.Spring:
                     // Меняем цвет фона на зеленый
-                    this.BackColor = AppColors.Green; 
+                    this.BackColor = AppColors.Green;
                     break;
 
                 default:

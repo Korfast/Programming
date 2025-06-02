@@ -6,17 +6,29 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    // Класс Время
+    /// <summary>
+    /// Класс, представляющий время.
+    /// </summary>
     public class Time
     {
-        // Целочисленное поле Часы
+        /// <summary>
+        /// Поле для хранения часов.
+        /// </summary>
         private int _hours;
-        // Целочисленное поле Минуты
+
+        /// <summary>
+        /// Поле для хранения минут.
+        /// </summary>
         private int _minutes;
-        // Целочисленное поле Секунды
+
+        /// <summary>
+        /// Поле для хранения секунд.
+        /// </summary>
         private int _seconds;
 
-        // Свойство для доступа к часам
+        /// <summary>
+        /// Возвращает и задаёт часы (от 0 до 23).
+        /// </summary>
         public int Hours
         {
             get { return _hours; }
@@ -28,7 +40,9 @@ namespace Programming.Model
             }
         }
 
-        // Свойство для доступа к минутам
+        /// <summary>
+        /// Возвращает и задаёт минуты (от 0 до 59).
+        /// </summary>
         public int Minutes
         {
             get { return _minutes; }
@@ -40,7 +54,9 @@ namespace Programming.Model
             }
         }
 
-        // Свойство для доступа к секундам
+        /// <summary>
+        /// Возвращает и задаёт секунды (от 0 до 59).
+        /// </summary>
         public int Seconds
         {
             get { return _seconds; }
@@ -52,7 +68,12 @@ namespace Programming.Model
             }
         }
 
-        // Конструктор с параметрами
+        /// <summary>
+        /// Конструктор с параметрами для инициализации времени.
+        /// </summary>
+        /// <param name="hours">Часы (от 0 до 23).</param>
+        /// <param name="minutes">Минуты (от 0 до 59).</param>
+        /// <param name="seconds">Секунды (от 0 до 59).</param>
         public Time(int hours, int minutes, int seconds)
         {
             Hours = hours;
@@ -60,7 +81,9 @@ namespace Programming.Model
             Seconds = seconds;
         }
 
-        // Конструктор без параметров
+        /// <summary>
+        /// Конструктор без параметров. Создает объект со значениями по умолчанию.
+        /// </summary>
         public Time() { }
     }
 }

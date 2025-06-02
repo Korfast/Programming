@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace Programming.Model
 {
-    // Класс Менеджер столкновений
+    /// <summary> /// Статический класс, предоставляющий методы 
+    /// для определения столкновений между различными геометрическими фигурами. /// </summary>
     public static class CollisionManager
     {
+        /// <summary> 
+        /// Проверяет, пересекаются ли два прямоугольника. 
+        /// </summary> 
+        /// <param name="rectangle1">Первый прямоугольник.</param> 
+        /// <param name="rectangle2">Второй прямоугольник.</param> 
+        /// <returns>Возвращает true, если прямоугольники пересекаются; иначе — false.</returns>
         public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
         {
             // Вычисляеи расстояние между центрами прямоугольников
@@ -16,35 +23,36 @@ namespace Programming.Model
             double yDistance = Math.Abs(rectangle1.Center.Y - rectangle2.Center.Y);
 
             // Проверяем прямоугольники на пересечение
-            if (xDistance < (rectangle1.Width + rectangle2.Width) / 2
-                && yDistance < (rectangle1.Length + rectangle2.Length) / 2)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            // Проверяем пересечение по горизонтали и вертикали
+            return (xDistance < (rectangle1.Width + rectangle2.Width) / 2) &&
+                   (yDistance < (rectangle1.Length + rectangle2.Length) / 2);
         }
 
+        /// <summary>
+        /// Проверяет, пересекаются ли два кольца.
+        /// </summary>
+        /// <param name="ring1">Первое кольцо.</param>
+        /// <param name="ring2">Второе кольцо.</param>
+        /// <returns>Возвращает true, если кольца пересекаются или одно вписывается в другое; иначе — false.</returns>
         public static bool IsCollision(Ring ring1, Ring ring2)
         {
-            // Вычисляем расстояние между центрами колец
+            // Вычисляет расстояние между центрами колец по формуле расстояния между точками
             double distance = Math.Sqrt(Math.Pow(ring1.Center.X - ring2.Center.X, 2)
                 + Math.Pow(ring1.Center.Y - ring2.Center.Y, 2));
 
-            // Проверяем на вписывание одного кольца в другое
+            // Проверяет, входит ли одно кольцо в другое (вписывание)
             if (distance < Math.Abs(ring1.OuterRadius - ring2.InnerRadius))
             {
                 return true;
             }
 
-            // Проверяем кольца на пересечение
+            // Проверяет, пересекаются ли кольца (пересечение внешних окружностей)
             if (distance < (ring1.OuterRadius + ring2.OuterRadius))
             {
                 return true;
             }
 
+            // В противном случае — колёса не пересекаются
             return false;
         }
     }
