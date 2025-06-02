@@ -35,6 +35,7 @@ namespace Programming.Model
             }
         }
 
+        // Перегрузка метода для проверки, находится ли значение в заданном диапазоне(double)
         public static void AssertValueInRange(double value, int min, int max, string propertyName)
         {
             if (value < min || value > max)

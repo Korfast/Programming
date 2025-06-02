@@ -67,7 +67,7 @@ namespace Programming.View.Controls
             // Перекрашиваем все панели в зеленый цвет
             foreach (Panel panel in _rectanglePanels)
             {
-                panel.BackColor = System.Drawing.Color.LightGreen;
+                panel.BackColor = AppColors.LightGreen;
             }
 
             // Перебираем все пары прямоугольников
@@ -79,8 +79,8 @@ namespace Programming.View.Controls
                     if (CollisionManager.IsCollision(_rectangles[i], _rectangles[j]))
                     {
                         // Перекрашиваем панели в красный цвет
-                        _rectanglePanels[i].BackColor = System.Drawing.Color.LightPink;
-                        _rectanglePanels[j].BackColor = System.Drawing.Color.LightPink;
+                        _rectanglePanels[i].BackColor = AppColors.LightPink;
+                        _rectanglePanels[j].BackColor = AppColors.LightPink;
                     }
                 }
             }
@@ -103,7 +103,7 @@ namespace Programming.View.Controls
             catch
             {
                 // Ошибка преобразования
-                textBox.BackColor = System.Drawing.Color.LightPink;
+                textBox.BackColor = AppColors.LightPink;
             }
         }
 
@@ -121,7 +121,7 @@ namespace Programming.View.Controls
             rectanglePanel.Size = new Size(Convert.ToInt32(rectangle.Width), Convert.ToInt32(rectangle.Length));
 
             // Назначаем цвет фона (прозрачный зеленый)
-            rectanglePanel.BackColor = System.Drawing.Color.LightGreen;
+            rectanglePanel.BackColor = AppColors.LightGreen;
 
             return rectanglePanel;
         }
@@ -321,30 +321,5 @@ namespace Programming.View.Controls
             FindCollisions();
         }
 
-        private void CheckTheCorrespondenceOfRectanglesAndPanelsElements()
-        {
-            for (int i = 0; i < _rectangles.Length; i++)
-            {
-                Model.Rectangle rect = _rectangles[i];
-                Panel panel = _rectanglePanels[i];
-
-                // Проверка размеров
-                bool sizeMatches = panel.Width == Convert.ToInt32(rect.Width) && panel.Height == Convert.ToInt32(rect.Length);
-
-                // Проверка позиции (учитывая, что позиция — это центр)
-                int expectedX = Convert.ToInt32(rect.Center.X - rect.Width / 2);
-                int expectedY = Convert.ToInt32(rect.Center.Y - rect.Length / 2);
-                bool positionMatches = panel.Location.X == expectedX && panel.Location.Y == expectedY;
-
-                if (sizeMatches || positionMatches)
-                {
-                    Console.WriteLine($"Несовпадение в элементе {i}:");
-                    if (sizeMatches)
-                        Console.WriteLine($"  Размеры: панель ({panel.Width},{panel.Height}), ожидаемые ({rect.Width},{rect.Length})");
-                    if (positionMatches)
-                        Console.WriteLine($"  Позиция: панель ({panel.Location.X},{panel.Location.Y}), ожидаемая ({expectedX},{expectedY})  начальные {rect.Center.X}, {rect.Center.Y}");
-                }
-            }
-        }
     }
 }

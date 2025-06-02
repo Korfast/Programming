@@ -80,42 +80,71 @@ namespace Programming.View.Controls
             }
         }
 
-        // Новая функция с задаваемыми лимитами
-        private void UpdateIntLimitsProperty(Action<int> updateAction, TextBox textBox)
+        private void UpdateMovieNameProperty(TextBox textBox, int length, Action<string> updateAction)
         {
-            // Пытаемся преобразовать текст в целое число
-            if (int.TryParse(textBox.Text, out int value))
+            try
             {
-                // Если успешно, вызываем делегат для обновления свойства
+                //string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                // Название должно начинаться с заглавной буквы
+                string value = textBox.Text;
+                if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".Contains(textBox.Text[0])) throw new ArgumentOutOfRangeException();
+                if (value.Length > length) throw new ArgumentOutOfRangeException();
                 updateAction(value);
-                // Восстанавливаем стандартный цвет фона
                 textBox.BackColor = SystemColors.Window;
             }
-            else
+            catch
             {
-                // Если не удалось преобразовать, выделяем поле розовым
-                textBox.BackColor = System.Drawing.Color.LightPink;
+                textBox.BackColor = AppColors.LightPink;
+            }
+        }
+
+        private void UpdateIntLimitsProperty(Action<int> updateAction, TextBox textBox)
+        {
+            try
+            {
+                if (int.TryParse(textBox.Text, out int value))
+                {
+                    // Попытка обновить свойство
+                    updateAction(value);
+                    textBox.BackColor = SystemColors.Window;
+                }
+                else
+                {
+                    // Не удалось преобразовать — выделяем поле
+                    textBox.BackColor = AppColors.LightPink;
+                }
+            }
+            catch
+            {
+                // Обработка возможных исключений при обновлении свойства
+                textBox.BackColor = AppColors.LightPink;
             }
         }
 
         private void UpdateDoubleLimitsProperty(Action<double> updateAction, TextBox textBox)
         {
-            // Пытаемся преобразовать текст в число с плавающей точкой
-            if (double.TryParse(textBox.Text, out double value))
+            try
             {
-                // Если успешно, вызываем делегат для обновления свойства
-                updateAction(value);
-                // Восстанавливаем стандартный цвет фона
-                textBox.BackColor = SystemColors.Window;
+                if (double.TryParse(textBox.Text, out double value))
+                {
+                    // Попытка обновить свойство
+                    updateAction(value);
+                    textBox.BackColor = SystemColors.Window;
+                }
+                else
+                {
+                    // Не удалось преобразовать — выделяем поле
+                    textBox.BackColor = AppColors.LightPink;
+                }
             }
-            else
+            catch
             {
-                // Если не удалось преобразовать, выделяем поле розовым
-                textBox.BackColor = System.Drawing.Color.LightPink;
+                // Обработка возможных исключений при обновлении свойства
+                textBox.BackColor = AppColors.LightPink;
             }
         }
 
-        // Функция для валидации текстбоксов ColorTextBox и GenreTextBox
+        
         private void UpdateEnumTypeProperty<EnumType>(TextBox textBox, Action<string> updateAction) where EnumType : struct, Enum
         {
 
@@ -135,7 +164,7 @@ namespace Programming.View.Controls
             }
             catch
             {
-                textBox.BackColor = System.Drawing.Color.LightPink;
+                textBox.BackColor = AppColors.LightPink;
             }
         }
 
@@ -198,24 +227,6 @@ namespace Programming.View.Controls
                 UpdateIntLimitsProperty((vlue) => _currentMovie.Rating = vlue, RatingTextBox);
             }
 
-        }
-
-        private void UpdateMovieNameProperty(TextBox textBox, int length, Action<string> updateAction)
-        {
-            try
-            {
-                //string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                // Название должно начинаться с заглавной буквы
-                string value = textBox.Text;
-                if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".Contains(textBox.Text[0])) throw new ArgumentOutOfRangeException();
-                if (value.Length > length) throw new ArgumentOutOfRangeException();
-                updateAction(value);
-                textBox.BackColor = SystemColors.Window;
-            }
-            catch
-            {
-                textBox.BackColor = System.Drawing.Color.LightPink;
-            }
         }
 
         private int FindMovieWithMaxRating()

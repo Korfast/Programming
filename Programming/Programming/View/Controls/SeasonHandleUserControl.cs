@@ -51,7 +51,8 @@ namespace Programming.View.Controls
                     break;
 
                 case Season.Autumn:
-                    // this.BackColor = System.Drawing.Color.Orange; // Меняем цвет фона на оранжевый
+                    // Меняем цвет фона на оранжевый
+                    this.BackColor = AppColors.Orange; 
                     break;
 
                 case Season.Winter:
@@ -59,7 +60,8 @@ namespace Programming.View.Controls
                     break;
 
                 case Season.Spring:
-                    // this.BackColor = System.Drawing.Color.Green; // Меняем цвет фона на зеленый
+                    // Меняем цвет фона на зеленый
+                    this.BackColor = AppColors.Green; 
                     break;
 
                 default:
