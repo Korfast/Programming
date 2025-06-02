@@ -29,27 +29,27 @@
         private void InitializeComponent()
         {
             this.RectanglesTabPage = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.RectanglesTableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.WidthFlowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.WidthTextBox5 = new System.Windows.Forms.TextBox();
             this.WidthLabel5 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.LengthFlowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.LengthTextBox5 = new System.Windows.Forms.TextBox();
             this.LengthLabel5 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.YFlowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.YTextBox5 = new System.Windows.Forms.TextBox();
             this.YLabel5 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.XFlowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.XTextBox5 = new System.Windows.Forms.TextBox();
             this.XLabel5 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.IdFlowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.IdTextBox5 = new System.Windows.Forms.TextBox();
             this.IdLabel5 = new System.Windows.Forms.Label();
             this.RectanglesPanel5 = new System.Windows.Forms.Panel();
             this.RectanglesLabel5 = new System.Windows.Forms.Label();
             this.RectanglesListBox5 = new System.Windows.Forms.ListBox();
             this.SelectedRectangleLabel5 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.AddDeleteFlowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.AddRectangleButton5 = new System.Windows.Forms.Button();
             this.DeleteRectangleButton5 = new System.Windows.Forms.Button();
             this.ClassesTabPage = new System.Windows.Forms.TabPage();
@@ -100,13 +100,13 @@
             this.EnumsListBox = new System.Windows.Forms.ListBox();
             this.MainTabControl = new System.Windows.Forms.TabControl();
             this.RectanglesTabPage.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel6.SuspendLayout();
-            this.flowLayoutPanel5.SuspendLayout();
-            this.flowLayoutPanel4.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.RectanglesTableLayoutPanel5.SuspendLayout();
+            this.WidthFlowLayoutPanel5.SuspendLayout();
+            this.LengthFlowLayoutPanel5.SuspendLayout();
+            this.YFlowLayoutPanel5.SuspendLayout();
+            this.XFlowLayoutPanel5.SuspendLayout();
+            this.IdFlowLayoutPanel5.SuspendLayout();
+            this.AddDeleteFlowLayoutPanel5.SuspendLayout();
             this.ClassesTabPage.SuspendLayout();
             this.MoviesGroupBox.SuspendLayout();
             this.RectanglesGroupBox.SuspendLayout();
@@ -119,7 +119,7 @@
             // 
             // RectanglesTabPage
             // 
-            this.RectanglesTabPage.Controls.Add(this.tableLayoutPanel1);
+            this.RectanglesTabPage.Controls.Add(this.RectanglesTableLayoutPanel5);
             this.RectanglesTabPage.Location = new System.Drawing.Point(4, 22);
             this.RectanglesTabPage.Margin = new System.Windows.Forms.Padding(2);
             this.RectanglesTabPage.Name = "RectanglesTabPage";
@@ -129,48 +129,48 @@
             this.RectanglesTabPage.Text = "Rectangles";
             this.RectanglesTabPage.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // RectanglesTableLayoutPanel5
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel6, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel5, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel4, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.RectanglesPanel5, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.RectanglesLabel5, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.RectanglesListBox5, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.SelectedRectangleLabel5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 2);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(6, 4, 0, 0);
-            this.tableLayoutPanel1.RowCount = 9;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(612, 411);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.RectanglesTableLayoutPanel5.ColumnCount = 2;
+            this.RectanglesTableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.RectanglesTableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.RectanglesTableLayoutPanel5.Controls.Add(this.WidthFlowLayoutPanel5, 0, 8);
+            this.RectanglesTableLayoutPanel5.Controls.Add(this.LengthFlowLayoutPanel5, 0, 7);
+            this.RectanglesTableLayoutPanel5.Controls.Add(this.YFlowLayoutPanel5, 0, 6);
+            this.RectanglesTableLayoutPanel5.Controls.Add(this.XFlowLayoutPanel5, 0, 5);
+            this.RectanglesTableLayoutPanel5.Controls.Add(this.IdFlowLayoutPanel5, 0, 4);
+            this.RectanglesTableLayoutPanel5.Controls.Add(this.RectanglesPanel5, 1, 0);
+            this.RectanglesTableLayoutPanel5.Controls.Add(this.RectanglesLabel5, 0, 0);
+            this.RectanglesTableLayoutPanel5.Controls.Add(this.RectanglesListBox5, 0, 1);
+            this.RectanglesTableLayoutPanel5.Controls.Add(this.SelectedRectangleLabel5, 0, 3);
+            this.RectanglesTableLayoutPanel5.Controls.Add(this.AddDeleteFlowLayoutPanel5, 0, 2);
+            this.RectanglesTableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RectanglesTableLayoutPanel5.Location = new System.Drawing.Point(2, 2);
+            this.RectanglesTableLayoutPanel5.Name = "RectanglesTableLayoutPanel5";
+            this.RectanglesTableLayoutPanel5.Padding = new System.Windows.Forms.Padding(6, 4, 0, 0);
+            this.RectanglesTableLayoutPanel5.RowCount = 9;
+            this.RectanglesTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.RectanglesTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.RectanglesTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.RectanglesTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.RectanglesTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.RectanglesTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.RectanglesTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.RectanglesTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.RectanglesTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.RectanglesTableLayoutPanel5.Size = new System.Drawing.Size(612, 411);
+            this.RectanglesTableLayoutPanel5.TabIndex = 1;
             // 
-            // flowLayoutPanel6
+            // WidthFlowLayoutPanel5
             // 
-            this.flowLayoutPanel6.Controls.Add(this.WidthTextBox5);
-            this.flowLayoutPanel6.Controls.Add(this.WidthLabel5);
-            this.flowLayoutPanel6.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(6, 386);
-            this.flowLayoutPanel6.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(133, 22);
-            this.flowLayoutPanel6.TabIndex = 23;
+            this.WidthFlowLayoutPanel5.Controls.Add(this.WidthTextBox5);
+            this.WidthFlowLayoutPanel5.Controls.Add(this.WidthLabel5);
+            this.WidthFlowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.WidthFlowLayoutPanel5.Location = new System.Drawing.Point(6, 386);
+            this.WidthFlowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.WidthFlowLayoutPanel5.Name = "WidthFlowLayoutPanel5";
+            this.WidthFlowLayoutPanel5.Size = new System.Drawing.Size(133, 22);
+            this.WidthFlowLayoutPanel5.TabIndex = 23;
             // 
             // WidthTextBox5
             // 
@@ -191,16 +191,16 @@
             this.WidthLabel5.TabIndex = 6;
             this.WidthLabel5.Text = "Width:";
             // 
-            // flowLayoutPanel5
+            // LengthFlowLayoutPanel5
             // 
-            this.flowLayoutPanel5.Controls.Add(this.LengthTextBox5);
-            this.flowLayoutPanel5.Controls.Add(this.LengthLabel5);
-            this.flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(6, 358);
-            this.flowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(133, 22);
-            this.flowLayoutPanel5.TabIndex = 22;
+            this.LengthFlowLayoutPanel5.Controls.Add(this.LengthTextBox5);
+            this.LengthFlowLayoutPanel5.Controls.Add(this.LengthLabel5);
+            this.LengthFlowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.LengthFlowLayoutPanel5.Location = new System.Drawing.Point(6, 358);
+            this.LengthFlowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.LengthFlowLayoutPanel5.Name = "LengthFlowLayoutPanel5";
+            this.LengthFlowLayoutPanel5.Size = new System.Drawing.Size(133, 22);
+            this.LengthFlowLayoutPanel5.TabIndex = 22;
             // 
             // LengthTextBox5
             // 
@@ -221,16 +221,16 @@
             this.LengthLabel5.TabIndex = 5;
             this.LengthLabel5.Text = "Length:";
             // 
-            // flowLayoutPanel4
+            // YFlowLayoutPanel5
             // 
-            this.flowLayoutPanel4.Controls.Add(this.YTextBox5);
-            this.flowLayoutPanel4.Controls.Add(this.YLabel5);
-            this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(6, 330);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(133, 22);
-            this.flowLayoutPanel4.TabIndex = 21;
+            this.YFlowLayoutPanel5.Controls.Add(this.YTextBox5);
+            this.YFlowLayoutPanel5.Controls.Add(this.YLabel5);
+            this.YFlowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.YFlowLayoutPanel5.Location = new System.Drawing.Point(6, 330);
+            this.YFlowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.YFlowLayoutPanel5.Name = "YFlowLayoutPanel5";
+            this.YFlowLayoutPanel5.Size = new System.Drawing.Size(133, 22);
+            this.YFlowLayoutPanel5.TabIndex = 21;
             // 
             // YTextBox5
             // 
@@ -251,16 +251,16 @@
             this.YLabel5.TabIndex = 4;
             this.YLabel5.Text = "Y:";
             // 
-            // flowLayoutPanel3
+            // XFlowLayoutPanel5
             // 
-            this.flowLayoutPanel3.Controls.Add(this.XTextBox5);
-            this.flowLayoutPanel3.Controls.Add(this.XLabel5);
-            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(6, 302);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(133, 22);
-            this.flowLayoutPanel3.TabIndex = 20;
+            this.XFlowLayoutPanel5.Controls.Add(this.XTextBox5);
+            this.XFlowLayoutPanel5.Controls.Add(this.XLabel5);
+            this.XFlowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.XFlowLayoutPanel5.Location = new System.Drawing.Point(6, 302);
+            this.XFlowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.XFlowLayoutPanel5.Name = "XFlowLayoutPanel5";
+            this.XFlowLayoutPanel5.Size = new System.Drawing.Size(133, 22);
+            this.XFlowLayoutPanel5.TabIndex = 20;
             // 
             // XTextBox5
             // 
@@ -281,16 +281,16 @@
             this.XLabel5.TabIndex = 3;
             this.XLabel5.Text = "X:";
             // 
-            // flowLayoutPanel2
+            // IdFlowLayoutPanel5
             // 
-            this.flowLayoutPanel2.Controls.Add(this.IdTextBox5);
-            this.flowLayoutPanel2.Controls.Add(this.IdLabel5);
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 274);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(133, 22);
-            this.flowLayoutPanel2.TabIndex = 19;
+            this.IdFlowLayoutPanel5.Controls.Add(this.IdTextBox5);
+            this.IdFlowLayoutPanel5.Controls.Add(this.IdLabel5);
+            this.IdFlowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.IdFlowLayoutPanel5.Location = new System.Drawing.Point(6, 274);
+            this.IdFlowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.IdFlowLayoutPanel5.Name = "IdFlowLayoutPanel5";
+            this.IdFlowLayoutPanel5.Size = new System.Drawing.Size(133, 22);
+            this.IdFlowLayoutPanel5.TabIndex = 19;
             // 
             // IdTextBox5
             // 
@@ -319,7 +319,7 @@
             this.RectanglesPanel5.Location = new System.Drawing.Point(228, 6);
             this.RectanglesPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.RectanglesPanel5.Name = "RectanglesPanel5";
-            this.tableLayoutPanel1.SetRowSpan(this.RectanglesPanel5, 9);
+            this.RectanglesTableLayoutPanel5.SetRowSpan(this.RectanglesPanel5, 9);
             this.RectanglesPanel5.Size = new System.Drawing.Size(382, 403);
             this.RectanglesPanel5.TabIndex = 18;
             // 
@@ -355,17 +355,17 @@
             this.SelectedRectangleLabel5.TabIndex = 9;
             this.SelectedRectangleLabel5.Text = "SelectedRectangle:";
             // 
-            // flowLayoutPanel1
+            // AddDeleteFlowLayoutPanel5
             // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Controls.Add(this.AddRectangleButton5);
-            this.flowLayoutPanel1.Controls.Add(this.DeleteRectangleButton5);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 214);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(217, 26);
-            this.flowLayoutPanel1.TabIndex = 17;
+            this.AddDeleteFlowLayoutPanel5.AutoSize = true;
+            this.AddDeleteFlowLayoutPanel5.Controls.Add(this.AddRectangleButton5);
+            this.AddDeleteFlowLayoutPanel5.Controls.Add(this.DeleteRectangleButton5);
+            this.AddDeleteFlowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddDeleteFlowLayoutPanel5.Location = new System.Drawing.Point(6, 214);
+            this.AddDeleteFlowLayoutPanel5.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.AddDeleteFlowLayoutPanel5.Name = "AddDeleteFlowLayoutPanel5";
+            this.AddDeleteFlowLayoutPanel5.Size = new System.Drawing.Size(217, 26);
+            this.AddDeleteFlowLayoutPanel5.TabIndex = 17;
             // 
             // AddRectangleButton5
             // 
@@ -859,25 +859,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.MainTabControl);
+            this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProgrammingDemo";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.RectanglesTabPage.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel6.ResumeLayout(false);
-            this.flowLayoutPanel6.PerformLayout();
-            this.flowLayoutPanel5.ResumeLayout(false);
-            this.flowLayoutPanel5.PerformLayout();
-            this.flowLayoutPanel4.ResumeLayout(false);
-            this.flowLayoutPanel4.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel3.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.RectanglesTableLayoutPanel5.ResumeLayout(false);
+            this.RectanglesTableLayoutPanel5.PerformLayout();
+            this.WidthFlowLayoutPanel5.ResumeLayout(false);
+            this.WidthFlowLayoutPanel5.PerformLayout();
+            this.LengthFlowLayoutPanel5.ResumeLayout(false);
+            this.LengthFlowLayoutPanel5.PerformLayout();
+            this.YFlowLayoutPanel5.ResumeLayout(false);
+            this.YFlowLayoutPanel5.PerformLayout();
+            this.XFlowLayoutPanel5.ResumeLayout(false);
+            this.XFlowLayoutPanel5.PerformLayout();
+            this.IdFlowLayoutPanel5.ResumeLayout(false);
+            this.IdFlowLayoutPanel5.PerformLayout();
+            this.AddDeleteFlowLayoutPanel5.ResumeLayout(false);
+            this.AddDeleteFlowLayoutPanel5.PerformLayout();
             this.ClassesTabPage.ResumeLayout(false);
             this.MoviesGroupBox.ResumeLayout(false);
             this.MoviesGroupBox.PerformLayout();
@@ -898,27 +899,27 @@
         #endregion
 
         private System.Windows.Forms.TabPage RectanglesTabPage;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel6;
+        private System.Windows.Forms.TableLayoutPanel RectanglesTableLayoutPanel5;
+        private System.Windows.Forms.FlowLayoutPanel WidthFlowLayoutPanel5;
         private System.Windows.Forms.TextBox WidthTextBox5;
         private System.Windows.Forms.Label WidthLabel5;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.FlowLayoutPanel LengthFlowLayoutPanel5;
         private System.Windows.Forms.TextBox LengthTextBox5;
         private System.Windows.Forms.Label LengthLabel5;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.FlowLayoutPanel YFlowLayoutPanel5;
         private System.Windows.Forms.TextBox YTextBox5;
         private System.Windows.Forms.Label YLabel5;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel XFlowLayoutPanel5;
         private System.Windows.Forms.TextBox XTextBox5;
         private System.Windows.Forms.Label XLabel5;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel IdFlowLayoutPanel5;
         private System.Windows.Forms.TextBox IdTextBox5;
         private System.Windows.Forms.Label IdLabel5;
         private System.Windows.Forms.Panel RectanglesPanel5;
         private System.Windows.Forms.Label RectanglesLabel5;
         private System.Windows.Forms.ListBox RectanglesListBox5;
         private System.Windows.Forms.Label SelectedRectangleLabel5;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel AddDeleteFlowLayoutPanel5;
         private System.Windows.Forms.Button AddRectangleButton5;
         private System.Windows.Forms.Button DeleteRectangleButton5;
         private System.Windows.Forms.TabPage ClassesTabPage;
