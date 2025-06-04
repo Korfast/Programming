@@ -1,4 +1,4 @@
-﻿namespace MoviesApp.View
+﻿namespace MoviesApp.View.Controls
 {
     partial class MoviesUserControl
     {
@@ -119,8 +119,9 @@
             // 
             this.RatingTextBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.RatingTextBox.Location = new System.Drawing.Point(59, 82);
+            this.RatingTextBox.MaxLength = 2;
             this.RatingTextBox.Name = "RatingTextBox";
-            this.RatingTextBox.Size = new System.Drawing.Size(30, 20);
+            this.RatingTextBox.Size = new System.Drawing.Size(20, 20);
             this.RatingTextBox.TabIndex = 11;
             // 
             // ReleaseYearTextBox
@@ -179,10 +180,10 @@
             // 
             this.TitleTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TitleTextBox.Location = new System.Drawing.Point(59, 3);
-            this.TitleTextBox.MaximumSize = new System.Drawing.Size(300, 20);
+            this.TitleTextBox.MaximumSize = new System.Drawing.Size(400, 20);
             this.TitleTextBox.MaxLength = 300;
             this.TitleTextBox.Name = "TitleTextBox";
-            this.TitleTextBox.Size = new System.Drawing.Size(300, 20);
+            this.TitleTextBox.Size = new System.Drawing.Size(310, 20);
             this.TitleTextBox.TabIndex = 1;
             // 
             // TaitleLabel
@@ -214,6 +215,7 @@
             this.MoviesTableLayoutPanel.SetRowSpan(this.MoviesListBox, 2);
             this.MoviesListBox.Size = new System.Drawing.Size(250, 439);
             this.MoviesListBox.TabIndex = 1;
+            this.MoviesListBox.SelectedIndexChanged += new System.EventHandler(this.MoviesListBox_SelectedIndexChanged);
             // 
             // ButtonsFlowLayoutPanel
             // 
@@ -233,6 +235,7 @@
             this.AddButton.TabIndex = 0;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // DeleteButton
             // 
@@ -242,6 +245,7 @@
             this.DeleteButton.TabIndex = 1;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // MoviesUserControl
             // 
