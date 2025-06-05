@@ -7,7 +7,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,13 +15,15 @@ namespace MoviesApp.View.Controls
     public partial class MoviesUserControl : UserControl
     {
         private List<Movie> _movies = new List<Movie>();
-        private readonly string _dataFilePath = "movies.json";
+        private readonly string _dataFilePath = "movies.csv";
 
         public MoviesUserControl()
         {
             InitializeComponent();
+            FillGenreComboBox();
+            LoadData();
         }
-
+        /*
         private void LoadData()
         {
             if (File.Exists(_dataFilePath))
@@ -38,6 +39,106 @@ namespace MoviesApp.View.Controls
             var json = JsonSerializer.Serialize(_movies);
             File.WriteAllText(_dataFilePath, json);
         }
+        */
+
+        public void SaveData()
+        {
+            List<string> lines = new List<string>();
+            foreach (Movie movie in _movies)
+            {
+                // Создаем строку вида: Title,ReleaseYear,Genre,Rating,DurationInMinutes
+                string line = $"{EscapeCsv(movie.Title)},{movie.ReleaseYear},{EscapeCsv(movie.Genre)},{movie.Rating},{movie.DurationInMinutes}";
+                lines.Add(line);
+            }
+            File.WriteAllLines(_dataFilePath, lines);
+        }
+
+        // Вспомогательный метод для экранирования запятых и кавычек
+        private string EscapeCsv(string field)
+        {
+            if (field.Contains(",") || field.Contains("\""))
+            {
+                // Экранируем кавычки
+                field = field.Replace("\"", "\"\"");
+                // Оборачиваем в кавычки
+                return $"\"{field}\"";
+            }
+            return field;
+        }
+
+        private void LoadData()
+        {
+            if (File.Exists(_dataFilePath))
+            {
+                string[] lines = File.ReadAllLines(_dataFilePath);
+                _movies.Clear();
+                foreach (string line in lines)
+                {
+                    string[] parts = ParseCsvLine(line);
+                    if (parts.Length == 5)
+                    {
+                        Movie movie = new Movie
+                        {
+                            Title = parts[0],
+                            ReleaseYear = int.TryParse(parts[1], out int year) ? year : 0,
+                            Genre = parts[2],
+                            Rating = double.TryParse(parts[3], out double rating) ? rating : 0.0,
+                            DurationInMinutes = int.TryParse(parts[4], out int duration) ? duration : 0
+                        };
+                        _movies.Add(movie);
+                    }
+                }
+                SortAndDisplayMovies();
+            }
+        }
+
+        // Простая парсилка строки CSV с учетом кавычек
+        private string[] ParseCsvLine(string line)
+        {
+            List<string> result = new List<string>();
+            bool inQuotes = false;
+            StringBuilder currentField = new StringBuilder();
+
+            for (int i = 0; i < line.Length; i++)
+            {
+                char c = line[i];
+
+                if (c == '\"')
+                {
+                    if (inQuotes && i + 1 < line.Length && line[i + 1] == '\"')
+                    {
+                        // Экранированная кавычка внутри поля
+                        currentField.Append('\"');
+                        i++;
+                    }
+                    else
+                    {
+                        inQuotes = !inQuotes;
+                    }
+                }
+                else if (c == ',' && !inQuotes)
+                {
+                    result.Add(currentField.ToString());
+                    currentField.Clear();
+                }
+                else
+                {
+                    currentField.Append(c);
+                }
+            }
+
+            // добавляем последний элемент
+            result.Add(currentField.ToString());
+
+            return result.ToArray();
+        }
+
+        // Заполняем ComboBox значениями enum
+        private void FillGenreComboBox()
+        {
+            GenreComboBox.DataSource = Enum.GetValues(typeof(MoviesApp.Model.Enums.Genre));
+        }
+
 
         private void SortAndDisplayMovies()
         {
