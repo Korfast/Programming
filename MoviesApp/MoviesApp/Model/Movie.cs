@@ -46,7 +46,7 @@ namespace MoviesApp.Model
         }
 
         /// <summary>
-        /// Возвращает и задаёт продолжительность фильма в минутах. Проверяет, что значение положительно.
+        /// Возвращает и задаёт продолжительность фильма в минутах. Значение должно быть в диапазоне от 1 до 300..
         /// </summary>
         public int DurationInMinutes
         {
@@ -54,7 +54,8 @@ namespace MoviesApp.Model
             set
             {
                 // Используем метод из Validator для проверки положительности продолжительности
-                Validator.AssertOnPositiveValue(value, nameof(DurationInMinutes));
+                // В этом проекте максимальная продолжительность ограничена
+                Validator.AssertValueInRange(value, 1, 300, nameof(DurationInMinutes));
                 _durationInMinutes = value;
             }
         }
@@ -67,8 +68,7 @@ namespace MoviesApp.Model
             get { return _releaseYear; }
             set
             {
-                if (value < 1888 || value > DateTime.Now.Year)
-                    throw new ArgumentException("Год выпуска должен быть от 1888 до текущего года.");
+                Validator.AssertValueInRange(value, 1888, DateTime.Now.Year, nameof(Rating));
                 _releaseYear = value;
             }
         }

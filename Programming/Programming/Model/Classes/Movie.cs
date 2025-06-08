@@ -68,8 +68,7 @@ namespace Programming.Model
             get { return _releaseYear; }
             set
             {
-                if (value < 1888 || value > DateTime.Now.Year)
-                    throw new ArgumentException("Год выпуска должен быть от 1888 до текущего года.");
+                Validator.AssertValueInRange(value, 1888, DateTime.Now.Year, nameof(Rating));
                 _releaseYear = value;
             }
         }

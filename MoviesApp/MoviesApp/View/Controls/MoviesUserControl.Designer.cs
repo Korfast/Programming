@@ -43,8 +43,9 @@
             this.GenreComboBox = new System.Windows.Forms.ComboBox();
             this.MoviesListBox = new System.Windows.Forms.ListBox();
             this.ButtonsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.AddButton = new System.Windows.Forms.Button();
-            this.DeleteButton = new System.Windows.Forms.Button();
+            this.AddMovieButton = new System.Windows.Forms.Button();
+            this.DeleteMovieButton = new System.Windows.Forms.Button();
+            this.EditMovieButton = new System.Windows.Forms.Button();
             this.MoviesTableLayoutPanel.SuspendLayout();
             this.SelectedMovieGroupBox.SuspendLayout();
             this.SelectedMovieTableLayoutPanel.SuspendLayout();
@@ -112,8 +113,10 @@
             this.DurationInMinutesTextBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.DurationInMinutesTextBox.Location = new System.Drawing.Point(59, 108);
             this.DurationInMinutesTextBox.Name = "DurationInMinutesTextBox";
+            this.DurationInMinutesTextBox.ReadOnly = true;
             this.DurationInMinutesTextBox.Size = new System.Drawing.Size(121, 20);
             this.DurationInMinutesTextBox.TabIndex = 12;
+            this.DurationInMinutesTextBox.TextChanged += new System.EventHandler(this.DurationInMinutesTextBox_TextChanged);
             // 
             // RatingTextBox
             // 
@@ -121,16 +124,20 @@
             this.RatingTextBox.Location = new System.Drawing.Point(59, 82);
             this.RatingTextBox.MaxLength = 2;
             this.RatingTextBox.Name = "RatingTextBox";
+            this.RatingTextBox.ReadOnly = true;
             this.RatingTextBox.Size = new System.Drawing.Size(20, 20);
             this.RatingTextBox.TabIndex = 11;
+            this.RatingTextBox.TextChanged += new System.EventHandler(this.RatingTextBox_TextChanged);
             // 
             // ReleaseYearTextBox
             // 
             this.ReleaseYearTextBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.ReleaseYearTextBox.Location = new System.Drawing.Point(59, 29);
             this.ReleaseYearTextBox.Name = "ReleaseYearTextBox";
+            this.ReleaseYearTextBox.ReadOnly = true;
             this.ReleaseYearTextBox.Size = new System.Drawing.Size(121, 20);
             this.ReleaseYearTextBox.TabIndex = 9;
+            this.ReleaseYearTextBox.TextChanged += new System.EventHandler(this.ReleaseYearTextBox_TextChanged);
             // 
             // DurationInMinutesLabel
             // 
@@ -183,8 +190,10 @@
             this.TitleTextBox.MaximumSize = new System.Drawing.Size(400, 20);
             this.TitleTextBox.MaxLength = 300;
             this.TitleTextBox.Name = "TitleTextBox";
+            this.TitleTextBox.ReadOnly = true;
             this.TitleTextBox.Size = new System.Drawing.Size(310, 20);
             this.TitleTextBox.TabIndex = 1;
+            this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
             // TaitleLabel
             // 
@@ -200,11 +209,14 @@
             // GenreComboBox
             // 
             this.GenreComboBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GenreComboBox.Enabled = false;
             this.GenreComboBox.FormattingEnabled = true;
             this.GenreComboBox.Location = new System.Drawing.Point(59, 55);
             this.GenreComboBox.Name = "GenreComboBox";
             this.GenreComboBox.Size = new System.Drawing.Size(121, 21);
             this.GenreComboBox.TabIndex = 13;
+            this.GenreComboBox.SelectedIndexChanged += new System.EventHandler(this.GenreComboBox_SelectedIndexChanged);
+            this.GenreComboBox.TextChanged += new System.EventHandler(this.GenreComboBox_TextChanged);
             // 
             // MoviesListBox
             // 
@@ -219,33 +231,44 @@
             // 
             // ButtonsFlowLayoutPanel
             // 
-            this.ButtonsFlowLayoutPanel.Controls.Add(this.AddButton);
-            this.ButtonsFlowLayoutPanel.Controls.Add(this.DeleteButton);
+            this.ButtonsFlowLayoutPanel.Controls.Add(this.AddMovieButton);
+            this.ButtonsFlowLayoutPanel.Controls.Add(this.EditMovieButton);
+            this.ButtonsFlowLayoutPanel.Controls.Add(this.DeleteMovieButton);
             this.ButtonsFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.ButtonsFlowLayoutPanel.Location = new System.Drawing.Point(3, 448);
             this.ButtonsFlowLayoutPanel.Name = "ButtonsFlowLayoutPanel";
-            this.ButtonsFlowLayoutPanel.Size = new System.Drawing.Size(112, 29);
+            this.ButtonsFlowLayoutPanel.Size = new System.Drawing.Size(168, 29);
             this.ButtonsFlowLayoutPanel.TabIndex = 2;
             // 
-            // AddButton
+            // AddMovieButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(3, 3);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(50, 23);
-            this.AddButton.TabIndex = 0;
-            this.AddButton.Text = "Add";
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            this.AddMovieButton.Location = new System.Drawing.Point(3, 3);
+            this.AddMovieButton.Name = "AddMovieButton";
+            this.AddMovieButton.Size = new System.Drawing.Size(50, 23);
+            this.AddMovieButton.TabIndex = 0;
+            this.AddMovieButton.Text = "Add";
+            this.AddMovieButton.UseVisualStyleBackColor = true;
+            this.AddMovieButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // DeleteButton
+            // DeleteMovieButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(59, 3);
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(50, 23);
-            this.DeleteButton.TabIndex = 1;
-            this.DeleteButton.Text = "Delete";
-            this.DeleteButton.UseVisualStyleBackColor = true;
-            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            this.DeleteMovieButton.Location = new System.Drawing.Point(115, 3);
+            this.DeleteMovieButton.Name = "DeleteMovieButton";
+            this.DeleteMovieButton.Size = new System.Drawing.Size(50, 23);
+            this.DeleteMovieButton.TabIndex = 1;
+            this.DeleteMovieButton.Text = "Delete";
+            this.DeleteMovieButton.UseVisualStyleBackColor = true;
+            this.DeleteMovieButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // EditMovieButton
+            // 
+            this.EditMovieButton.Location = new System.Drawing.Point(59, 3);
+            this.EditMovieButton.Name = "EditMovieButton";
+            this.EditMovieButton.Size = new System.Drawing.Size(50, 23);
+            this.EditMovieButton.TabIndex = 2;
+            this.EditMovieButton.Text = "Edit";
+            this.EditMovieButton.UseVisualStyleBackColor = true;
+            this.EditMovieButton.Click += new System.EventHandler(this.EditMovieButton_Click);
             // 
             // MoviesUserControl
             // 
@@ -280,7 +303,8 @@
         private System.Windows.Forms.ComboBox GenreComboBox;
         private System.Windows.Forms.ListBox MoviesListBox;
         private System.Windows.Forms.FlowLayoutPanel ButtonsFlowLayoutPanel;
-        private System.Windows.Forms.Button AddButton;
-        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button AddMovieButton;
+        private System.Windows.Forms.Button DeleteMovieButton;
+        private System.Windows.Forms.Button EditMovieButton;
     }
 }
