@@ -12,14 +12,39 @@ using System.Windows.Forms;
 
 namespace MoviesApp.View.Controls
 {
+    /// <summary>
+    /// Пользовательский контроль для управления и отображения списка фильмов.
+    /// </summary>
     public partial class MoviesUserControl : UserControl
     {
+        /// <summary>
+        /// Генерирует случайные числа для различных внутренних целей.
+        /// </summary>
         private readonly Random random = new Random();
+
+        /// <summary>
+        /// Список объектов Movie, содержащих информацию о фильмах.
+        /// </summary>
         private List<Movie> _movies = new List<Movie>();
+
+        /// <summary>
+        /// Текущий выбранный фильм, отображаемый или редактируемый в интерфейсе.
+        /// </summary>
         private Movie _selectedMovie;
+
+        /// <summary>
+        /// Путь к CSV файлу для хранения данных о фильмах.
+        /// </summary>
         private readonly string _dataFilePath = "movies.csv";
+
+        /// <summary>
+        /// Флаг, разрешающий или запрещающий редактирование данных.
+        /// </summary>
         private bool _isEditingAllowed = false;
 
+        /// <summary>
+        /// Конструктор класса: инициализация компонентов и загрузка данных.
+        /// </summary>
         public MoviesUserControl()
         {
             InitializeComponent();
@@ -27,40 +52,51 @@ namespace MoviesApp.View.Controls
             LoadData();
         }
 
+        /// <summary>
+        /// Заполняет ComboBox по жанрам фильмам, используя перечисление Model.Enums.Genre.
+        /// </summary>
         private void FillGenreComboBox()
         {
-            // Заполняем ComboBox значениями enum
+            // Заполняем ComboBox значениями enum Genre
             GenreComboBox.DataSource = Enum.GetValues(typeof(Model.Enums.Genre));
-            // Выбираем пустой элемент
+            // Устанавливаем пустой выбранный элемент
             GenreComboBox.SelectedIndex = -1;
         }
 
+        /// <summary>
+        /// Обновляет отображение выбранного фильма в списке ListBox.
+        /// </summary>
         private void UpdateSelectedMovieInList()
         {
             int selectedIndex = MoviesListBox.SelectedIndex;
             if (selectedIndex < 0 || selectedIndex >= _movies.Count)
-                return; 
+                return;
 
-            // Обновляем ваш объект в списке _movies
+            // Обновляем объект фильма в списке
             Movie movie = _movies[selectedIndex];
 
-            // Теперь обновляем только выбранную строку в листбоксе
+            // Обновляем отображаемый текст в списке
             MoviesListBox.Items[selectedIndex] = $"{movie.Title}/{movie.ReleaseYear}/{movie.Genre}";
         }
 
+        /// <summary>
+        /// Сохраняет текущий список фильмов в CSV файл.
+        /// </summary>
         public void SaveData()
         {
             List<string> lines = new List<string>();
             foreach (Movie movie in _movies)
             {
-                // Создаем строку вида: Title,ReleaseYear,Genre,Rating,DurationInMinutes
+                // Формируем строку для CSV: Title,ReleaseYear,Genre,Rating,DurationInMinutes
                 string line = $"{EscapeCsv(movie.Title)},{movie.ReleaseYear},{EscapeCsv(movie.Genre)},{movie.Rating},{movie.DurationInMinutes}";
                 lines.Add(line);
             }
             File.WriteAllLines(_dataFilePath, lines);
         }
 
-        // Вспомогательный метод для экранирования запятых и кавычек
+        /// <summary>
+        /// Вспомогательный метод для экранирования строк, содержащих запятые или кавычки, для CSV.
+        /// </summary>
         private string EscapeCsv(string field)
         {
             if (field.Contains(",") || field.Contains("\""))
@@ -73,6 +109,9 @@ namespace MoviesApp.View.Controls
             return field;
         }
 
+        /// <summary>
+        /// Загружает данные из CSV файла и визуализирует список фильмов.
+        /// </summary>
         private void LoadData()
         {
             if (File.Exists(_dataFilePath))
@@ -99,7 +138,9 @@ namespace MoviesApp.View.Controls
             }
         }
 
-        // Простая парсилка строки CSV с учетом кавычек
+        /// <summary>
+        /// Простая парсилка строки CSV с учетом кавычек.
+        /// </summary>
         private string[] ParseCsvLine(string line)
         {
             List<string> result = new List<string>();
@@ -114,7 +155,7 @@ namespace MoviesApp.View.Controls
                 {
                     if (inQuotes && i + 1 < line.Length && line[i + 1] == '\"')
                     {
-                        // Экранированная кавычка внутри поля
+                        // Экранированная кавычка
                         currentField.Append('\"');
                         i++;
                     }
@@ -133,17 +174,18 @@ namespace MoviesApp.View.Controls
                     currentField.Append(c);
                 }
             }
-
-            // добавляем последний элемент
+            // Добавляем последний элемент
             result.Add(currentField.ToString());
-
             return result.ToArray();
-        }   
+        }
 
+        /// <summary>
+        /// Сортирует список фильмов по названию и отображает их в ListBox.
+        /// </summary>
         private void SortAndDisplayMovies()
         {
-            // Запоминаем текущий выбранный элемент
-            Object selectedItem = MoviesListBox.SelectedItem;
+            // Запоминаем выбранный элемент
+            object selectedItem = MoviesListBox.SelectedItem;
 
             // Сортируем список по названию
             _movies = _movies.OrderBy(m => m.Title).ToList();
@@ -151,7 +193,7 @@ namespace MoviesApp.View.Controls
             // Очищаем список элементов ListBox
             MoviesListBox.Items.Clear();
 
-            // Добавляем отсортированные фильмы в ListBox в нужном формате
+            // Добавляем отсортированные фильмы в список
             foreach (Movie movie in _movies)
             {
                 MoviesListBox.Items.Add($"{movie.Title}/{movie.ReleaseYear}/{movie.Genre}");
@@ -161,17 +203,15 @@ namespace MoviesApp.View.Controls
             if (selectedItem != null)
             {
                 int index = -1;
-                // Находим индекс совпадающего элемента в новом списке
+                string itemString = selectedItem.ToString();
                 for (int i = 0; i < _movies.Count; i++)
                 {
-                    string itemString = $"{_movies[i].Title}/{_movies[i].ReleaseYear}/{_movies[i].Genre}";
-                    if (itemString == selectedItem.ToString())
+                    if ($"{_movies[i].Title}/{_movies[i].ReleaseYear}/{_movies[i].Genre}" == itemString)
                     {
                         index = i;
                         break;
                     }
                 }
-
                 if (index != -1)
                 {
                     MoviesListBox.SelectedIndex = index;
@@ -179,9 +219,13 @@ namespace MoviesApp.View.Controls
             }
         }
 
+        /// <summary>
+        /// Устанавливает выбранный элемент ComboBox по названию жанра.
+        /// </summary>
+        /// <param name="genreName">Название жанра, которое нужно установить.</param>
         private void SetGenreSelectedItem(string genreName)
         {
-            Model.Enums.Genre[] genres = (MoviesApp.Model.Enums.Genre[])GenreComboBox.DataSource;
+            Model.Enums.Genre[] genres = (Model.Enums.Genre[])GenreComboBox.DataSource;
             int index = Array.FindIndex(genres, g => g.ToString() == genreName);
             if (index >= 0)
             {
@@ -189,6 +233,10 @@ namespace MoviesApp.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного элемента ListBox.
+        /// Загружает данные выбранного фильма в поля ввода.
+        /// </summary>
         private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = MoviesListBox.SelectedIndex;
@@ -199,13 +247,17 @@ namespace MoviesApp.View.Controls
                 // Заполняем поля данными выбранного фильма
                 TitleTextBox.Text = _selectedMovie.Title;
                 ReleaseYearTextBox.Text = Convert.ToString(_selectedMovie.ReleaseYear);
-                // GenreComboBox заполняется по особенному
+                // Устанавливаем жанр в ComboBox с учетом особенности
                 SetGenreSelectedItem(_selectedMovie.Genre);
                 RatingTextBox.Text = Convert.ToString(_selectedMovie.Rating);
                 DurationInMinutesTextBox.Text = Convert.ToString(_selectedMovie.DurationInMinutes);
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в TextBox для названия фильма.
+        /// Обновляет свойство фильма, если разрешено редактирование.
+        /// </summary>
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >= 0)
@@ -219,6 +271,10 @@ namespace MoviesApp.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в TextBox для года выпуска.
+        /// Обновляет свойство фильма, если разрешено редактирование.
+        /// </summary>
         private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >= 0)
@@ -231,15 +287,23 @@ namespace MoviesApp.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного пункта ComboBox жанра.
+        /// Обновляет свойство жанра в текущем фильме.
+        /// </summary>
         private void GenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >=0)
+            if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >= 0)
             {
                 _selectedMovie.Genre = GenreComboBox.SelectedItem.ToString();
             }
             UpdateSelectedMovieInList();
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в Rating TextBox.
+        /// Обновляет рейтинг фильма при разрешении редактирования.
+        /// </summary>
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >= 0)
@@ -248,6 +312,10 @@ namespace MoviesApp.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в Duration TextBox.
+        /// Обновляет продолжительность фильма при разрешении редактирования.
+        /// </summary>
         private void DurationInMinutesTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >= 0)
@@ -257,9 +325,9 @@ namespace MoviesApp.View.Controls
         }
 
         /// <summary>
-        /// Обновляет свойства фильма на основе текста из TextBox с проверками.
+        /// Обновляет название свойства фильма на основе текста в TextBox с проверками.
         /// </summary>
-        /// <param name="textBox">Текстовое поле для ввода.</param>
+        /// <param name="textBox">Текстовое поле для ввода названия.</param>
         /// <param name="length">Максимальная длина названия.</param>
         /// <param name="updateAction">Делегат для обновления свойства фильма.</param>
         private void UpdateMovieNameProperty(TextBox textBox, int length, Action<string> updateAction)
@@ -267,8 +335,17 @@ namespace MoviesApp.View.Controls
             try
             {
                 string value = textBox.Text;
-                if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".Contains(value[0])) throw new ArgumentOutOfRangeException();
-                if (value.Length > length) throw new ArgumentOutOfRangeException();
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentOutOfRangeException();
+
+                // Можно добавить более строгие проверки, если нужно
+                if (value.Length > length)
+                    throw new ArgumentOutOfRangeException();
+
+                // пример проверки на первую букву (можно заменить или убрать)
+                if (!char.IsLetter(value[0]))
+                    throw new ArgumentOutOfRangeException();
+
                 updateAction(value);
                 textBox.BackColor = SystemColors.Window;
             }
@@ -303,6 +380,9 @@ namespace MoviesApp.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обновляет поля данных о фильме на базе текущего выбранного объекта, только если соответствующие поля подсвечены LightPink.
+        /// </summary>
         private void ReloadMovieData()
         {
             if (_selectedMovie == null)
@@ -316,8 +396,10 @@ namespace MoviesApp.View.Controls
                 ReleaseYearTextBox.Text = _selectedMovie.ReleaseYear.ToString();
 
             if (GenreComboBox.BackColor == Color.LightPink)
+            {
                 GenreComboBox.SelectedItem = _selectedMovie.Genre;
                 GenreComboBox.Text = _selectedMovie.Genre;
+            }
 
             if (RatingTextBox.BackColor == Color.LightPink)
                 RatingTextBox.Text = _selectedMovie.Rating.ToString();
@@ -326,6 +408,9 @@ namespace MoviesApp.View.Controls
                 DurationInMinutesTextBox.Text = _selectedMovie.DurationInMinutes.ToString();
         }
 
+        /// <summary>
+        /// Сбрасывает все подсветки полей редактирования к стандартному виду.
+        /// </summary>
         private void ResetAllFieldHighlights()
         {
             TitleTextBox.BackColor = SystemColors.Window;
@@ -335,6 +420,10 @@ namespace MoviesApp.View.Controls
             DurationInMinutesTextBox.BackColor = SystemColors.Window;
         }
 
+        /// <summary>
+        /// Обработчик нажатия на кнопку для переключения режима редактирования фильма.
+        /// Включает или выключает режим редактирования.
+        /// </summary>
         private void EditMovieButton_Click(object sender, EventArgs e)
         {
             if (!_isEditingAllowed)
@@ -355,7 +444,10 @@ namespace MoviesApp.View.Controls
             }
         }
 
-        // Метод для управления доступностью полей
+        /// <summary>
+        /// Устанавливает свойства полей формы, делая их доступными или недоступными для редактирования.
+        /// </summary>
+        /// <param name="editable">Если true, поля доступны для редактирования, иначе — недоступны.</param>
         private void SetFieldsEditable(bool editable)
         {
             TitleTextBox.Enabled = editable;
@@ -365,31 +457,31 @@ namespace MoviesApp.View.Controls
             DurationInMinutesTextBox.Enabled = editable;
         }
 
+        /// <summary>
+        /// Обработчик нажатия на кнопку добавления нового фильма.
+        /// Создаёт фильм со случайными данными и добавляет его в список и отображение.
+        /// </summary>
         private void AddButton_Click(object sender, EventArgs e)
         {
             // Генерация случайных данных
-            //string title = GenerateName(3, 12);
             string title = $"NewMovie {_movies.Count}";
             int durationInMinutes = random.Next(1, 300);
             int releaseYear = random.Next(1888, DateTime.Now.Year);
             string genre = GenerateGenre();
             double rating = random.Next(0, 11);
 
-            // Создаём новый фильм с этими данными
+            // Создаём новый фильм
             Movie newMovie = new Model.Movie(title, durationInMinutes, releaseYear, genre, rating);
 
-            // Добавляем новый фильм в список
+            // Добавляем в список и UI
             _movies.Add(newMovie);
-            // Добавляем новый фильм в MoviesListBox
             MoviesListBox.Items.Add(newMovie);
-            // Выбираем новый фильм
             MoviesListBox.SelectedIndex = _movies.Count - 1;
-            // Сортируем список с новым фильмом
-            SortAndDisplayMovies();  
+            SortAndDisplayMovies();
         }
 
         /// <summary>
-        /// Генерирует случайное название из букв алфавита.
+        /// Генерирует случайное название из букв алфавита заданной длины.
         /// </summary>
         /// <param name="lowerLimit">Минимальная длина названия.</param>
         /// <param name="upperLimit">Максимальная длина названия.</param>
@@ -412,6 +504,10 @@ namespace MoviesApp.View.Controls
             return name;
         }
 
+        /// <summary>
+        /// Генерирует случайное название жанра из перечисления Enum.
+        /// </summary>
+        /// <returns>Строковое представление жанра.</returns>
         private string GenerateGenre()
         {
             Array genres = Enum.GetValues(typeof(Model.Enums.Genre));
@@ -420,23 +516,20 @@ namespace MoviesApp.View.Controls
             return genreString;
         }
 
+        /// <summary>
+        /// Обработчик нажатия на кнопку удаления выбранного фильма.
+        /// Удаляет фильм из списка и обновляет UI.
+        /// </summary>
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            // Проверяем, что вообще что-то выбрано
-            if (MoviesListBox.SelectedIndex != -1) 
+            if (MoviesListBox.SelectedIndex != -1)
             {
-                // Индекс выбранного объекта
                 int selectedIndex = MoviesListBox.SelectedIndex;
-                // Удаляем из _movies
                 _movies.RemoveAt(selectedIndex);
-                // Удаляем из ListBox
                 MoviesListBox.Items.RemoveAt(selectedIndex);
-                // Выбираем новый элемент
                 MoviesListBox.SelectedIndex = selectedIndex - 1;
-                //Обновляет список фильмов в ListBox
-                SortAndDisplayMovies(); 
+                SortAndDisplayMovies();
 
-                // Очистка деталей если нет выбранного элемента
                 if (MoviesListBox.SelectedIndex == -1)
                 {
                     ClearMovieDetails();
@@ -444,10 +537,12 @@ namespace MoviesApp.View.Controls
             }
         }
 
+        /// <summary>
+        /// Очищает поля отображения деталей выбранного фильма и сбрасывает ссылку на фильм.
+        /// </summary>
         private void ClearMovieDetails()
         {
             _selectedMovie = null;
-            // Очищение всех боксов с данными фильма
             TitleTextBox.Clear();
             ReleaseYearTextBox.Clear();
             GenreComboBox.SelectedIndex = -1;
