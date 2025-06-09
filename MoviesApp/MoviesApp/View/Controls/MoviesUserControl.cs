@@ -14,6 +14,7 @@ namespace MoviesApp.View.Controls
 {
     public partial class MoviesUserControl : UserControl
     {
+        private readonly Random random = new Random();
         private List<Movie> _movies = new List<Movie>();
         private Movie _selectedMovie;
         private readonly string _dataFilePath = "movies.csv";
@@ -24,43 +25,14 @@ namespace MoviesApp.View.Controls
             InitializeComponent();
             FillGenreComboBox();
             LoadData();
-            PopulateMoviesListBox();
-        }
-        /*
-        private void LoadData()
-        {
-            if (File.Exists(_dataFilePath))
-            {
-                var json = File.ReadAllText(_dataFilePath);
-                _movies = JsonSerializer.Deserialize<List<Movie>>(json);
-                SortAndDisplayMovies();
-            }
         }
 
-        private void SaveData()
-        {
-            var json = JsonSerializer.Serialize(_movies);
-            File.WriteAllText(_dataFilePath, json);
-        }
-        */
-
-        // Заполняем ComboBox значениями enum
         private void FillGenreComboBox()
         {
+            // Заполняем ComboBox значениями enum
             GenreComboBox.DataSource = Enum.GetValues(typeof(Model.Enums.Genre));
-        }
-
-        /// <summary>
-        /// Заполняет MoviesListBox фильмами.
-        /// </summary>
-        private void PopulateMoviesListBox()
-        {
-            MoviesListBox.Items.Clear();
-
-            foreach (Movie movie in _movies)
-            {
-                MoviesListBox.Items.Add($"{movie.Title}/{movie.ReleaseYear}/{movie.Genre}");
-            }
+            // Выбираем пустой элемент
+            GenreComboBox.SelectedIndex = -1;
         }
 
         private void UpdateSelectedMovieInList()
@@ -166,30 +138,45 @@ namespace MoviesApp.View.Controls
             result.Add(currentField.ToString());
 
             return result.ToArray();
-        }
+        }   
 
         private void SortAndDisplayMovies()
         {
-            _movies = _movies.OrderBy(m => m.Title).ToList();
-            MoviesListBox.Items.Clear();
-            foreach (Movie movie in _movies)
-            { 
-                MoviesListBox.Items.Add(movie);
-            }
-        }
+            // Запоминаем текущий выбранный элемент
+            Object selectedItem = MoviesListBox.SelectedItem;
 
-        // Метод для управления доступностью полей
-        private void SetFieldsEditable(bool editable)
-        {
-            //TitleTextBox.ReadOnly = !editable;
-            TitleTextBox.Enabled = editable;
-            //ReleaseYearTextBox.ReadOnly = !editable;
-            ReleaseYearTextBox.Enabled = editable;
-            GenreComboBox.Enabled = editable;
-            //RatingTextBox.ReadOnly = !editable;
-            RatingTextBox.Enabled = editable;
-            //DurationInMinutesTextBox.ReadOnly = !editable;
-            DurationInMinutesTextBox.Enabled = editable;
+            // Сортируем список по названию
+            _movies = _movies.OrderBy(m => m.Title).ToList();
+
+            // Очищаем список элементов ListBox
+            MoviesListBox.Items.Clear();
+
+            // Добавляем отсортированные фильмы в ListBox в нужном формате
+            foreach (Movie movie in _movies)
+            {
+                MoviesListBox.Items.Add($"{movie.Title}/{movie.ReleaseYear}/{movie.Genre}");
+            }
+
+            // Восстанавливаем выбранный элемент, если он был
+            if (selectedItem != null)
+            {
+                int index = -1;
+                // Находим индекс совпадающего элемента в новом списке
+                for (int i = 0; i < _movies.Count; i++)
+                {
+                    string itemString = $"{_movies[i].Title}/{_movies[i].ReleaseYear}/{_movies[i].Genre}";
+                    if (itemString == selectedItem.ToString())
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+
+                if (index != -1)
+                {
+                    MoviesListBox.SelectedIndex = index;
+                }
+            }
         }
 
         private void SetGenreSelectedItem(string genreName)
@@ -221,19 +208,20 @@ namespace MoviesApp.View.Controls
 
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_isEditingAllowed && _selectedMovie != null)
+            if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >= 0)
             {
                 UpdateMovieNameProperty(TitleTextBox, 100, (value) => _selectedMovie.Title = value);
             }
             if (TitleTextBox.BackColor == SystemColors.Window)
             {
                 UpdateSelectedMovieInList();
+                SortAndDisplayMovies();
             }
         }
 
         private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_isEditingAllowed && _selectedMovie != null)
+            if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >= 0)
             {
                 UpdateIntLimitsProperty((value) => _selectedMovie.ReleaseYear = value, ReleaseYearTextBox);
             }
@@ -245,46 +233,16 @@ namespace MoviesApp.View.Controls
 
         private void GenreComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isEditingAllowed && _selectedMovie != null)
+            if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >=0)
             {
                 _selectedMovie.Genre = GenreComboBox.SelectedItem.ToString();
             }
             UpdateSelectedMovieInList();
         }
 
-        private void GenreComboBox_TextChanged(object sender, EventArgs e)
-        {
-            var comboBox = sender as ComboBox;
-            string input = comboBox.Text;
-
-            // Проверяем наличие элемента
-            bool exists = false;
-            var items = (Model.Enums.Genre[])comboBox.DataSource;
-            exists = items.Any(g => g.ToString().Equals(input, StringComparison.OrdinalIgnoreCase));
-
-            if (exists)
-            {
-                // Находим соответствующий элемент и устанавливаем его как выбранный
-                var matchedItem = items.First(g => g.ToString().Equals(input, StringComparison.OrdinalIgnoreCase));
-                comboBox.SelectedItem = matchedItem; // Устанавливаем выбранный элемент
-                comboBox.BackColor = SystemColors.Window; // Подсветка в норму
-            }
-            else
-            {
-                // Нет такого элемента — подсветка красным
-                comboBox.BackColor = Color.LightPink;
-                // Можно оставить SelectedItem как есть или сбросить:
-                // comboBox.SelectedItem = null;
-            }
-            if (GenreComboBox.BackColor == SystemColors.Window)
-            {
-                UpdateSelectedMovieInList();
-            }
-        }
-
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_isEditingAllowed && _selectedMovie != null)
+            if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >= 0)
             {
                 UpdateIntLimitsProperty((value) => _selectedMovie.Rating = value, RatingTextBox);
             }
@@ -292,7 +250,7 @@ namespace MoviesApp.View.Controls
 
         private void DurationInMinutesTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_isEditingAllowed && _selectedMovie != null)
+            if (_isEditingAllowed && _selectedMovie != null && MoviesListBox.SelectedIndex >= 0)
             {
                 UpdateIntLimitsProperty((value) => _selectedMovie.DurationInMinutes = value, DurationInMinutesTextBox);
             }
@@ -345,70 +303,6 @@ namespace MoviesApp.View.Controls
             }
         }
 
-        private bool ValidateInputs(out string errorMessage)
-        {
-            errorMessage = "";
-            bool isValid = true;
-
-            // Название
-            if (string.IsNullOrWhiteSpace(TitleTextBox.Text) || TitleTextBox.Text.Length > 100)
-            {
-                isValid = false;
-                HighlightControl(TitleTextBox);
-                errorMessage += "Некорректное название.\n";
-            }
-            else ResetHighlight(TitleTextBox);
-
-            // Год выпуска
-            if (!int.TryParse(ReleaseYearTextBox.Text, out int year) || year <= 0)
-            {
-                isValid = false;
-                HighlightControl(ReleaseYearTextBox);
-                errorMessage += "Некорректный год.\n";
-            }
-            else ResetHighlight(ReleaseYearTextBox);
-
-            // Жанр - выбран ли?
-            if (GenreComboBox.SelectedIndex == -1)
-            {
-                isValid = false;
-                HighlightControl(GenreComboBox);
-                errorMessage += "Выберите жанр.\n";
-            }
-            else ResetHighlight(GenreComboBox);
-
-            // Рейтинг
-            if (!double.TryParse(RatingTextBox.Text, out double rating) || rating < 0 || rating > 10)
-            {
-                isValid = false;
-                HighlightControl(RatingTextBox);
-                errorMessage += "Некорректный рейтинг.\n";
-            }
-            else ResetHighlight(RatingTextBox);
-
-            // Продолжительность
-            if (!int.TryParse(DurationInMinutesTextBox.Text, out int duration) || duration < 1 || duration > 300)
-            {
-                isValid = false;
-                HighlightControl(DurationInMinutesTextBox);
-                errorMessage += "Некорректная продолжительность.\n";
-            }
-            else ResetHighlight(DurationInMinutesTextBox);
-
-            return isValid;
-        }
-
-        private void HighlightControl(Control control)
-        {
-            control.BackColor = Color.LightPink;
-            control.Focus(); // Можно добавить подсказку через ToolTip
-        }
-
-        private void ResetHighlight(Control control)
-        {
-            control.BackColor = SystemColors.Window;
-        }
-
         private void ReloadMovieData()
         {
             if (_selectedMovie == null)
@@ -458,99 +352,102 @@ namespace MoviesApp.View.Controls
                 EditMovieButton.Text = "Edit";
                 ReloadMovieData();
                 ResetAllFieldHighlights();
-                //RefreshSelectedMovieDisplay();
-                //PopulateMoviesListBox();
-
-                // Обновляем данные выбранного фильма из полей (если нужно сохранять изменения)
-                /*
-                if (_selectedMovie != null)
-                {
-                    _selectedMovie.Title = TitleTextBox.Text;
-                    if (int.TryParse(ReleaseYearTextBox.Text, out int year))
-                        _selectedMovie.ReleaseYear = year;
-
-                    if (GenreComboBox.SelectedItem != null)
-                        _selectedMovie.Genre = GenreComboBox.SelectedItem.ToString();
-
-                    if (double.TryParse(RatingTextBox.Text, out double rating))
-                        _selectedMovie.Rating = rating;
-
-                    if (int.TryParse(DurationInMinutesTextBox.Text, out int duration))
-                        _selectedMovie.DurationInMinutes = duration;
-
-                    // Можно обновить список или интерфейс, если нужно
-                    RefreshMoviesList();
-                }
-                */
             }
         }
 
-        private void DisplayMovieDetails(Movie movie)
+        // Метод для управления доступностью полей
+        private void SetFieldsEditable(bool editable)
         {
-            TitleTextBox.Text = movie.Title;
-            ReleaseYearTextBox.Text = movie.ReleaseYear.ToString();
-            GenreComboBox.SelectedItem = movie.Genre;
-            RatingTextBox.Text = movie.Rating.ToString();
-            DurationInMinutesTextBox.Text = movie.DurationInMinutes.ToString();
-        }
-
-        private void SaveChanges()
-        {
-            if (MoviesListBox.SelectedItem is Movie selectedMovie)
-            {
-                if (!ValidateInputs(out string error))
-                {
-                    MessageBox.Show(error, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                selectedMovie.Title = TitleTextBox.Text.Trim();
-                selectedMovie.ReleaseYear = int.Parse(ReleaseYearTextBox.Text);
-                selectedMovie.Genre = GenreComboBox.SelectedItem.ToString();
-                selectedMovie.Rating = double.Parse(RatingTextBox.Text);
-                selectedMovie.DurationInMinutes = int.Parse(DurationInMinutesTextBox.Text);
-
-                SortAndDisplayMovies();
-
-                // Обновляем выбранный элемент
-                MoviesListBox.SelectedItem = selectedMovie;
-            }
+            TitleTextBox.Enabled = editable;
+            ReleaseYearTextBox.Enabled = editable;
+            GenreComboBox.Enabled = editable;
+            RatingTextBox.Enabled = editable;
+            DurationInMinutesTextBox.Enabled = editable;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            Movie newMovie = new Movie();
+            // Генерация случайных данных
+            //string title = GenerateName(3, 12);
+            string title = $"NewMovie {_movies.Count}";
+            int durationInMinutes = random.Next(1, 300);
+            int releaseYear = random.Next(1888, DateTime.Now.Year);
+            string genre = GenerateGenre();
+            double rating = random.Next(0, 11);
 
-            if (!ValidateInputs(out string error))
-            {
-                MessageBox.Show(error, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            // Создаём новый фильм с этими данными
+            Movie newMovie = new Model.Movie(title, durationInMinutes, releaseYear, genre, rating);
 
-            newMovie.Title = TitleTextBox.Text.Trim();
-            newMovie.ReleaseYear = int.Parse(ReleaseYearTextBox.Text);
-            newMovie.Genre = GenreComboBox.SelectedItem.ToString();
-            newMovie.Rating = double.Parse(RatingTextBox.Text);
-            newMovie.DurationInMinutes = int.Parse(DurationInMinutesTextBox.Text);
-
+            // Добавляем новый фильм в список
             _movies.Add(newMovie);
-            SortAndDisplayMovies();
+            // Добавляем новый фильм в MoviesListBox
+            MoviesListBox.Items.Add(newMovie);
+            // Выбираем новый фильм
+            MoviesListBox.SelectedIndex = _movies.Count - 1;
+            // Сортируем список с новым фильмом
+            SortAndDisplayMovies();  
+        }
+
+        /// <summary>
+        /// Генерирует случайное название из букв алфавита.
+        /// </summary>
+        /// <param name="lowerLimit">Минимальная длина названия.</param>
+        /// <param name="upperLimit">Максимальная длина названия.</param>
+        /// <returns>Случайное название.</returns>
+        private string GenerateName(int lowerLimit, int upperLimit)
+        {
+            string alphabet = "abcdefghijklmnopqrstuvwxyz";
+            string name = "";
+            int nameLength = random.Next(lowerLimit, upperLimit);
+
+            for (int i = 0; i < nameLength; i++)
+            {
+                int symbolIndex = random.Next(26);
+                name += alphabet.ElementAt(symbolIndex);
+                if (i == 0)
+                {
+                    name = name.ToUpper();
+                }
+            }
+            return name;
+        }
+
+        private string GenerateGenre()
+        {
+            Array genres = Enum.GetValues(typeof(Model.Enums.Genre));
+            Model.Enums.Genre randomGenre = (Model.Enums.Genre)genres.GetValue(random.Next(genres.Length));
+            string genreString = randomGenre.ToString();
+            return genreString;
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if (MoviesListBox.SelectedItem is Movie selectedMovie)
+            // Проверяем, что вообще что-то выбрано
+            if (MoviesListBox.SelectedIndex != -1) 
             {
-                _movies.Remove(selectedMovie);
-                SortAndDisplayMovies();
+                // Индекс выбранного объекта
+                int selectedIndex = MoviesListBox.SelectedIndex;
+                // Удаляем из _movies
+                _movies.RemoveAt(selectedIndex);
+                // Удаляем из ListBox
+                MoviesListBox.Items.RemoveAt(selectedIndex);
+                // Выбираем новый элемент
+                MoviesListBox.SelectedIndex = selectedIndex - 1;
+                //Обновляет список фильмов в ListBox
+                SortAndDisplayMovies(); 
 
-                // Очистка деталей
-                ClearDetails();
+                // Очистка деталей если нет выбранного элемента
+                if (MoviesListBox.SelectedIndex == -1)
+                {
+                    ClearMovieDetails();
+                }
             }
         }
 
-        private void ClearDetails()
+        private void ClearMovieDetails()
         {
+            _selectedMovie = null;
+            // Очищение всех боксов с данными фильма
             TitleTextBox.Clear();
             ReleaseYearTextBox.Clear();
             GenreComboBox.SelectedIndex = -1;

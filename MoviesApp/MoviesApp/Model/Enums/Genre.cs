@@ -16,6 +16,7 @@ namespace MoviesApp.Model.Enums
         Thriller,
         Action,
         Horror,
-        Blockbuster
+        Blockbuster,
+        Romance
     }
 }

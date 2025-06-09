@@ -211,6 +211,7 @@
             // GenreComboBox
             // 
             this.GenreComboBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GenreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GenreComboBox.Enabled = false;
             this.GenreComboBox.FormattingEnabled = true;
             this.GenreComboBox.Location = new System.Drawing.Point(59, 55);
@@ -218,12 +219,12 @@
             this.GenreComboBox.Size = new System.Drawing.Size(121, 21);
             this.GenreComboBox.TabIndex = 13;
             this.GenreComboBox.SelectedIndexChanged += new System.EventHandler(this.GenreComboBox_SelectedIndexChanged);
-            this.GenreComboBox.TextChanged += new System.EventHandler(this.GenreComboBox_TextChanged);
             // 
             // MoviesListBox
             // 
             this.MoviesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MoviesListBox.FormattingEnabled = true;
+            this.MoviesListBox.HorizontalScrollbar = true;
             this.MoviesListBox.Location = new System.Drawing.Point(3, 3);
             this.MoviesListBox.Name = "MoviesListBox";
             this.MoviesTableLayoutPanel.SetRowSpan(this.MoviesListBox, 2);
