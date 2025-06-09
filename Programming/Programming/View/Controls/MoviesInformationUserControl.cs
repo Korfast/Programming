@@ -91,13 +91,13 @@ namespace Programming.View.Controls
         }
 
         /// <summary>
-        /// Заполняет ListBox фильмами.
+        /// Заполняет MoviesListBox фильмами.
         /// </summary>
         private void PopulateMoviesListBox()
         {
             MoviesListBox.Items.Clear();
 
-            foreach (var movie in _movies)
+            foreach (Movie movie in _movies)
             {
                 MoviesListBox.Items.Add($"{movie.Title}");
             }
@@ -246,6 +246,7 @@ namespace Programming.View.Controls
             if (MoviesListBox.SelectedIndex >= 0)
             {
                 UpdateMovieNameProperty(TitleTextBox, 156, (value) => _currentMovie.Title = value);
+                PopulateMoviesListBox();
             }
         }
 

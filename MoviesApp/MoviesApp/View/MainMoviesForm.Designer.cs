@@ -35,6 +35,7 @@
             // 
             this.MainMoviesUserControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainMoviesUserControl.Location = new System.Drawing.Point(0, 0);
+            this.MainMoviesUserControl.MinimumSize = new System.Drawing.Size(0, 160);
             this.MainMoviesUserControl.Name = "MainMoviesUserControl";
             this.MainMoviesUserControl.Size = new System.Drawing.Size(624, 441);
             this.MainMoviesUserControl.TabIndex = 0;
@@ -45,6 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.MainMoviesUserControl);
+            this.MinimumSize = new System.Drawing.Size(455, 200);
             this.Name = "MainMoviesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainMoviesForm";

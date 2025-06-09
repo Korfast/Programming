@@ -24,6 +24,7 @@ namespace MoviesApp.View.Controls
             InitializeComponent();
             FillGenreComboBox();
             LoadData();
+            PopulateMoviesListBox();
         }
         /*
         private void LoadData()
@@ -47,6 +48,32 @@ namespace MoviesApp.View.Controls
         private void FillGenreComboBox()
         {
             GenreComboBox.DataSource = Enum.GetValues(typeof(Model.Enums.Genre));
+        }
+
+        /// <summary>
+        /// Заполняет MoviesListBox фильмами.
+        /// </summary>
+        private void PopulateMoviesListBox()
+        {
+            MoviesListBox.Items.Clear();
+
+            foreach (Movie movie in _movies)
+            {
+                MoviesListBox.Items.Add($"{movie.Title}/{movie.ReleaseYear}/{movie.Genre}");
+            }
+        }
+
+        private void UpdateSelectedMovieInList()
+        {
+            int selectedIndex = MoviesListBox.SelectedIndex;
+            if (selectedIndex < 0 || selectedIndex >= _movies.Count)
+                return; 
+
+            // Обновляем ваш объект в списке _movies
+            Movie movie = _movies[selectedIndex];
+
+            // Теперь обновляем только выбранную строку в листбоксе
+            MoviesListBox.Items[selectedIndex] = $"{movie.Title}/{movie.ReleaseYear}/{movie.Genre}";
         }
 
         public void SaveData()
@@ -154,11 +181,15 @@ namespace MoviesApp.View.Controls
         // Метод для управления доступностью полей
         private void SetFieldsEditable(bool editable)
         {
-            TitleTextBox.ReadOnly = !editable;
-            ReleaseYearTextBox.ReadOnly = !editable;
+            //TitleTextBox.ReadOnly = !editable;
+            TitleTextBox.Enabled = editable;
+            //ReleaseYearTextBox.ReadOnly = !editable;
+            ReleaseYearTextBox.Enabled = editable;
             GenreComboBox.Enabled = editable;
-            RatingTextBox.ReadOnly = !editable;
-            DurationInMinutesTextBox.ReadOnly = !editable;
+            //RatingTextBox.ReadOnly = !editable;
+            RatingTextBox.Enabled = editable;
+            //DurationInMinutesTextBox.ReadOnly = !editable;
+            DurationInMinutesTextBox.Enabled = editable;
         }
 
         private void SetGenreSelectedItem(string genreName)
@@ -194,6 +225,10 @@ namespace MoviesApp.View.Controls
             {
                 UpdateMovieNameProperty(TitleTextBox, 100, (value) => _selectedMovie.Title = value);
             }
+            if (TitleTextBox.BackColor == SystemColors.Window)
+            {
+                UpdateSelectedMovieInList();
+            }
         }
 
         private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
@@ -201,6 +236,10 @@ namespace MoviesApp.View.Controls
             if (_isEditingAllowed && _selectedMovie != null)
             {
                 UpdateIntLimitsProperty((value) => _selectedMovie.ReleaseYear = value, ReleaseYearTextBox);
+            }
+            if (ReleaseYearTextBox.BackColor == SystemColors.Window)
+            {
+                UpdateSelectedMovieInList();
             }
         }
 
@@ -210,6 +249,7 @@ namespace MoviesApp.View.Controls
             {
                 _selectedMovie.Genre = GenreComboBox.SelectedItem.ToString();
             }
+            UpdateSelectedMovieInList();
         }
 
         private void GenreComboBox_TextChanged(object sender, EventArgs e)
@@ -235,6 +275,10 @@ namespace MoviesApp.View.Controls
                 comboBox.BackColor = Color.LightPink;
                 // Можно оставить SelectedItem как есть или сбросить:
                 // comboBox.SelectedItem = null;
+            }
+            if (GenreComboBox.BackColor == SystemColors.Window)
+            {
+                UpdateSelectedMovieInList();
             }
         }
 
@@ -299,19 +343,6 @@ namespace MoviesApp.View.Controls
             {
                 textBox.BackColor = System.Drawing.Color.LightPink;
             }
-        }
-
-        private bool ValidateComboBoxInput(ComboBox comboBox, string input)
-        {
-            Model.Enums.Genre[] items = (Model.Enums.Genre[])comboBox.DataSource;
-            bool exists = items.Any(g => g.ToString().Equals(input, StringComparison.OrdinalIgnoreCase));
-
-            if (exists)
-                comboBox.BackColor = SystemColors.Window;
-            else
-                comboBox.BackColor = Color.LightPink;
-
-            return exists;
         }
 
         private bool ValidateInputs(out string errorMessage)
@@ -427,6 +458,8 @@ namespace MoviesApp.View.Controls
                 EditMovieButton.Text = "Edit";
                 ReloadMovieData();
                 ResetAllFieldHighlights();
+                //RefreshSelectedMovieDisplay();
+                //PopulateMoviesListBox();
 
                 // Обновляем данные выбранного фильма из полей (если нужно сохранять изменения)
                 /*
