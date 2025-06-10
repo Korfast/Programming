@@ -88,6 +88,16 @@ namespace MoviesApp.View.Controls
         /// </summary>
         public void SaveData()
         {
+            // Получаем директорию файла
+            string directory = Path.GetDirectoryName(_dataFilePath);
+
+            // Проверяем, существует ли папка
+            if (!Directory.Exists(directory))
+            {
+                // Создаем папку, если её нет
+                Directory.CreateDirectory(directory);
+            }
+
             List<string> lines = new List<string>();
             foreach (Movie movie in _movies)
             {
