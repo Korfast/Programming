@@ -68,7 +68,7 @@ namespace MoviesApp.Model
             get { return _releaseYear; }
             set
             {
-                Validator.AssertValueInRange(value, 1888, DateTime.Now.Year, nameof(Rating));
+                Validator.AssertValueInRange(value, 1888, DateTime.Now.Year, nameof(ReleaseYear));
                 _releaseYear = value;
             }
         }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace MoviesApp.View.Controls
 {
@@ -35,7 +36,10 @@ namespace MoviesApp.View.Controls
         /// <summary>
         /// Путь к CSV файлу для хранения данных о фильмах.
         /// </summary>
-        private readonly string _dataFilePath = "movies.csv";
+        private readonly string _dataFilePath = Path.Combine(
+    Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+    "MoviesApp",
+    "movies.csv");
 
         /// <summary>
         /// Флаг, разрешающий или запрещающий редактирование данных.

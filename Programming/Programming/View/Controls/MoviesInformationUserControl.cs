@@ -55,7 +55,7 @@ namespace Programming.View.Controls
                 // Генерация случайной продолжительности
                 int durationInMinutes = random.Next(1, 200);
                 // Генерация случайного года выпуска
-                int releaseYear = random.Next(1888, 2026);
+                int releaseYear = random.Next(1888, DateTime.Now.Year);
                 // Название жанра по умолчанию — Comedy
                 string genre = Convert.ToString(Model.Genre.Comedy);
                 // Генерация случайного рейтинга
