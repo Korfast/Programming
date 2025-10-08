@@ -62,21 +62,24 @@
             this.MoviesTableLayoutPanel.Controls.Add(this.ButtonsFlowLayoutPanel, 0, 2);
             this.MoviesTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MoviesTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.MoviesTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MoviesTableLayoutPanel.Name = "MoviesTableLayoutPanel";
             this.MoviesTableLayoutPanel.RowCount = 3;
-            this.MoviesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 157F));
+            this.MoviesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 193F));
             this.MoviesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MoviesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.MoviesTableLayoutPanel.Size = new System.Drawing.Size(650, 480);
+            this.MoviesTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.MoviesTableLayoutPanel.Size = new System.Drawing.Size(867, 591);
             this.MoviesTableLayoutPanel.TabIndex = 0;
             // 
             // SelectedMovieGroupBox
             // 
             this.SelectedMovieGroupBox.Controls.Add(this.SelectedMovieTableLayoutPanel);
             this.SelectedMovieGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SelectedMovieGroupBox.Location = new System.Drawing.Point(263, 3);
+            this.SelectedMovieGroupBox.Location = new System.Drawing.Point(350, 4);
+            this.SelectedMovieGroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SelectedMovieGroupBox.Name = "SelectedMovieGroupBox";
-            this.SelectedMovieGroupBox.Size = new System.Drawing.Size(384, 151);
+            this.SelectedMovieGroupBox.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SelectedMovieGroupBox.Size = new System.Drawing.Size(513, 185);
             this.SelectedMovieGroupBox.TabIndex = 0;
             this.SelectedMovieGroupBox.TabStop = false;
             this.SelectedMovieGroupBox.Text = "Selected Movie";
@@ -84,7 +87,7 @@
             // SelectedMovieTableLayoutPanel
             // 
             this.SelectedMovieTableLayoutPanel.ColumnCount = 2;
-            this.SelectedMovieTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.SelectedMovieTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.SelectedMovieTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.SelectedMovieTableLayoutPanel.Controls.Add(this.DurationInMinutesTextBox, 1, 4);
             this.SelectedMovieTableLayoutPanel.Controls.Add(this.RatingTextBox, 1, 3);
@@ -97,25 +100,27 @@
             this.SelectedMovieTableLayoutPanel.Controls.Add(this.TaitleLabel, 0, 0);
             this.SelectedMovieTableLayoutPanel.Controls.Add(this.GenreComboBox, 1, 2);
             this.SelectedMovieTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SelectedMovieTableLayoutPanel.Location = new System.Drawing.Point(3, 16);
+            this.SelectedMovieTableLayoutPanel.Location = new System.Drawing.Point(4, 19);
+            this.SelectedMovieTableLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SelectedMovieTableLayoutPanel.Name = "SelectedMovieTableLayoutPanel";
             this.SelectedMovieTableLayoutPanel.RowCount = 5;
-            this.SelectedMovieTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.SelectedMovieTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.SelectedMovieTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.SelectedMovieTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.SelectedMovieTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.SelectedMovieTableLayoutPanel.Size = new System.Drawing.Size(378, 132);
+            this.SelectedMovieTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.SelectedMovieTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.SelectedMovieTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.SelectedMovieTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.SelectedMovieTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.SelectedMovieTableLayoutPanel.Size = new System.Drawing.Size(505, 162);
             this.SelectedMovieTableLayoutPanel.TabIndex = 3;
             // 
             // DurationInMinutesTextBox
             // 
             this.DurationInMinutesTextBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.DurationInMinutesTextBox.Enabled = false;
-            this.DurationInMinutesTextBox.Location = new System.Drawing.Point(59, 108);
+            this.DurationInMinutesTextBox.Location = new System.Drawing.Point(79, 133);
+            this.DurationInMinutesTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DurationInMinutesTextBox.MaxLength = 3;
             this.DurationInMinutesTextBox.Name = "DurationInMinutesTextBox";
-            this.DurationInMinutesTextBox.Size = new System.Drawing.Size(30, 20);
+            this.DurationInMinutesTextBox.Size = new System.Drawing.Size(39, 22);
             this.DurationInMinutesTextBox.TabIndex = 12;
             this.DurationInMinutesTextBox.TextChanged += new System.EventHandler(this.DurationInMinutesTextBox_TextChanged);
             // 
@@ -123,10 +128,11 @@
             // 
             this.RatingTextBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.RatingTextBox.Enabled = false;
-            this.RatingTextBox.Location = new System.Drawing.Point(59, 82);
+            this.RatingTextBox.Location = new System.Drawing.Point(79, 101);
+            this.RatingTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RatingTextBox.MaxLength = 2;
             this.RatingTextBox.Name = "RatingTextBox";
-            this.RatingTextBox.Size = new System.Drawing.Size(30, 20);
+            this.RatingTextBox.Size = new System.Drawing.Size(39, 22);
             this.RatingTextBox.TabIndex = 11;
             this.RatingTextBox.TextChanged += new System.EventHandler(this.RatingTextBox_TextChanged);
             // 
@@ -134,10 +140,11 @@
             // 
             this.ReleaseYearTextBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.ReleaseYearTextBox.Enabled = false;
-            this.ReleaseYearTextBox.Location = new System.Drawing.Point(59, 29);
+            this.ReleaseYearTextBox.Location = new System.Drawing.Point(79, 36);
+            this.ReleaseYearTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ReleaseYearTextBox.MaxLength = 4;
             this.ReleaseYearTextBox.Name = "ReleaseYearTextBox";
-            this.ReleaseYearTextBox.Size = new System.Drawing.Size(30, 20);
+            this.ReleaseYearTextBox.Size = new System.Drawing.Size(39, 22);
             this.ReleaseYearTextBox.TabIndex = 9;
             this.ReleaseYearTextBox.TextChanged += new System.EventHandler(this.ReleaseYearTextBox_TextChanged);
             // 
@@ -145,10 +152,10 @@
             // 
             this.DurationInMinutesLabel.AutoSize = true;
             this.DurationInMinutesLabel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.DurationInMinutesLabel.Location = new System.Drawing.Point(3, 110);
-            this.DurationInMinutesLabel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.DurationInMinutesLabel.Location = new System.Drawing.Point(11, 135);
+            this.DurationInMinutesLabel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 0);
             this.DurationInMinutesLabel.Name = "DurationInMinutesLabel";
-            this.DurationInMinutesLabel.Size = new System.Drawing.Size(50, 22);
+            this.DurationInMinutesLabel.Size = new System.Drawing.Size(60, 27);
             this.DurationInMinutesLabel.TabIndex = 8;
             this.DurationInMinutesLabel.Text = "Duration:";
             // 
@@ -156,10 +163,10 @@
             // 
             this.RatingLabel.AutoSize = true;
             this.RatingLabel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.RatingLabel.Location = new System.Drawing.Point(12, 84);
-            this.RatingLabel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.RatingLabel.Location = new System.Drawing.Point(22, 103);
+            this.RatingLabel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 0);
             this.RatingLabel.Name = "RatingLabel";
-            this.RatingLabel.Size = new System.Drawing.Size(41, 21);
+            this.RatingLabel.Size = new System.Drawing.Size(49, 26);
             this.RatingLabel.TabIndex = 6;
             this.RatingLabel.Text = "Rating:";
             // 
@@ -167,10 +174,10 @@
             // 
             this.GenreLabel.AutoSize = true;
             this.GenreLabel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.GenreLabel.Location = new System.Drawing.Point(14, 57);
-            this.GenreLabel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.GenreLabel.Location = new System.Drawing.Point(24, 70);
+            this.GenreLabel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 0);
             this.GenreLabel.Name = "GenreLabel";
-            this.GenreLabel.Size = new System.Drawing.Size(39, 22);
+            this.GenreLabel.Size = new System.Drawing.Size(47, 27);
             this.GenreLabel.TabIndex = 4;
             this.GenreLabel.Text = "Genre:";
             // 
@@ -178,10 +185,10 @@
             // 
             this.ReleaseYearLabel.AutoSize = true;
             this.ReleaseYearLabel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ReleaseYearLabel.Location = new System.Drawing.Point(4, 31);
-            this.ReleaseYearLabel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.ReleaseYearLabel.Location = new System.Drawing.Point(9, 38);
+            this.ReleaseYearLabel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 0);
             this.ReleaseYearLabel.Name = "ReleaseYearLabel";
-            this.ReleaseYearLabel.Size = new System.Drawing.Size(49, 21);
+            this.ReleaseYearLabel.Size = new System.Drawing.Size(62, 26);
             this.ReleaseYearLabel.TabIndex = 2;
             this.ReleaseYearLabel.Text = "Release:";
             // 
@@ -189,11 +196,12 @@
             // 
             this.TitleTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TitleTextBox.Enabled = false;
-            this.TitleTextBox.Location = new System.Drawing.Point(59, 3);
-            this.TitleTextBox.MaximumSize = new System.Drawing.Size(608, 20);
+            this.TitleTextBox.Location = new System.Drawing.Point(79, 4);
+            this.TitleTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TitleTextBox.MaximumSize = new System.Drawing.Size(809, 20);
             this.TitleTextBox.MaxLength = 100;
             this.TitleTextBox.Name = "TitleTextBox";
-            this.TitleTextBox.Size = new System.Drawing.Size(316, 20);
+            this.TitleTextBox.Size = new System.Drawing.Size(422, 20);
             this.TitleTextBox.TabIndex = 1;
             this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
@@ -201,10 +209,10 @@
             // 
             this.TaitleLabel.AutoSize = true;
             this.TaitleLabel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.TaitleLabel.Location = new System.Drawing.Point(23, 5);
-            this.TaitleLabel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.TaitleLabel.Location = new System.Drawing.Point(35, 6);
+            this.TaitleLabel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 0);
             this.TaitleLabel.Name = "TaitleLabel";
-            this.TaitleLabel.Size = new System.Drawing.Size(30, 21);
+            this.TaitleLabel.Size = new System.Drawing.Size(36, 26);
             this.TaitleLabel.TabIndex = 0;
             this.TaitleLabel.Text = "Title:";
             // 
@@ -214,9 +222,10 @@
             this.GenreComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.GenreComboBox.Enabled = false;
             this.GenreComboBox.FormattingEnabled = true;
-            this.GenreComboBox.Location = new System.Drawing.Point(59, 55);
+            this.GenreComboBox.Location = new System.Drawing.Point(79, 68);
+            this.GenreComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GenreComboBox.Name = "GenreComboBox";
-            this.GenreComboBox.Size = new System.Drawing.Size(121, 21);
+            this.GenreComboBox.Size = new System.Drawing.Size(160, 24);
             this.GenreComboBox.TabIndex = 13;
             this.GenreComboBox.SelectedIndexChanged += new System.EventHandler(this.GenreComboBox_SelectedIndexChanged);
             // 
@@ -225,10 +234,12 @@
             this.MoviesListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MoviesListBox.FormattingEnabled = true;
             this.MoviesListBox.HorizontalScrollbar = true;
-            this.MoviesListBox.Location = new System.Drawing.Point(3, 3);
+            this.MoviesListBox.ItemHeight = 16;
+            this.MoviesListBox.Location = new System.Drawing.Point(4, 4);
+            this.MoviesListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MoviesListBox.Name = "MoviesListBox";
             this.MoviesTableLayoutPanel.SetRowSpan(this.MoviesListBox, 2);
-            this.MoviesListBox.Size = new System.Drawing.Size(254, 439);
+            this.MoviesListBox.Size = new System.Drawing.Size(338, 540);
             this.MoviesListBox.TabIndex = 1;
             this.MoviesListBox.SelectedIndexChanged += new System.EventHandler(this.MoviesListBox_SelectedIndexChanged);
             // 
@@ -238,16 +249,18 @@
             this.ButtonsFlowLayoutPanel.Controls.Add(this.EditMovieButton);
             this.ButtonsFlowLayoutPanel.Controls.Add(this.DeleteMovieButton);
             this.ButtonsFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ButtonsFlowLayoutPanel.Location = new System.Drawing.Point(3, 448);
+            this.ButtonsFlowLayoutPanel.Location = new System.Drawing.Point(4, 552);
+            this.ButtonsFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonsFlowLayoutPanel.Name = "ButtonsFlowLayoutPanel";
-            this.ButtonsFlowLayoutPanel.Size = new System.Drawing.Size(168, 29);
+            this.ButtonsFlowLayoutPanel.Size = new System.Drawing.Size(224, 35);
             this.ButtonsFlowLayoutPanel.TabIndex = 2;
             // 
             // AddMovieButton
             // 
-            this.AddMovieButton.Location = new System.Drawing.Point(3, 3);
+            this.AddMovieButton.Location = new System.Drawing.Point(4, 4);
+            this.AddMovieButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddMovieButton.Name = "AddMovieButton";
-            this.AddMovieButton.Size = new System.Drawing.Size(50, 23);
+            this.AddMovieButton.Size = new System.Drawing.Size(67, 28);
             this.AddMovieButton.TabIndex = 0;
             this.AddMovieButton.Text = "Add";
             this.AddMovieButton.UseVisualStyleBackColor = true;
@@ -255,9 +268,10 @@
             // 
             // EditMovieButton
             // 
-            this.EditMovieButton.Location = new System.Drawing.Point(59, 3);
+            this.EditMovieButton.Location = new System.Drawing.Point(79, 4);
+            this.EditMovieButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.EditMovieButton.Name = "EditMovieButton";
-            this.EditMovieButton.Size = new System.Drawing.Size(50, 23);
+            this.EditMovieButton.Size = new System.Drawing.Size(67, 28);
             this.EditMovieButton.TabIndex = 2;
             this.EditMovieButton.Text = "Edit";
             this.EditMovieButton.UseVisualStyleBackColor = true;
@@ -265,9 +279,10 @@
             // 
             // DeleteMovieButton
             // 
-            this.DeleteMovieButton.Location = new System.Drawing.Point(115, 3);
+            this.DeleteMovieButton.Location = new System.Drawing.Point(4, 40);
+            this.DeleteMovieButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DeleteMovieButton.Name = "DeleteMovieButton";
-            this.DeleteMovieButton.Size = new System.Drawing.Size(50, 23);
+            this.DeleteMovieButton.Size = new System.Drawing.Size(67, 28);
             this.DeleteMovieButton.TabIndex = 1;
             this.DeleteMovieButton.Text = "Delete";
             this.DeleteMovieButton.UseVisualStyleBackColor = true;
@@ -275,11 +290,12 @@
             // 
             // MoviesUserControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.MoviesTableLayoutPanel);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MoviesUserControl";
-            this.Size = new System.Drawing.Size(650, 480);
+            this.Size = new System.Drawing.Size(867, 591);
             this.MoviesTableLayoutPanel.ResumeLayout(false);
             this.SelectedMovieGroupBox.ResumeLayout(false);
             this.SelectedMovieTableLayoutPanel.ResumeLayout(false);

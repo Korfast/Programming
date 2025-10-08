@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс, представляющий товар.
     /// </summary>
-    internal class Item
+    public class Item
     {
         /// <summary>
         /// Статическое поле-счётчик для генерации уникальных Id.

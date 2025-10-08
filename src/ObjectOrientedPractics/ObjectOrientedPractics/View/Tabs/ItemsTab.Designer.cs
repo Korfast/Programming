@@ -71,6 +71,7 @@
             this.itemsListBox.Name = "itemsListBox";
             this.itemsListBox.Size = new System.Drawing.Size(244, 404);
             this.itemsListBox.TabIndex = 1;
+            this.itemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
             // itemsLabel
             // 
@@ -129,6 +130,7 @@
             this.addButton.TabIndex = 0;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // removeButton
             // 
@@ -139,6 +141,7 @@
             this.removeButton.TabIndex = 1;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // selectedItemTableLayoutPanel
             // 
@@ -155,10 +158,10 @@
             this.selectedItemTableLayoutPanel.RowCount = 6;
             this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.selectedItemTableLayoutPanel.Size = new System.Drawing.Size(384, 404);
             this.selectedItemTableLayoutPanel.TabIndex = 4;
             // 
@@ -176,7 +179,7 @@
             // 
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.descriptionLabel.Location = new System.Drawing.Point(3, 180);
+            this.descriptionLabel.Location = new System.Drawing.Point(3, 138);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(78, 20);
             this.descriptionLabel.TabIndex = 3;
@@ -208,6 +211,7 @@
             this.costTextBox.Name = "costTextBox";
             this.costTextBox.Size = new System.Drawing.Size(120, 22);
             this.costTextBox.TabIndex = 4;
+            this.costTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
             // 
             // costLabel
             // 
@@ -225,6 +229,7 @@
             this.idTextBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.idTextBox.Location = new System.Drawing.Point(53, 3);
             this.idTextBox.Name = "idTextBox";
+            this.idTextBox.ReadOnly = true;
             this.idTextBox.Size = new System.Drawing.Size(120, 22);
             this.idTextBox.TabIndex = 2;
             // 
@@ -245,17 +250,19 @@
             this.nameTextBox.Location = new System.Drawing.Point(3, 81);
             this.nameTextBox.Multiline = true;
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(378, 96);
+            this.nameTextBox.Size = new System.Drawing.Size(378, 54);
             this.nameTextBox.TabIndex = 4;
+            this.nameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // descriptionTextBox
             // 
             this.descriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.descriptionTextBox.Location = new System.Drawing.Point(3, 203);
+            this.descriptionTextBox.Location = new System.Drawing.Point(3, 161);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(378, 147);
+            this.descriptionTextBox.Size = new System.Drawing.Size(378, 220);
             this.descriptionTextBox.TabIndex = 5;
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
             // ItemsTab
             // 
