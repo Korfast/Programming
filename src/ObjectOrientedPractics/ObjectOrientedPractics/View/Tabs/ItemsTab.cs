@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
-    public partial class ItemsTab : UserControl
+    public partial class ItemsTab  : UserControl
     {
         private List<Item> _items = new List<Item>();
         private Item _currentItem;
@@ -78,6 +78,11 @@ namespace ObjectOrientedPractics.View.Tabs
                     costTextBox.Text = "";
                     nameTextBox.Text = "";
                     descriptionTextBox.Text = "";
+
+                    // Так же обновляем цвет боксов информации
+                    costTextBox.BackColor = SystemColors.Window;
+                    nameTextBox.BackColor = SystemColors.Window;
+                    descriptionTextBox.BackColor = SystemColors.Window;
                 }
             }
         }
@@ -85,9 +90,11 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Обновляет свойства ограничений целых чисел из TextBox.
         /// </summary>
-        /// <param name="updateAction">Делегат для обновления свойства.</param>
+        /// <param name="updateAction">Делегат для обновления свойства.
+        /// </param>
         /// <param name="textBox">Текстовое поле для ввода значения.</param>
-        private void UpdateIntLimitsProperty(Action<int> updateAction, System.Windows.Forms.TextBox textBox)
+        private void UpdateIntLimitsProperty
+            (Action<int> updateAction, System.Windows.Forms.TextBox textBox)
         {
             try
             {
@@ -110,7 +117,34 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void UpdateItemNameProperty
+            (System.Windows.Forms.TextBox textBox,
+            int length, Action<string> updateAction)
+        {
+            try
+            {
+                string value = textBox.Text;
+                if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".Contains(value[0]) &&
+                    !"АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ".Contains(value[0]))
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                if (value.Length > length)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                updateAction(value);
+                textBox.BackColor = SystemColors.Window;
+            }
+            catch
+            {
+                textBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void ItemsListBox_SelectedIndexChanged
+            (object sender, EventArgs e)
         {
             if (itemsListBox.SelectedIndex >= 0)
             {
@@ -131,15 +165,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (itemsListBox.SelectedIndex >= 0)
             {
-                UpdateIntLimitsProperty((value) => _currentItem.Cost = value, costTextBox);
-            }
-        }
-
-        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (itemsListBox.SelectedIndex >= 0)
-            {
-
+                UpdateIntLimitsProperty((value) 
+                    => _currentItem.Cost = value, costTextBox);
             }
         }
 
@@ -147,7 +174,18 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (itemsListBox.SelectedIndex >= 0)
             {
+                UpdateItemNameProperty(nameTextBox, 200, (value)
+                    => _currentItem.Name = value);
+            }
+        }
 
+        private void DescriptionTextBox_TextChanged
+            (object sender, EventArgs e)
+        {
+            if (itemsListBox.SelectedIndex >= 0)
+            {
+                UpdateItemNameProperty(descriptionTextBox, 1000, (value)
+                    => _currentItem.Info = value);
             }
         }
     }
