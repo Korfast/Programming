@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.customersTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.customersLabel = new System.Windows.Forms.Label();
-            this.customersListBox = new System.Windows.Forms.ListBox();
-            this.selectedCustomerLabel = new System.Windows.Forms.Label();
-            this.buttonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.addButton = new System.Windows.Forms.Button();
-            this.removeButton = new System.Windows.Forms.Button();
             this.selectedCustomerTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.addressTextBox = new System.Windows.Forms.TextBox();
             this.addressLabel = new System.Windows.Forms.Label();
@@ -42,10 +36,16 @@
             this.fullNameLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.idLabel = new System.Windows.Forms.Label();
+            this.buttonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.addButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
+            this.customersLabel = new System.Windows.Forms.Label();
+            this.customersListBox = new System.Windows.Forms.ListBox();
+            this.selectedCustomerLabel = new System.Windows.Forms.Label();
             this.selectedCustomerPanel = new System.Windows.Forms.Panel();
             this.customersTableLayoutPanel.SuspendLayout();
-            this.buttonsTableLayoutPanel.SuspendLayout();
             this.selectedCustomerTableLayoutPanel.SuspendLayout();
+            this.buttonsTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // customersTableLayoutPanel
@@ -69,76 +69,6 @@
             this.customersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.customersTableLayoutPanel.Size = new System.Drawing.Size(640, 480);
             this.customersTableLayoutPanel.TabIndex = 1;
-            // 
-            // customersLabel
-            // 
-            this.customersLabel.AutoSize = true;
-            this.customersLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.customersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.customersLabel.Location = new System.Drawing.Point(3, 0);
-            this.customersLabel.Name = "customersLabel";
-            this.customersLabel.Size = new System.Drawing.Size(80, 20);
-            this.customersLabel.TabIndex = 0;
-            this.customersLabel.Text = "Customers";
-            // 
-            // customersListBox
-            // 
-            this.customersListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customersListBox.FormattingEnabled = true;
-            this.customersListBox.ItemHeight = 16;
-            this.customersListBox.Location = new System.Drawing.Point(3, 23);
-            this.customersListBox.Name = "customersListBox";
-            this.customersTableLayoutPanel.SetRowSpan(this.customersListBox, 2);
-            this.customersListBox.Size = new System.Drawing.Size(244, 404);
-            this.customersListBox.TabIndex = 1;
-            // 
-            // selectedCustomerLabel
-            // 
-            this.selectedCustomerLabel.AutoSize = true;
-            this.selectedCustomerLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.selectedCustomerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selectedCustomerLabel.Location = new System.Drawing.Point(253, 0);
-            this.selectedCustomerLabel.Name = "selectedCustomerLabel";
-            this.selectedCustomerLabel.Size = new System.Drawing.Size(138, 20);
-            this.selectedCustomerLabel.TabIndex = 3;
-            this.selectedCustomerLabel.Text = "Selected Customer";
-            // 
-            // buttonsTableLayoutPanel
-            // 
-            this.buttonsTableLayoutPanel.ColumnCount = 3;
-            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
-            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
-            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
-            this.buttonsTableLayoutPanel.Controls.Add(this.addButton, 0, 0);
-            this.buttonsTableLayoutPanel.Controls.Add(this.removeButton, 1, 0);
-            this.buttonsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(3, 433);
-            this.buttonsTableLayoutPanel.Name = "buttonsTableLayoutPanel";
-            this.buttonsTableLayoutPanel.RowCount = 1;
-            this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(244, 44);
-            this.buttonsTableLayoutPanel.TabIndex = 7;
-            // 
-            // addButton
-            // 
-            this.addButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addButton.Location = new System.Drawing.Point(3, 3);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(74, 38);
-            this.addButton.TabIndex = 0;
-            this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = true;
-            // 
-            // removeButton
-            // 
-            this.removeButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.removeButton.Location = new System.Drawing.Point(83, 3);
-            this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(74, 38);
-            this.removeButton.TabIndex = 1;
-            this.removeButton.Text = "Remove";
-            this.removeButton.UseVisualStyleBackColor = true;
             // 
             // selectedCustomerTableLayoutPanel
             // 
@@ -221,6 +151,76 @@
             this.idLabel.Text = "ID:";
             this.idLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // buttonsTableLayoutPanel
+            // 
+            this.buttonsTableLayoutPanel.ColumnCount = 3;
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
+            this.buttonsTableLayoutPanel.Controls.Add(this.addButton, 0, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.removeButton, 1, 0);
+            this.buttonsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(3, 433);
+            this.buttonsTableLayoutPanel.Name = "buttonsTableLayoutPanel";
+            this.buttonsTableLayoutPanel.RowCount = 1;
+            this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(244, 44);
+            this.buttonsTableLayoutPanel.TabIndex = 7;
+            // 
+            // addButton
+            // 
+            this.addButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addButton.Location = new System.Drawing.Point(3, 3);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(74, 38);
+            this.addButton.TabIndex = 0;
+            this.addButton.Text = "Add";
+            this.addButton.UseVisualStyleBackColor = true;
+            // 
+            // removeButton
+            // 
+            this.removeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.removeButton.Location = new System.Drawing.Point(83, 3);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(74, 38);
+            this.removeButton.TabIndex = 1;
+            this.removeButton.Text = "Remove";
+            this.removeButton.UseVisualStyleBackColor = true;
+            // 
+            // customersLabel
+            // 
+            this.customersLabel.AutoSize = true;
+            this.customersLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.customersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.customersLabel.Location = new System.Drawing.Point(3, 0);
+            this.customersLabel.Name = "customersLabel";
+            this.customersLabel.Size = new System.Drawing.Size(80, 20);
+            this.customersLabel.TabIndex = 0;
+            this.customersLabel.Text = "Customers";
+            // 
+            // customersListBox
+            // 
+            this.customersListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customersListBox.FormattingEnabled = true;
+            this.customersListBox.ItemHeight = 16;
+            this.customersListBox.Location = new System.Drawing.Point(3, 23);
+            this.customersListBox.Name = "customersListBox";
+            this.customersTableLayoutPanel.SetRowSpan(this.customersListBox, 2);
+            this.customersListBox.Size = new System.Drawing.Size(244, 404);
+            this.customersListBox.TabIndex = 1;
+            // 
+            // selectedCustomerLabel
+            // 
+            this.selectedCustomerLabel.AutoSize = true;
+            this.selectedCustomerLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.selectedCustomerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selectedCustomerLabel.Location = new System.Drawing.Point(253, 0);
+            this.selectedCustomerLabel.Name = "selectedCustomerLabel";
+            this.selectedCustomerLabel.Size = new System.Drawing.Size(138, 20);
+            this.selectedCustomerLabel.TabIndex = 3;
+            this.selectedCustomerLabel.Text = "Selected Customer";
+            // 
             // selectedCustomerPanel
             // 
             this.selectedCustomerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -239,9 +239,9 @@
             this.Size = new System.Drawing.Size(640, 480);
             this.customersTableLayoutPanel.ResumeLayout(false);
             this.customersTableLayoutPanel.PerformLayout();
-            this.buttonsTableLayoutPanel.ResumeLayout(false);
             this.selectedCustomerTableLayoutPanel.ResumeLayout(false);
             this.selectedCustomerTableLayoutPanel.PerformLayout();
+            this.buttonsTableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

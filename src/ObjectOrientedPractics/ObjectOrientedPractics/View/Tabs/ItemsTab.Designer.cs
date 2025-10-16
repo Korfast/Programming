@@ -43,6 +43,8 @@
             this.costLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.idLabel = new System.Windows.Forms.Label();
+            this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.categoryLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.itemsTableLayoutPanel.SuspendLayout();
@@ -156,7 +158,7 @@
             this.selectedItemTableLayoutPanel.Location = new System.Drawing.Point(253, 23);
             this.selectedItemTableLayoutPanel.Name = "selectedItemTableLayoutPanel";
             this.selectedItemTableLayoutPanel.RowCount = 6;
-            this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -169,7 +171,7 @@
             // 
             this.nameLabel.AutoSize = true;
             this.nameLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.nameLabel.Location = new System.Drawing.Point(3, 60);
+            this.nameLabel.Location = new System.Drawing.Point(3, 90);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(47, 18);
             this.nameLabel.TabIndex = 2;
@@ -179,7 +181,7 @@
             // 
             this.descriptionLabel.AutoSize = true;
             this.descriptionLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.descriptionLabel.Location = new System.Drawing.Point(3, 138);
+            this.descriptionLabel.Location = new System.Drawing.Point(3, 168);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(78, 20);
             this.descriptionLabel.TabIndex = 3;
@@ -188,28 +190,32 @@
             // idCostTableLayoutPanel
             // 
             this.idCostTableLayoutPanel.ColumnCount = 2;
-            this.idCostTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.idCostTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.idCostTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.idCostTableLayoutPanel.Controls.Add(this.costTextBox, 1, 1);
             this.idCostTableLayoutPanel.Controls.Add(this.costLabel, 0, 1);
             this.idCostTableLayoutPanel.Controls.Add(this.idTextBox, 1, 0);
             this.idCostTableLayoutPanel.Controls.Add(this.idLabel, 0, 0);
+            this.idCostTableLayoutPanel.Controls.Add(this.categoryComboBox, 1, 2);
+            this.idCostTableLayoutPanel.Controls.Add(this.categoryLabel, 0, 2);
             this.idCostTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.idCostTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.idCostTableLayoutPanel.Name = "idCostTableLayoutPanel";
-            this.idCostTableLayoutPanel.RowCount = 2;
-            this.idCostTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.idCostTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.idCostTableLayoutPanel.Size = new System.Drawing.Size(378, 54);
+            this.idCostTableLayoutPanel.RowCount = 3;
+            this.idCostTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.idCostTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.idCostTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.idCostTableLayoutPanel.Size = new System.Drawing.Size(378, 84);
             this.idCostTableLayoutPanel.TabIndex = 2;
             // 
             // costTextBox
             // 
-            this.costTextBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.costTextBox.Location = new System.Drawing.Point(53, 30);
-            this.costTextBox.MaximumSize = new System.Drawing.Size(120, 22);
+            this.costTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.costTextBox.Location = new System.Drawing.Point(75, 31);
+            this.costTextBox.MaximumSize = new System.Drawing.Size(150, 22);
+            this.costTextBox.MinimumSize = new System.Drawing.Size(50, 4);
             this.costTextBox.Name = "costTextBox";
-            this.costTextBox.Size = new System.Drawing.Size(120, 22);
+            this.costTextBox.Size = new System.Drawing.Size(150, 22);
             this.costTextBox.TabIndex = 4;
             this.costTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
             // 
@@ -217,37 +223,63 @@
             // 
             this.costLabel.AutoSize = true;
             this.costLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.costLabel.Location = new System.Drawing.Point(3, 27);
+            this.costLabel.Location = new System.Drawing.Point(3, 28);
             this.costLabel.Name = "costLabel";
-            this.costLabel.Size = new System.Drawing.Size(37, 27);
+            this.costLabel.Size = new System.Drawing.Size(37, 28);
             this.costLabel.TabIndex = 3;
             this.costLabel.Text = "Cost:";
             this.costLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // idTextBox
             // 
-            this.idTextBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.idTextBox.Location = new System.Drawing.Point(53, 3);
+            this.idTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.idTextBox.Location = new System.Drawing.Point(75, 3);
+            this.idTextBox.MaximumSize = new System.Drawing.Size(150, 22);
+            this.idTextBox.MinimumSize = new System.Drawing.Size(50, 22);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.ReadOnly = true;
-            this.idTextBox.Size = new System.Drawing.Size(120, 22);
+            this.idTextBox.Size = new System.Drawing.Size(150, 22);
             this.idTextBox.TabIndex = 2;
             // 
             // idLabel
             // 
             this.idLabel.AutoSize = true;
             this.idLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.idLabel.Location = new System.Drawing.Point(3, 0);
+            this.idLabel.Location = new System.Drawing.Point(3, 3);
+            this.idLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(23, 27);
+            this.idLabel.Size = new System.Drawing.Size(23, 25);
             this.idLabel.TabIndex = 1;
             this.idLabel.Text = "ID:";
             this.idLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // categoryComboBox
+            // 
+            this.categoryComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.categoryComboBox.FormattingEnabled = true;
+            this.categoryComboBox.Location = new System.Drawing.Point(75, 59);
+            this.categoryComboBox.MaximumSize = new System.Drawing.Size(150, 0);
+            this.categoryComboBox.MinimumSize = new System.Drawing.Size(50, 0);
+            this.categoryComboBox.Name = "categoryComboBox";
+            this.categoryComboBox.Size = new System.Drawing.Size(150, 24);
+            this.categoryComboBox.TabIndex = 6;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
+            // 
+            // categoryLabel
+            // 
+            this.categoryLabel.AutoSize = true;
+            this.categoryLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.categoryLabel.Location = new System.Drawing.Point(3, 59);
+            this.categoryLabel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.categoryLabel.Name = "categoryLabel";
+            this.categoryLabel.Size = new System.Drawing.Size(65, 25);
+            this.categoryLabel.TabIndex = 7;
+            this.categoryLabel.Text = "Category:";
+            // 
             // nameTextBox
             // 
             this.nameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nameTextBox.Location = new System.Drawing.Point(3, 81);
+            this.nameTextBox.Location = new System.Drawing.Point(3, 111);
             this.nameTextBox.Multiline = true;
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(378, 54);
@@ -257,10 +289,10 @@
             // descriptionTextBox
             // 
             this.descriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.descriptionTextBox.Location = new System.Drawing.Point(3, 161);
+            this.descriptionTextBox.Location = new System.Drawing.Point(3, 191);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(378, 220);
+            this.descriptionTextBox.Size = new System.Drawing.Size(378, 190);
             this.descriptionTextBox.TabIndex = 5;
             this.descriptionTextBox.TextChanged += new System.EventHandler(this.DescriptionTextBox_TextChanged);
             // 
@@ -301,5 +333,7 @@
         private System.Windows.Forms.Label costLabel;
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.Label categoryLabel;
     }
 }

@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Model\Classes\Customer.cs" />
     <Compile Include="Model\Classes\ItemFactory.cs" />
+    <Compile Include="Model\Enums\Category.cs" />
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
