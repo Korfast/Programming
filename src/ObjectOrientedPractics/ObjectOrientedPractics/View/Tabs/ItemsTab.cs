@@ -34,6 +34,20 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemsTab()
         {
             InitializeComponent();
+            FillCatagoryComboBox();
+        }
+
+        /// <summary>
+        /// Заполняет ComboBox по категориям товаров,
+        /// используя перечисление Model.Category
+        /// </summary>
+        private void FillCatagoryComboBox()
+        {
+            // Заполняем ComboBox значениями enum Category
+            categoryComboBox.DataSource =
+                Enum.GetValues(typeof(Model.Category));
+            // Устанавливаем пустой выбранный элемент
+            categoryComboBox.SelectedIndex = -1;
         }
 
         /// <summary>
@@ -193,6 +207,8 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             idTextBox.Text = _currentItem.Id.ToString();
             costTextBox.Text = _currentItem.Cost.ToString();
+            // Устанавливаем жанр в ComboBox с учетом особенности
+            SetCategorySelectedItem(_currentItem.Category.ToString());
             nameTextBox.Text = _currentItem.Name;
             descriptionTextBox.Text = _currentItem.Info;
         }
@@ -234,10 +250,31 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Устанавливает выбранный элемент ComboBox по названию категории.
+        /// </summary>
+        /// <param name="cadtegoryName">
+        /// Название категории, которое нужно установить.</param>
+        private void SetCategorySelectedItem(string categoryName)
+        {
+            Model.Category[] categories = 
+                (Model.Category[])categoryComboBox.DataSource;
+            int index = Array.FindIndex
+                (categories, c => c.ToString() == categoryName);
+            if (index >= 0)
+            {
+                categoryComboBox.SelectedIndex = index;
+            }
+        }
+
         private void CategoryComboBox_SelectedIndexChanged
             (object sender, EventArgs e)
         {
-            Enum.GetValues
+            if (itemsListBox.SelectedIndex >= 0)
+            {
+                _currentItem.Category = 
+                    (Category)categoryComboBox.SelectedIndex;
+            }
         }
     }
 }

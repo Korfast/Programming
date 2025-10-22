@@ -85,7 +85,11 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
-        public Category Category { get; set; }
+        public Category Category 
+        {
+            get { return _category; }
+            set { _category = value; }
+        }
 
         /// <summary>
         /// Конструктор с параметрами класса Item
