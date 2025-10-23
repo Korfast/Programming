@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс, представляющий адрес.
     /// </summary>
-    internal class Address
+    public class Address
     {
         /// <summary>
         /// Целочисленное поле почтовый индекс, целое шестизначное число.
