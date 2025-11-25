@@ -51,8 +51,10 @@
   <ItemGroup>
     <Compile Include="Model\Classes\Address.cs" />
     <Compile Include="Model\Classes\Customer.cs" />
+    <Compile Include="Model\Classes\CustomerFactory.cs" />
     <Compile Include="Model\Classes\ItemFactory.cs" />
     <Compile Include="Model\Enums\Category.cs" />
+    <Compile Include="Model\Classes\Store.cs" />
     <Compile Include="View\AddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

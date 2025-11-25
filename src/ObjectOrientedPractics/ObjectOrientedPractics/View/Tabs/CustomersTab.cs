@@ -13,12 +13,218 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomersTab : UserControl
     {
+        /// <summary>
+        /// Список всех покупателей.
+        /// </summary>
         private List<Customer> _customers = new List<Customer>();
-        private Item _currentItem;
+
+        /// <summary>
+        /// Выбрнный покупатель.
+        /// </summary>
+        private Customer _currentCustomer;
+
+        /// <summary>
+        /// Возвращает и задаёт список покупателей.
+        /// При установке обновляется отображение ListBox.
+        /// </summary>
+        public List<Customer> Customers
+        {
+            get
+            {
+                return _customers;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    _customers = new List<Customer>();
+                }
+                else
+                {
+                    _customers = value;
+                }
+                UpdateListBox();
+            }
+        }
+
+        /// <summary>
+        /// Обновляет ListBox с текущим списком покупателей.
+        /// </summary>
+        private void UpdateListBox()
+        {
+            if (customersListBox == null)
+            {
+                return;
+            }
+
+            customersListBox.Items.Clear();
+
+            if (_customers == null)
+            {
+                return;
+            }
+
+            foreach (var item in _customers)
+            {
+                customersListBox.Items.Add(item);
+                // Предположим, что Customer переопределяет ToString()
+            }
+        }
 
         public CustomersTab()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Заполняет список элементов <see cref="customersListBox"
+        /// /> текущими покупателями.
+        /// </summary>
+        private void PopulateCustomersListBox()
+        {
+            customersListBox.Items.Clear();
+
+            foreach (Customer customer in _customers)
+            {
+                customersListBox.Items.Add($"Покупатель {customer.Id}");
+            }
+        }
+
+        /// <summary>
+        /// Обновляет текстовые поля формы 
+        /// текущими свойствами выбранного покупателя.
+        /// </summary>
+        private void UpdateCustomerFieldsTextBoxes()
+        {
+            idTextBox.Text = _currentCustomer.Id.ToString();
+            fullNameTextBox.Text = _currentCustomer.Fullname;
+        }
+
+        /// <summary>
+        /// Обработчик события клика по кнопке добавления нового покупателя.
+        /// Создает случайного покупателя,
+        /// добавляет его в список и обновляет интерфейс.
+        /// </summary>
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            // Создаем и добавляем нового случайного покупателя
+            _customers.Add(CustomerFactory.Randomize(0, 100000));
+
+            // Обновляем список отображения
+            PopulateCustomersListBox();
+
+            // Устанавливаем последний добавленный элемент как выбранный
+            customersListBox.SelectedIndex = customersListBox.Items.Count - 1;
+            // Обновляем текущего выбранного покупателя
+            _currentCustomer = _customers[customersListBox.SelectedIndex];
+        }
+
+        /// <summary>
+        /// Обработчик события клика по кнопке удаления выбранного покупателя.
+        /// Удаляет выбранного покупателя из списка и обновляет интерфейс.
+        /// </summary>
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = customersListBox.SelectedIndex;
+
+            // Проверка, что что-то выбрано
+            if (selectedIndex >= 0 && selectedIndex < _customers.Count)
+            {
+                // Удаляем выбранного покупателя
+                _customers.RemoveAt(selectedIndex);
+
+                // Обновляем отображение списка
+                PopulateCustomersListBox();
+
+                // Обновляем выбранный индекс
+                if (_customers.Count > 0)
+                {
+                    int newIndex = Math.Min(selectedIndex, _customers.Count - 1);
+                    customersListBox.SelectedIndex = newIndex;
+                    _currentCustomer = _customers[newIndex];
+                    UpdateCustomerFieldsTextBoxes();
+                }
+                else
+                {
+                    // Если список пуст, очищаем поля
+                    _currentCustomer = null;
+                    idTextBox.Text = "";
+                    fullNameTextBox.Text = "";
+                    addressControl.ClearFields();
+
+                    // Обнуляем цвет фона
+                    fullNameTextBox.BackColor = SystemColors.Window;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Обновляет свойство имени на основе текста из TextBox.
+        /// </summary>
+        /// <param name="textBox">TextBox для ввода имени.</param>
+        /// <param name="length">Максимальная длина имени.</param>
+        /// <param name="updateAction">
+        /// Делегат для обновления свойства имени.</param>
+        private void UpdateNameProperty
+            (System.Windows.Forms.TextBox textBox, int length,
+            Action<string> updateAction)
+        {
+            try
+            {
+                string value = textBox.Text;
+                if (!"ABCDEFGHIJKLMNOPQRSTUVWXYZ".Contains(value[0]) &&
+                    !"АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЭЮЯ".Contains(value[0]))
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                if (value.Length > length)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                updateAction(value);
+                textBox.BackColor = SystemColors.Window;
+            }
+            catch
+            {
+                textBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        /// <summary>
+        /// Обработчик изменения выбранного элемента списка.
+        /// Обновляет текущего покупателя и отображает его свойства.
+        /// </summary>
+        private void CustomersListBox_SelectedIndexChanged
+            (object sender, EventArgs e)
+        {
+            if (customersListBox.SelectedIndex >= 0)
+            {
+                _currentCustomer = _customers[customersListBox.SelectedIndex];
+                UpdateCustomerFiledsTextBoxes();
+            }
+        }
+
+        /// <summary>
+        /// Обновляет текстовые поля формы 
+        /// текущими свойствами выбранного покупателя.
+        /// </summary>
+        private void UpdateCustomerFiledsTextBoxes()
+        {
+            idTextBox.Text = _currentCustomer.Id.ToString();
+            fullNameTextBox.Text = _currentCustomer.Fullname.ToString();
+            // Передача адреса в AddressControl
+            addressControl.Address = _currentCustomer.Address;
+        }
+
+        private void fullNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (customersListBox.SelectedIndex >= 0)
+            {
+                UpdateNameProperty(fullNameTextBox, 200, (value) =>
+                _currentCustomer.Fullname = value);
+            }
+        }
     }
 }
+

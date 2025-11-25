@@ -136,15 +136,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Конструктор по умолчанию. Инициализирует поля значениями по умолчанию.
         /// </summary>
-        public Address()
-        {
-            _index = 100000; 
-            _country = string.Empty;
-            _city = string.Empty;
-            _street = string.Empty;
-            _building = string.Empty;
-            _apartment = string.Empty;
-        }
+        public Address() { }
 
         /// <summary>
         /// Конструктор с параметрами для инициализации всех свойств.

@@ -29,25 +29,60 @@ namespace ObjectOrientedPractics.View.Tabs
         private Item _currentItem;
 
         /// <summary>
+        /// Возвращает и задаёт список товаров.
+        /// При установке обновляется отображение ListBox.
+        /// </summary>
+        public List<Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    _items = new List<Item>();
+                }
+                else
+                {
+                    _items = value;
+                }
+                UpdateListBox();
+            }
+        }
+
+        /// <summary>
+        /// Обновляет ListBox с текущим списком товаров.
+        /// </summary>
+        private void UpdateListBox()
+        {
+            if (itemsListBox == null)
+            {
+                return;
+            }
+
+            itemsListBox.Items.Clear();
+
+            if (_items == null)
+            {
+                return;
+            }
+
+            foreach (var item in _items)
+            {
+                itemsListBox.Items.Add(item);
+                // Предположим, что Item переопределяет ToString()
+            }
+        }
+
+        /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="ItemsTab"/>.
         /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
             FillCatagoryComboBox();
-        }
-
-        /// <summary>
-        /// Заполняет ComboBox по категориям товаров,
-        /// используя перечисление Model.Category
-        /// </summary>
-        private void FillCatagoryComboBox()
-        {
-            // Заполняем ComboBox значениями enum Category
-            categoryComboBox.DataSource =
-                Enum.GetValues(typeof(Model.Category));
-            // Устанавливаем пустой выбранный элемент
-            categoryComboBox.SelectedIndex = -1;
         }
 
         /// <summary>
@@ -62,6 +97,19 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 itemsListBox.Items.Add($"Товар {item.Id}");
             }
+        }
+
+        /// <summary>
+        /// Заполняет ComboBox по категориям товаров,
+        /// используя перечисление Model.Category
+        /// </summary>
+        private void FillCatagoryComboBox()
+        {
+            // Заполняем ComboBox значениями enum Category
+            categoryComboBox.DataSource =
+                Enum.GetValues(typeof(Model.Category));
+            // Устанавливаем пустой выбранный элемент
+            categoryComboBox.SelectedIndex = -1;
         }
 
         /// <summary>
