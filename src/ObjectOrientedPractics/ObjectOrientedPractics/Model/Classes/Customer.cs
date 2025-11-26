@@ -31,16 +31,24 @@ namespace ObjectOrientedPractics.Model
         private string _address;
 
         /// <summary>
+        /// Корзина товаров покупателя.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
         /// Id покупателя.
         /// </summary>
-        public int Id => _id;
+        public int Id
+        { 
+            get { return _id; } 
+        }
 
         /// <summary>
         /// Полное имя покупателя.
         /// </summary>
         public string Fullname
         {
-            get => _fullname;
+            get { return _fullname; }
             set
             {
                 ValueValidator.AssertStringOnLength
@@ -54,7 +62,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public string Address
         {
-            get => _address;
+            get { return _address; }
             set
             {
                 ValueValidator.AssertStringOnLength
@@ -75,6 +83,7 @@ namespace ObjectOrientedPractics.Model
             _id = _counter++; 
             Fullname = fullname;
             Address = address;
+            _cart = new Cart();
         }
         /// <summary>
         /// Конструктор класса Customer без параметров. 

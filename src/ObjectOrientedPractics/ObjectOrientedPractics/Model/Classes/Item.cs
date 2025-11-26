@@ -41,7 +41,9 @@ namespace ObjectOrientedPractics.Model
         /// Возвращает id товара.
         /// </summary>
         public int Id 
-        { get { return _id; } }
+        { 
+            get { return _id; } 
+        }
 
         /// <summary>
         /// Возвращает и задаёт название товара.
