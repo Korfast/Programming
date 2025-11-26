@@ -1,4 +1,5 @@
-﻿using ObjectOrientedPractics.Services;
+﻿using ObjectOrientedPractics.Model.Classes;
+using ObjectOrientedPractics.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,11 @@ namespace ObjectOrientedPractics.Model
         private Cart _cart;
 
         /// <summary>
+        /// Список заказов покупателя.
+        /// </summary>
+        private List<Order> _orders;
+
+        /// <summary>
         /// Id покупателя.
         /// </summary>
         public int Id
@@ -44,7 +50,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Полное имя покупателя.
+        /// Возвращает и задаёт полное имя покупателя.
         /// </summary>
         public string Fullname
         {
@@ -58,7 +64,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Адрес доставки покупателя.
+        /// Возвращает и задаёт адрес доставки покупателя.
         /// </summary>
         public string Address
         {
@@ -69,6 +75,24 @@ namespace ObjectOrientedPractics.Model
                     (value, 500, nameof(Address));
                 _address = value;
             }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт корзину товаров покупателя.
+        /// </summary>
+        public Cart Cart
+        {
+            get { return _cart; }
+            set { _cart = value; }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт список заказов покупателя.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get { return _orders; }
+            set { _orders = value; }
         }
 
         /// <summary>
@@ -84,6 +108,7 @@ namespace ObjectOrientedPractics.Model
             Fullname = fullname;
             Address = address;
             _cart = new Cart();
+            _orders = new List<Order>();
         }
         /// <summary>
         /// Конструктор класса Customer без параметров. 
@@ -92,6 +117,8 @@ namespace ObjectOrientedPractics.Model
         public Customer()
         {
             _id = ++_counter;
+            // Инициализация пустого списка заказов
+            _orders = new List<Order>(); 
         }
     }
 }
