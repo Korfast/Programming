@@ -44,6 +44,7 @@
             this.amountFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.amountLabel = new System.Windows.Forms.Label();
             this.costLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.cartsTabTableLayoutPanel.SuspendLayout();
             this.customerCartTableLayoutPanel.SuspendLayout();
             this.buttomsTableLayoutPanel.SuspendLayout();
@@ -59,6 +60,7 @@
             this.cartsTabTableLayoutPanel.Controls.Add(this.itemsListBox, 0, 1);
             this.cartsTabTableLayoutPanel.Controls.Add(this.itemsLabel, 0, 0);
             this.cartsTabTableLayoutPanel.Controls.Add(this.customerCartTableLayoutPanel, 1, 1);
+            this.cartsTabTableLayoutPanel.Controls.Add(this.button1, 0, 3);
             this.cartsTabTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cartsTabTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.cartsTabTableLayoutPanel.Name = "cartsTabTableLayoutPanel";
@@ -66,7 +68,7 @@
             this.cartsTabTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.cartsTabTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.cartsTabTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.cartsTabTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.cartsTabTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.cartsTabTableLayoutPanel.Size = new System.Drawing.Size(640, 480);
             this.cartsTabTableLayoutPanel.TabIndex = 0;
             // 
@@ -78,7 +80,7 @@
             this.itemsListBox.Location = new System.Drawing.Point(3, 23);
             this.itemsListBox.Name = "itemsListBox";
             this.cartsTabTableLayoutPanel.SetRowSpan(this.itemsListBox, 2);
-            this.itemsListBox.Size = new System.Drawing.Size(244, 434);
+            this.itemsListBox.Size = new System.Drawing.Size(244, 412);
             this.itemsListBox.TabIndex = 0;
             // 
             // itemsLabel
@@ -111,7 +113,7 @@
             this.customerCartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.customerCartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.customerCartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.customerCartTableLayoutPanel.Size = new System.Drawing.Size(384, 434);
+            this.customerCartTableLayoutPanel.Size = new System.Drawing.Size(384, 412);
             this.customerCartTableLayoutPanel.TabIndex = 2;
             // 
             // buttomsTableLayoutPanel
@@ -243,6 +245,15 @@
             this.costLabel.Size = new System.Drawing.Size(0, 25);
             this.costLabel.TabIndex = 1;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 441);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 35);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Add To Cart";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // CartsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -281,5 +292,6 @@
         private System.Windows.Forms.FlowLayoutPanel amountFlowLayoutPanel;
         private System.Windows.Forms.Label amountLabel;
         private System.Windows.Forms.Label costLabel;
+        private System.Windows.Forms.Button button1;
     }
 }
