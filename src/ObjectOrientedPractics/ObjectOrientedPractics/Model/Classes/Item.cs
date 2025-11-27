@@ -37,11 +37,12 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private double _cost;
 
+        private Category _category;
+
         /// <summary>
         /// Возвращает id товара.
         /// </summary>
-        public int Id 
-        { get { return _id; } }
+        public int Id { get { return _id; } }
 
         /// <summary>
         /// Возвращает и задаёт название товара.
@@ -76,12 +77,18 @@ namespace ObjectOrientedPractics.Model
         public double Cost
         {
             get { return _cost; }
-            set 
+            set
             {
                 ValueValidator.AssertValueInRange
                     (value, 0, 100000, nameof(Cost));
                 _cost = value;
             }
+        }
+
+        public Category Category
+        {
+            get { return _category; }
+            set { _category = value; }
         }
 
         /// <summary>
@@ -91,13 +98,15 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название товара.</param>
         /// <param name="info">Информация о товаре.</param>
         /// <param name="cost">Цена товара.</param>
-        public Item(string name, string info, double cost)
+        /// <param name="category">Категория товара</param>
+        public Item(string name, string info, double cost, Category category)
         {
             // Генерация уникального Id с помощью статического счётчика
-            _id = _counter++; 
+            _id = _counter++;
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
         }
 
         /// <summary>
@@ -106,7 +115,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>>
         public Item()
         {
-            _id = ++_counter;
+            _id = _counter++;
         }
     }
 }
