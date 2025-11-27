@@ -36,7 +36,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
 
             // Создаем и добавляем новый случайный товар
-            _items.Add(ItemFactory.Randomize(0, 100000));
+            _items.Add(Services.ItemFactory.Randomize(0, 100000));
 
             // Обновляем список отображения
             PopulateItemsListBox();

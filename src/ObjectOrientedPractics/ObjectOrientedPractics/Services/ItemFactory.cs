@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Services
 {
     public static class ItemFactory
     {
@@ -78,7 +79,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает массив возможных описаний товаров.
         /// </summary>
-        public static string[] Infos 
+        public static string[] Infos
         { get { return _infos; } }
 
         /// <summary>
@@ -99,10 +100,11 @@ namespace ObjectOrientedPractics.Model
             string info = _infos[index];
             // Генерация цены в пределах
             double cost = _random.Next(lowerCostLimit, upperCostLimit);
-            
+            // Генерация случайной категории
+            Category category = RandomCategory();
 
             // Создание нового объекта Item с полученными параметрами
-            Item item = new Item(name, info, cost);
+            Item item = new Item(name, info, cost, category);
 
             return item;
         }
@@ -116,21 +118,34 @@ namespace ObjectOrientedPractics.Model
         /// <param name="upperCostLimit">Верхняя граница цены 
         /// (не включительно).</param>
         /// <returns>Объект типа Item с случайными значениями.</returns>
-        public static Item Randomize(double lowerCostLimit, double upperCostLimit)
+        public static Item Randomize
+            (double lowerCostLimit, double upperCostLimit)
         {
             int index = _random.Next(_names.Length);
             // Генерация случайного названия
             string name = _names[index];
             // Генерация соответствующего описания
             string info = _infos[index];
-
             // Генерация цены в диапазоне с плавающей точкой
-            double cost = lowerCostLimit + _random.NextDouble() * (upperCostLimit - lowerCostLimit);
+            double cost = lowerCostLimit +
+                _random.NextDouble() * (upperCostLimit - lowerCostLimit);
+            // Генерация случайной категории
+            Category category = RandomCategory();
 
             // Создание нового объекта Item с полученными параметрами
-            Item item = new Item(name, info, cost);
+            Item item = new Item(name, info, cost, category);
 
             return item;
+        }
+
+        /// <summary>
+        /// Возвращает случайную категорию из перечисления Category.
+        /// </summary>
+        private static Category RandomCategory()
+        {
+            Array categories = Enum.GetValues(typeof(Category));
+            int index = _random.Next(categories.Length);
+            return (Category)categories.GetValue(index);
         }
     }
 }
