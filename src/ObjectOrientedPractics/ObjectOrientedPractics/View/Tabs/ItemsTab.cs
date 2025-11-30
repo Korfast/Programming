@@ -121,7 +121,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void AddButton_Click(object sender, EventArgs e)
         {
             // Создаем и добавляем новый случайный товар
-            _items.Add(ItemFactory.Randomize(0, 100000));
+            _items.Add(Services.ItemFactory.Randomize(0, 100000));
 
             // Обновляем список отображения
             PopulateItemsListBox();
