@@ -120,8 +120,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
             // Устанавливаем последний добавленный элемент как выбранный
             customersListBox.SelectedIndex = customersListBox.Items.Count - 1;
-            // Обновляем текущего выбранного покупателя
-            _currentCustomer = _customers[customersListBox.SelectedIndex];
         }
 
         /// <summary>

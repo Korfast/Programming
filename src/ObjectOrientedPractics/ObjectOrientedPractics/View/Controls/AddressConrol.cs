@@ -36,8 +36,7 @@ namespace ObjectOrientedPractics.View.Controls
                 }
                 else
                 {
-                    _address = value;
-                    _address = new Address();
+                    _address = value;                   
                 }
 
                 // Обновляем UI
@@ -48,6 +47,7 @@ namespace ObjectOrientedPractics.View.Controls
         public AddressControl()
         {
             InitializeComponent();
+            _address = new Address();
         }
 
         /// <summary>

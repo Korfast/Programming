@@ -35,11 +35,8 @@ namespace ObjectOrientedPractics.View
             // Передаем списки товаров и покупателей во вкладки
             itemsTab.Items = _store.Items;
             customersTab.Customers = _store.Customers;
-
-            // Инициализация вкладки корзин (CartsTab)
-            // Ей нужны и товары (для выбора), и покупатели (для привязки корзины)
-            ///cartsTab.Items = _store.Items;
-            ///cartsTab.Customers = _store.Customers;
+            cartsTab.Items = _store.Items;
+            cartsTab.Customers = _store.Customers;
 
             // Если вы уже добавили OrdersTab (следующая часть задания), раскомментируйте:
             // ordersTab1.Customers = _store.Customers;
