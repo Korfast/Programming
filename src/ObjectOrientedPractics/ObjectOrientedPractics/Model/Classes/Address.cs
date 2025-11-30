@@ -134,9 +134,18 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Конструктор по умолчанию. Инициализирует поля значениями по умолчанию.
+        /// Конструктор по умолчанию. 
+        /// Создаёт экзэмпляр класса<see cref="Address"/>.
         /// </summary>
-        public Address() { }
+        public Address()
+        {
+            Index = 999999;
+            Country = string.Empty;
+            City = string.Empty;
+            Street = string.Empty;
+            Building = string.Empty;
+            Apartment = string.Empty;
+        }
 
         /// <summary>
         /// Конструктор с параметрами для инициализации всех свойств.

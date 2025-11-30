@@ -82,6 +82,8 @@ namespace ObjectOrientedPractics.Model
         public Customer()
         {
             _id = ++_counter;
+            Fullname = string.Empty;
+            Address = new Address();
         }
     }
 }
