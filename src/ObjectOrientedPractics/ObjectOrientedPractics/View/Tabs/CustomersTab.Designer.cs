@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ObjectOrientedPractics.Model.Address address1 = new ObjectOrientedPractics.Model.Address();
             this.customersTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.selectedCustomerTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.fullNameTextBox = new System.Windows.Forms.TextBox();
@@ -42,7 +41,7 @@
             this.customersListBox = new System.Windows.Forms.ListBox();
             this.selectedCustomerLabel = new System.Windows.Forms.Label();
             this.selectedCustomerPanel = new System.Windows.Forms.Panel();
-            this.addressControl = new ObjectOrientedPractics.View.Conrols.AddressControl();
+            this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.customersTableLayoutPanel.SuspendLayout();
             this.selectedCustomerTableLayoutPanel.SuspendLayout();
             this.buttonsTableLayoutPanel.SuspendLayout();
@@ -266,6 +265,6 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Panel selectedCustomerPanel;
-        private Conrols.AddressControl addressControl;
+        private Controls.AddressControl addressControl;
     }
 }

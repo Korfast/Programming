@@ -9,11 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ObjectOrientedPractics.View.Conrols
+namespace ObjectOrientedPractics.View.Controls
 {
     public partial class AddressControl : UserControl
     {
-        private Address _address = new Address();
+        private Address _address;
+
+        // Атрибуты скрывают свойство от Дизайнера, чтобы он не ломал код
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 
         public Address Address
         {
@@ -26,7 +30,15 @@ namespace ObjectOrientedPractics.View.Conrols
 
             set
             {
-                _address = value;
+                if (value == null)
+                {
+                    _address = new Address();
+                }
+                else
+                {
+                    _address = value;
+                    _address = new Address();
+                }
 
                 // Обновляем UI
                 UpdateAddressFiledsTextBoxes();
@@ -44,6 +56,22 @@ namespace ObjectOrientedPractics.View.Conrols
         /// </summary>
         private void UpdateAddressFiledsTextBoxes()
         {
+            // 1. Если адрес еще не задан — выходим
+            if (_address == null)
+            {
+                return;
+            }
+
+            // 2. ГЛАВНАЯ ЗАЩИТА: Если текстовые поля еще не созданы (InitializeComponent не доработал) — выходим
+            // Дизайнер часто вызывает этот метод раньше времени.
+            if (postIndexTextBox == null || countryTextBox == null ||
+                cityTextBox == null || streetTextBox == null ||
+                buildingTextBox == null || apartmentTextBox == null)
+            {
+                return;
+            }
+
+            // Если всё есть, заполняем
             postIndexTextBox.Text = _address.Index.ToString();
             countryTextBox.Text = _address.Country;
             cityTextBox.Text = _address.City;

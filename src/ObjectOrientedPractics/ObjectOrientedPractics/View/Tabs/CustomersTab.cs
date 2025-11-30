@@ -97,8 +97,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateCustomerFieldsTextBoxes()
         {
+            // Проверяем, что покупатель выбран (во избежание ошибок)
+            if (_currentCustomer == null) return;
+
             idTextBox.Text = _currentCustomer.Id.ToString();
             fullNameTextBox.Text = _currentCustomer.Fullname;
+            addressControl.Address = _currentCustomer.Address;
         }
 
         /// <summary>
@@ -140,20 +144,29 @@ namespace ObjectOrientedPractics.View.Tabs
                 // Обновляем выбранный индекс
                 if (_customers.Count > 0)
                 {
-                    int newIndex = Math.Min(selectedIndex, _customers.Count - 1);
+                    int newIndex = selectedIndex;
+                    if (newIndex >= _customers.Count)
+                    {
+                        newIndex = _customers.Count - 1;
+                    }
+                    // Это присваивание АВТОМАТИЧЕСКИ вызовет customersListBox_SelectedIndexChanged,
+                    // который обновит _currentCustomer и заполнит поля
                     customersListBox.SelectedIndex = newIndex;
-                    _currentCustomer = _customers[newIndex];
-                    UpdateCustomerFieldsTextBoxes();
                 }
                 else
                 {
-                    // Если список пуст, очищаем поля
+                    // Если список пуст, сбрасываем выбор
+                    customersListBox.SelectedIndex = -1;
+
+                    // Очищаем поля вручную
                     _currentCustomer = null;
                     idTextBox.Text = "";
                     fullNameTextBox.Text = "";
+
+                    // Очищаем адрес
                     addressControl.ClearFields();
 
-                    // Обнуляем цвет фона
+                    // Сбрасываем цвета валидации
                     fullNameTextBox.BackColor = SystemColors.Window;
                 }
             }

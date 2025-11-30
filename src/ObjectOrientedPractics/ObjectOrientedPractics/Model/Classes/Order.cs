@@ -35,7 +35,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Адрес доставки.
         /// </summary>
-        private string _deliveryAddress;
+        private Address _deliveryAddress;
 
         /// <summary>
         /// Список товаров.
@@ -47,7 +47,10 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public int Id
         {
-            get { return _id; }
+            get
+            {
+                return _id;
+            }
         }
 
         /// <summary>
@@ -55,45 +58,87 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public DateTime CreationDate
         {
-            get { return _creationDate; }
+            get
+            {
+                return _creationDate;
+            }
         }
 
         /// <summary>
-        /// Возвращает или задаёт статус заказа.
+        /// Возвращает и задаёт статус заказа.
         /// </summary>
         public OrderStatus Status
         {
-            get { return _status; }
-            set { _status = value; }
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                _status = value;
+            }
         }
 
         /// <summary>
-        /// Возвращает или задаёт адрес доставки.
+        /// Возвращает и задаёт адрес доставки.
         /// </summary>
-        public string DeliveryAddress
+        public Address DeliveryAddress
         {
-            get { return _deliveryAddress; }
-            set { _deliveryAddress = value; }
+            get
+            {
+                return _deliveryAddress;
+            }
+            set
+            {
+                // Адрес не должен быть null, если пришло null - создаем пустой
+                if (value == null)
+                {
+                    _deliveryAddress = new Address();
+                }
+                else
+                {
+                    _deliveryAddress = value;
+                }
+            }
         }
 
         /// <summary>
-        /// Возвращает или задаёт список товаров заказа.
+        /// Возвращает и задаёт список товаров заказа.
         /// </summary>
         public List<Item> Items
         {
-            get { return _items; }
-            set { _items = value; }
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                // Список товаров не должен быть null
+                if (value == null)
+                {
+                    _items = new List<Item>();
+                }
+                else
+                {
+                    _items = value;
+                }
+            }
         }
 
         /// <summary>
-        /// Вычесляет общую стоимость всех товаров в заказе.
+        /// Вычисляет общую стоимость всех товаров в заказе.
         /// </summary>
         public double TotalAmount
         {
             get
             {
                 double total = 0.0;
-                foreach (Item item in Items)
+                if (_items == null)
+                {
+                    return total;
+                }
+
+                foreach (Item item in _items)
                 {
                     total += item.Cost;
                 }
@@ -103,15 +148,29 @@ namespace ObjectOrientedPractics.Model
 
         /// <summary>
         /// Конструктор для создания заказа.
+        /// Инициализирует поля, устанавливает дату создания и статус "New".
         /// </summary>
-        /// <param name="deliveryAddress">Адрес доставки</param>
-        /// <param name="items">Список товаров</param>
-        public Order(string deliveryAddress, List<Item> items)
+        /// <param name="deliveryAddress">Адрес доставки.</param>
+        /// <param name="items">Список товаров.</param>
+        public Order(Address deliveryAddress, List<Item> items)
         {
             _id = ++_counter;
             _creationDate = DateTime.Now;
+            _status = OrderStatus.New;
             DeliveryAddress = deliveryAddress;
-            Items = items ?? new List<Item>();
+            Items = items;
+        }
+
+        /// <summary>
+        /// Конструктор без параметров (для сериализации или создания пустого заказа).
+        /// </summary>
+        public Order()
+        {
+            _id = ++_counter;
+            _creationDate = DateTime.Now;
+            _status = OrderStatus.New;
+            DeliveryAddress = new Address();
+            Items = new List<Item>();
         }
     }
 }

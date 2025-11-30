@@ -58,10 +58,10 @@
     <Compile Include="Model\Enumerations\OrderStatus.cs" />
     <Compile Include="Services\CustomerFactory.cs" />
     <Compile Include="Services\ItemFactory.cs" />
-    <Compile Include="View\Conrols\AddressConrol.cs">
+    <Compile Include="View\Controls\AddressConrol.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\Conrols\AddressConrol.Designer.cs">
+    <Compile Include="View\Controls\AddressConrol.Designer.cs">
       <DependentUpon>AddressConrol.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainForm.cs">
@@ -101,7 +101,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\Conrols\AddressConrol.resx">
+    <EmbeddedResource Include="View\Controls\AddressConrol.resx">
       <DependentUpon>AddressConrol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">

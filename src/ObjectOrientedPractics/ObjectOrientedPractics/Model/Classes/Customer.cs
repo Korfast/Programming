@@ -13,6 +13,9 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public class Customer
     {
+        /// <summary>
+        /// Статическое поле-счётчик для генерации уникальных Id.
+        /// </summary>
         private static int _counter = 0;
 
         /// <summary>
@@ -31,34 +34,109 @@ namespace ObjectOrientedPractics.Model
         private Address _address;
 
         /// <summary>
-        /// Id покупателя.
+        /// Корзина покупателя.
         /// </summary>
-        public int Id => _id;
+        private Cart _cart;
 
         /// <summary>
-        /// Полное имя покупателя.
+        /// Список заказов покупателя.
+        /// </summary>
+        private List<Order> _orders;
+
+        /// <summary>
+        /// Возвращает id покупателя.
+        /// </summary>
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задает полное имя покупателя.
+        /// Должно быть не более 200 символов.
         /// </summary>
         public string Fullname
         {
-            get => _fullname;
+            get
+            {
+                return _fullname;
+            }
             set
             {
-                ValueValidator.AssertStringOnLength
-                    (value, 200, nameof(Fullname));
+                ValueValidator.AssertStringOnLength(value, 200, nameof(Fullname));
                 _fullname = value;
             }
         }
 
         /// <summary>
-        /// Адрес доставки покупателя.
+        /// Возвращает и задает адрес доставки покупателя.
         /// </summary>
         public Address Address
         {
-            get => _address;
+            get
+            {
+                return _address;
+            }
             set
             {
                 // задаем новый Address, если null
-                _address = value ?? new Address();
+                if (value == null)
+                {
+                    _address = new Address();
+                }
+                else
+                {
+                    _address = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задает корзину покупателя.
+        /// </summary>
+        public Cart Cart
+        {
+            get
+            {
+                return _cart;
+            }
+            set
+            {
+                // Корзина не может быть null
+                if (value == null)
+                {
+                    _cart = new Cart();
+                }
+                else
+                {
+                    _cart = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задает список заказов покупателя.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get
+            {
+                return _orders;
+            }
+            set
+            {
+                // Список заказов не может быть null
+                if (value == null)
+                {
+                    _orders = new List<Order>();
+                }
+                else
+                {
+                    _orders = value;
+                }
             }
         }
 
@@ -71,19 +149,24 @@ namespace ObjectOrientedPractics.Model
         public Customer(string fullname, Address address)
         {
             // Уникальный Id покупателя
-            _id = _counter++;
+            _id = ++_counter;
             Fullname = fullname;
             Address = address;
+            Cart = new Cart();
+            Orders = new List<Order>();
         }
+
         /// <summary>
         /// Конструктор класса Customer без параметров. 
-        /// Создает объект с пустыми значениями.
-        /// </summary>>
+        /// Создает объект с пустыми значениями и инициализирует списки.
+        /// </summary>
         public Customer()
         {
             _id = ++_counter;
             Fullname = string.Empty;
             Address = new Address();
+            Cart = new Cart();
+            Orders = new List<Order>();
         }
     }
 }

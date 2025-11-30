@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedPractics
+﻿namespace ObjectOrientedPractics.View
 {
     partial class MainForm
     {
@@ -140,7 +140,6 @@
 
         private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.TabPage itemsTabPage;
-        private View.Tabs.ItemsTab itemsTab1;
         private View.Tabs.ItemsTab itemsTab;
         private System.Windows.Forms.TabPage customersTabPage;
         private View.Tabs.CustomersTab customersTab;

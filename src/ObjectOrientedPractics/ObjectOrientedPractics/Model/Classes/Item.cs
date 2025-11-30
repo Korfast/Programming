@@ -72,7 +72,7 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Возвращает и задаёт стоимось товара.
+        /// Возвращает и задаёт стоимость товара.
         /// </summary>
         public double Cost
         {

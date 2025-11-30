@@ -70,7 +70,7 @@
             this.itemsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.itemsListBox.FormattingEnabled = true;
             this.itemsListBox.Location = new System.Drawing.Point(2, 18);
-            this.itemsListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.itemsListBox.Margin = new System.Windows.Forms.Padding(2);
             this.itemsListBox.Name = "itemsListBox";
             this.itemsListBox.Size = new System.Drawing.Size(184, 329);
             this.itemsListBox.TabIndex = 1;
@@ -100,7 +100,7 @@
             this.itemsTableLayoutPanel.Controls.Add(this.selectedItemTableLayoutPanel, 1, 1);
             this.itemsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.itemsTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.itemsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.itemsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.itemsTableLayoutPanel.Name = "itemsTableLayoutPanel";
             this.itemsTableLayoutPanel.RowCount = 3;
             this.itemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
@@ -119,7 +119,7 @@
             this.buttonsTableLayoutPanel.Controls.Add(this.removeButton, 1, 0);
             this.buttonsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(2, 351);
-            this.buttonsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.buttonsTableLayoutPanel.Name = "buttonsTableLayoutPanel";
             this.buttonsTableLayoutPanel.RowCount = 1;
             this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -131,7 +131,7 @@
             // 
             this.addButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.addButton.Location = new System.Drawing.Point(2, 2);
-            this.addButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.addButton.Margin = new System.Windows.Forms.Padding(2);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(56, 33);
             this.addButton.TabIndex = 0;
@@ -143,7 +143,7 @@
             // 
             this.removeButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.removeButton.Location = new System.Drawing.Point(62, 2);
-            this.removeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.removeButton.Margin = new System.Windows.Forms.Padding(2);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(56, 33);
             this.removeButton.TabIndex = 1;
@@ -162,7 +162,7 @@
             this.selectedItemTableLayoutPanel.Controls.Add(this.descriptionTextBox, 0, 4);
             this.selectedItemTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.selectedItemTableLayoutPanel.Location = new System.Drawing.Point(190, 18);
-            this.selectedItemTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectedItemTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.selectedItemTableLayoutPanel.Name = "selectedItemTableLayoutPanel";
             this.selectedItemTableLayoutPanel.RowCount = 6;
             this.selectedItemTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73F));
@@ -209,7 +209,7 @@
             this.idCostTableLayoutPanel.Controls.Add(this.categoryLabel, 0, 2);
             this.idCostTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.idCostTableLayoutPanel.Location = new System.Drawing.Point(2, 2);
-            this.idCostTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.idCostTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
             this.idCostTableLayoutPanel.Name = "idCostTableLayoutPanel";
             this.idCostTableLayoutPanel.RowCount = 3;
             this.idCostTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
@@ -222,7 +222,7 @@
             // 
             this.costTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.costTextBox.Location = new System.Drawing.Point(56, 25);
-            this.costTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.costTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.costTextBox.MaximumSize = new System.Drawing.Size(114, 22);
             this.costTextBox.MinimumSize = new System.Drawing.Size(38, 4);
             this.costTextBox.Name = "costTextBox";
@@ -246,7 +246,7 @@
             // 
             this.idTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.idTextBox.Location = new System.Drawing.Point(56, 2);
-            this.idTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.idTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.idTextBox.MaximumSize = new System.Drawing.Size(114, 22);
             this.idTextBox.MinimumSize = new System.Drawing.Size(38, 22);
             this.idTextBox.Name = "idTextBox";
@@ -271,7 +271,7 @@
             this.categoryComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Location = new System.Drawing.Point(56, 48);
-            this.categoryComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.categoryComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.categoryComboBox.MaximumSize = new System.Drawing.Size(114, 0);
             this.categoryComboBox.MinimumSize = new System.Drawing.Size(38, 0);
             this.categoryComboBox.Name = "categoryComboBox";
@@ -294,7 +294,7 @@
             // 
             this.nameTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nameTextBox.Location = new System.Drawing.Point(2, 90);
-            this.nameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.nameTextBox.Multiline = true;
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(284, 45);
@@ -305,7 +305,7 @@
             // 
             this.descriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.descriptionTextBox.Location = new System.Drawing.Point(2, 155);
-            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(284, 156);
@@ -317,7 +317,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.itemsTableLayoutPanel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ItemsTab";
             this.Size = new System.Drawing.Size(480, 390);
             this.itemsTableLayoutPanel.ResumeLayout(false);
