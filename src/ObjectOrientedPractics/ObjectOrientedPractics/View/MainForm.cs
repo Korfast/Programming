@@ -52,7 +52,7 @@ namespace ObjectOrientedPractics.View
             // Индекс 2 соответствует вкладке CartsTab (если порядок: Items, Customers, Carts)
             if (mainTabControl.SelectedIndex == 2)
             {
-                ///cartsTab.RefreshData();
+                cartsTab.RefreshData();
             }
 
             // Если вы добавили OrdersTab (индекс 3), раскомментируйте:

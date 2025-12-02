@@ -54,6 +54,7 @@
             this.mainTabControl.SelectedIndex = 0;
             this.mainTabControl.Size = new System.Drawing.Size(466, 352);
             this.mainTabControl.TabIndex = 0;
+            this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
             // itemsTabPage
             // 
@@ -71,7 +72,7 @@
             // 
             this.itemsTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.itemsTab.Location = new System.Drawing.Point(2, 2);
-            this.itemsTab.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.itemsTab.Margin = new System.Windows.Forms.Padding(2);
             this.itemsTab.Name = "itemsTab";
             this.itemsTab.Size = new System.Drawing.Size(454, 322);
             this.itemsTab.TabIndex = 0;

@@ -39,12 +39,12 @@
             this.cartLabel = new System.Windows.Forms.Label();
             this.customerTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.customerLabel = new System.Windows.Forms.Label();
-            this.customerComboBox = new System.Windows.Forms.ComboBox();
-            this.cartListBox = new System.Windows.Forms.ListBox();
+            this.customersComboBox = new System.Windows.Forms.ComboBox();
+            this.cartsListBox = new System.Windows.Forms.ListBox();
             this.amountFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.amountLabel = new System.Windows.Forms.Label();
             this.costLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.addToCartButton = new System.Windows.Forms.Button();
             this.cartsTabTableLayoutPanel.SuspendLayout();
             this.customerCartTableLayoutPanel.SuspendLayout();
             this.buttomsTableLayoutPanel.SuspendLayout();
@@ -60,7 +60,7 @@
             this.cartsTabTableLayoutPanel.Controls.Add(this.itemsListBox, 0, 1);
             this.cartsTabTableLayoutPanel.Controls.Add(this.itemsLabel, 0, 0);
             this.cartsTabTableLayoutPanel.Controls.Add(this.customerCartTableLayoutPanel, 1, 1);
-            this.cartsTabTableLayoutPanel.Controls.Add(this.button1, 0, 3);
+            this.cartsTabTableLayoutPanel.Controls.Add(this.addToCartButton, 0, 3);
             this.cartsTabTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cartsTabTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.cartsTabTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
@@ -102,7 +102,7 @@
             this.customerCartTableLayoutPanel.Controls.Add(this.buttomsTableLayoutPanel, 0, 4);
             this.customerCartTableLayoutPanel.Controls.Add(this.cartLabel, 0, 1);
             this.customerCartTableLayoutPanel.Controls.Add(this.customerTableLayoutPanel, 0, 0);
-            this.customerCartTableLayoutPanel.Controls.Add(this.cartListBox, 0, 2);
+            this.customerCartTableLayoutPanel.Controls.Add(this.cartsListBox, 0, 2);
             this.customerCartTableLayoutPanel.Controls.Add(this.amountFlowLayoutPanel, 0, 3);
             this.customerCartTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customerCartTableLayoutPanel.Location = new System.Drawing.Point(190, 18);
@@ -139,33 +139,36 @@
             // 
             // removeItemButton
             // 
-            this.removeItemButton.Location = new System.Drawing.Point(128, 2);
+            this.removeItemButton.Location = new System.Drawing.Point(118, 2);
             this.removeItemButton.Margin = new System.Windows.Forms.Padding(2);
             this.removeItemButton.Name = "removeItemButton";
-            this.removeItemButton.Size = new System.Drawing.Size(75, 28);
+            this.removeItemButton.Size = new System.Drawing.Size(80, 29);
             this.removeItemButton.TabIndex = 1;
             this.removeItemButton.Text = "Remove Item";
             this.removeItemButton.UseVisualStyleBackColor = true;
+            this.removeItemButton.Click += new System.EventHandler(this.RemoveItemButton_Click);
             // 
             // clearCartButton
             // 
-            this.clearCartButton.Location = new System.Drawing.Point(207, 2);
+            this.clearCartButton.Location = new System.Drawing.Point(202, 2);
             this.clearCartButton.Margin = new System.Windows.Forms.Padding(2);
             this.clearCartButton.Name = "clearCartButton";
-            this.clearCartButton.Size = new System.Drawing.Size(75, 28);
+            this.clearCartButton.Size = new System.Drawing.Size(80, 29);
             this.clearCartButton.TabIndex = 2;
             this.clearCartButton.Text = "Clear Cart";
             this.clearCartButton.UseVisualStyleBackColor = true;
+            this.clearCartButton.Click += new System.EventHandler(this.ClearCartButton_Click);
             // 
             // createOrderButton
             // 
             this.createOrderButton.Location = new System.Drawing.Point(2, 2);
             this.createOrderButton.Margin = new System.Windows.Forms.Padding(2);
             this.createOrderButton.Name = "createOrderButton";
-            this.createOrderButton.Size = new System.Drawing.Size(75, 28);
+            this.createOrderButton.Size = new System.Drawing.Size(80, 29);
             this.createOrderButton.TabIndex = 0;
             this.createOrderButton.Text = "Create Order";
             this.createOrderButton.UseVisualStyleBackColor = true;
+            this.createOrderButton.Click += new System.EventHandler(this.CreateOrderButton_Click);
             // 
             // cartLabel
             // 
@@ -183,7 +186,7 @@
             this.customerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.customerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.customerTableLayoutPanel.Controls.Add(this.customerLabel, 0, 0);
-            this.customerTableLayoutPanel.Controls.Add(this.customerComboBox, 1, 0);
+            this.customerTableLayoutPanel.Controls.Add(this.customersComboBox, 1, 0);
             this.customerTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customerTableLayoutPanel.Location = new System.Drawing.Point(2, 2);
             this.customerTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
@@ -204,25 +207,26 @@
             this.customerLabel.TabIndex = 2;
             this.customerLabel.Text = "Customer:";
             // 
-            // customerComboBox
+            // customersComboBox
             // 
-            this.customerComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customerComboBox.FormattingEnabled = true;
-            this.customerComboBox.Location = new System.Drawing.Point(69, 2);
-            this.customerComboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.customerComboBox.Name = "customerComboBox";
-            this.customerComboBox.Size = new System.Drawing.Size(213, 21);
-            this.customerComboBox.TabIndex = 3;
+            this.customersComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customersComboBox.FormattingEnabled = true;
+            this.customersComboBox.Location = new System.Drawing.Point(69, 2);
+            this.customersComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.customersComboBox.Name = "customersComboBox";
+            this.customersComboBox.Size = new System.Drawing.Size(213, 21);
+            this.customersComboBox.TabIndex = 3;
+            this.customersComboBox.SelectedIndexChanged += new System.EventHandler(this.CustomersComboBox_SelectedIndexChanged);
             // 
-            // cartListBox
+            // cartsListBox
             // 
-            this.cartListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cartListBox.FormattingEnabled = true;
-            this.cartListBox.Location = new System.Drawing.Point(2, 47);
-            this.cartListBox.Margin = new System.Windows.Forms.Padding(2);
-            this.cartListBox.Name = "cartListBox";
-            this.cartListBox.Size = new System.Drawing.Size(284, 106);
-            this.cartListBox.TabIndex = 5;
+            this.cartsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cartsListBox.FormattingEnabled = true;
+            this.cartsListBox.Location = new System.Drawing.Point(2, 47);
+            this.cartsListBox.Margin = new System.Windows.Forms.Padding(2);
+            this.cartsListBox.Name = "cartsListBox";
+            this.cartsListBox.Size = new System.Drawing.Size(284, 106);
+            this.cartsListBox.TabIndex = 5;
             // 
             // amountFlowLayoutPanel
             // 
@@ -259,15 +263,16 @@
             this.costLabel.Size = new System.Drawing.Size(0, 20);
             this.costLabel.TabIndex = 1;
             // 
-            // button1
+            // addToCartButton
             // 
-            this.button1.Location = new System.Drawing.Point(2, 360);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 28);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Add To Cart";
-            this.button1.UseVisualStyleBackColor = true;
+            this.addToCartButton.Location = new System.Drawing.Point(2, 360);
+            this.addToCartButton.Margin = new System.Windows.Forms.Padding(2);
+            this.addToCartButton.Name = "addToCartButton";
+            this.addToCartButton.Size = new System.Drawing.Size(75, 28);
+            this.addToCartButton.TabIndex = 3;
+            this.addToCartButton.Text = "Add To Cart";
+            this.addToCartButton.UseVisualStyleBackColor = true;
+            this.addToCartButton.Click += new System.EventHandler(this.AddToCartButton_Click);
             // 
             // CartsTab
             // 
@@ -303,11 +308,11 @@
         private System.Windows.Forms.Label cartLabel;
         private System.Windows.Forms.TableLayoutPanel customerTableLayoutPanel;
         private System.Windows.Forms.Label customerLabel;
-        private System.Windows.Forms.ComboBox customerComboBox;
-        private System.Windows.Forms.ListBox cartListBox;
+        private System.Windows.Forms.ComboBox customersComboBox;
+        private System.Windows.Forms.ListBox cartsListBox;
         private System.Windows.Forms.FlowLayoutPanel amountFlowLayoutPanel;
         private System.Windows.Forms.Label amountLabel;
         private System.Windows.Forms.Label costLabel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button addToCartButton;
     }
 }

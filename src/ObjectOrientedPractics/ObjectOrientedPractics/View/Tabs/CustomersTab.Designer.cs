@@ -34,6 +34,7 @@
             this.fullNameLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.idLabel = new System.Windows.Forms.Label();
+            this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.buttonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.addButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.customersListBox = new System.Windows.Forms.ListBox();
             this.selectedCustomerLabel = new System.Windows.Forms.Label();
             this.selectedCustomerPanel = new System.Windows.Forms.Panel();
-            this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.customersTableLayoutPanel.SuspendLayout();
             this.selectedCustomerTableLayoutPanel.SuspendLayout();
             this.buttonsTableLayoutPanel.SuspendLayout();
@@ -136,6 +136,15 @@
             this.idLabel.Text = "ID:";
             this.idLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // addressControl
+            // 
+            this.selectedCustomerTableLayoutPanel.SetColumnSpan(this.addressControl, 2);
+            this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addressControl.Location = new System.Drawing.Point(3, 49);
+            this.addressControl.Name = "addressControl";
+            this.addressControl.Size = new System.Drawing.Size(282, 108);
+            this.addressControl.TabIndex = 5;
+            // 
             // buttonsTableLayoutPanel
             // 
             this.buttonsTableLayoutPanel.ColumnCount = 3;
@@ -224,15 +233,6 @@
             this.selectedCustomerPanel.Size = new System.Drawing.Size(288, 206);
             this.selectedCustomerPanel.TabIndex = 9;
             // 
-            // addressControl
-            // 
-            this.selectedCustomerTableLayoutPanel.SetColumnSpan(this.addressControl, 2);
-            this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressControl.Location = new System.Drawing.Point(3, 49);
-            this.addressControl.Name = "addressControl";
-            this.addressControl.Size = new System.Drawing.Size(282, 108);
-            this.addressControl.TabIndex = 5;
-            // 
             // CustomersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +265,6 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Panel selectedCustomerPanel;
-        private Controls.AddressControl addressControl;
+        private ObjectOrientedPractics.View.Controls.AddressControl addressControl;
     }
 }
