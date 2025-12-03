@@ -166,6 +166,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     _currentItem = null;
                     idTextBox.Text = "";
                     costTextBox.Text = "";
+                    categoryComboBox.SelectedIndex = -1;
                     nameTextBox.Text = "";
                     descriptionTextBox.Text = "";
 
@@ -248,6 +249,10 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentItem = _items[itemsListBox.SelectedIndex];
                 UpdateItemFiledsTextBoxes();
+            }
+            else
+            {
+                categoryComboBox.SelectedIndex = -1;
             }
         }
 

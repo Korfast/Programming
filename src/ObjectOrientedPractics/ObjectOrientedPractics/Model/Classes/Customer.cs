@@ -149,7 +149,7 @@ namespace ObjectOrientedPractics.Model
         public Customer(string fullname, Address address)
         {
             // Уникальный Id покупателя
-            _id = ++_counter;
+            _id = _counter++;
             Fullname = fullname;
             Address = address;
             Cart = new Cart();
@@ -162,7 +162,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Customer()
         {
-            _id = ++_counter;
+            _id = _counter++;
             Fullname = string.Empty;
             Address = new Address();
             Cart = new Cart();

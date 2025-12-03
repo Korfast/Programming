@@ -56,8 +56,8 @@
             // ordersTableLayoutPanel
             // 
             this.ordersTableLayoutPanel.ColumnCount = 2;
-            this.ordersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.41667F));
-            this.ordersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.58333F));
+            this.ordersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.ordersTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.ordersTableLayoutPanel.Controls.Add(this.selectedOrderLabel, 1, 0);
             this.ordersTableLayoutPanel.Controls.Add(this.ordersLabel, 0, 0);
             this.ordersTableLayoutPanel.Controls.Add(this.selectedOrderTableLayoutPanel, 1, 1);
@@ -69,8 +69,8 @@
             this.ordersTableLayoutPanel.Name = "ordersTableLayoutPanel";
             this.ordersTableLayoutPanel.RowCount = 4;
             this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 87F));
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 141F));
             this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ordersTableLayoutPanel.Size = new System.Drawing.Size(640, 480);
             this.ordersTableLayoutPanel.TabIndex = 0;
@@ -79,7 +79,7 @@
             // 
             this.selectedOrderLabel.AutoSize = true;
             this.selectedOrderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selectedOrderLabel.Location = new System.Drawing.Point(261, 0);
+            this.selectedOrderLabel.Location = new System.Drawing.Point(323, 0);
             this.selectedOrderLabel.Name = "selectedOrderLabel";
             this.selectedOrderLabel.Size = new System.Drawing.Size(112, 16);
             this.selectedOrderLabel.TabIndex = 1;
@@ -98,7 +98,7 @@
             // selectedOrderTableLayoutPanel
             // 
             this.selectedOrderTableLayoutPanel.ColumnCount = 2;
-            this.selectedOrderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.selectedOrderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.selectedOrderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.selectedOrderTableLayoutPanel.Controls.Add(this.statusComboBox, 1, 2);
             this.selectedOrderTableLayoutPanel.Controls.Add(this.statusLabel, 0, 2);
@@ -107,20 +107,20 @@
             this.selectedOrderTableLayoutPanel.Controls.Add(this.idTextBox, 1, 0);
             this.selectedOrderTableLayoutPanel.Controls.Add(this.idLabel, 0, 0);
             this.selectedOrderTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectedOrderTableLayoutPanel.Location = new System.Drawing.Point(261, 23);
+            this.selectedOrderTableLayoutPanel.Location = new System.Drawing.Point(323, 23);
             this.selectedOrderTableLayoutPanel.Name = "selectedOrderTableLayoutPanel";
             this.selectedOrderTableLayoutPanel.RowCount = 3;
             this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.selectedOrderTableLayoutPanel.Size = new System.Drawing.Size(376, 81);
+            this.selectedOrderTableLayoutPanel.Size = new System.Drawing.Size(314, 94);
             this.selectedOrderTableLayoutPanel.TabIndex = 2;
             // 
             // statusComboBox
             // 
             this.statusComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusComboBox.FormattingEnabled = true;
-            this.statusComboBox.Location = new System.Drawing.Point(67, 54);
+            this.statusComboBox.Location = new System.Drawing.Point(92, 54);
             this.statusComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.statusComboBox.MaximumSize = new System.Drawing.Size(151, 0);
             this.statusComboBox.MinimumSize = new System.Drawing.Size(49, 0);
@@ -132,10 +132,11 @@
             // statusLabel
             // 
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.statusLabel.Location = new System.Drawing.Point(3, 52);
+            this.statusLabel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.statusLabel.Location = new System.Drawing.Point(3, 57);
+            this.statusLabel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(47, 29);
+            this.statusLabel.Size = new System.Drawing.Size(47, 16);
             this.statusLabel.TabIndex = 6;
             this.statusLabel.Text = "Status:";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -143,7 +144,7 @@
             // createdTextBox
             // 
             this.createdTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.createdTextBox.Location = new System.Drawing.Point(67, 28);
+            this.createdTextBox.Location = new System.Drawing.Point(92, 28);
             this.createdTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.createdTextBox.MaximumSize = new System.Drawing.Size(151, 22);
             this.createdTextBox.MinimumSize = new System.Drawing.Size(49, 4);
@@ -165,7 +166,7 @@
             // idTextBox
             // 
             this.idTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.idTextBox.Location = new System.Drawing.Point(67, 2);
+            this.idTextBox.Location = new System.Drawing.Point(92, 2);
             this.idTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.idTextBox.MaximumSize = new System.Drawing.Size(151, 22);
             this.idTextBox.MinimumSize = new System.Drawing.Size(49, 22);
@@ -195,14 +196,14 @@
             this.orderTableLayoutPanel.Controls.Add(this.orderItems, 0, 0);
             this.orderTableLayoutPanel.Controls.Add(this.ordeItemsistBox, 0, 1);
             this.orderTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orderTableLayoutPanel.Location = new System.Drawing.Point(261, 250);
+            this.orderTableLayoutPanel.Location = new System.Drawing.Point(323, 264);
             this.orderTableLayoutPanel.Name = "orderTableLayoutPanel";
             this.orderTableLayoutPanel.RowCount = 4;
             this.orderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.orderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 160F));
             this.orderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.orderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.orderTableLayoutPanel.Size = new System.Drawing.Size(376, 227);
+            this.orderTableLayoutPanel.Size = new System.Drawing.Size(314, 213);
             this.orderTableLayoutPanel.TabIndex = 4;
             // 
             // amountFlowLayoutPanel
@@ -212,7 +213,7 @@
             this.amountFlowLayoutPanel.Controls.Add(this.costLabel);
             this.amountFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.amountFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.amountFlowLayoutPanel.Location = new System.Drawing.Point(305, 182);
+            this.amountFlowLayoutPanel.Location = new System.Drawing.Point(243, 182);
             this.amountFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.amountFlowLayoutPanel.Name = "amountFlowLayoutPanel";
             this.amountFlowLayoutPanel.Size = new System.Drawing.Size(68, 41);
@@ -256,7 +257,7 @@
             this.ordeItemsistBox.ItemHeight = 16;
             this.ordeItemsistBox.Location = new System.Drawing.Point(3, 23);
             this.ordeItemsistBox.Name = "ordeItemsistBox";
-            this.ordeItemsistBox.Size = new System.Drawing.Size(370, 154);
+            this.ordeItemsistBox.Size = new System.Drawing.Size(308, 154);
             this.ordeItemsistBox.TabIndex = 13;
             // 
             // ordersDataGridView
@@ -268,17 +269,17 @@
             this.ordersDataGridView.RowHeadersWidth = 51;
             this.ordersTableLayoutPanel.SetRowSpan(this.ordersDataGridView, 3);
             this.ordersDataGridView.RowTemplate.Height = 24;
-            this.ordersDataGridView.Size = new System.Drawing.Size(252, 454);
+            this.ordersDataGridView.Size = new System.Drawing.Size(314, 454);
             this.ordersDataGridView.TabIndex = 5;
             this.ordersDataGridView.SelectionChanged += new System.EventHandler(this.ordersDataGridView_SelectionChanged);
             // 
             // addressControl
             // 
             this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressControl.Location = new System.Drawing.Point(262, 111);
+            this.addressControl.Location = new System.Drawing.Point(324, 124);
             this.addressControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addressControl.Name = "addressControl";
-            this.addressControl.Size = new System.Drawing.Size(374, 132);
+            this.addressControl.Size = new System.Drawing.Size(312, 133);
             this.addressControl.TabIndex = 3;
             // 
             // OrdersTab

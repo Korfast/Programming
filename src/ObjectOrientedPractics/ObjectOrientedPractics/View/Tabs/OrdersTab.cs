@@ -51,13 +51,12 @@ namespace ObjectOrientedPractics.View.Tabs
             // Настройка таблицы
             SetupDataGridView();
 
-            // Блокируем AddressControl для редактирования (по ТЗ данные только для чтения)
-            addressControl.Enabled = false;
+            // Блокируем AddressControl для редактирования 
+            addressControl.ReadOnly = true;
         }
 
         private void SetupDataGridView()
         {
-            // Используем новое имя ordersDataGridView
             ordersDataGridView.Columns.Clear();
             ordersDataGridView.Columns.Add("IdColumn", "Id");
             ordersDataGridView.Columns.Add("CreatedColumn", "Created");
@@ -67,9 +66,14 @@ namespace ObjectOrientedPractics.View.Tabs
             ordersDataGridView.Columns.Add("AmountColumn", "Amount");
 
             // Настройки поведения таблицы
-            ordersDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Выделять всю строку
-            ordersDataGridView.MultiSelect = false; // Только одна строка
-            ordersDataGridView.ReadOnly = true; // Запрет редактирования ячеек
+            // Выделять всю строку
+            ordersDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            // Только одна строка
+            ordersDataGridView.MultiSelect = false;
+            // Запрет редактирования ячеек
+            ordersDataGridView.ReadOnly = true;
+            // Скрываем уродливый первый столбец заголовков строк                                    
+            ordersDataGridView.RowHeadersVisible = false;
         }
 
         /// <summary>

@@ -69,15 +69,13 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateItemsListBox();
             UpdateCustomersComboBox();
 
-            if (_currentCustomer != null)
-            {
-                UpdateCartListBox();
-            }
-            else
-            {
-                cartsListBox.Items.Clear();
-                costLabel.Text = "0,00";
-            }
+            // Всегда сбрасываем выбор, чтобы избежать ошибок рассинхронизации
+            customersComboBox.SelectedIndex = -1;
+            _currentCustomer = null;
+
+            // Очищаем корзину и цену
+            cartsListBox.Items.Clear();
+            costLabel.Text = "0,00";
         }
 
         private void UpdateItemsListBox()

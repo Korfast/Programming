@@ -51,6 +51,26 @@ namespace ObjectOrientedPractics.View.Controls
         }
 
         /// <summary>
+        /// Возвращает или задает значение, указывающее, доступен ли элемент управления только для чтения.
+        /// </summary>
+        public bool ReadOnly
+        {
+            get
+            {
+                return postIndexTextBox.ReadOnly;
+            }
+            set
+            {
+                postIndexTextBox.ReadOnly = value;
+                countryTextBox.ReadOnly = value;
+                cityTextBox.ReadOnly = value;
+                streetTextBox.ReadOnly = value;
+                buildingTextBox.ReadOnly = value;
+                apartmentTextBox.ReadOnly = value;
+            }
+        }
+
+        /// <summary>
         /// Обновляет текстовые поля формы 
         /// текущими свойствами выбранного адреса.
         /// </summary>
@@ -93,22 +113,39 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
         {
-            string text = postIndexTextBox.Text;
+            // Если поле пустое, мы не считаем это ошибкой валидации сейчас
+            // (или считаем, но не красим в красный)
+            if (string.IsNullOrWhiteSpace(postIndexTextBox.Text))
+            {
+                postIndexTextBox.BackColor = SystemColors.Window;
+                return;
+            }
+
             try
             {
-                // Попытка преобразовать и присвоить
-                _address.Index = int.Parse(text);
+                // Пытаемся присвоить
+                // (тут может упасть int.Parse или сеттер свойства Index)
+                _address.Index = int.Parse(postIndexTextBox.Text);
+                // Если всё прошло успешно — убираем ошибку
                 ClearValidationError(postIndexTextBox);
             }
             catch (Exception ex)
             {
-                // Если выбросилось исключение, подсветить поле и показать ошибку
+                // Показываем сообщение из исключения (ex.Message)
                 ShowValidationError(postIndexTextBox, ex.Message);
             }
         }
 
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_address == null) return;
+
+            if (string.IsNullOrWhiteSpace(countryTextBox.Text))
+            {
+                ClearValidationError(countryTextBox);
+                return;
+            }
+
             try
             {
                 _address.Country = countryTextBox.Text;
@@ -122,6 +159,14 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_address == null) return;
+
+            if (string.IsNullOrWhiteSpace(cityTextBox.Text))
+            {
+                ClearValidationError(cityTextBox);
+                return;
+            }
+
             try
             {
                 _address.City = cityTextBox.Text;
@@ -135,6 +180,14 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_address == null) return;
+
+            if (string.IsNullOrWhiteSpace(streetTextBox.Text))
+            {
+                ClearValidationError(streetTextBox);
+                return;
+            }
+
             try
             {
                 _address.Street = streetTextBox.Text;
@@ -148,6 +201,14 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_address == null) return;
+
+            if (string.IsNullOrWhiteSpace(buildingTextBox.Text))
+            {
+                ClearValidationError(buildingTextBox);
+                return;
+            }
+
             try
             {
                 _address.Building = buildingTextBox.Text;
@@ -161,6 +222,14 @@ namespace ObjectOrientedPractics.View.Controls
 
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_address == null) return;
+
+            if (string.IsNullOrWhiteSpace(apartmentTextBox.Text))
+            {
+                ClearValidationError(apartmentTextBox);
+                return;
+            }
+
             try
             {
                 _address.Apartment = apartmentTextBox.Text;
