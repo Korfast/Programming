@@ -37,6 +37,9 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         private double _cost;
 
+        /// <summary>
+        /// Поле для хранения категории товара.
+        /// </summary>
         private Category _category;
 
         /// <summary>
@@ -85,6 +88,9 @@ namespace ObjectOrientedPractics.Model
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт категорию товара.
+        /// </summary>
         public Category Category
         {
             get { return _category; }

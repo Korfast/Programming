@@ -48,10 +48,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public int Id
         {
-            get
-            {
-                return _id;
-            }
+            get { return _id; }
         }
 
         /// <summary>
@@ -60,13 +57,11 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public string Fullname
         {
-            get
-            {
-                return _fullname;
-            }
+            get { return _fullname; }
             set
             {
-                ValueValidator.AssertStringOnLength(value, 200, nameof(Fullname));
+                ValueValidator.AssertStringOnLength
+                    (value, 200, nameof(Fullname));
                 _fullname = value;
             }
         }
@@ -76,10 +71,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Address Address
         {
-            get
-            {
-                return _address;
-            }
+            get  {return _address; }
             set
             {
                 // задаем новый Address, если null
@@ -99,10 +91,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Cart Cart
         {
-            get
-            {
-                return _cart;
-            }
+            get{ return _cart; }
             set
             {
                 // Корзина не может быть null
@@ -122,10 +111,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public List<Order> Orders
         {
-            get
-            {
-                return _orders;
-            }
+            get { return _orders;}
             set
             {
                 // Список заказов не может быть null

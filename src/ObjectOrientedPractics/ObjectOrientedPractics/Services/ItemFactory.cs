@@ -71,18 +71,6 @@ namespace ObjectOrientedPractics.Services
         };
 
         /// <summary>
-        /// Возвращает массив возможных названий товаров.
-        /// </summary>
-        public static string[] Names
-        { get { return _names; } }
-
-        /// <summary>
-        /// Возвращает массив возможных описаний товаров.
-        /// </summary>
-        public static string[] Infos
-        { get { return _infos; } }
-
-        /// <summary>
         /// Создает случайный товар с названием, информацией и ценой.
         /// </summary>
         /// <param name="lowerCostLimit">Нижняя граница цены 
