@@ -44,13 +44,13 @@
             this.costLabel = new System.Windows.Forms.Label();
             this.orderItems = new System.Windows.Forms.Label();
             this.ordeItemsistBox = new System.Windows.Forms.ListBox();
+            this.ordersDataGridView = new System.Windows.Forms.DataGridView();
             this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ordersTableLayoutPanel.SuspendLayout();
             this.selectedOrderTableLayoutPanel.SuspendLayout();
             this.orderTableLayoutPanel.SuspendLayout();
             this.amountFlowLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // ordersTableLayoutPanel
@@ -63,16 +63,15 @@
             this.ordersTableLayoutPanel.Controls.Add(this.selectedOrderTableLayoutPanel, 1, 1);
             this.ordersTableLayoutPanel.Controls.Add(this.addressControl, 1, 2);
             this.ordersTableLayoutPanel.Controls.Add(this.orderTableLayoutPanel, 1, 3);
-            this.ordersTableLayoutPanel.Controls.Add(this.dataGridView1, 0, 1);
+            this.ordersTableLayoutPanel.Controls.Add(this.ordersDataGridView, 0, 1);
             this.ordersTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ordersTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.ordersTableLayoutPanel.Name = "ordersTableLayoutPanel";
             this.ordersTableLayoutPanel.RowCount = 4;
             this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 185F));
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 87F));
+            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
+            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ordersTableLayoutPanel.Size = new System.Drawing.Size(640, 480);
             this.ordersTableLayoutPanel.TabIndex = 0;
             // 
@@ -114,7 +113,7 @@
             this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.selectedOrderTableLayoutPanel.Size = new System.Drawing.Size(376, 74);
+            this.selectedOrderTableLayoutPanel.Size = new System.Drawing.Size(376, 81);
             this.selectedOrderTableLayoutPanel.TabIndex = 2;
             // 
             // statusComboBox
@@ -128,6 +127,7 @@
             this.statusComboBox.Name = "statusComboBox";
             this.statusComboBox.Size = new System.Drawing.Size(151, 24);
             this.statusComboBox.TabIndex = 7;
+            this.statusComboBox.SelectedIndexChanged += new System.EventHandler(this.statusComboBox_SelectedIndexChanged);
             // 
             // statusLabel
             // 
@@ -135,7 +135,7 @@
             this.statusLabel.Dock = System.Windows.Forms.DockStyle.Left;
             this.statusLabel.Location = new System.Drawing.Point(3, 52);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(47, 28);
+            this.statusLabel.Size = new System.Drawing.Size(47, 29);
             this.statusLabel.TabIndex = 6;
             this.statusLabel.Text = "Status:";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -195,14 +195,14 @@
             this.orderTableLayoutPanel.Controls.Add(this.orderItems, 0, 0);
             this.orderTableLayoutPanel.Controls.Add(this.ordeItemsistBox, 0, 1);
             this.orderTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orderTableLayoutPanel.Location = new System.Drawing.Point(261, 298);
+            this.orderTableLayoutPanel.Location = new System.Drawing.Point(261, 250);
             this.orderTableLayoutPanel.Name = "orderTableLayoutPanel";
             this.orderTableLayoutPanel.RowCount = 4;
             this.orderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.orderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 160F));
             this.orderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.orderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.orderTableLayoutPanel.Size = new System.Drawing.Size(376, 179);
+            this.orderTableLayoutPanel.Size = new System.Drawing.Size(376, 227);
             this.orderTableLayoutPanel.TabIndex = 4;
             // 
             // amountFlowLayoutPanel
@@ -259,26 +259,27 @@
             this.ordeItemsistBox.Size = new System.Drawing.Size(370, 154);
             this.ordeItemsistBox.TabIndex = 13;
             // 
+            // ordersDataGridView
+            // 
+            this.ordersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ordersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ordersDataGridView.Location = new System.Drawing.Point(3, 23);
+            this.ordersDataGridView.Name = "ordersDataGridView";
+            this.ordersDataGridView.RowHeadersWidth = 51;
+            this.ordersTableLayoutPanel.SetRowSpan(this.ordersDataGridView, 3);
+            this.ordersDataGridView.RowTemplate.Height = 24;
+            this.ordersDataGridView.Size = new System.Drawing.Size(252, 454);
+            this.ordersDataGridView.TabIndex = 5;
+            this.ordersDataGridView.SelectionChanged += new System.EventHandler(this.ordersDataGridView_SelectionChanged);
+            // 
             // addressControl
             // 
             this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressControl.Location = new System.Drawing.Point(262, 104);
+            this.addressControl.Location = new System.Drawing.Point(262, 111);
             this.addressControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addressControl.Name = "addressControl";
-            this.addressControl.Size = new System.Drawing.Size(374, 187);
+            this.addressControl.Size = new System.Drawing.Size(374, 132);
             this.addressControl.TabIndex = 3;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 23);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.ordersTableLayoutPanel.SetRowSpan(this.dataGridView1, 3);
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(252, 454);
-            this.dataGridView1.TabIndex = 5;
             // 
             // OrdersTab
             // 
@@ -295,7 +296,7 @@
             this.orderTableLayoutPanel.PerformLayout();
             this.amountFlowLayoutPanel.ResumeLayout(false);
             this.amountFlowLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -312,13 +313,13 @@
         private System.Windows.Forms.TextBox createdTextBox;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.ComboBox statusComboBox;
-        private Controls.AddressControl addressControl;
+        private ObjectOrientedPractics.View.Controls.AddressControl addressControl;
         private System.Windows.Forms.TableLayoutPanel orderTableLayoutPanel;
         private System.Windows.Forms.Label orderItems;
         private System.Windows.Forms.FlowLayoutPanel amountFlowLayoutPanel;
         private System.Windows.Forms.Label amountLabel;
         private System.Windows.Forms.Label costLabel;
         private System.Windows.Forms.ListBox ordeItemsistBox;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView ordersDataGridView;
     }
 }

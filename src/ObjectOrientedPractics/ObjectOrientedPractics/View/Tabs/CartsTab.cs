@@ -76,7 +76,6 @@ namespace ObjectOrientedPractics.View.Tabs
             else
             {
                 cartsListBox.Items.Clear();
-                // И ЗДЕСЬ ТОЖЕ ИСПРАВИТЬ:
                 costLabel.Text = "0,00";
             }
         }

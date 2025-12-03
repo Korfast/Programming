@@ -37,9 +37,7 @@ namespace ObjectOrientedPractics.View
             customersTab.Customers = _store.Customers;
             cartsTab.Items = _store.Items;
             cartsTab.Customers = _store.Customers;
-
-            // Если вы уже добавили OrdersTab (следующая часть задания), раскомментируйте:
-            // ordersTab1.Customers = _store.Customers;
+            ordersTab.Customers = _store.Customers;
         }
 
         /// <summary>
@@ -55,13 +53,11 @@ namespace ObjectOrientedPractics.View
                 cartsTab.RefreshData();
             }
 
-            // Если вы добавили OrdersTab (индекс 3), раскомментируйте:
-            /*
-            if (MainTabControl.SelectedIndex == 3)
+
+            if (mainTabControl.SelectedIndex == 3)
             {
-                ordersTab1.RefreshData();
+                ordersTab.RefreshData();
             }
-            */
         }
     }
 }
