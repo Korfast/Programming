@@ -90,11 +90,12 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                // Адрес не должен быть null, если пришло null - создаем пустой
+                // Адрес не должен быть null 
                 if (value == null)
                 {
                     _deliveryAddress = new Address();
                 }
+                // если пришло null - создаем пустой
                 else
                 {
                     _deliveryAddress = value;
@@ -162,7 +163,8 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Конструктор без параметров (для сериализации или создания пустого заказа).
+        /// Конструктор без параметров 
+        /// (для сериализации или создания пустого заказа).
         /// </summary>
         public Order()
         {

@@ -11,17 +11,17 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public enum Category
     {
-        Electronics,
-        Clothing,
-        Grocery,
-        HomeGoods,
-        Books,
-        Sports,
-        Toys,
         Automotive,
         BeautyHealth,
+        Books,
+        Clothing,
+        Construction,
+        Electronics,
         Entertainment,
+        Grocery,
+        HomeGoods,
+        Sports,
         Tools,
-        Construction
+        Toys
     }
 }

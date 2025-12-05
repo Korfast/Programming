@@ -134,20 +134,6 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
-        /// Конструктор по умолчанию. 
-        /// Создаёт экзэмпляр класса<see cref="Address"/>.
-        /// </summary>
-        public Address()
-        {
-            Index = 999999;
-            Country = string.Empty;
-            City = string.Empty;
-            Street = string.Empty;
-            Building = string.Empty;
-            Apartment = string.Empty;
-        }
-
-        /// <summary>
         /// Конструктор с параметрами для инициализации всех свойств.
         /// </summary>
         /// <param name="index">Почтовый индекс (6-значное число).</param>
@@ -167,6 +153,20 @@ namespace ObjectOrientedPractics.Model
             Street = street;
             Building = building;
             Apartment = apartment;
+        }
+
+        /// <summary>
+        /// Конструктор по умолчанию. 
+        /// Создаёт экзэмпляр класса<see cref="Address"/>.
+        /// </summary>
+        public Address()
+        {
+            Index = 999999;
+            Country = string.Empty;
+            City = string.Empty;
+            Street = string.Empty;
+            Building = string.Empty;
+            Apartment = string.Empty;
         }
     }
 }

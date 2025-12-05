@@ -11,19 +11,39 @@ namespace ObjectOrientedPractics.Model
     /// </summary>
     public enum OrderStatus
     {
-        // Новый заказ
+        /// <summary>
+        /// Новый заказ.
+        /// </summary>
         New,
-        // Обрабатывается
+
+        /// <summary>
+        /// Заказ обрабатывается.
+        /// </summary>
         Processing,
-        // Собирается на складе
+
+        /// <summary>
+        /// Заказ собирается на складе.
+        /// </summary>
         Assembly,
-        // Отправлен
+
+        /// <summary>
+        /// Заказ отправлен.
+        /// </summary>
         Sent,
-        // Доставлен
+
+        /// <summary>
+        /// Заказ доставлен.
+        /// </summary>
         Delivered,
-        // Возврат
+
+        /// <summary>
+        /// Возврат заказа.
+        /// </summary>
         Returned,
-        // Отменен (со стороны магазина)
+
+        /// <summary>
+        /// Заказ отменен.
+        /// </summary>
         Abandoned
     }
 }
