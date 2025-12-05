@@ -19,9 +19,6 @@ namespace ObjectOrientedPractics.View.Tabs
     /// </summary>
     public partial class ItemsTab : UserControl
     {
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-
         /// <summary>
         /// Список всех товаров.
         /// </summary>
@@ -31,6 +28,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// Текущий выбранный товар.
         /// </summary>
         private Item _currentItem;
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 
         /// <summary>
         /// Возвращает и задаёт список товаров.

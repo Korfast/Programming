@@ -8,16 +8,10 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CartsTab : UserControl
     {
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-
         /// <summary>
         /// Список доступных товаров (ссылка на Store.Items).
         /// </summary>
         private List<Item> _items;
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 
         /// <summary>
         /// Список всех покупателей (ссылка на Store.Customers).
@@ -34,6 +28,9 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
         }
 
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
         /// <summary>
         /// Возвращает и задает список товаров.
         /// </summary>
@@ -46,6 +43,9 @@ namespace ObjectOrientedPractics.View.Tabs
                 if (_items != null) UpdateItemsListBox();
             }
         }
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 
         /// <summary>
         /// Возвращает и задает список покупателей.

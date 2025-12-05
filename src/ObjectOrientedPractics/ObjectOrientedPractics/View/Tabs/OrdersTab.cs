@@ -25,6 +25,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
         /// <summary>
         /// Возвращает и задает список покупателей.
         /// </summary>

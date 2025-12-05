@@ -32,7 +32,7 @@
             this.itemsListBox = new System.Windows.Forms.ListBox();
             this.itemsLabel = new System.Windows.Forms.Label();
             this.customerCartTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.buttomsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.removeItemButton = new System.Windows.Forms.Button();
             this.clearCartButton = new System.Windows.Forms.Button();
             this.createOrderButton = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@
             this.addToCartButton = new System.Windows.Forms.Button();
             this.cartsTabTableLayoutPanel.SuspendLayout();
             this.customerCartTableLayoutPanel.SuspendLayout();
-            this.buttomsTableLayoutPanel.SuspendLayout();
+            this.buttonsTableLayoutPanel.SuspendLayout();
             this.customerTableLayoutPanel.SuspendLayout();
             this.amountFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -99,7 +99,7 @@
             // 
             this.customerCartTableLayoutPanel.ColumnCount = 1;
             this.customerCartTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.customerCartTableLayoutPanel.Controls.Add(this.buttomsTableLayoutPanel, 0, 4);
+            this.customerCartTableLayoutPanel.Controls.Add(this.buttonsTableLayoutPanel, 0, 4);
             this.customerCartTableLayoutPanel.Controls.Add(this.cartLabel, 0, 1);
             this.customerCartTableLayoutPanel.Controls.Add(this.customerTableLayoutPanel, 0, 0);
             this.customerCartTableLayoutPanel.Controls.Add(this.cartsListBox, 0, 2);
@@ -119,23 +119,23 @@
             this.customerCartTableLayoutPanel.Size = new System.Drawing.Size(383, 418);
             this.customerCartTableLayoutPanel.TabIndex = 2;
             // 
-            // buttomsTableLayoutPanel
+            // buttonsTableLayoutPanel
             // 
-            this.buttomsTableLayoutPanel.ColumnCount = 3;
-            this.buttomsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.buttomsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.buttomsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.buttomsTableLayoutPanel.Controls.Add(this.removeItemButton, 1, 0);
-            this.buttomsTableLayoutPanel.Controls.Add(this.clearCartButton, 2, 0);
-            this.buttomsTableLayoutPanel.Controls.Add(this.createOrderButton, 0, 0);
-            this.buttomsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttomsTableLayoutPanel.Location = new System.Drawing.Point(3, 237);
-            this.buttomsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttomsTableLayoutPanel.Name = "buttomsTableLayoutPanel";
-            this.buttomsTableLayoutPanel.RowCount = 1;
-            this.buttomsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.buttomsTableLayoutPanel.Size = new System.Drawing.Size(377, 41);
-            this.buttomsTableLayoutPanel.TabIndex = 4;
+            this.buttonsTableLayoutPanel.ColumnCount = 3;
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.buttonsTableLayoutPanel.Controls.Add(this.removeItemButton, 1, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.clearCartButton, 2, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.createOrderButton, 0, 0);
+            this.buttonsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(3, 237);
+            this.buttonsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonsTableLayoutPanel.Name = "buttonsTableLayoutPanel";
+            this.buttonsTableLayoutPanel.RowCount = 1;
+            this.buttonsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.buttonsTableLayoutPanel.Size = new System.Drawing.Size(377, 41);
+            this.buttonsTableLayoutPanel.TabIndex = 4;
             // 
             // removeItemButton
             // 
@@ -284,7 +284,7 @@
             this.cartsTabTableLayoutPanel.PerformLayout();
             this.customerCartTableLayoutPanel.ResumeLayout(false);
             this.customerCartTableLayoutPanel.PerformLayout();
-            this.buttomsTableLayoutPanel.ResumeLayout(false);
+            this.buttonsTableLayoutPanel.ResumeLayout(false);
             this.customerTableLayoutPanel.ResumeLayout(false);
             this.customerTableLayoutPanel.PerformLayout();
             this.amountFlowLayoutPanel.ResumeLayout(false);
@@ -299,7 +299,7 @@
         private System.Windows.Forms.ListBox itemsListBox;
         private System.Windows.Forms.Label itemsLabel;
         private System.Windows.Forms.TableLayoutPanel customerCartTableLayoutPanel;
-        private System.Windows.Forms.TableLayoutPanel buttomsTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel buttonsTableLayoutPanel;
         private System.Windows.Forms.Button removeItemButton;
         private System.Windows.Forms.Button clearCartButton;
         private System.Windows.Forms.Button createOrderButton;

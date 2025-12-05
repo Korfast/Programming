@@ -14,8 +14,6 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CustomersTab : UserControl
     {
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         /// <summary>
         /// Список всех покупателей.
         /// </summary>
@@ -25,6 +23,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// Выбрнный покупатель.
         /// </summary>
         private Customer _currentCustomer;
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 
         /// <summary>
         /// Возвращает и задаёт список покупателей.
