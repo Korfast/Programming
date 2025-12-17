@@ -44,10 +44,12 @@ namespace ObjectOrientedPractics.View
         /// Обработчик события смены вкладки.
         /// Обновляет данные на вкладках, которым нужна актуальная информация.
         /// </summary>
-        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private void MainTabControl_SelectedIndexChanged
+            (object sender, EventArgs e)
         {
             // Проверяем, какая вкладка выбрана.
-            // Индекс 2 соответствует вкладке CartsTab (если порядок: Items, Customers, Carts)
+            // Индекс 2 соответствует вкладке CartsTab
+            // (порядок: Items, Customers, Carts)
             if (mainTabControl.SelectedIndex == 2)
             {
                 cartsTab.RefreshData();

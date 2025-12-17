@@ -32,8 +32,8 @@
             this.priorityOptionsLabel = new System.Windows.Forms.Label();
             this.buttonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.removeItemButton = new System.Windows.Forms.Button();
-            this.clearCartButton = new System.Windows.Forms.Button();
-            this.createOrderButton = new System.Windows.Forms.Button();
+            this.clearOrderButton = new System.Windows.Forms.Button();
+            this.addItemButton = new System.Windows.Forms.Button();
             this.selectedOrderLabel = new System.Windows.Forms.Label();
             this.selectedOrderTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.statusComboBox = new System.Windows.Forms.ComboBox();
@@ -44,20 +44,20 @@
             this.idLabel = new System.Windows.Forms.Label();
             this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.orderItemsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.amountFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.amountLabel = new System.Windows.Forms.Label();
+            this.costLabel = new System.Windows.Forms.Label();
             this.orderItems = new System.Windows.Forms.Label();
-            this.ordeItemsistBox = new System.Windows.Forms.ListBox();
+            this.orderItemsListBox = new System.Windows.Forms.ListBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.deliveryTimeLabel = new System.Windows.Forms.Label();
             this.deliveryTimeComboBox = new System.Windows.Forms.ComboBox();
-            this.costLabel = new System.Windows.Forms.Label();
-            this.amountLabel = new System.Windows.Forms.Label();
-            this.amountFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.ordersTableLayoutPanel.SuspendLayout();
             this.buttonsTableLayoutPanel.SuspendLayout();
             this.selectedOrderTableLayoutPanel.SuspendLayout();
             this.orderItemsTableLayoutPanel.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.amountFlowLayoutPanel.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ordersTableLayoutPanel
@@ -102,8 +102,8 @@
             this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.buttonsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.buttonsTableLayoutPanel.Controls.Add(this.removeItemButton, 1, 0);
-            this.buttonsTableLayoutPanel.Controls.Add(this.clearCartButton, 2, 0);
-            this.buttonsTableLayoutPanel.Controls.Add(this.createOrderButton, 0, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.clearOrderButton, 2, 0);
+            this.buttonsTableLayoutPanel.Controls.Add(this.addItemButton, 0, 0);
             this.buttonsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonsTableLayoutPanel.Location = new System.Drawing.Point(3, 438);
             this.buttonsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -122,26 +122,29 @@
             this.removeItemButton.TabIndex = 1;
             this.removeItemButton.Text = "Remove Item";
             this.removeItemButton.UseVisualStyleBackColor = true;
+            this.removeItemButton.Click += new System.EventHandler(this.RemoveItemButton_Click);
             // 
-            // clearCartButton
+            // clearOrderButton
             // 
-            this.clearCartButton.Location = new System.Drawing.Point(524, 2);
-            this.clearCartButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.clearCartButton.Name = "clearCartButton";
-            this.clearCartButton.Size = new System.Drawing.Size(107, 36);
-            this.clearCartButton.TabIndex = 2;
-            this.clearCartButton.Text = "Clear Cart";
-            this.clearCartButton.UseVisualStyleBackColor = true;
+            this.clearOrderButton.Location = new System.Drawing.Point(524, 2);
+            this.clearOrderButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.clearOrderButton.Name = "clearOrderButton";
+            this.clearOrderButton.Size = new System.Drawing.Size(107, 36);
+            this.clearOrderButton.TabIndex = 2;
+            this.clearOrderButton.Text = "Clear Order";
+            this.clearOrderButton.UseVisualStyleBackColor = true;
+            this.clearOrderButton.Click += new System.EventHandler(this.ClearOrderButton_Click);
             // 
-            // createOrderButton
+            // addItemButton
             // 
-            this.createOrderButton.Location = new System.Drawing.Point(3, 2);
-            this.createOrderButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.createOrderButton.Name = "createOrderButton";
-            this.createOrderButton.Size = new System.Drawing.Size(107, 36);
-            this.createOrderButton.TabIndex = 0;
-            this.createOrderButton.Text = "Create Order";
-            this.createOrderButton.UseVisualStyleBackColor = true;
+            this.addItemButton.Location = new System.Drawing.Point(3, 2);
+            this.addItemButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.addItemButton.Name = "addItemButton";
+            this.addItemButton.Size = new System.Drawing.Size(107, 36);
+            this.addItemButton.TabIndex = 0;
+            this.addItemButton.Text = "Add Item";
+            this.addItemButton.UseVisualStyleBackColor = true;
+            this.addItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
             // 
             // selectedOrderLabel
             // 
@@ -185,6 +188,7 @@
             this.statusComboBox.Name = "statusComboBox";
             this.statusComboBox.Size = new System.Drawing.Size(151, 24);
             this.statusComboBox.TabIndex = 7;
+            this.statusComboBox.SelectedIndexChanged += new System.EventHandler(this.StatusComboBox_SelectedIndexChanged);
             // 
             // statusLabel
             // 
@@ -206,6 +210,7 @@
             this.createdTextBox.MaximumSize = new System.Drawing.Size(151, 22);
             this.createdTextBox.MinimumSize = new System.Drawing.Size(49, 4);
             this.createdTextBox.Name = "createdTextBox";
+            this.createdTextBox.ReadOnly = true;
             this.createdTextBox.Size = new System.Drawing.Size(151, 22);
             this.createdTextBox.TabIndex = 5;
             // 
@@ -263,7 +268,7 @@
             this.orderItemsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.orderItemsTableLayoutPanel.Controls.Add(this.amountFlowLayoutPanel, 1, 2);
             this.orderItemsTableLayoutPanel.Controls.Add(this.orderItems, 0, 0);
-            this.orderItemsTableLayoutPanel.Controls.Add(this.ordeItemsistBox, 0, 1);
+            this.orderItemsTableLayoutPanel.Controls.Add(this.orderItemsListBox, 0, 1);
             this.orderItemsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.orderItemsTableLayoutPanel.Location = new System.Drawing.Point(3, 264);
             this.orderItemsTableLayoutPanel.Name = "orderItemsTableLayoutPanel";
@@ -273,6 +278,39 @@
             this.orderItemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.orderItemsTableLayoutPanel.Size = new System.Drawing.Size(634, 169);
             this.orderItemsTableLayoutPanel.TabIndex = 4;
+            // 
+            // amountFlowLayoutPanel
+            // 
+            this.amountFlowLayoutPanel.AutoSize = true;
+            this.amountFlowLayoutPanel.Controls.Add(this.amountLabel);
+            this.amountFlowLayoutPanel.Controls.Add(this.costLabel);
+            this.amountFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.amountFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.amountFlowLayoutPanel.Location = new System.Drawing.Point(563, 126);
+            this.amountFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.amountFlowLayoutPanel.Name = "amountFlowLayoutPanel";
+            this.amountFlowLayoutPanel.Size = new System.Drawing.Size(68, 41);
+            this.amountFlowLayoutPanel.TabIndex = 12;
+            // 
+            // amountLabel
+            // 
+            this.amountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.amountLabel.AutoSize = true;
+            this.amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.amountLabel.Location = new System.Drawing.Point(3, 0);
+            this.amountLabel.Name = "amountLabel";
+            this.amountLabel.Size = new System.Drawing.Size(62, 16);
+            this.amountLabel.TabIndex = 0;
+            this.amountLabel.Text = "Amount:";
+            // 
+            // costLabel
+            // 
+            this.costLabel.AutoSize = true;
+            this.costLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.costLabel.Location = new System.Drawing.Point(3, 16);
+            this.costLabel.Name = "costLabel";
+            this.costLabel.Size = new System.Drawing.Size(0, 25);
+            this.costLabel.TabIndex = 1;
             // 
             // orderItems
             // 
@@ -284,16 +322,16 @@
             this.orderItems.TabIndex = 1;
             this.orderItems.Text = "Order Items";
             // 
-            // ordeItemsistBox
+            // orderItemsListBox
             // 
-            this.orderItemsTableLayoutPanel.SetColumnSpan(this.ordeItemsistBox, 2);
-            this.ordeItemsistBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ordeItemsistBox.FormattingEnabled = true;
-            this.ordeItemsistBox.ItemHeight = 16;
-            this.ordeItemsistBox.Location = new System.Drawing.Point(3, 23);
-            this.ordeItemsistBox.Name = "ordeItemsistBox";
-            this.ordeItemsistBox.Size = new System.Drawing.Size(628, 98);
-            this.ordeItemsistBox.TabIndex = 13;
+            this.orderItemsTableLayoutPanel.SetColumnSpan(this.orderItemsListBox, 2);
+            this.orderItemsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.orderItemsListBox.FormattingEnabled = true;
+            this.orderItemsListBox.ItemHeight = 16;
+            this.orderItemsListBox.Location = new System.Drawing.Point(3, 23);
+            this.orderItemsListBox.Name = "orderItemsListBox";
+            this.orderItemsListBox.Size = new System.Drawing.Size(628, 98);
+            this.orderItemsListBox.TabIndex = 13;
             // 
             // flowLayoutPanel1
             // 
@@ -325,39 +363,7 @@
             this.deliveryTimeComboBox.Name = "deliveryTimeComboBox";
             this.deliveryTimeComboBox.Size = new System.Drawing.Size(151, 24);
             this.deliveryTimeComboBox.TabIndex = 8;
-            // 
-            // costLabel
-            // 
-            this.costLabel.AutoSize = true;
-            this.costLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.costLabel.Location = new System.Drawing.Point(3, 16);
-            this.costLabel.Name = "costLabel";
-            this.costLabel.Size = new System.Drawing.Size(0, 25);
-            this.costLabel.TabIndex = 1;
-            // 
-            // amountLabel
-            // 
-            this.amountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.amountLabel.AutoSize = true;
-            this.amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.amountLabel.Location = new System.Drawing.Point(3, 0);
-            this.amountLabel.Name = "amountLabel";
-            this.amountLabel.Size = new System.Drawing.Size(62, 16);
-            this.amountLabel.TabIndex = 0;
-            this.amountLabel.Text = "Amount:";
-            // 
-            // amountFlowLayoutPanel
-            // 
-            this.amountFlowLayoutPanel.AutoSize = true;
-            this.amountFlowLayoutPanel.Controls.Add(this.amountLabel);
-            this.amountFlowLayoutPanel.Controls.Add(this.costLabel);
-            this.amountFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.amountFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.amountFlowLayoutPanel.Location = new System.Drawing.Point(563, 126);
-            this.amountFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.amountFlowLayoutPanel.Name = "amountFlowLayoutPanel";
-            this.amountFlowLayoutPanel.Size = new System.Drawing.Size(68, 41);
-            this.amountFlowLayoutPanel.TabIndex = 12;
+            this.deliveryTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeliveryTimeComboBox_SelectedIndexChanged);
             // 
             // PriorityOrdersTab
             // 
@@ -373,10 +379,10 @@
             this.selectedOrderTableLayoutPanel.PerformLayout();
             this.orderItemsTableLayoutPanel.ResumeLayout(false);
             this.orderItemsTableLayoutPanel.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
             this.amountFlowLayoutPanel.ResumeLayout(false);
             this.amountFlowLayoutPanel.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -395,11 +401,11 @@
         private ObjectOrientedPractics.View.Controls.AddressControl addressControl;
         private System.Windows.Forms.TableLayoutPanel orderItemsTableLayoutPanel;
         private System.Windows.Forms.Label orderItems;
-        private System.Windows.Forms.ListBox ordeItemsistBox;
+        private System.Windows.Forms.ListBox orderItemsListBox;
         private System.Windows.Forms.TableLayoutPanel buttonsTableLayoutPanel;
         private System.Windows.Forms.Button removeItemButton;
-        private System.Windows.Forms.Button clearCartButton;
-        private System.Windows.Forms.Button createOrderButton;
+        private System.Windows.Forms.Button clearOrderButton;
+        private System.Windows.Forms.Button addItemButton;
         private System.Windows.Forms.Label priorityOptionsLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label deliveryTimeLabel;

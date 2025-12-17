@@ -44,6 +44,11 @@ namespace ObjectOrientedPractics.Model
         private List<Order> _orders;
 
         /// <summary>
+        /// Возвращает и задает Флаг приоритетного покупателя.
+        /// </summary>
+        public bool IsPriority { get; set; } = false;
+
+        /// <summary>
         /// Возвращает id покупателя.
         /// </summary>
         public int Id

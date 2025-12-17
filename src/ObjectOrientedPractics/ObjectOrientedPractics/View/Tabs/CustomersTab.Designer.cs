@@ -41,6 +41,7 @@
             this.customersListBox = new System.Windows.Forms.ListBox();
             this.selectedCustomerLabel = new System.Windows.Forms.Label();
             this.selectedCustomerPanel = new System.Windows.Forms.Panel();
+            this.isPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.customersTableLayoutPanel.SuspendLayout();
             this.selectedCustomerTableLayoutPanel.SuspendLayout();
@@ -64,7 +65,7 @@
             this.customersTableLayoutPanel.Name = "customersTableLayoutPanel";
             this.customersTableLayoutPanel.RowCount = 4;
             this.customersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.customersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 207F));
+            this.customersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 235F));
             this.customersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.customersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.customersTableLayoutPanel.Size = new System.Drawing.Size(640, 480);
@@ -75,20 +76,22 @@
             this.selectedCustomerTableLayoutPanel.ColumnCount = 2;
             this.selectedCustomerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
             this.selectedCustomerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.selectedCustomerTableLayoutPanel.Controls.Add(this.addressControl, 0, 3);
             this.selectedCustomerTableLayoutPanel.Controls.Add(this.fullNameTextBox, 1, 1);
             this.selectedCustomerTableLayoutPanel.Controls.Add(this.fullNameLabel, 0, 1);
             this.selectedCustomerTableLayoutPanel.Controls.Add(this.idTextBox, 1, 0);
             this.selectedCustomerTableLayoutPanel.Controls.Add(this.idLabel, 0, 0);
-            this.selectedCustomerTableLayoutPanel.Controls.Add(this.addressControl, 0, 2);
+            this.selectedCustomerTableLayoutPanel.Controls.Add(this.isPriorityCheckBox, 1, 2);
             this.selectedCustomerTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.selectedCustomerTableLayoutPanel.Location = new System.Drawing.Point(254, 22);
             this.selectedCustomerTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.selectedCustomerTableLayoutPanel.Name = "selectedCustomerTableLayoutPanel";
-            this.selectedCustomerTableLayoutPanel.RowCount = 3;
+            this.selectedCustomerTableLayoutPanel.RowCount = 4;
+            this.selectedCustomerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.selectedCustomerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.selectedCustomerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.selectedCustomerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.selectedCustomerTableLayoutPanel.Size = new System.Drawing.Size(383, 203);
+            this.selectedCustomerTableLayoutPanel.Size = new System.Drawing.Size(383, 231);
             this.selectedCustomerTableLayoutPanel.TabIndex = 8;
             // 
             // fullNameTextBox
@@ -214,23 +217,33 @@
             // selectedCustomerPanel
             // 
             this.selectedCustomerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectedCustomerPanel.Location = new System.Drawing.Point(254, 229);
+            this.selectedCustomerPanel.Location = new System.Drawing.Point(254, 257);
             this.selectedCustomerPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.selectedCustomerPanel.Name = "selectedCustomerPanel";
             this.customersTableLayoutPanel.SetRowSpan(this.selectedCustomerPanel, 2);
-            this.selectedCustomerPanel.Size = new System.Drawing.Size(383, 249);
+            this.selectedCustomerPanel.Size = new System.Drawing.Size(383, 221);
             this.selectedCustomerPanel.TabIndex = 9;
+            // 
+            // isPriorityCheckBox
+            // 
+            this.isPriorityCheckBox.AutoSize = true;
+            this.isPriorityCheckBox.Location = new System.Drawing.Point(96, 59);
+            this.isPriorityCheckBox.Name = "isPriorityCheckBox";
+            this.isPriorityCheckBox.Size = new System.Drawing.Size(83, 20);
+            this.isPriorityCheckBox.TabIndex = 7;
+            this.isPriorityCheckBox.Text = "Is Priority";
+            this.isPriorityCheckBox.UseVisualStyleBackColor = true;
             // 
             // addressControl
             // 
             this.selectedCustomerTableLayoutPanel.SetColumnSpan(this.addressControl, 2);
             this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressControl.Location = new System.Drawing.Point(5, 61);
+            this.addressControl.Location = new System.Drawing.Point(5, 89);
             this.addressControl.Margin = new System.Windows.Forms.Padding(5);
             this.addressControl.Name = "addressControl";
             this.addressControl.ReadOnly = false;
             this.addressControl.Size = new System.Drawing.Size(373, 137);
-            this.addressControl.TabIndex = 5;
+            this.addressControl.TabIndex = 6;
             // 
             // CustomersTab
             // 
@@ -264,6 +277,7 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Panel selectedCustomerPanel;
-        private ObjectOrientedPractics.View.Controls.AddressControl addressControl;
+        private Controls.AddressControl addressControl;
+        private System.Windows.Forms.CheckBox isPriorityCheckBox;
     }
 }

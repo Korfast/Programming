@@ -30,7 +30,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-
         /// <summary>
         /// Возвращает и задает список товаров.
         /// </summary>
@@ -46,7 +45,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-
         /// <summary>
         /// Возвращает и задает список покупателей.
         /// </summary>
@@ -144,28 +142,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
             UpdateCartListBox();
         }
-
-        private void RemoveItemButton_Click(object sender, EventArgs e)
-        {
-            if (cartsListBox.SelectedIndex == -1 || _currentCustomer == null)
-            {
-                return;
-            }
-
-            // Удаляем товар из корзины по индексу
-            _currentCustomer.Cart.Items.RemoveAt(cartsListBox.SelectedIndex);
-
-            UpdateCartListBox();
-        }
-
-        private void ClearCartButton_Click(object sender, EventArgs e)
-        {
-            if (_currentCustomer == null) return;
-
-            _currentCustomer.Cart.Items.Clear();
-            UpdateCartListBox();
-        }
-
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
             // Проверка: есть ли покупатель и есть ли товары в корзине
@@ -191,5 +167,28 @@ namespace ObjectOrientedPractics.View.Tabs
             // Опционально: сообщаем об успехе
             // MessageBox.Show("Order created successfully!"); 
         }
+
+        private void RemoveItemButton_Click(object sender, EventArgs e)
+        {
+            if (cartsListBox.SelectedIndex == -1 || _currentCustomer == null)
+            {
+                return;
+            }
+
+            // Удаляем товар из корзины по индексу
+            _currentCustomer.Cart.Items.RemoveAt(cartsListBox.SelectedIndex);
+
+            UpdateCartListBox();
+        }
+
+        private void ClearCartButton_Click(object sender, EventArgs e)
+        {
+            if (_currentCustomer == null) return;
+
+            _currentCustomer.Cart.Items.Clear();
+            UpdateCartListBox();
+        }
+
+        
     }
 }

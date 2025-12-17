@@ -26,7 +26,6 @@ namespace ObjectOrientedPractics.View.Tabs
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-
         /// <summary>
         /// Возвращает и задаёт список покупателей.
         /// При установке обновляется отображение ListBox.
@@ -94,19 +93,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        /// <summary>
-        /// Обновляет текстовые поля формы 
-        /// текущими свойствами выбранного покупателя.
-        /// </summary>
-        private void UpdateCustomerFieldsTextBoxes()
-        {
-            // Проверяем, что покупатель выбран (во избежание ошибок)
-            if (_currentCustomer == null) return;
-
-            idTextBox.Text = _currentCustomer.Id.ToString();
-            fullNameTextBox.Text = _currentCustomer.Fullname;
-            addressControl.Address = _currentCustomer.Address;
-        }
+        
 
         /// <summary>
         /// Обработчик события клика по кнопке добавления нового покупателя.
@@ -150,7 +137,8 @@ namespace ObjectOrientedPractics.View.Tabs
                     {
                         newIndex = _customers.Count - 1;
                     }
-                    // Это присваивание АВТОМАТИЧЕСКИ вызовет customersListBox_SelectedIndexChanged,
+                    // Это присваивание АВТОМАТИЧЕСКИ вызовет
+                    // customersListBox_SelectedIndexChanged,
                     // который обновит _currentCustomer и заполнит поля
                     customersListBox.SelectedIndex = newIndex;
                 }
@@ -207,6 +195,25 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Обновляет текстовые поля формы 
+        /// текущими свойствами выбранного покупателя.
+        /// </summary>
+        private void UpdateCustomerFieldsTextBoxes()
+        {
+            if (_currentCustomer == null)
+            {
+                // Очистка.
+                isPriorityCheckBox.Checked = false;
+                return;
+            }
+            idTextBox.Text = _currentCustomer.Id.ToString();
+            fullNameTextBox.Text = _currentCustomer.Fullname.ToString();
+            isPriorityCheckBox.Checked = _currentCustomer.IsPriority;
+            // Передача адреса в AddressControl
+            addressControl.Address = _currentCustomer.Address;
+        }
+
+        /// <summary>
         /// Обработчик изменения выбранного элемента списка.
         /// Обновляет текущего покупателя и отображает его свойства.
         /// </summary>
@@ -216,28 +223,32 @@ namespace ObjectOrientedPractics.View.Tabs
             if (customersListBox.SelectedIndex >= 0)
             {
                 _currentCustomer = _customers[customersListBox.SelectedIndex];
-                UpdateCustomerFiledsTextBoxes();
+                UpdateCustomerFieldsTextBoxes();
             }
         }
 
         /// <summary>
-        /// Обновляет текстовые поля формы 
-        /// текущими свойствами выбранного покупателя.
+        /// Обработчик изменения текста в поле полного имени.
+        /// Выполняет валидацию и обновление модели.
         /// </summary>
-        private void UpdateCustomerFiledsTextBoxes()
-        {
-            idTextBox.Text = _currentCustomer.Id.ToString();
-            fullNameTextBox.Text = _currentCustomer.Fullname.ToString();
-            // Передача адреса в AddressControl
-            addressControl.Address = _currentCustomer.Address;
-        }
-
         private void fullNameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (customersListBox.SelectedIndex >= 0)
             {
                 UpdateNameProperty(fullNameTextBox, 200, (value) =>
                 _currentCustomer.Fullname = value);
+            }
+        }
+
+        /// <summary>
+        /// Обработчик изменения состояния чекбокса приоритетного покупателя.
+        /// Обновляет свойство IsPriority у текущего покупателя.
+        /// </summary>
+        private void isPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_currentCustomer != null)
+            {
+                _currentCustomer.IsPriority = isPriorityCheckBox.Checked;
             }
         }
     }
