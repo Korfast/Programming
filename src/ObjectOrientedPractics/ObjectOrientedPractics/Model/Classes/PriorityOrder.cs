@@ -35,6 +35,7 @@ namespace ObjectOrientedPractics.Model
             "17:00 – 19:00",
             "19:00 – 21:00"
         };
+
         /// <summary>
         /// Возвращает и задает желаемую дату доставки.
         /// Значение должно соответствовать одному из диапазонов из списка.
@@ -66,6 +67,11 @@ namespace ObjectOrientedPractics.Model
 
                 _desiredDeliveryTime = value;
             }
+        }
+
+        public static string[] DeliveryTimeRanges
+        { 
+            get { return _deliveryTimeRanges; }
         }
 
         /// <summary>

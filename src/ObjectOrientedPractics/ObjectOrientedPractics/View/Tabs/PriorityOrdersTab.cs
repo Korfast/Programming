@@ -13,20 +13,6 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private PriorityOrder _currentOrder;
 
-        /// <summary>
-        /// Список доступных диапазонов доставки 
-        ///  (должен совпадать с логикой PriorityOrder).
-        /// </summary>
-        private string[] _deliveryTimeRanges = new string[]
-        {
-            "9:00 – 11:00",
-            "11:00 – 13:00",
-            "13:00 – 15:00",
-            "15:00 – 17:00",
-            "17:00 – 19:00",
-            "19:00 – 21:00"
-        };
-
         public PriorityOrdersTab()
         {
             InitializeComponent();
@@ -38,7 +24,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             // Заполняем время доставки
-            deliveryTimeComboBox.Items.AddRange(_deliveryTimeRanges);
+            deliveryTimeComboBox.Items.AddRange(PriorityOrder.DeliveryTimeRanges);
 
             // Создаем новый пустой заказ при запуске
             _currentOrder = new PriorityOrder();

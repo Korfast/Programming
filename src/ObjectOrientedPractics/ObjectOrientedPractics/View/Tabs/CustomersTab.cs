@@ -151,6 +151,7 @@ namespace ObjectOrientedPractics.View.Tabs
                     _currentCustomer = null;
                     idTextBox.Text = "";
                     fullNameTextBox.Text = "";
+                    isPriorityCheckBox.Checked = false;
 
                     // Очищаем адрес
                     addressControl.ClearFields();
@@ -200,17 +201,14 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateCustomerFieldsTextBoxes()
         {
-            if (_currentCustomer == null)
+            if (_currentCustomer != null)
             {
-                // Очистка.
-                isPriorityCheckBox.Checked = false;
-                return;
+                idTextBox.Text = _currentCustomer.Id.ToString();
+                fullNameTextBox.Text = _currentCustomer.Fullname.ToString();
+                isPriorityCheckBox.Checked = _currentCustomer.IsPriority;
+                // Передача адреса в AddressControl
+                addressControl.Address = _currentCustomer.Address;
             }
-            idTextBox.Text = _currentCustomer.Id.ToString();
-            fullNameTextBox.Text = _currentCustomer.Fullname.ToString();
-            isPriorityCheckBox.Checked = _currentCustomer.IsPriority;
-            // Передача адреса в AddressControl
-            addressControl.Address = _currentCustomer.Address;
         }
 
         /// <summary>

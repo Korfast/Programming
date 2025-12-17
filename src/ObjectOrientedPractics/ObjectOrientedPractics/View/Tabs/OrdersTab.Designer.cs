@@ -240,6 +240,7 @@
             this.statusComboBox.Name = "statusComboBox";
             this.statusComboBox.Size = new System.Drawing.Size(151, 24);
             this.statusComboBox.TabIndex = 20;
+            this.statusComboBox.SelectedIndexChanged += new System.EventHandler(this.StatusComboBox_SelectedIndexChanged);
             // 
             // statusLabel
             // 
@@ -348,6 +349,7 @@
             this.deliveryTimeComboBox.Name = "deliveryTimeComboBox";
             this.deliveryTimeComboBox.Size = new System.Drawing.Size(118, 24);
             this.deliveryTimeComboBox.TabIndex = 21;
+            this.deliveryTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeliveryTimeComboBox_SelectedIndexChanged);
             // 
             // deliveryTimeLabel
             // 

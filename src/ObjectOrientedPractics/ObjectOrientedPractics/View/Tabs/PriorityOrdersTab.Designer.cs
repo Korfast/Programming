@@ -42,7 +42,6 @@
             this.createdLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.idLabel = new System.Windows.Forms.Label();
-            this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.orderItemsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.amountFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.amountLabel = new System.Windows.Forms.Label();
@@ -52,6 +51,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.deliveryTimeLabel = new System.Windows.Forms.Label();
             this.deliveryTimeComboBox = new System.Windows.Forms.ComboBox();
+            this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.ordersTableLayoutPanel.SuspendLayout();
             this.buttonsTableLayoutPanel.SuspendLayout();
             this.selectedOrderTableLayoutPanel.SuspendLayout();
@@ -249,17 +249,6 @@
             this.idLabel.Text = "ID:";
             this.idLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // addressControl
-            // 
-            this.ordersTableLayoutPanel.SetColumnSpan(this.addressControl, 2);
-            this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressControl.Location = new System.Drawing.Point(4, 124);
-            this.addressControl.Margin = new System.Windows.Forms.Padding(4);
-            this.addressControl.Name = "addressControl";
-            this.addressControl.ReadOnly = false;
-            this.addressControl.Size = new System.Drawing.Size(632, 133);
-            this.addressControl.TabIndex = 3;
-            // 
             // orderItemsTableLayoutPanel
             // 
             this.orderItemsTableLayoutPanel.ColumnCount = 2;
@@ -364,6 +353,17 @@
             this.deliveryTimeComboBox.Size = new System.Drawing.Size(151, 24);
             this.deliveryTimeComboBox.TabIndex = 8;
             this.deliveryTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeliveryTimeComboBox_SelectedIndexChanged);
+            // 
+            // addressControl
+            // 
+            this.ordersTableLayoutPanel.SetColumnSpan(this.addressControl, 2);
+            this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addressControl.Location = new System.Drawing.Point(4, 124);
+            this.addressControl.Margin = new System.Windows.Forms.Padding(4);
+            this.addressControl.Name = "addressControl";
+            this.addressControl.ReadOnly = false;
+            this.addressControl.Size = new System.Drawing.Size(632, 133);
+            this.addressControl.TabIndex = 3;
             // 
             // PriorityOrdersTab
             // 

@@ -102,9 +102,11 @@ namespace ObjectOrientedPractics.View.Tabs
                     _orders.Add(order);
 
                     // Формируем строку адреса
-                    string address = $"{order.DeliveryAddress.Country}, {order.DeliveryAddress.City}, " +
-                                     $"{order.DeliveryAddress.Street}, {order.DeliveryAddress.Building}, " +
-                                     $"{order.DeliveryAddress.Apartment}";
+                    string address = $"{order.DeliveryAddress.Country}, " +
+                        $"{order.DeliveryAddress.City}, " +
+                        $"{order.DeliveryAddress.Street}, " +
+                        $"{order.DeliveryAddress.Building}, " +
+                        $"{order.DeliveryAddress.Apartment}";
 
                     ordersDataGridView.Rows.Add(
                         order.Id,
@@ -171,7 +173,7 @@ namespace ObjectOrientedPractics.View.Tabs
             costLabel.Text = "0,00";
         }
 
-        private void statusComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Меняем статус заказа при выборе в ComboBox
             if (_currentOrder != null && statusComboBox.SelectedIndex != -1)
@@ -183,6 +185,15 @@ namespace ObjectOrientedPractics.View.Tabs
                 {
                     ordersDataGridView.SelectedRows[0].Cells[2].Value = _currentOrder.Status;
                 }
+            }
+        }
+
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (deliveryTimeComboBox.SelectedIndex != -1 && _currentOrder.GetType = )
+            {
+                _currentOrder.DesiredDeliveryTime =
+                    deliveryTimeComboBox.SelectedItem.ToString();
             }
         }
     }

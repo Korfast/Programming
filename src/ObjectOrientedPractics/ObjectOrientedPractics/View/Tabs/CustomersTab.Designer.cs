@@ -34,6 +34,7 @@
             this.fullNameLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.idLabel = new System.Windows.Forms.Label();
+            this.isPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.buttonsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.addButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
@@ -41,7 +42,6 @@
             this.customersListBox = new System.Windows.Forms.ListBox();
             this.selectedCustomerLabel = new System.Windows.Forms.Label();
             this.selectedCustomerPanel = new System.Windows.Forms.Panel();
-            this.isPriorityCheckBox = new System.Windows.Forms.CheckBox();
             this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.customersTableLayoutPanel.SuspendLayout();
             this.selectedCustomerTableLayoutPanel.SuspendLayout();
@@ -137,6 +137,17 @@
             this.idLabel.Text = "ID:";
             this.idLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // isPriorityCheckBox
+            // 
+            this.isPriorityCheckBox.AutoSize = true;
+            this.isPriorityCheckBox.Location = new System.Drawing.Point(96, 59);
+            this.isPriorityCheckBox.Name = "isPriorityCheckBox";
+            this.isPriorityCheckBox.Size = new System.Drawing.Size(83, 20);
+            this.isPriorityCheckBox.TabIndex = 7;
+            this.isPriorityCheckBox.Text = "Is Priority";
+            this.isPriorityCheckBox.UseVisualStyleBackColor = true;
+            this.isPriorityCheckBox.CheckedChanged += new System.EventHandler(this.isPriorityCheckBox_CheckedChanged);
+            // 
             // buttonsTableLayoutPanel
             // 
             this.buttonsTableLayoutPanel.ColumnCount = 3;
@@ -223,16 +234,6 @@
             this.customersTableLayoutPanel.SetRowSpan(this.selectedCustomerPanel, 2);
             this.selectedCustomerPanel.Size = new System.Drawing.Size(383, 221);
             this.selectedCustomerPanel.TabIndex = 9;
-            // 
-            // isPriorityCheckBox
-            // 
-            this.isPriorityCheckBox.AutoSize = true;
-            this.isPriorityCheckBox.Location = new System.Drawing.Point(96, 59);
-            this.isPriorityCheckBox.Name = "isPriorityCheckBox";
-            this.isPriorityCheckBox.Size = new System.Drawing.Size(83, 20);
-            this.isPriorityCheckBox.TabIndex = 7;
-            this.isPriorityCheckBox.Text = "Is Priority";
-            this.isPriorityCheckBox.UseVisualStyleBackColor = true;
             // 
             // addressControl
             // 
