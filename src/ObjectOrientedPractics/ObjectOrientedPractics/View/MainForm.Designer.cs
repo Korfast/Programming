@@ -60,7 +60,7 @@
             this.mainTabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(621, 433);
+            this.mainTabControl.Size = new System.Drawing.Size(622, 433);
             this.mainTabControl.TabIndex = 0;
             this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
@@ -71,7 +71,7 @@
             this.itemsTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.itemsTabPage.Name = "itemsTabPage";
             this.itemsTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.itemsTabPage.Size = new System.Drawing.Size(613, 404);
+            this.itemsTabPage.Size = new System.Drawing.Size(614, 404);
             this.itemsTabPage.TabIndex = 0;
             this.itemsTabPage.Text = "Items";
             this.itemsTabPage.UseVisualStyleBackColor = true;
@@ -82,7 +82,7 @@
             this.itemsTab.Location = new System.Drawing.Point(3, 2);
             this.itemsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.itemsTab.Name = "itemsTab";
-            this.itemsTab.Size = new System.Drawing.Size(607, 400);
+            this.itemsTab.Size = new System.Drawing.Size(608, 400);
             this.itemsTab.TabIndex = 0;
             // 
             // customersTabPage
@@ -140,7 +140,6 @@
             // 
             // ordersTab
             // 
-            this.ordersTab.Customers = null;
             this.ordersTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ordersTab.Location = new System.Drawing.Point(3, 3);
             this.ordersTab.Name = "ordersTab";
@@ -170,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 433);
+            this.ClientSize = new System.Drawing.Size(622, 433);
             this.Controls.Add(this.mainTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

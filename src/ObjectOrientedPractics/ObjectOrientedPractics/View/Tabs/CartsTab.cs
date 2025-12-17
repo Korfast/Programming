@@ -59,8 +59,8 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обновляет данные на вкладке. Вызывается из MainForm при переключении вкладок.
-        /// Требование пункта 15 задания.
+        /// Обновляет данные на вкладке. 
+        /// Вызывается из MainForm при переключении вкладок.
         /// </summary>
         public void RefreshData()
         {
@@ -115,7 +115,8 @@ namespace ObjectOrientedPractics.View.Tabs
             costLabel.Text = _currentCustomer.Cart.Amount.ToString();
         }
 
-        private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void CustomersComboBox_SelectedIndexChanged
+            (object sender, EventArgs e)
         {
             if (customersComboBox.SelectedIndex == -1)
             {
@@ -150,17 +151,26 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            // 1. Создаем список товаров для заказа (копируем из корзины)
+            // Создаем список товаров для заказа (копируем из корзины)
             List<Item> orderItems = new List<Item>(_currentCustomer.Cart.Items);
 
-            // 2. Создаем заказ.
-            // Примечание: Убедитесь, что ваш конструктор Order принимает (Address, List<Item>)
+            // Создаем заказ.
             Order newOrder = new Order(_currentCustomer.Address, orderItems);
 
-            // 3. Добавляем заказ в список заказов покупателя
+            // Проверяем, является ли покупатель приоритетным
+            if (_currentCustomer.IsPriority)
+            {
+                newOrder = new PriorityOrder(_currentCustomer.Address, orderItems);
+            }
+            else
+            {
+                newOrder = new Order(_currentCustomer.Address, orderItems);
+            }
+
+            // Добавляем заказ в список заказов покупателя
             _currentCustomer.Orders.Add(newOrder);
 
-            // 4. Очищаем корзину после создания заказа
+            // Очищаем корзину после создания заказа
             _currentCustomer.Cart.Items.Clear();
             UpdateCartListBox();
 

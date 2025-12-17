@@ -73,8 +73,8 @@ namespace ObjectOrientedPractics.View.Tabs
             ordersDataGridView.MultiSelect = false;
             // Запрет редактирования ячеек
             ordersDataGridView.ReadOnly = true;
-            // Скрываем уродливый первый столбец заголовков строк                                    
-            ordersDataGridView.RowHeadersVisible = false;
+            // НЕ Скрываем уродливый первый столбец заголовков строк                                    
+            ordersDataGridView.RowHeadersVisible = true;
         }
 
         /// <summary>

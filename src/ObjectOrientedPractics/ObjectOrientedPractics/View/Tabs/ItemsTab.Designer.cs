@@ -196,7 +196,7 @@
             // idCostTableLayoutPanel
             // 
             this.idCostTableLayoutPanel.ColumnCount = 2;
-            this.idCostTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.idCostTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.idCostTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.idCostTableLayoutPanel.Controls.Add(this.costTextBox, 1, 1);
             this.idCostTableLayoutPanel.Controls.Add(this.costLabel, 0, 1);
@@ -218,7 +218,7 @@
             // costTextBox
             // 
             this.costTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.costTextBox.Location = new System.Drawing.Point(75, 30);
+            this.costTextBox.Location = new System.Drawing.Point(78, 30);
             this.costTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.costTextBox.MaximumSize = new System.Drawing.Size(151, 22);
             this.costTextBox.MinimumSize = new System.Drawing.Size(49, 4);
@@ -241,7 +241,7 @@
             // idTextBox
             // 
             this.idTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.idTextBox.Location = new System.Drawing.Point(75, 2);
+            this.idTextBox.Location = new System.Drawing.Point(78, 2);
             this.idTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.idTextBox.MaximumSize = new System.Drawing.Size(151, 22);
             this.idTextBox.MinimumSize = new System.Drawing.Size(49, 22);
@@ -266,7 +266,7 @@
             // 
             this.categoryComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.categoryComboBox.FormattingEnabled = true;
-            this.categoryComboBox.Location = new System.Drawing.Point(75, 58);
+            this.categoryComboBox.Location = new System.Drawing.Point(78, 58);
             this.categoryComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.categoryComboBox.MaximumSize = new System.Drawing.Size(151, 0);
             this.categoryComboBox.MinimumSize = new System.Drawing.Size(49, 0);

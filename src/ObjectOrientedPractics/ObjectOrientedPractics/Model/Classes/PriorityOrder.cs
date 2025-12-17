@@ -84,6 +84,17 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// Создает экземпляр класса <see cref="PriorityOrder"/>.
+        /// </summary>
+        /// <param name="deliveryAddress">Адрес доставки.</param>
+        /// <param name="items">Список товаров.</param>
+        public PriorityOrder(Address deliveryAddress, List<Item> items)
+            : base(deliveryAddress, items)
+        {
+
+        }
+
+        /// <summary>
         /// Конструктор без параметров <see cref="PriorityOrder"/>.
         /// </summary>
         public PriorityOrder() : base()
