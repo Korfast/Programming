@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics.Services
 {
+    /// <summary>
+    /// Класс для генерации случайных товаров (Item).
+    /// </summary>
     public static class ItemFactory
     {
-
         /// <summary>
         /// Статичное поле, содержащее объект класса Random 
         /// для генерации случайных чисел.

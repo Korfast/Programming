@@ -14,16 +14,6 @@ namespace ObjectOrientedPractics.Model
     public class PriorityOrder : Order
     {
         /// <summary>
-        /// Желаемая дата доставки.
-        /// </summary>
-        private DateTime _desiredDeliveryDate;
-
-        /// <summary>
-        /// Желаемое время доставки.
-        /// </summary>
-        private string _desiredDeliveryTime;
-
-        /// <summary>
         /// Список допустимых диапазонов доставки.
         /// </summary>
         private static readonly string[] _deliveryTimeRanges =
@@ -35,6 +25,24 @@ namespace ObjectOrientedPractics.Model
             "17:00 – 19:00",
             "19:00 – 21:00"
         };
+
+        /// <summary>
+        /// Желаемая дата доставки.
+        /// </summary>
+        private DateTime _desiredDeliveryDate;
+
+        /// <summary>
+        /// Желаемое время доставки.
+        /// </summary>
+        private string _desiredDeliveryTime;
+
+        /// <summary>
+        /// Возвращает и задает список допустимых диапазонов доставки. 
+        /// </summary>
+        public static string[] DeliveryTimeRanges
+        {
+            get { return _deliveryTimeRanges; }
+        }
 
         /// <summary>
         /// Возвращает и задает желаемую дату доставки.
@@ -67,11 +75,6 @@ namespace ObjectOrientedPractics.Model
 
                 _desiredDeliveryTime = value;
             }
-        }
-
-        public static string[] DeliveryTimeRanges
-        { 
-            get { return _deliveryTimeRanges; }
         }
 
         /// <summary>

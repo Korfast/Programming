@@ -44,9 +44,9 @@ namespace ObjectOrientedPractics.Model
         private List<Order> _orders;
 
         /// <summary>
-        /// Возвращает и задает Флаг приоритетного покупателя.
+        /// Флаг приоритетного покупателя.
         /// </summary>
-        public bool IsPriority { get; set; } = false;
+        private bool _isPriority;
 
         /// <summary>
         /// Возвращает id покупателя.
@@ -132,6 +132,15 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// Возвращает и задает Флаг приоритетного покупателя.
+        /// </summary>
+        public bool IsPriority 
+        {
+            get { return _isPriority; }
+            set { _isPriority = value; }
+        } 
+
+        /// <summary>
         /// Конструктор c параметрами класса Customer.
         /// Инициализирует все свойства.
         /// </summary>
@@ -145,6 +154,7 @@ namespace ObjectOrientedPractics.Model
             Address = address;
             Cart = new Cart();
             Orders = new List<Order>();
+            IsPriority = false;
         }
 
         /// <summary>
@@ -158,6 +168,7 @@ namespace ObjectOrientedPractics.Model
             Address = new Address();
             Cart = new Cart();
             Orders = new List<Order>();
+            IsPriority = false;
         }
     }
 }

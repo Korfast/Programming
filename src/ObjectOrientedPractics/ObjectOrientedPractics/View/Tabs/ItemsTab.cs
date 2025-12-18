@@ -324,6 +324,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранной категории товара.
+        /// Обновляет категорию текущего выбранного товара.
+        /// </summary>
         private void CategoryComboBox_SelectedIndexChanged
             (object sender, EventArgs e)
         {

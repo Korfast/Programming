@@ -6,6 +6,10 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Вкладка пользовательского интерфейса для создания и редактирования
+    /// приоритетных заказов.
+    /// </summary>
     public partial class PriorityOrdersTab : UserControl
     {
         /// <summary>
@@ -13,6 +17,11 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private PriorityOrder _currentOrder;
 
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="PriorityOrdersTab"/>.
+        /// Выполняет начальную настройку элементов управления и
+        /// создает новый пустой приоритетный заказ.
+        /// </summary>
         public PriorityOrdersTab()
         {
             InitializeComponent();
@@ -34,7 +43,8 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обновляет данные на форме согласно текущему объекту заказа.
+        /// Обновляет элементы пользовательского интерфейса в соответствии
+        /// с данными текущего приоритетного заказа.
         /// </summary>
         private void UpdateOrderInfo()
         {
@@ -66,6 +76,10 @@ namespace ObjectOrientedPractics.View.Tabs
             costLabel.Text = _currentOrder.TotalAmount.ToString("N2");
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки добавления товара в заказ.
+        /// Создает случайный товар и добавляет его в текущий заказ.
+        /// </summary>
         private void AddItemButton_Click(object sender, EventArgs e)
         {
             // Создаем случайный товар
@@ -78,6 +92,10 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateOrderInfo();
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки удаления товара из заказа.
+        /// Удаляет выбранный товар из списка товаров текущего заказа.
+        /// </summary>
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = orderItemsListBox.SelectedIndex;
@@ -101,6 +119,11 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки очистки заказа.
+        /// Создает новый пустой приоритетный заказ и сбрасывает данные формы.
+        /// </summary>
+
         private void ClearOrderButton_Click(object sender, EventArgs e)
         {
             // По ТЗ: создаем новый экземпляр заказа
@@ -112,6 +135,10 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateOrderInfo();
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного статуса заказа.
+        /// Обновляет статус текущего приоритетного заказа.
+        /// </summary>
         private void StatusComboBox_SelectedIndexChanged
             (object sender, EventArgs e)
         {
@@ -122,6 +149,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного времени доставки.
+        /// Обновляет желаемое время доставки текущего приоритетного заказа.
+        /// </summary>
         private void DeliveryTimeComboBox_SelectedIndexChanged
             (object sender, EventArgs e)
         {
