@@ -99,7 +99,7 @@
             this.selectedCustomerTableLayoutPanel.SetColumnSpan(this.addressControl, 2);
             this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.addressControl.Location = new System.Drawing.Point(5, 89);
-            this.addressControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.addressControl.Margin = new System.Windows.Forms.Padding(5);
             this.addressControl.Name = "addressControl";
             this.addressControl.ReadOnly = false;
             this.addressControl.Size = new System.Drawing.Size(373, 137);

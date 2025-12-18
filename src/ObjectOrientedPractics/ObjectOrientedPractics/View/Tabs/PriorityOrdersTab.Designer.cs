@@ -79,7 +79,7 @@
             this.ordersTableLayoutPanel.RowCount = 5;
             this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 142F));
+            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 145F));
             this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.ordersTableLayoutPanel.Size = new System.Drawing.Size(640, 480);
@@ -259,7 +259,7 @@
             this.addressControl.Margin = new System.Windows.Forms.Padding(5);
             this.addressControl.Name = "addressControl";
             this.addressControl.ReadOnly = false;
-            this.addressControl.Size = new System.Drawing.Size(630, 132);
+            this.addressControl.Size = new System.Drawing.Size(630, 135);
             this.addressControl.TabIndex = 3;
             // 
             // orderItemsTableLayoutPanel
@@ -272,14 +272,14 @@
             this.orderItemsTableLayoutPanel.Controls.Add(this.orderItems, 0, 0);
             this.orderItemsTableLayoutPanel.Controls.Add(this.orderItemsListBox, 0, 1);
             this.orderItemsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orderItemsTableLayoutPanel.Location = new System.Drawing.Point(3, 264);
+            this.orderItemsTableLayoutPanel.Location = new System.Drawing.Point(3, 267);
             this.orderItemsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.orderItemsTableLayoutPanel.Name = "orderItemsTableLayoutPanel";
             this.orderItemsTableLayoutPanel.RowCount = 3;
             this.orderItemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.orderItemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.orderItemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.orderItemsTableLayoutPanel.Size = new System.Drawing.Size(634, 170);
+            this.orderItemsTableLayoutPanel.Size = new System.Drawing.Size(634, 167);
             this.orderItemsTableLayoutPanel.TabIndex = 4;
             // 
             // amountFlowLayoutPanel
@@ -289,7 +289,7 @@
             this.amountFlowLayoutPanel.Controls.Add(this.costLabel);
             this.amountFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.amountFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.amountFlowLayoutPanel.Location = new System.Drawing.Point(563, 127);
+            this.amountFlowLayoutPanel.Location = new System.Drawing.Point(563, 124);
             this.amountFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.amountFlowLayoutPanel.Name = "amountFlowLayoutPanel";
             this.amountFlowLayoutPanel.Size = new System.Drawing.Size(68, 41);
@@ -334,7 +334,7 @@
             this.orderItemsListBox.Location = new System.Drawing.Point(3, 22);
             this.orderItemsListBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.orderItemsListBox.Name = "orderItemsListBox";
-            this.orderItemsListBox.Size = new System.Drawing.Size(628, 101);
+            this.orderItemsListBox.Size = new System.Drawing.Size(628, 98);
             this.orderItemsListBox.TabIndex = 13;
             // 
             // flowLayoutPanel1

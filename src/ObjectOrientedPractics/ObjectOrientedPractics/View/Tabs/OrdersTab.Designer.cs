@@ -44,6 +44,7 @@
             this.deliveryTimeLabel = new System.Windows.Forms.Label();
             this.priorityOptionsLabel = new System.Windows.Forms.Label();
             this.ordersLabel = new System.Windows.Forms.Label();
+            this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.orderItemsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.amountFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.amountLabel = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.ordeItemsistBox = new System.Windows.Forms.ListBox();
             this.showOnlyPriorityOrdersСheckBox = new System.Windows.Forms.CheckBox();
             this.ordersDataGridView = new System.Windows.Forms.DataGridView();
-            this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.ordersTableLayoutPanel.SuspendLayout();
             this.SelectedAndPriorityTableLayoutPanel.SuspendLayout();
             this.selectedOrderTableLayoutPanel.SuspendLayout();
@@ -285,6 +285,16 @@
             this.ordersLabel.TabIndex = 0;
             this.ordersLabel.Text = "Orders";
             // 
+            // addressControl
+            // 
+            this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addressControl.Location = new System.Drawing.Point(485, 125);
+            this.addressControl.Margin = new System.Windows.Forms.Padding(5);
+            this.addressControl.Name = "addressControl";
+            this.addressControl.ReadOnly = false;
+            this.addressControl.Size = new System.Drawing.Size(470, 134);
+            this.addressControl.TabIndex = 3;
+            // 
             // orderItemsTableLayoutPanel
             // 
             this.orderItemsTableLayoutPanel.ColumnCount = 2;
@@ -365,7 +375,7 @@
             // 
             this.showOnlyPriorityOrdersСheckBox.AutoSize = true;
             this.showOnlyPriorityOrdersСheckBox.Location = new System.Drawing.Point(4, 229);
-            this.showOnlyPriorityOrdersСheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showOnlyPriorityOrdersСheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.showOnlyPriorityOrdersСheckBox.Name = "showOnlyPriorityOrdersСheckBox";
             this.showOnlyPriorityOrdersСheckBox.Size = new System.Drawing.Size(175, 20);
             this.showOnlyPriorityOrdersСheckBox.TabIndex = 14;
@@ -387,16 +397,6 @@
             this.ordersDataGridView.TabIndex = 5;
             this.ordersDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.OrdersDataGridView_RowPostPaint);
             this.ordersDataGridView.SelectionChanged += new System.EventHandler(this.OrdersDataGridView_SelectionChanged);
-            // 
-            // addressControl
-            // 
-            this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressControl.Location = new System.Drawing.Point(485, 125);
-            this.addressControl.Margin = new System.Windows.Forms.Padding(5);
-            this.addressControl.Name = "addressControl";
-            this.addressControl.ReadOnly = false;
-            this.addressControl.Size = new System.Drawing.Size(470, 134);
-            this.addressControl.TabIndex = 3;
             // 
             // OrdersTab
             // 
