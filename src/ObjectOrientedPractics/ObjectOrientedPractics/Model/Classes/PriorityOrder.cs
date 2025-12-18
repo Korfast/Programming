@@ -48,7 +48,7 @@ namespace ObjectOrientedPractics.Model
 
         /// <summary>
         /// Возвращает и задает желаемое время доставки.
-        /// Строка должна содержать диапазон, например: "9:00 – 11:00".
+        /// Строка должна содержать диапазон, из DeliveryTimeRanges.
         /// </summary>
         public string DesiredDeliveryTime
         {
@@ -97,6 +97,8 @@ namespace ObjectOrientedPractics.Model
         public PriorityOrder(Address deliveryAddress, List<Item> items)
             : base(deliveryAddress, items)
         {
+            DesiredDeliveryDate = DateTime.Now.AddDays(7);
+            DesiredDeliveryTime = DeliveryTimeRanges[0];
 
         }
 

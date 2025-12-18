@@ -155,7 +155,7 @@ namespace ObjectOrientedPractics.Model
         /// <param name="items">Список товаров.</param>
         public Order(Address deliveryAddress, List<Item> items)
         {
-            _id = ++_counter;
+            _id = _counter++;
             _creationDate = DateTime.Now;
             _status = OrderStatus.New;
             DeliveryAddress = deliveryAddress;
@@ -168,7 +168,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         public Order()
         {
-            _id = ++_counter;
+            _id = _counter++;
             _creationDate = DateTime.Now;
             _status = OrderStatus.New;
             DeliveryAddress = new Address();

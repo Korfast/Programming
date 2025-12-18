@@ -229,7 +229,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// Обработчик изменения текста в поле полного имени.
         /// Выполняет валидацию и обновление модели.
         /// </summary>
-        private void fullNameTextBox_TextChanged(object sender, EventArgs e)
+        private void FullNameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (customersListBox.SelectedIndex >= 0)
             {
@@ -242,7 +242,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// Обработчик изменения состояния чекбокса приоритетного покупателя.
         /// Обновляет свойство IsPriority у текущего покупателя.
         /// </summary>
-        private void isPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (_currentCustomer != null)
             {

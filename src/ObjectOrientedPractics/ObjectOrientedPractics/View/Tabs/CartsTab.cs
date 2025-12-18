@@ -79,7 +79,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void UpdateItemsListBox()
         {
             itemsListBox.Items.Clear();
-            foreach (var item in _items)
+            foreach (Item item in _items)
             {
                 itemsListBox.Items.Add(item.Name);
             }
@@ -88,7 +88,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void UpdateCustomersComboBox()
         {
             customersComboBox.Items.Clear();
-            foreach (var customer in _customers)
+            foreach (Customer customer in _customers)
             {
                 customersComboBox.Items.Add(customer.Fullname);
             }
@@ -106,7 +106,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             // Заполняем список товарами из корзины покупателя
-            foreach (var item in _currentCustomer.Cart.Items)
+            foreach (Item item in _currentCustomer.Cart.Items)
             {
                 cartsListBox.Items.Add(item.Name);
             }
@@ -155,7 +155,7 @@ namespace ObjectOrientedPractics.View.Tabs
             List<Item> orderItems = new List<Item>(_currentCustomer.Cart.Items);
 
             // Создаем заказ.
-            Order newOrder = new Order(_currentCustomer.Address, orderItems);
+            Order newOrder;
 
             // Проверяем, является ли покупатель приоритетным
             if (_currentCustomer.IsPriority)

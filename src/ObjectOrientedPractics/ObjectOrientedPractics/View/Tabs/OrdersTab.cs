@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
@@ -22,6 +23,11 @@ namespace ObjectOrientedPractics.View.Tabs
         /// Текущий выбранный заказ.
         /// </summary>
         private Order _currentOrder;
+
+        /// <summary>
+        /// Текущий выбранный приоритетный заказ.
+        /// </summary>
+        private PriorityOrder _currentPriorityOrder;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -44,9 +50,14 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
 
             // Инициализация ComboBox статусов значениями из Enum
-            foreach (var status in Enum.GetValues(typeof(OrderStatus)))
+            foreach (Enum status in Enum.GetValues(typeof(OrderStatus)))
             {
                 statusComboBox.Items.Add(status);
+            }
+
+            foreach (string deliveryTime in PriorityOrder.DeliveryTimeRanges)
+            {
+                deliveryTimeComboBox.Items.Add(deliveryTime);
             }
 
             // Настройка таблицы
@@ -95,51 +106,101 @@ namespace ObjectOrientedPractics.View.Tabs
 
             if (_customers == null) return;
 
-            foreach (var customer in _customers)
+            foreach (Customer customer in _customers)
             {
-                foreach (var order in customer.Orders)
+                foreach (Order order in customer.Orders)
                 {
+
+                    if (showOnlyPriorityOrdersСheckBox.Checked 
+                        && order.GetType() != typeof(PriorityOrder))
+                    {
+                        continue;
+                    }
+
                     _orders.Add(order);
 
                     // Формируем строку адреса
-                    string address = $"{order.DeliveryAddress.Country}, " +
+                    string address = 
+                        $"{order.DeliveryAddress.Country}, " +
                         $"{order.DeliveryAddress.City}, " +
                         $"{order.DeliveryAddress.Street}, " +
                         $"{order.DeliveryAddress.Building}, " +
                         $"{order.DeliveryAddress.Apartment}";
 
-                    ordersDataGridView.Rows.Add(
+                    int rowIndex = 
+                        ordersDataGridView.Rows.Add(
                         order.Id,
                         order.CreationDate.ToString("dd.MM.yyyy HH:mm"),
                         order.Status,
                         customer.Fullname,
                         address,
-                        order.TotalAmount.ToString("N2")
-                    );
+                        order.TotalAmount.ToString("N2"));
+
+                    ordersDataGridView.Rows[rowIndex].Tag = order;
                 }
             }
         }
 
-        // Переименованный метод обработчика
-        private void ordersDataGridView_SelectionChanged(object sender, EventArgs e)
+        private void OrdersDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            // Если ничего не выбрано или список заказов пуст
-            if (ordersDataGridView.SelectedRows.Count == 0 || _orders.Count == 0)
+            if (ordersDataGridView.SelectedRows.Count == 0)
             {
                 ClearOrderInfo();
                 return;
             }
 
-            // Получаем индекс выбранной строки
-            int index = ordersDataGridView.SelectedRows[0].Index;
+            DataGridViewRow selectedRow = ordersDataGridView.SelectedRows[0];
 
-            // Находим соответствующий заказ в списке _orders
-            if (index >= 0 && index < _orders.Count)
+            if (selectedRow.Tag == null)
             {
-                _currentOrder = _orders[index];
-                UpdateOrderInfo();
+                ClearOrderInfo();
+                return;
             }
+
+            _currentOrder = (Order)selectedRow.Tag;
+
+            if (_currentOrder.GetType() == typeof(PriorityOrder))
+            {
+                _currentPriorityOrder = (PriorityOrder)_currentOrder;
+                priorityOptionsPanel.Visible = true;
+            }
+            else
+            {
+                _currentPriorityOrder = null;
+                priorityOptionsPanel.Visible = false;
+            }
+
+            UpdateOrderInfo();
         }
+
+        private void OrdersDataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            DataGridView grid = (DataGridView)sender;
+            DataGridViewRow row = grid.Rows[e.RowIndex];
+            Order order = (Order)row.Tag;
+
+            if (order != null &&
+            order.GetType() == typeof(PriorityOrder))
+            {
+                Rectangle bounds = new Rectangle(
+                e.RowBounds.Left,
+                e.RowBounds.Top,
+                grid.RowHeadersWidth,
+                e.RowBounds.Height);
+
+                TextRenderer.DrawText(
+                    e.Graphics,
+                    "★",
+                    grid.Font,
+                    bounds,
+                    Color.Gold,
+                    TextFormatFlags.HorizontalCenter |
+                    TextFormatFlags.VerticalCenter);
+        }
+    }
+
 
         private void UpdateOrderInfo()
         {
@@ -148,6 +209,10 @@ namespace ObjectOrientedPractics.View.Tabs
             idTextBox.Text = _currentOrder.Id.ToString();
             createdTextBox.Text = _currentOrder.CreationDate.ToString("dd.MM.yyyy HH:mm");
             statusComboBox.SelectedItem = _currentOrder.Status;
+            if (_currentPriorityOrder != null)
+            {
+                deliveryTimeComboBox.SelectedItem = _currentPriorityOrder.DesiredDeliveryTime;
+            }
 
             // Передаем адрес в AddressControl
             addressControl.Address = _currentOrder.DeliveryAddress;
@@ -171,6 +236,7 @@ namespace ObjectOrientedPractics.View.Tabs
             addressControl.ClearFields();
             ordeItemsistBox.Items.Clear();
             costLabel.Text = "0,00";
+            deliveryTimeComboBox.SelectedIndex = -1;
         }
 
         private void StatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -190,11 +256,37 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (deliveryTimeComboBox.SelectedIndex != -1 && _currentOrder.GetType = )
+            // Ничего не выбрано
+            if (deliveryTimeComboBox.SelectedIndex == -1
+                || _currentOrder == null)
             {
-                _currentOrder.DesiredDeliveryTime =
-                    deliveryTimeComboBox.SelectedItem.ToString();
+                return;
             }
+
+            // Проверяем, что заказ приоритетный
+            if (_currentOrder.GetType() != typeof(PriorityOrder))
+            {
+                MessageBox.Show(
+                    "Время доставки можно менять только у приоритетных заказов.",
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                deliveryTimeComboBox.SelectedIndex = -1;
+                return;
+            }
+
+            // Безопасное приведение
+            _currentPriorityOrder = (PriorityOrder)_currentOrder;
+
+            // Применяем выбранное время доставки
+            _currentPriorityOrder.DesiredDeliveryTime =
+                (string)deliveryTimeComboBox.SelectedItem;
         }
+
+        private void ShowOnlyPriorityOrdersСheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateOrders();
+        }  
     }
 }
