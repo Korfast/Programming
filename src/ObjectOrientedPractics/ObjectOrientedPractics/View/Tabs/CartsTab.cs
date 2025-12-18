@@ -85,8 +85,10 @@ namespace ObjectOrientedPractics.View.Tabs
             _currentCustomer = null;
 
             // Очищаем корзину и стоимость
-            cartsListBox.Items.Clear();
-            costLabel.Text = "0,00";
+            UpdateCartListBox();
+
+            // Очищает discount CheckedListBox
+            UpdateDiscountsCheckedListBox();
         }
 
         /// <summary>
@@ -133,6 +135,9 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             costLabel.Text = _currentCustomer.Cart.Amount.ToString();
+
+            // Пересчитываем скидки и итоговую цену, так как корзина изменилась
+            UpdateAmounts();
         }
 
         /// <summary>
@@ -152,7 +157,8 @@ namespace ObjectOrientedPractics.View.Tabs
                     _customers[customersComboBox.SelectedIndex];
             }
 
-            UpdateCartListBox();
+            UpdateCartListBox(); 
+            UpdateDiscountsCheckedListBox();
         }
 
         /// <summary>
@@ -187,6 +193,24 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
+            double appliedDiscount = 0;
+
+            // Применяем только выбранные скидки
+            for (int i = 0; i < _currentCustomer.Discounts.Count; i++)
+            {
+                if (discountsCheckedListBox.GetItemChecked(i))
+                {
+                    appliedDiscount += _currentCustomer.Discounts[i]
+                        .Apply(_currentCustomer.Cart.Items);
+                }
+            }
+
+            // Обновляем все скидки (начисление баллов за покупку)
+            foreach (IDiscount discount in _currentCustomer.Discounts)
+            {
+                discount.Update(_currentCustomer.Cart.Items);
+            }
+
             List<Item> orderItems =
                 new List<Item>(_currentCustomer.Cart.Items);
 
@@ -203,10 +227,15 @@ namespace ObjectOrientedPractics.View.Tabs
                     new Order(_currentCustomer.Address, orderItems);
             }
 
-            _currentCustomer.Orders.Add(newOrder);
+            // Записываем примененную скидку в заказ
+            newOrder.DiscountAmount = appliedDiscount;
 
+            _currentCustomer.Orders.Add(newOrder);
             _currentCustomer.Cart.Items.Clear();
+
+            // Обновляем интерфейс (скидки пересчитаются и галочки вернутся)
             UpdateCartListBox();
+            UpdateDiscountsCheckedListBox();
         }
 
         /// <summary>
@@ -240,6 +269,82 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _currentCustomer.Cart.Items.Clear();
             UpdateCartListBox();
+        }
+
+        /// <summary>
+        /// Обновляет список скидок в CheckedListBox и включает их все по умолчанию.
+        /// </summary>
+        private void UpdateDiscountsCheckedListBox()
+        {
+            discountsCheckedListBox.Items.Clear();
+
+            if (_currentCustomer == null)
+            {
+                UpdateAmounts();
+                return;
+            }
+
+            foreach (IDiscount discount in _currentCustomer.Discounts)
+            {
+                // Добавляем Info скидки и сразу ставим галочку (true)
+                discountsCheckedListBox.Items.Add(discount.Info, true);
+            }
+
+            // После заполнения обновляем итоговые суммы
+            UpdateAmounts();
+        }
+
+        /// <summary>
+        /// Рассчитывает общую сумму скидки и итоговую стоимость корзины 
+        /// с учетом выбранных скидок.
+        /// </summary>
+        private void UpdateAmounts()
+        {
+            double amount = 0;
+            if (_currentCustomer != null 
+                && _currentCustomer.Cart.Items.Count > 0)
+            {
+                amount = _currentCustomer.Cart.Amount;
+            }
+
+            double totalDiscountAmount = 0;
+
+            // Считаем скидку только если есть покупатель и товары
+            if (_currentCustomer != null && _currentCustomer.Discounts != null 
+                && _currentCustomer.Cart.Items.Count > 0)
+            {
+                for (int i = 0; i < _currentCustomer.Discounts.Count; i++)
+                {
+                    // Расчет на основе метода Calculate() для выбранных галочек
+                    if (i < discountsCheckedListBox.Items.Count 
+                        && discountsCheckedListBox.GetItemChecked(i))
+                    {
+                        totalDiscountAmount += _currentCustomer.Discounts[i]
+                            .Calculate(_currentCustomer.Cart.Items);
+                    }
+                }
+            }
+
+            // Ограничение: скидка не может быть больше суммы корзины
+            if (totalDiscountAmount > amount)
+            {
+                totalDiscountAmount = amount;
+            }
+
+            // Вывод данных (discountCostLabel - это цифры,
+            // discountAmountLabel - это текст "Discount Amount")
+            costLabel.Text = amount.ToString("F2");
+            discountCostLabel.Text = totalDiscountAmount.ToString("F2");
+            totalCostLabel.Text = (amount - totalDiscountAmount).ToString("F2");
+        }
+
+        /// <summary>
+        /// Обработчик события изменения состояния галочки в списке скидок.
+        /// </summary>
+        private void DiscountsCheckedListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            // Используем BeginInvoke, чтобы пересчет произошел ПОСЛЕ изменения состояния галочки
+            BeginInvoke(new Action(UpdateAmounts));
         }
     }
 }

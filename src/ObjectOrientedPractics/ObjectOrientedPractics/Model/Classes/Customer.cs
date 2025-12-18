@@ -44,6 +44,11 @@ namespace ObjectOrientedPractics.Model
         private List<Order> _orders;
 
         /// <summary>
+        /// Список скидок покупателя.
+        /// </summary>
+        private List<IDiscount> _discounts;
+
+        /// <summary>
         /// Флаг приоритетного покупателя.
         /// </summary>
         private bool _isPriority;
@@ -132,6 +137,15 @@ namespace ObjectOrientedPractics.Model
         }
 
         /// <summary>
+        /// Возвращает и задает список скидок покупателя.
+        /// </summary>
+        public List<IDiscount> Discounts
+        {
+            get { return _discounts; }
+            set { _discounts = value; }
+        }
+
+        /// <summary>
         /// Возвращает и задает Флаг приоритетного покупателя.
         /// </summary>
         public bool IsPriority 
@@ -154,6 +168,10 @@ namespace ObjectOrientedPractics.Model
             Address = address;
             Cart = new Cart();
             Orders = new List<Order>();
+            Discounts = new List<IDiscount>
+            {
+                new PointsDiscount() 
+            };
             IsPriority = false;
         }
 
@@ -168,6 +186,10 @@ namespace ObjectOrientedPractics.Model
             Address = new Address();
             Cart = new Cart();
             Orders = new List<Order>();
+            Discounts = new List<IDiscount>
+            {
+                new PointsDiscount()
+            };
             IsPriority = false;
         }
     }

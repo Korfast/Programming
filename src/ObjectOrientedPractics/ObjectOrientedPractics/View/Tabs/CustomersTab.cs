@@ -1,5 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,12 +25,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private Customer _currentCustomer;
 
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         /// <summary>
         /// Возвращает и задаёт список покупателей.
         /// При установке обновляется отображение ListBox.
         /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Customer> Customers
         {
             get
@@ -67,16 +68,50 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            foreach (var item in _customers)
+            foreach (Customer customer in _customers)
             {
-                customersListBox.Items.Add(item);
-                // Предположим, что Customer переопределяет ToString()
+                customersListBox.Items.Add(customer);
             }
         }
 
         public CustomersTab()
         {
             InitializeComponent();
+        }
+
+        private void UpdateDiscountsListBox()
+        {
+            // 1. Очищаем ListBox
+            discountsListBox.Items.Clear();
+
+            // 2. Создаем временные списки для разделения скидок
+            List<IDiscount> pointsDiscounts = new List<IDiscount>();
+            List<IDiscount> regularDiscounts = new List<IDiscount>();
+
+            // 3. Распределяем скидки: накопительную в один список, остальные в другой
+            foreach (IDiscount discount in _currentCustomer.Discounts)
+            {
+                if (discount is PointsDiscount)
+                {
+                    pointsDiscounts.Add(discount);
+                }
+                else
+                {
+                    regularDiscounts.Add(discount);
+                }
+            }
+
+            // 4. Сначала добавляем в ListBox накопительные скидки (они будут первыми)
+            foreach (IDiscount discount in pointsDiscounts)
+            {
+                discountsListBox.Items.Add(discount.Info);
+            }
+
+            // 5. Затем добавляем все остальные скидки
+            foreach (IDiscount discount in regularDiscounts)
+            {
+                discountsListBox.Items.Add(discount.Info);
+            }
         }
 
         /// <summary>
@@ -208,6 +243,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 isPriorityCheckBox.Checked = _currentCustomer.IsPriority;
                 // Передача адреса в AddressControl
                 addressControl.Address = _currentCustomer.Address;
+                // Обновление данных о скидках
+                UpdateDiscountsListBox();
             }
         }
 
@@ -248,6 +285,60 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentCustomer.IsPriority = isPriorityCheckBox.Checked;
             }
+        }
+
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            // Создаем форму для выбора категории (нужно реализовать отдельно)
+            using (AddDiscountForm addDiscountForm = new AddDiscountForm())
+            {
+                if (addDiscountForm.ShowDialog() == DialogResult.OK)
+                {
+                    // Получаем выбранную категорию из формы
+                    Category selectedCategory = addDiscountForm.SelectedCategory;
+
+                    // Проверяем, нет ли уже у покупателя скидки на эту категорию
+                    foreach (IDiscount discount in _currentCustomer.Discounts)
+                    {
+                        if (discount is PercentDiscount percentDiscount &&
+                            percentDiscount.Category == selectedCategory)
+                        {
+                            // Скидка на эту категорию уже есть
+                            return; 
+                        }
+                    }
+
+                    // Создаем и добавляем новую процентную скидку
+                    PercentDiscount newDiscount = new PercentDiscount(selectedCategory);
+                    _currentCustomer.Discounts.Add(newDiscount);
+
+                    // Обновляем отображение
+                    UpdateDiscountsListBox();
+                }
+            }
+        }
+
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = discountsListBox.SelectedIndex;
+
+            // Проверяем, что элемент выбран
+            if (selectedIndex == -1) return;
+
+            // Находим объект скидки в списке покупателя по индексу из ListBox
+            // Учитываем, что в ListBox скидки отображаются в том же порядке, что и в UpdateDiscountsListBox
+            IDiscount selectedDiscount = _currentCustomer.Discounts[selectedIndex];
+
+            // Запрет на удаление накопительной скидки
+            if (selectedDiscount is PointsDiscount)
+            {
+                MessageBox.Show("Нельзя удалить накопительную скидку.");
+                return;
+            }
+
+            // Удаляем и обновляем интерфейс
+            _currentCustomer.Discounts.Remove(selectedDiscount);
+            UpdateDiscountsListBox();
         }
     }
 }

@@ -45,13 +45,13 @@
             this.priorityOptionsLabel = new System.Windows.Forms.Label();
             this.ordersLabel = new System.Windows.Forms.Label();
             this.orderItemsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.amountFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.amountLabel = new System.Windows.Forms.Label();
-            this.costLabel = new System.Windows.Forms.Label();
             this.orderItems = new System.Windows.Forms.Label();
             this.ordeItemsistBox = new System.Windows.Forms.ListBox();
             this.showOnlyPriorityOrdersСheckBox = new System.Windows.Forms.CheckBox();
             this.ordersDataGridView = new System.Windows.Forms.DataGridView();
+            this.costLabel = new System.Windows.Forms.Label();
+            this.amountLabel = new System.Windows.Forms.Label();
+            this.amountFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.ordersTableLayoutPanel.SuspendLayout();
             this.SelectedAndPriorityTableLayoutPanel.SuspendLayout();
@@ -59,8 +59,8 @@
             this.priorityOptionsPanel.SuspendLayout();
             this.priorityOptionsTableLayoutPanel.SuspendLayout();
             this.orderItemsTableLayoutPanel.SuspendLayout();
-            this.amountFlowLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
+            this.amountFlowLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ordersTableLayoutPanel
@@ -75,39 +75,39 @@
             this.ordersTableLayoutPanel.Controls.Add(this.ordersDataGridView, 0, 1);
             this.ordersTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ordersTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.ordersTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ordersTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ordersTableLayoutPanel.Name = "ordersTableLayoutPanel";
             this.ordersTableLayoutPanel.RowCount = 4;
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 144F));
+            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.ordersTableLayoutPanel.Size = new System.Drawing.Size(960, 720);
+            this.ordersTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.ordersTableLayoutPanel.Size = new System.Drawing.Size(720, 585);
             this.ordersTableLayoutPanel.TabIndex = 0;
             // 
             // SelectedAndPriorityTableLayoutPanel
             // 
             this.SelectedAndPriorityTableLayoutPanel.ColumnCount = 2;
-            this.SelectedAndPriorityTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 235F));
+            this.SelectedAndPriorityTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 176F));
             this.SelectedAndPriorityTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.SelectedAndPriorityTableLayoutPanel.Controls.Add(this.selectedOrderTableLayoutPanel, 0, 0);
             this.SelectedAndPriorityTableLayoutPanel.Controls.Add(this.priorityOptionsPanel, 1, 0);
             this.SelectedAndPriorityTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SelectedAndPriorityTableLayoutPanel.Location = new System.Drawing.Point(483, 2);
-            this.SelectedAndPriorityTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SelectedAndPriorityTableLayoutPanel.Location = new System.Drawing.Point(362, 2);
+            this.SelectedAndPriorityTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SelectedAndPriorityTableLayoutPanel.Name = "SelectedAndPriorityTableLayoutPanel";
             this.SelectedAndPriorityTableLayoutPanel.RowCount = 1;
             this.ordersTableLayoutPanel.SetRowSpan(this.SelectedAndPriorityTableLayoutPanel, 2);
             this.SelectedAndPriorityTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SelectedAndPriorityTableLayoutPanel.Size = new System.Drawing.Size(474, 116);
+            this.SelectedAndPriorityTableLayoutPanel.Size = new System.Drawing.Size(356, 93);
             this.SelectedAndPriorityTableLayoutPanel.TabIndex = 15;
             // 
             // selectedOrderTableLayoutPanel
             // 
             this.selectedOrderTableLayoutPanel.ColumnCount = 2;
-            this.selectedOrderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
-            this.selectedOrderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
+            this.selectedOrderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.selectedOrderTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
             this.selectedOrderTableLayoutPanel.Controls.Add(this.statusComboBox, 1, 3);
             this.selectedOrderTableLayoutPanel.Controls.Add(this.statusLabel, 0, 3);
             this.selectedOrderTableLayoutPanel.Controls.Add(this.createdTextBox, 1, 2);
@@ -116,27 +116,27 @@
             this.selectedOrderTableLayoutPanel.Controls.Add(this.idLabel, 0, 1);
             this.selectedOrderTableLayoutPanel.Controls.Add(this.selectedOrderLabel, 0, 0);
             this.selectedOrderTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectedOrderTableLayoutPanel.Location = new System.Drawing.Point(3, 2);
-            this.selectedOrderTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.selectedOrderTableLayoutPanel.Location = new System.Drawing.Point(2, 2);
+            this.selectedOrderTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectedOrderTableLayoutPanel.Name = "selectedOrderTableLayoutPanel";
             this.selectedOrderTableLayoutPanel.RowCount = 4;
-            this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.selectedOrderTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.selectedOrderTableLayoutPanel.Size = new System.Drawing.Size(229, 112);
+            this.selectedOrderTableLayoutPanel.Size = new System.Drawing.Size(172, 89);
             this.selectedOrderTableLayoutPanel.TabIndex = 0;
             // 
             // statusComboBox
             // 
             this.statusComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.statusComboBox.FormattingEnabled = true;
-            this.statusComboBox.Location = new System.Drawing.Point(74, 74);
-            this.statusComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.statusComboBox.MaximumSize = new System.Drawing.Size(151, 0);
-            this.statusComboBox.MinimumSize = new System.Drawing.Size(49, 0);
+            this.statusComboBox.Location = new System.Drawing.Point(55, 72);
+            this.statusComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.statusComboBox.MaximumSize = new System.Drawing.Size(114, 0);
+            this.statusComboBox.MinimumSize = new System.Drawing.Size(38, 0);
             this.statusComboBox.Name = "statusComboBox";
-            this.statusComboBox.Size = new System.Drawing.Size(151, 24);
+            this.statusComboBox.Size = new System.Drawing.Size(114, 21);
             this.statusComboBox.TabIndex = 20;
             this.statusComboBox.SelectedIndexChanged += new System.EventHandler(this.StatusComboBox_SelectedIndexChanged);
             // 
@@ -144,10 +144,10 @@
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.statusLabel.Location = new System.Drawing.Point(3, 77);
-            this.statusLabel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.statusLabel.Location = new System.Drawing.Point(2, 74);
+            this.statusLabel.Margin = new System.Windows.Forms.Padding(2, 4, 2, 0);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(47, 16);
+            this.statusLabel.Size = new System.Drawing.Size(44, 15);
             this.statusLabel.TabIndex = 19;
             this.statusLabel.Text = "Status:";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -155,21 +155,22 @@
             // createdTextBox
             // 
             this.createdTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.createdTextBox.Location = new System.Drawing.Point(74, 48);
-            this.createdTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.createdTextBox.MaximumSize = new System.Drawing.Size(151, 22);
-            this.createdTextBox.MinimumSize = new System.Drawing.Size(49, 4);
+            this.createdTextBox.Location = new System.Drawing.Point(55, 42);
+            this.createdTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.createdTextBox.MaximumSize = new System.Drawing.Size(114, 22);
+            this.createdTextBox.MinimumSize = new System.Drawing.Size(38, 4);
             this.createdTextBox.Name = "createdTextBox";
-            this.createdTextBox.Size = new System.Drawing.Size(151, 22);
+            this.createdTextBox.Size = new System.Drawing.Size(114, 20);
             this.createdTextBox.TabIndex = 18;
             // 
             // createdLabel
             // 
             this.createdLabel.AutoSize = true;
             this.createdLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.createdLabel.Location = new System.Drawing.Point(3, 46);
+            this.createdLabel.Location = new System.Drawing.Point(2, 40);
+            this.createdLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.createdLabel.Name = "createdLabel";
-            this.createdLabel.Size = new System.Drawing.Size(58, 26);
+            this.createdLabel.Size = new System.Drawing.Size(43, 30);
             this.createdLabel.TabIndex = 17;
             this.createdLabel.Text = "Created:";
             this.createdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -177,23 +178,23 @@
             // idTextBox
             // 
             this.idTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.idTextBox.Location = new System.Drawing.Point(74, 22);
-            this.idTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.idTextBox.MaximumSize = new System.Drawing.Size(151, 22);
-            this.idTextBox.MinimumSize = new System.Drawing.Size(49, 22);
+            this.idTextBox.Location = new System.Drawing.Point(55, 18);
+            this.idTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.idTextBox.MaximumSize = new System.Drawing.Size(114, 22);
+            this.idTextBox.MinimumSize = new System.Drawing.Size(38, 22);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.ReadOnly = true;
-            this.idTextBox.Size = new System.Drawing.Size(151, 22);
+            this.idTextBox.Size = new System.Drawing.Size(114, 22);
             this.idTextBox.TabIndex = 16;
             // 
             // idLabel
             // 
             this.idLabel.AutoSize = true;
             this.idLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.idLabel.Location = new System.Drawing.Point(3, 22);
-            this.idLabel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 0);
+            this.idLabel.Location = new System.Drawing.Point(2, 18);
+            this.idLabel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 0);
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(23, 24);
+            this.idLabel.Size = new System.Drawing.Size(22, 22);
             this.idLabel.TabIndex = 15;
             this.idLabel.Text = "ID:";
             this.idLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -203,7 +204,8 @@
             this.selectedOrderLabel.AutoSize = true;
             this.selectedOrderTableLayoutPanel.SetColumnSpan(this.selectedOrderLabel, 2);
             this.selectedOrderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selectedOrderLabel.Location = new System.Drawing.Point(3, 0);
+            this.selectedOrderLabel.Location = new System.Drawing.Point(2, 0);
+            this.selectedOrderLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.selectedOrderLabel.Name = "selectedOrderLabel";
             this.selectedOrderLabel.Size = new System.Drawing.Size(112, 16);
             this.selectedOrderLabel.TabIndex = 14;
@@ -213,42 +215,42 @@
             // 
             this.priorityOptionsPanel.Controls.Add(this.priorityOptionsTableLayoutPanel);
             this.priorityOptionsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priorityOptionsPanel.Location = new System.Drawing.Point(238, 2);
-            this.priorityOptionsPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.priorityOptionsPanel.Location = new System.Drawing.Point(178, 2);
+            this.priorityOptionsPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.priorityOptionsPanel.Name = "priorityOptionsPanel";
-            this.priorityOptionsPanel.Size = new System.Drawing.Size(233, 112);
+            this.priorityOptionsPanel.Size = new System.Drawing.Size(176, 89);
             this.priorityOptionsPanel.TabIndex = 14;
             this.priorityOptionsPanel.Visible = false;
             // 
             // priorityOptionsTableLayoutPanel
             // 
             this.priorityOptionsTableLayoutPanel.ColumnCount = 2;
-            this.priorityOptionsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.priorityOptionsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.priorityOptionsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.priorityOptionsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 94F));
             this.priorityOptionsTableLayoutPanel.Controls.Add(this.deliveryTimeComboBox, 1, 1);
             this.priorityOptionsTableLayoutPanel.Controls.Add(this.deliveryTimeLabel, 0, 1);
             this.priorityOptionsTableLayoutPanel.Controls.Add(this.priorityOptionsLabel, 0, 0);
             this.priorityOptionsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.priorityOptionsTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.priorityOptionsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.priorityOptionsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.priorityOptionsTableLayoutPanel.Name = "priorityOptionsTableLayoutPanel";
             this.priorityOptionsTableLayoutPanel.RowCount = 3;
-            this.priorityOptionsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.priorityOptionsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
             this.priorityOptionsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.priorityOptionsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.priorityOptionsTableLayoutPanel.Size = new System.Drawing.Size(233, 112);
+            this.priorityOptionsTableLayoutPanel.Size = new System.Drawing.Size(176, 89);
             this.priorityOptionsTableLayoutPanel.TabIndex = 2;
             // 
             // deliveryTimeComboBox
             // 
             this.deliveryTimeComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.deliveryTimeComboBox.FormattingEnabled = true;
-            this.deliveryTimeComboBox.Location = new System.Drawing.Point(112, 22);
-            this.deliveryTimeComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.deliveryTimeComboBox.MaximumSize = new System.Drawing.Size(151, 0);
-            this.deliveryTimeComboBox.MinimumSize = new System.Drawing.Size(49, 0);
+            this.deliveryTimeComboBox.Location = new System.Drawing.Point(84, 18);
+            this.deliveryTimeComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.deliveryTimeComboBox.MaximumSize = new System.Drawing.Size(114, 0);
+            this.deliveryTimeComboBox.MinimumSize = new System.Drawing.Size(38, 0);
             this.deliveryTimeComboBox.Name = "deliveryTimeComboBox";
-            this.deliveryTimeComboBox.Size = new System.Drawing.Size(119, 24);
+            this.deliveryTimeComboBox.Size = new System.Drawing.Size(90, 21);
             this.deliveryTimeComboBox.TabIndex = 21;
             this.deliveryTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeliveryTimeComboBox_SelectedIndexChanged);
             // 
@@ -256,10 +258,10 @@
             // 
             this.deliveryTimeLabel.AutoSize = true;
             this.deliveryTimeLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.deliveryTimeLabel.Location = new System.Drawing.Point(3, 22);
-            this.deliveryTimeLabel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 0);
+            this.deliveryTimeLabel.Location = new System.Drawing.Point(2, 18);
+            this.deliveryTimeLabel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 0);
             this.deliveryTimeLabel.Name = "deliveryTimeLabel";
-            this.deliveryTimeLabel.Size = new System.Drawing.Size(94, 26);
+            this.deliveryTimeLabel.Size = new System.Drawing.Size(53, 30);
             this.deliveryTimeLabel.TabIndex = 16;
             this.deliveryTimeLabel.Text = "Delivery Time:";
             this.deliveryTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -269,7 +271,8 @@
             this.priorityOptionsLabel.AutoSize = true;
             this.priorityOptionsTableLayoutPanel.SetColumnSpan(this.priorityOptionsLabel, 2);
             this.priorityOptionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.priorityOptionsLabel.Location = new System.Drawing.Point(3, 0);
+            this.priorityOptionsLabel.Location = new System.Drawing.Point(2, 0);
+            this.priorityOptionsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.priorityOptionsLabel.Name = "priorityOptionsLabel";
             this.priorityOptionsLabel.Size = new System.Drawing.Size(113, 16);
             this.priorityOptionsLabel.TabIndex = 15;
@@ -279,7 +282,8 @@
             // 
             this.ordersLabel.AutoSize = true;
             this.ordersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ordersLabel.Location = new System.Drawing.Point(3, 0);
+            this.ordersLabel.Location = new System.Drawing.Point(2, 0);
+            this.ordersLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ordersLabel.Name = "ordersLabel";
             this.ordersLabel.Size = new System.Drawing.Size(54, 16);
             this.ordersLabel.TabIndex = 0;
@@ -295,55 +299,23 @@
             this.orderItemsTableLayoutPanel.Controls.Add(this.ordeItemsistBox, 0, 1);
             this.orderItemsTableLayoutPanel.Controls.Add(this.showOnlyPriorityOrdersСheckBox, 0, 3);
             this.orderItemsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orderItemsTableLayoutPanel.Location = new System.Drawing.Point(483, 266);
-            this.orderItemsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.orderItemsTableLayoutPanel.Location = new System.Drawing.Point(362, 216);
+            this.orderItemsTableLayoutPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.orderItemsTableLayoutPanel.Name = "orderItemsTableLayoutPanel";
             this.orderItemsTableLayoutPanel.RowCount = 4;
-            this.orderItemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.orderItemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.orderItemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.orderItemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.orderItemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.orderItemsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.orderItemsTableLayoutPanel.Size = new System.Drawing.Size(474, 452);
+            this.orderItemsTableLayoutPanel.Size = new System.Drawing.Size(356, 367);
             this.orderItemsTableLayoutPanel.TabIndex = 4;
-            // 
-            // amountFlowLayoutPanel
-            // 
-            this.amountFlowLayoutPanel.AutoSize = true;
-            this.amountFlowLayoutPanel.Controls.Add(this.amountLabel);
-            this.amountFlowLayoutPanel.Controls.Add(this.costLabel);
-            this.amountFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.amountFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.amountFlowLayoutPanel.Location = new System.Drawing.Point(403, 182);
-            this.amountFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.amountFlowLayoutPanel.Name = "amountFlowLayoutPanel";
-            this.amountFlowLayoutPanel.Size = new System.Drawing.Size(68, 41);
-            this.amountFlowLayoutPanel.TabIndex = 12;
-            // 
-            // amountLabel
-            // 
-            this.amountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.amountLabel.AutoSize = true;
-            this.amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.amountLabel.Location = new System.Drawing.Point(3, 0);
-            this.amountLabel.Name = "amountLabel";
-            this.amountLabel.Size = new System.Drawing.Size(62, 16);
-            this.amountLabel.TabIndex = 0;
-            this.amountLabel.Text = "Amount:";
-            // 
-            // costLabel
-            // 
-            this.costLabel.AutoSize = true;
-            this.costLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.costLabel.Location = new System.Drawing.Point(3, 16);
-            this.costLabel.Name = "costLabel";
-            this.costLabel.Size = new System.Drawing.Size(0, 25);
-            this.costLabel.TabIndex = 1;
             // 
             // orderItems
             // 
             this.orderItems.AutoSize = true;
             this.orderItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.orderItems.Location = new System.Drawing.Point(3, 0);
+            this.orderItems.Location = new System.Drawing.Point(2, 0);
+            this.orderItems.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.orderItems.Name = "orderItems";
             this.orderItems.Size = new System.Drawing.Size(87, 16);
             this.orderItems.TabIndex = 1;
@@ -354,20 +326,18 @@
             this.orderItemsTableLayoutPanel.SetColumnSpan(this.ordeItemsistBox, 2);
             this.ordeItemsistBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ordeItemsistBox.FormattingEnabled = true;
-            this.ordeItemsistBox.ItemHeight = 16;
-            this.ordeItemsistBox.Location = new System.Drawing.Point(3, 22);
-            this.ordeItemsistBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ordeItemsistBox.Location = new System.Drawing.Point(2, 18);
+            this.ordeItemsistBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ordeItemsistBox.Name = "ordeItemsistBox";
-            this.ordeItemsistBox.Size = new System.Drawing.Size(468, 156);
+            this.ordeItemsistBox.Size = new System.Drawing.Size(352, 126);
             this.ordeItemsistBox.TabIndex = 13;
             // 
             // showOnlyPriorityOrdersСheckBox
             // 
             this.showOnlyPriorityOrdersСheckBox.AutoSize = true;
-            this.showOnlyPriorityOrdersСheckBox.Location = new System.Drawing.Point(4, 229);
-            this.showOnlyPriorityOrdersСheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showOnlyPriorityOrdersСheckBox.Location = new System.Drawing.Point(3, 194);
             this.showOnlyPriorityOrdersСheckBox.Name = "showOnlyPriorityOrdersСheckBox";
-            this.showOnlyPriorityOrdersСheckBox.Size = new System.Drawing.Size(175, 20);
+            this.showOnlyPriorityOrdersСheckBox.Size = new System.Drawing.Size(162, 19);
             this.showOnlyPriorityOrdersСheckBox.TabIndex = 14;
             this.showOnlyPriorityOrdersСheckBox.Text = "Show only priority orders";
             this.showOnlyPriorityOrdersСheckBox.UseVisualStyleBackColor = true;
@@ -377,35 +347,70 @@
             // 
             this.ordersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ordersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ordersDataGridView.Location = new System.Drawing.Point(3, 22);
-            this.ordersDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ordersDataGridView.Location = new System.Drawing.Point(2, 18);
+            this.ordersDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ordersDataGridView.Name = "ordersDataGridView";
             this.ordersDataGridView.RowHeadersWidth = 51;
             this.ordersTableLayoutPanel.SetRowSpan(this.ordersDataGridView, 3);
             this.ordersDataGridView.RowTemplate.Height = 24;
-            this.ordersDataGridView.Size = new System.Drawing.Size(474, 696);
+            this.ordersDataGridView.Size = new System.Drawing.Size(356, 565);
             this.ordersDataGridView.TabIndex = 5;
             this.ordersDataGridView.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.OrdersDataGridView_RowPostPaint);
             this.ordersDataGridView.SelectionChanged += new System.EventHandler(this.OrdersDataGridView_SelectionChanged);
             // 
+            // costLabel
+            // 
+            this.costLabel.AutoSize = true;
+            this.costLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.costLabel.Location = new System.Drawing.Point(2, 16);
+            this.costLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.costLabel.Name = "costLabel";
+            this.costLabel.Size = new System.Drawing.Size(0, 25);
+            this.costLabel.TabIndex = 1;
+            // 
+            // amountLabel
+            // 
+            this.amountLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.amountLabel.AutoSize = true;
+            this.amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.amountLabel.Location = new System.Drawing.Point(2, 0);
+            this.amountLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.amountLabel.Name = "amountLabel";
+            this.amountLabel.Size = new System.Drawing.Size(62, 16);
+            this.amountLabel.TabIndex = 0;
+            this.amountLabel.Text = "Amount:";
+            // 
+            // amountFlowLayoutPanel
+            // 
+            this.amountFlowLayoutPanel.AutoSize = true;
+            this.amountFlowLayoutPanel.Controls.Add(this.amountLabel);
+            this.amountFlowLayoutPanel.Controls.Add(this.costLabel);
+            this.amountFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.amountFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.amountFlowLayoutPanel.Location = new System.Drawing.Point(288, 148);
+            this.amountFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(2);
+            this.amountFlowLayoutPanel.Name = "amountFlowLayoutPanel";
+            this.amountFlowLayoutPanel.Size = new System.Drawing.Size(66, 41);
+            this.amountFlowLayoutPanel.TabIndex = 12;
+            // 
             // addressControl
             // 
             this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressControl.Location = new System.Drawing.Point(485, 125);
-            this.addressControl.Margin = new System.Windows.Forms.Padding(5);
+            this.addressControl.Location = new System.Drawing.Point(364, 101);
+            this.addressControl.Margin = new System.Windows.Forms.Padding(4);
             this.addressControl.Name = "addressControl";
             this.addressControl.ReadOnly = false;
-            this.addressControl.Size = new System.Drawing.Size(470, 134);
+            this.addressControl.Size = new System.Drawing.Size(352, 109);
             this.addressControl.TabIndex = 3;
             // 
             // OrdersTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ordersTableLayoutPanel);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "OrdersTab";
-            this.Size = new System.Drawing.Size(960, 720);
+            this.Size = new System.Drawing.Size(720, 585);
             this.ordersTableLayoutPanel.ResumeLayout(false);
             this.ordersTableLayoutPanel.PerformLayout();
             this.SelectedAndPriorityTableLayoutPanel.ResumeLayout(false);
@@ -416,9 +421,9 @@
             this.priorityOptionsTableLayoutPanel.PerformLayout();
             this.orderItemsTableLayoutPanel.ResumeLayout(false);
             this.orderItemsTableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
             this.amountFlowLayoutPanel.ResumeLayout(false);
             this.amountFlowLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -430,9 +435,6 @@
         private ObjectOrientedPractics.View.Controls.AddressControl addressControl;
         private System.Windows.Forms.TableLayoutPanel orderItemsTableLayoutPanel;
         private System.Windows.Forms.Label orderItems;
-        private System.Windows.Forms.FlowLayoutPanel amountFlowLayoutPanel;
-        private System.Windows.Forms.Label amountLabel;
-        private System.Windows.Forms.Label costLabel;
         private System.Windows.Forms.ListBox ordeItemsistBox;
         private System.Windows.Forms.DataGridView ordersDataGridView;
         private System.Windows.Forms.TableLayoutPanel SelectedAndPriorityTableLayoutPanel;
@@ -450,5 +452,8 @@
         private System.Windows.Forms.Label deliveryTimeLabel;
         private System.Windows.Forms.Label priorityOptionsLabel;
         private System.Windows.Forms.CheckBox showOnlyPriorityOrdersСheckBox;
+        private System.Windows.Forms.FlowLayoutPanel amountFlowLayoutPanel;
+        private System.Windows.Forms.Label amountLabel;
+        private System.Windows.Forms.Label costLabel;
     }
 }

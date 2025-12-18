@@ -27,7 +27,7 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
 
             // Заполняем статусы
-            foreach (var status in Enum.GetValues(typeof(OrderStatus)))
+            foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
             {
                 statusComboBox.Items.Add(status);
             }
@@ -67,13 +67,13 @@ namespace ObjectOrientedPractics.View.Tabs
 
             // Обновляем список товаров
             orderItemsListBox.Items.Clear();
-            foreach (var item in _currentOrder.Items)
+            foreach (Item item in _currentOrder.Items)
             {
                 orderItemsListBox.Items.Add(item.Name);
             }
 
             // Обновляем стоимость
-            costLabel.Text = _currentOrder.TotalAmount.ToString("N2");
+            costLabel.Text = _currentOrder.Amount.ToString("N2");
         }
 
         /// <summary>
