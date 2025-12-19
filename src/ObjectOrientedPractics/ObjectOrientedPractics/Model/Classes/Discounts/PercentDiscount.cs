@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// Скидка накапливается в процессе покупок и применяется
     /// только к товарам выбранной категории.
     /// </summary>
-    public class PercentDiscount
+    public class PercentDiscount : IDiscount
     {
         /// <summary>
         /// Текущий процент скидки.

@@ -73,7 +73,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             // Обновляем стоимость
-            costLabel.Text = _currentOrder.TotalAmount.ToString("N2");
+            costLabel.Text = _currentOrder.Amount.ToString("N2");
         }
 
         /// <summary>

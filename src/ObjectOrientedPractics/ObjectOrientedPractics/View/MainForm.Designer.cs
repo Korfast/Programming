@@ -60,7 +60,7 @@
             this.mainTabControl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(622, 433);
+            this.mainTabControl.Size = new System.Drawing.Size(942, 673);
             this.mainTabControl.TabIndex = 0;
             this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.MainTabControl_SelectedIndexChanged);
             // 
@@ -71,7 +71,7 @@
             this.itemsTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.itemsTabPage.Name = "itemsTabPage";
             this.itemsTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.itemsTabPage.Size = new System.Drawing.Size(614, 404);
+            this.itemsTabPage.Size = new System.Drawing.Size(934, 644);
             this.itemsTabPage.TabIndex = 0;
             this.itemsTabPage.Text = "Items";
             this.itemsTabPage.UseVisualStyleBackColor = true;
@@ -82,7 +82,7 @@
             this.itemsTab.Location = new System.Drawing.Point(3, 2);
             this.itemsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.itemsTab.Name = "itemsTab";
-            this.itemsTab.Size = new System.Drawing.Size(608, 400);
+            this.itemsTab.Size = new System.Drawing.Size(928, 640);
             this.itemsTab.TabIndex = 0;
             // 
             // customersTabPage
@@ -92,7 +92,7 @@
             this.customersTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.customersTabPage.Name = "customersTabPage";
             this.customersTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.customersTabPage.Size = new System.Drawing.Size(613, 404);
+            this.customersTabPage.Size = new System.Drawing.Size(614, 404);
             this.customersTabPage.TabIndex = 1;
             this.customersTabPage.Text = "Customers";
             this.customersTabPage.UseVisualStyleBackColor = true;
@@ -103,7 +103,7 @@
             this.customersTab.Location = new System.Drawing.Point(3, 2);
             this.customersTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.customersTab.Name = "customersTab";
-            this.customersTab.Size = new System.Drawing.Size(607, 400);
+            this.customersTab.Size = new System.Drawing.Size(608, 400);
             this.customersTab.TabIndex = 0;
             // 
             // cartsTabPage
@@ -113,7 +113,7 @@
             this.cartsTabPage.Margin = new System.Windows.Forms.Padding(4);
             this.cartsTabPage.Name = "cartsTabPage";
             this.cartsTabPage.Padding = new System.Windows.Forms.Padding(4);
-            this.cartsTabPage.Size = new System.Drawing.Size(613, 404);
+            this.cartsTabPage.Size = new System.Drawing.Size(614, 404);
             this.cartsTabPage.TabIndex = 2;
             this.cartsTabPage.Text = "Carts";
             this.cartsTabPage.UseVisualStyleBackColor = true;
@@ -124,7 +124,7 @@
             this.cartsTab.Location = new System.Drawing.Point(4, 4);
             this.cartsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cartsTab.Name = "cartsTab";
-            this.cartsTab.Size = new System.Drawing.Size(605, 396);
+            this.cartsTab.Size = new System.Drawing.Size(606, 396);
             this.cartsTab.TabIndex = 0;
             // 
             // orderTabPage
@@ -133,7 +133,7 @@
             this.orderTabPage.Location = new System.Drawing.Point(4, 25);
             this.orderTabPage.Name = "orderTabPage";
             this.orderTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.orderTabPage.Size = new System.Drawing.Size(613, 404);
+            this.orderTabPage.Size = new System.Drawing.Size(614, 404);
             this.orderTabPage.TabIndex = 3;
             this.orderTabPage.Text = "Orders";
             this.orderTabPage.UseVisualStyleBackColor = true;
@@ -142,8 +142,9 @@
             // 
             this.ordersTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ordersTab.Location = new System.Drawing.Point(3, 3);
+            this.ordersTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ordersTab.Name = "ordersTab";
-            this.ordersTab.Size = new System.Drawing.Size(607, 398);
+            this.ordersTab.Size = new System.Drawing.Size(608, 398);
             this.ordersTab.TabIndex = 0;
             // 
             // priorityOrdersTabPage
@@ -152,7 +153,7 @@
             this.priorityOrdersTabPage.Location = new System.Drawing.Point(4, 25);
             this.priorityOrdersTabPage.Name = "priorityOrdersTabPage";
             this.priorityOrdersTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.priorityOrdersTabPage.Size = new System.Drawing.Size(613, 404);
+            this.priorityOrdersTabPage.Size = new System.Drawing.Size(614, 404);
             this.priorityOrdersTabPage.TabIndex = 4;
             this.priorityOrdersTabPage.Text = "Priority Orders";
             this.priorityOrdersTabPage.UseVisualStyleBackColor = true;
@@ -161,15 +162,16 @@
             // 
             this.priorityOrdersTab1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.priorityOrdersTab1.Location = new System.Drawing.Point(3, 3);
+            this.priorityOrdersTab1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.priorityOrdersTab1.Name = "priorityOrdersTab1";
-            this.priorityOrdersTab1.Size = new System.Drawing.Size(607, 398);
+            this.priorityOrdersTab1.Size = new System.Drawing.Size(608, 398);
             this.priorityOrdersTab1.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 433);
+            this.ClientSize = new System.Drawing.Size(942, 673);
             this.Controls.Add(this.mainTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

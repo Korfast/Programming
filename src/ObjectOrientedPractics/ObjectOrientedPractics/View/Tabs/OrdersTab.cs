@@ -147,7 +147,7 @@ namespace ObjectOrientedPractics.View.Tabs
                         order.Status,
                         customer.Fullname,
                         address,
-                        order.TotalAmount.ToString("N2"));
+                        order.Amount.ToString("N2"));
 
                     ordersDataGridView.Rows[rowIndex].Tag = order;
                 }
@@ -260,7 +260,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             costLabel.Text =
-                _currentOrder.TotalAmount.ToString("N2");
+                _currentOrder.Amount.ToString("N2");
         }
 
         /// <summary>

@@ -129,21 +129,37 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Вычисляет общую стоимость всех товаров в заказе.
         /// </summary>
-        public double TotalAmount
+        public double Amount
         {
             get
             {
-                double total = 0.0;
+                double amount = 0.0;
                 if (_items == null)
                 {
-                    return total;
+                    return amount;
                 }
 
                 foreach (Item item in _items)
                 {
-                    total += item.Cost;
+                    amount += item.Cost;
                 }
-                return total;
+                return amount;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задаёт размер примененной скидки.
+        /// </summary>
+        public double DiscountAmount { get; set; }
+
+        /// <summary>
+        /// Возвращает конечную стоимость заказа (сумма товаров минус скидка).
+        /// </summary>
+        public double Total
+        {
+            get
+            {
+                return Amount - DiscountAmount;
             }
         }
 

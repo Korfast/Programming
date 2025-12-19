@@ -60,6 +60,7 @@
     <Compile Include="Model\Classes\Store.cs" />
     <Compile Include="Model\Enumerations\Category.cs" />
     <Compile Include="Model\Enumerations\OrderStatus.cs" />
+    <Compile Include="Model\IDiscount.cs" />
     <Compile Include="Services\CustomerFactory.cs" />
     <Compile Include="Services\ItemFactory.cs" />
     <Compile Include="View\Controls\AddressControl.cs">
@@ -161,11 +162,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ObjectOrientedPractics.ico" />
+    <Content Include="Resources\ObjectOrientedPractics.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
