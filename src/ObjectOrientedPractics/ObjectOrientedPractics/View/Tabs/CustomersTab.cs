@@ -67,16 +67,50 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            foreach (var item in _customers)
+            foreach (Customer customer in _customers)
             {
-                customersListBox.Items.Add(item);
-                // Предположим, что Customer переопределяет ToString()
+                customersListBox.Items.Add(customer);
             }
         }
 
         public CustomersTab()
         {
             InitializeComponent();
+        }
+
+        private void UpdateDiscountsListBox()
+        {
+            // 1. Очищаем ListBox
+            discountsListBox.Items.Clear();
+
+            // 2. Создаем временные списки для разделения скидок
+            List<IDiscount> pointsDiscounts = new List<IDiscount>();
+            List<IDiscount> regularDiscounts = new List<IDiscount>();
+
+            // 3. Распределяем скидки: накопительную в один список, остальные в другой
+            foreach (IDiscount discount in _currentCustomer.Discounts)
+            {
+                if (discount is PointsDiscount)
+                {
+                    pointsDiscounts.Add(discount);
+                }
+                else
+                {
+                    regularDiscounts.Add(discount);
+                }
+            }
+
+            // 4. Сначала добавляем в ListBox накопительные скидки (они будут первыми)
+            foreach (IDiscount discount in pointsDiscounts)
+            {
+                discountsListBox.Items.Add(discount.Info);
+            }
+
+            // 5. Затем добавляем все остальные скидки
+            foreach (IDiscount discount in regularDiscounts)
+            {
+                discountsListBox.Items.Add(discount.Info);
+            }
         }
 
         /// <summary>
@@ -208,6 +242,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 isPriorityCheckBox.Checked = _currentCustomer.IsPriority;
                 // Передача адреса в AddressControl
                 addressControl.Address = _currentCustomer.Address;
+                // Обновление данных о скидках
+                UpdateDiscountsListBox();
             }
         }
 

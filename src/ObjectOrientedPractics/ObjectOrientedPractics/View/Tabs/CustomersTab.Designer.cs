@@ -30,7 +30,6 @@
         {
             this.customersTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.selectedCustomerTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.fullNameTextBox = new System.Windows.Forms.TextBox();
             this.fullNameLabel = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
@@ -42,10 +41,18 @@
             this.customersLabel = new System.Windows.Forms.Label();
             this.customersListBox = new System.Windows.Forms.ListBox();
             this.selectedCustomerLabel = new System.Windows.Forms.Label();
-            this.selectedCustomerPanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.discountsLabel = new System.Windows.Forms.Label();
+            this.discountsListBox = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.addressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.customersTableLayoutPanel.SuspendLayout();
             this.selectedCustomerTableLayoutPanel.SuspendLayout();
             this.buttonsTableLayoutPanel.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // customersTableLayoutPanel
@@ -58,7 +65,7 @@
             this.customersTableLayoutPanel.Controls.Add(this.customersLabel, 0, 0);
             this.customersTableLayoutPanel.Controls.Add(this.customersListBox, 0, 1);
             this.customersTableLayoutPanel.Controls.Add(this.selectedCustomerLabel, 1, 0);
-            this.customersTableLayoutPanel.Controls.Add(this.selectedCustomerPanel, 1, 2);
+            this.customersTableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 1, 2);
             this.customersTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customersTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.customersTableLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -93,17 +100,6 @@
             this.selectedCustomerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.selectedCustomerTableLayoutPanel.Size = new System.Drawing.Size(383, 231);
             this.selectedCustomerTableLayoutPanel.TabIndex = 8;
-            // 
-            // addressControl
-            // 
-            this.selectedCustomerTableLayoutPanel.SetColumnSpan(this.addressControl, 2);
-            this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addressControl.Location = new System.Drawing.Point(5, 89);
-            this.addressControl.Margin = new System.Windows.Forms.Padding(5);
-            this.addressControl.Name = "addressControl";
-            this.addressControl.ReadOnly = false;
-            this.addressControl.Size = new System.Drawing.Size(373, 137);
-            this.addressControl.TabIndex = 6;
             // 
             // fullNameTextBox
             // 
@@ -237,15 +233,90 @@
             this.selectedCustomerLabel.TabIndex = 3;
             this.selectedCustomerLabel.Text = "Selected Customer";
             // 
-            // selectedCustomerPanel
+            // tableLayoutPanel1
             // 
-            this.selectedCustomerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectedCustomerPanel.Location = new System.Drawing.Point(254, 257);
-            this.selectedCustomerPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.selectedCustomerPanel.Name = "selectedCustomerPanel";
-            this.customersTableLayoutPanel.SetRowSpan(this.selectedCustomerPanel, 2);
-            this.selectedCustomerPanel.Size = new System.Drawing.Size(383, 221);
-            this.selectedCustomerPanel.TabIndex = 9;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.discountsLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.discountsListBox, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(254, 258);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(383, 169);
+            this.tableLayoutPanel1.TabIndex = 9;
+            // 
+            // discountsLabel
+            // 
+            this.discountsLabel.AutoSize = true;
+            this.discountsLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.discountsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.discountsLabel.Location = new System.Drawing.Point(3, 0);
+            this.discountsLabel.Name = "discountsLabel";
+            this.discountsLabel.Size = new System.Drawing.Size(75, 20);
+            this.discountsLabel.TabIndex = 4;
+            this.discountsLabel.Text = "Discounts";
+            // 
+            // discountsListBox
+            // 
+            this.discountsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.discountsListBox.FormattingEnabled = true;
+            this.discountsListBox.ItemHeight = 16;
+            this.discountsListBox.Location = new System.Drawing.Point(3, 23);
+            this.discountsListBox.Name = "discountsListBox";
+            this.discountsListBox.Size = new System.Drawing.Size(223, 143);
+            this.discountsListBox.TabIndex = 5;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.button1, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.button3, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(232, 22);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 53F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(148, 145);
+            this.tableLayoutPanel3.TabIndex = 9;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(3, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(109, 42);
+            this.button3.TabIndex = 0;
+            this.button3.Text = "Add";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 55);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 45);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Remove";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // addressControl
+            // 
+            this.selectedCustomerTableLayoutPanel.SetColumnSpan(this.addressControl, 2);
+            this.addressControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addressControl.Location = new System.Drawing.Point(5, 89);
+            this.addressControl.Margin = new System.Windows.Forms.Padding(5);
+            this.addressControl.Name = "addressControl";
+            this.addressControl.ReadOnly = false;
+            this.addressControl.Size = new System.Drawing.Size(373, 137);
+            this.addressControl.TabIndex = 6;
             // 
             // CustomersTab
             // 
@@ -260,6 +331,9 @@
             this.selectedCustomerTableLayoutPanel.ResumeLayout(false);
             this.selectedCustomerTableLayoutPanel.PerformLayout();
             this.buttonsTableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -278,8 +352,13 @@
         private System.Windows.Forms.TableLayoutPanel buttonsTableLayoutPanel;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button removeButton;
-        private System.Windows.Forms.Panel selectedCustomerPanel;
         private Controls.AddressControl addressControl;
         private System.Windows.Forms.CheckBox isPriorityCheckBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label discountsLabel;
+        private System.Windows.Forms.ListBox discountsListBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button1;
     }
 }
