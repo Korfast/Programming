@@ -1,5 +1,6 @@
 ﻿using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.View.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -284,6 +285,59 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentCustomer.IsPriority = isPriorityCheckBox.Checked;
             }
+        }
+
+        private void AddDiscountButton_Click(object sender, EventArgs e)
+        {
+            // 1. Создаем форму для выбора категории (нужно реализовать отдельно)
+            using (AddDiscountForm addDiscountForm = new AddDiscountForm())
+            {
+                if (addDiscountForm.ShowDialog() == DialogResult.OK)
+                {
+                    // 2. Получаем выбранную категорию из формы
+                    Category selectedCategory = addDiscountForm.SelectedCategory;
+
+                    // 3. Проверяем, нет ли уже у покупателя скидки на эту категорию
+                    foreach (var discount in _currentCustomer.Discounts)
+                    {
+                        if (discount is PercentDiscount percentDiscount &&
+                            percentDiscount.Category == selectedCategory)
+                        {
+                            return; // Скидка на эту категорию уже есть
+                        }
+                    }
+
+                    // 4. Создаем и добавляем новую процентную скидку
+                    PercentDiscount newDiscount = new PercentDiscount(selectedCategory);
+                    _currentCustomer.Discounts.Add(newDiscount);
+
+                    // 5. Обновляем отображение
+                    UpdateDiscountsListBox();
+                }
+            }
+        }
+
+        private void RemoveDiscountButton_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = discountsListBox.SelectedIndex;
+
+            // Проверяем, что элемент выбран
+            if (selectedIndex == -1) return;
+
+            // Находим объект скидки в списке покупателя по индексу из ListBox
+            // Учитываем, что в ListBox скидки отображаются в том же порядке, что и в UpdateDiscountsListBox
+            IDiscount selectedDiscount = _currentCustomer.Discounts[selectedIndex];
+
+            // Запрет на удаление накопительной скидки
+            if (selectedDiscount is PointsDiscount)
+            {
+                MessageBox.Show("Нельзя удалить накопительную скидку.");
+                return;
+            }
+
+            // Удаляем и обновляем интерфейс
+            _currentCustomer.Discounts.Remove(selectedDiscount);
+            UpdateDiscountsListBox();
         }
     }
 }
