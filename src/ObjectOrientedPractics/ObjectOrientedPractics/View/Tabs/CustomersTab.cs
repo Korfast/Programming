@@ -289,29 +289,30 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddDiscountButton_Click(object sender, EventArgs e)
         {
-            // 1. Создаем форму для выбора категории (нужно реализовать отдельно)
+            // Создаем форму для выбора категории (нужно реализовать отдельно)
             using (AddDiscountForm addDiscountForm = new AddDiscountForm())
             {
                 if (addDiscountForm.ShowDialog() == DialogResult.OK)
                 {
-                    // 2. Получаем выбранную категорию из формы
+                    // Получаем выбранную категорию из формы
                     Category selectedCategory = addDiscountForm.SelectedCategory;
 
-                    // 3. Проверяем, нет ли уже у покупателя скидки на эту категорию
-                    foreach (var discount in _currentCustomer.Discounts)
+                    // Проверяем, нет ли уже у покупателя скидки на эту категорию
+                    foreach (IDiscount discount in _currentCustomer.Discounts)
                     {
                         if (discount is PercentDiscount percentDiscount &&
                             percentDiscount.Category == selectedCategory)
                         {
-                            return; // Скидка на эту категорию уже есть
+                            // Скидка на эту категорию уже есть
+                            return; 
                         }
                     }
 
-                    // 4. Создаем и добавляем новую процентную скидку
+                    // Создаем и добавляем новую процентную скидку
                     PercentDiscount newDiscount = new PercentDiscount(selectedCategory);
                     _currentCustomer.Discounts.Add(newDiscount);
 
-                    // 5. Обновляем отображение
+                    // Обновляем отображение
                     UpdateDiscountsListBox();
                 }
             }

@@ -73,7 +73,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 return;
             }
 
-            foreach (var item in _items)
+            foreach (Item item in _items)
             {
                 itemsListBox.Items.Add(item);
                 // Предположим, что Item переопределяет ToString()

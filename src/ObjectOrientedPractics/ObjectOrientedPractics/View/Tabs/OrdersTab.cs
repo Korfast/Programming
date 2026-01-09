@@ -91,6 +91,7 @@ namespace ObjectOrientedPractics.View.Tabs
             ordersDataGridView.Columns.Add("CustomerColumn", "Customer Full Name");
             ordersDataGridView.Columns.Add("AddressColumn", "Delivery Address");
             ordersDataGridView.Columns.Add("AmountColumn", "Amount");
+            ordersDataGridView.Columns.Add("TotalColumn", "Total");
 
             ordersDataGridView.SelectionMode =
                 DataGridViewSelectionMode.FullRowSelect;
@@ -141,15 +142,34 @@ namespace ObjectOrientedPractics.View.Tabs
                         $"{order.DeliveryAddress.Building}, " +
                         $"{order.DeliveryAddress.Apartment}";
 
+                    // Если в классе Order уже есть свойство Total, используйте order.Total
+                    double totalCost = order.Amount - order.DiscountAmount;
+
                     int rowIndex = ordersDataGridView.Rows.Add(
                         order.Id,
                         order.CreationDate.ToString("dd.MM.yyyy HH:mm"),
                         order.Status,
                         customer.Fullname,
                         address,
-                        order.Amount.ToString("N2"));
+                        order.Amount.ToString("N2"),
+                        totalCost.ToString("N2"));
 
                     ordersDataGridView.Rows[rowIndex].Tag = order;
+
+                    // Если в таблице есть строки, принудительно выделяем первую и вызываем обновление инфо
+                    if (ordersDataGridView.Rows.Count > 0)
+                    {
+                        ordersDataGridView.ClearSelection();
+                        ordersDataGridView.Rows[0].Selected = true;
+
+                        // Извлекаем заказ из Tag первой строки и обновляем панель
+                        _currentOrder = (Order)ordersDataGridView.Rows[0].Tag;
+                        UpdateOrderInfo();
+                    }
+                    else
+                    {
+                        ClearOrderInfo();
+                    }
                 }
             }
         }
@@ -254,13 +274,19 @@ namespace ObjectOrientedPractics.View.Tabs
             addressControl.Address = _currentOrder.DeliveryAddress;
 
             ordeItemsistBox.Items.Clear();
-            foreach (var item in _currentOrder.Items)
+            foreach (Item item in _currentOrder.Items)
             {
                 ordeItemsistBox.Items.Add(item.Name);
             }
 
-            costLabel.Text =
-                _currentOrder.Amount.ToString("N2");
+            // Отображаем базовую стоимость (сумма товаров без скидки)
+            costLabel.Text = _currentOrder.Amount.ToString("N2");
+
+            // Рассчитываем и выводим итоговую стоимость (Total)
+            double total = _currentOrder.Amount - _currentOrder.DiscountAmount;
+
+            // totalCostLabel — это новый Label на панели справа, который вы должны были добавить
+            costLabel.Text = total.ToString("N2");
         }
 
         /// <summary>
