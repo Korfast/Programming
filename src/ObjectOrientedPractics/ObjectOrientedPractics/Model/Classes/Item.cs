@@ -123,5 +123,41 @@ namespace ObjectOrientedPractics.Model
         {
             _id = _counter++;
         }
+
+        /// <inheritdoc />
+        public object Clone()
+        {
+            // При клонировании товара создаем новый объект с теми же данными.
+            // Id у клона будет новый, так как вызывается конструктор.
+            return new Item(this.Name, this.Info, this.Cost, this.Category);
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is Item other)) return false;
+            return Equals(other);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Item other)
+        {
+            if (other == null) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            // Товары равны, если равны их названия, цена и категория
+            return Name == other.Name &&
+                   Cost == other.Cost &&
+                   Category == other.Category;
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(Item other)
+        {
+            if (other == null) return 1;
+            // Сравнение по стоимости (пункт 5 ТЗ)
+            return Cost.CompareTo(other.Cost);
+        }
     }
 }

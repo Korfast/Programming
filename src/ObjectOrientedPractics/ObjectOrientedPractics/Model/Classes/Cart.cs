@@ -48,5 +48,17 @@ namespace ObjectOrientedPractics.Model
         {
             _items = new List<Item>();
         }
+
+        /// <inheritdoc />
+        public object Clone()
+        {
+            Cart clone = new Cart();
+            // Клонируем список товаров, чтобы изменения в одном списке не влияли на другой
+            foreach (Item item in Items)
+            {
+                clone.Items.Add((Item)item.Clone());
+            }
+            return clone;
+        }
     }
 }

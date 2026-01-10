@@ -190,5 +190,34 @@ namespace ObjectOrientedPractics.Model
             DeliveryAddress = new Address();
             Items = new List<Item>();
         }
+
+        #region Interface Implementations
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj is Order other && Equals(other);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Order other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            // Заказы равны, если равны их уникальные Id
+            return _id == other._id;
+        }
+
+        /// <summary>
+        /// Переопределение GetHashCode для корректной работы с коллекциями.
+        /// </summary>
+        public override int GetHashCode()
+        {
+            return _id;
+        }
+
+        #endregion
     }
 }

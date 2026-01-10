@@ -168,5 +168,34 @@ namespace ObjectOrientedPractics.Model
             Building = string.Empty;
             Apartment = string.Empty;
         }
+
+        /// <inheritdoc />
+        public object Clone()
+        {
+            return new Address(Index, Country, City, Street, Building, Apartment);
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is Address other)) return false;
+            return Equals(other);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Address other)
+        {
+            if (other == null) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            // Адреса равны, если равны все их поля
+            return Index == other.Index &&
+                   Country == other.Country &&
+                   City == other.City &&
+                   Street == other.Street &&
+                   Building == other.Building &&
+                   Apartment == other.Apartment;
+        }
     }
 }
