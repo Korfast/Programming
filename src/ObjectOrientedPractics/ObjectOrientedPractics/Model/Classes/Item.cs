@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс, представляющий товар.
     /// </summary>
-    public class Item
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
         /// Статическое поле-счётчик для генерации уникальных Id.
@@ -122,6 +122,55 @@ namespace ObjectOrientedPractics.Model
         public Item()
         {
             _id = _counter++;
+        }
+
+        /// <inheritdoc />
+        public object Clone()
+        {
+            // При клонировании товара создаем новый объект с теми же данными.
+            // Id у клона будет новый, так как вызывается конструктор.
+            return new Item(this.Name, this.Info, this.Cost, this.Category);
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is Item other)) return false;
+            return Equals(other);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Item other)
+        {
+            if (other == null) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            // Товары равны, если равны их названия, цена и категория
+            return Name == other.Name &&
+                   Cost == other.Cost &&
+                   Category == other.Category;
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+                hash = hash * 23 + (Name != null ? Name.GetHashCode() : 0);
+                hash = hash * 23 + Cost.GetHashCode(); 
+                hash = hash * 23 + Category.GetHashCode();
+                return hash;
+            }
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(Item other)
+        {
+            if (other == null) return 1;
+            // Сравнение по стоимости (пункт 5 ТЗ)
+            return Cost.CompareTo(other.Cost);
         }
     }
 }

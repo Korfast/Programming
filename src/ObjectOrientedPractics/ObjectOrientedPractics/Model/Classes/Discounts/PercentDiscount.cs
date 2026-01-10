@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// Скидка накапливается в процессе покупок и применяется
     /// только к товарам выбранной категории.
     /// </summary>
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         /// <summary>
         /// Текущий процент скидки.
@@ -133,6 +133,19 @@ namespace ObjectOrientedPractics.Model
 
             Percent = newPercent;
         }
+
+        #region Interface Implementations
+
+        /// <inheritdoc />
+        public int CompareTo(PercentDiscount other)
+        {
+            if (ReferenceEquals(this, other)) return 0;
+            if (ReferenceEquals(null, other)) return 1;
+            // Сравнение по проценту скидки (пункт 5 ТЗ)
+            return Percent.CompareTo(other.Percent);
+        }
+
+        #endregion
 
         /// <summary>
         /// Вычисляет общую стоимость товаров нужной категории.

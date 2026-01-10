@@ -142,8 +142,12 @@ namespace ObjectOrientedPractics.View.Controls
 
             if (string.IsNullOrWhiteSpace(countryTextBox.Text))
             {
-                ClearValidationError(countryTextBox);
-                return;
+                if (string.IsNullOrWhiteSpace(countryTextBox.Text))
+                {
+                    _address.Country = ""; 
+                    ClearValidationError(countryTextBox);
+                    return;
+                }
             }
 
             try
@@ -163,6 +167,7 @@ namespace ObjectOrientedPractics.View.Controls
 
             if (string.IsNullOrWhiteSpace(cityTextBox.Text))
             {
+                _address.City = "";
                 ClearValidationError(cityTextBox);
                 return;
             }
@@ -184,6 +189,7 @@ namespace ObjectOrientedPractics.View.Controls
 
             if (string.IsNullOrWhiteSpace(streetTextBox.Text))
             {
+                _address.Street = "";
                 ClearValidationError(streetTextBox);
                 return;
             }
@@ -205,6 +211,7 @@ namespace ObjectOrientedPractics.View.Controls
 
             if (string.IsNullOrWhiteSpace(buildingTextBox.Text))
             {
+                _address.Building = "";
                 ClearValidationError(buildingTextBox);
                 return;
             }
@@ -226,6 +233,7 @@ namespace ObjectOrientedPractics.View.Controls
 
             if (string.IsNullOrWhiteSpace(apartmentTextBox.Text))
             {
+                _address.Apartment = "";
                 ClearValidationError(apartmentTextBox);
                 return;
             }

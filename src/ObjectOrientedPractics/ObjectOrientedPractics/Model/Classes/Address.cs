@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс, представляющий адрес.
     /// </summary>
-    public class Address
+    public class Address : ICloneable, IEquatable<Address>
     {
         /// <summary>
         /// Целочисленное поле почтовый индекс, целое шестизначное число.
@@ -167,6 +167,53 @@ namespace ObjectOrientedPractics.Model
             Street = string.Empty;
             Building = string.Empty;
             Apartment = string.Empty;
+        }
+
+        /// <inheritdoc />
+        public object Clone()
+        {
+            return new Address(Index, Country, City, Street, Building, Apartment);
+        }
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is Address other)) return false;
+            return Equals(other);
+        }
+
+        /// <inheritdoc />
+        public bool Equals(Address other)
+        {
+            if (other == null) return false;
+            if (ReferenceEquals(this, other)) return true;
+
+            // Адреса равны, если равны все их поля
+            return Index == other.Index &&
+                   Country == other.Country &&
+                   City == other.City &&
+                   Street == other.Street &&
+                   Building == other.Building &&
+                   Apartment == other.Apartment;
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            // unchecked позволяет игнорировать переполнение, что нормально для хэша
+            unchecked
+            {
+                int hash = 17;
+                // Перемножаем на простые числа для минимизации коллизий
+                hash = hash * 23 + (Index != null ? Index.GetHashCode() : 0);
+                hash = hash * 23 + (Country != null ? Country.GetHashCode() : 0);
+                hash = hash * 23 + (City != null ? City.GetHashCode() : 0);
+                hash = hash * 23 + (Street != null ? Street.GetHashCode() : 0);
+                hash = hash * 23 + (Building != null ? Building.GetHashCode() : 0);
+                hash = hash * 23 + (Apartment != null ? Apartment.GetHashCode() : 0);
+                return hash;
+            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// Баллы накапливаются при покупке товаров и могут быть
     /// использованы для получения скидки.
     /// </summary>
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         /// <summary>
         /// Максимальный процент скидки.
@@ -115,6 +115,20 @@ namespace ObjectOrientedPractics.Model
 
             Points += addedPoints;
         }
+
+        #region Interface Implementations
+
+        /// <inheritdoc />
+        public int CompareTo(PointsDiscount other)
+        {
+            if (ReferenceEquals(this, other)) return 0;
+            if (ReferenceEquals(null, other)) return 1;
+            // Сравнение по количеству баллов (пункт 5 ТЗ)
+            return Points.CompareTo(other.Points);
+        }
+
+        #endregion
+
         /// <summary>
         /// Вычисляет общую стоимость списка товаров.
         /// </summary>
