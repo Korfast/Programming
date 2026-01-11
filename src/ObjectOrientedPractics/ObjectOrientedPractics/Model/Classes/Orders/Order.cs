@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// Класс, представляющий заказ с уникальным Id, датой создания,
     /// адресом доставки, списком товаров и общей стоимостью.
     /// </summary>
-    public class Order
+    public class Order : IEquatable<Order>
     {
         /// <summary>
         /// Статическое поле-счётчик для генерации уникальных Id.

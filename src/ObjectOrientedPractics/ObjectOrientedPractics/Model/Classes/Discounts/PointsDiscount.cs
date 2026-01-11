@@ -12,7 +12,7 @@ namespace ObjectOrientedPractics.Model
     /// Баллы накапливаются при покупке товаров и могут быть
     /// использованы для получения скидки.
     /// </summary>
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         /// <summary>
         /// Максимальный процент скидки.

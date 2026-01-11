@@ -33,30 +33,23 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CloneButton_Click(object sender, EventArgs e)
         {
-            // Тестируем ICloneable
-            Address source = firstAddressControl.Address;
-            Address clone = (Address)source.Clone();
-            secondAddressControl.Address = clone;
-
-            resultLabel.Text = "Status: Address Cloned";
-            resultLabel.ForeColor = Color.Blue;
+            // Благодаря твоему сеттеру с UpdateAddressFiledsTextBoxes, 
+            // экран обновится сам в момент присваивания!
+            secondAddressControl.Address = (Address)firstAddressControl.Address.Clone();
         }
 
         private void EqualsButton_Click(object sender, EventArgs e)
         {
-            // Тестируем IEquatable
-            Address addr1 = firstAddressControl.Address;
-            Address addr2 = secondAddressControl.Address;
+            if (firstAddressControl.Address == null || secondAddressControl.Address == null) return;
 
-            if (addr1.Equals(addr2))
+            // Используем твой реализованный IEquatable
+            if (firstAddressControl.Address.Equals(secondAddressControl.Address))
             {
-                resultLabel.Text = "Status: Equal";
-                resultLabel.ForeColor = Color.Green;
+                resultLabel.Text = "Addresses are Equal";
             }
             else
             {
-                resultLabel.Text = "Status: Different";
-                resultLabel.ForeColor = Color.Red;
+                resultLabel.Text = "Addresses are Different";
             }
         }
 

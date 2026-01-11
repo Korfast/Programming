@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс, представляющий адрес.
     /// </summary>
-    public class Address
+    public class Address : ICloneable, IEquatable<Address>
     {
         /// <summary>
         /// Целочисленное поле почтовый индекс, целое шестизначное число.
@@ -196,6 +196,24 @@ namespace ObjectOrientedPractics.Model
                    Street == other.Street &&
                    Building == other.Building &&
                    Apartment == other.Apartment;
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            // unchecked позволяет игнорировать переполнение, что нормально для хэша
+            unchecked
+            {
+                int hash = 17;
+                // Перемножаем на простые числа для минимизации коллизий
+                hash = hash * 23 + (Index != null ? Index.GetHashCode() : 0);
+                hash = hash * 23 + (Country != null ? Country.GetHashCode() : 0);
+                hash = hash * 23 + (City != null ? City.GetHashCode() : 0);
+                hash = hash * 23 + (Street != null ? Street.GetHashCode() : 0);
+                hash = hash * 23 + (Building != null ? Building.GetHashCode() : 0);
+                hash = hash * 23 + (Apartment != null ? Apartment.GetHashCode() : 0);
+                return hash;
+            }
         }
     }
 }

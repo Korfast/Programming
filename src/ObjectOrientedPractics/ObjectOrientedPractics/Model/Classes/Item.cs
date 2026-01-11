@@ -10,7 +10,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Класс, представляющий товар.
     /// </summary>
-    public class Item
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
         /// Статическое поле-счётчик для генерации уникальных Id.
@@ -150,6 +150,19 @@ namespace ObjectOrientedPractics.Model
             return Name == other.Name &&
                    Cost == other.Cost &&
                    Category == other.Category;
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+                hash = hash * 23 + (Name != null ? Name.GetHashCode() : 0);
+                hash = hash * 23 + Cost.GetHashCode(); 
+                hash = hash * 23 + Category.GetHashCode();
+                return hash;
+            }
         }
 
         /// <inheritdoc />

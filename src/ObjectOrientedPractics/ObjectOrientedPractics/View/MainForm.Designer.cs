@@ -41,12 +41,14 @@
             this.priorityOrdersTabPage = new System.Windows.Forms.TabPage();
             this.priorityOrdersTab = new ObjectOrientedPractics.View.Tabs.PriorityOrdersTab();
             this.testingInterfacesTabPage = new System.Windows.Forms.TabPage();
+            this.testingInterfacesTab = new ObjectOrientedPractics.View.Tabs.TestingInterfacesTab();
             this.mainTabControl.SuspendLayout();
             this.itemsTabPage.SuspendLayout();
             this.customersTabPage.SuspendLayout();
             this.cartsTabPage.SuspendLayout();
             this.orderTabPage.SuspendLayout();
             this.priorityOrdersTabPage.SuspendLayout();
+            this.testingInterfacesTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTabControl
@@ -172,6 +174,7 @@
             // 
             // testingInterfacesTabPage
             // 
+            this.testingInterfacesTabPage.Controls.Add(this.testingInterfacesTab);
             this.testingInterfacesTabPage.Location = new System.Drawing.Point(4, 22);
             this.testingInterfacesTabPage.Name = "testingInterfacesTabPage";
             this.testingInterfacesTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -179,6 +182,14 @@
             this.testingInterfacesTabPage.TabIndex = 5;
             this.testingInterfacesTabPage.Text = "TestingInterfacesTabPage";
             this.testingInterfacesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // testingInterfacesTab
+            // 
+            this.testingInterfacesTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.testingInterfacesTab.Location = new System.Drawing.Point(3, 3);
+            this.testingInterfacesTab.Name = "testingInterfacesTab";
+            this.testingInterfacesTab.Size = new System.Drawing.Size(692, 515);
+            this.testingInterfacesTab.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -197,6 +208,7 @@
             this.cartsTabPage.ResumeLayout(false);
             this.orderTabPage.ResumeLayout(false);
             this.priorityOrdersTabPage.ResumeLayout(false);
+            this.testingInterfacesTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -215,6 +227,7 @@
         private System.Windows.Forms.TabPage priorityOrdersTabPage;
         private Tabs.PriorityOrdersTab priorityOrdersTab;
         private System.Windows.Forms.TabPage testingInterfacesTabPage;
+        private Tabs.TestingInterfacesTab testingInterfacesTab;
     }
 }
 

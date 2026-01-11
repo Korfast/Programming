@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Описывает корзину товаров покупателя.
     /// </summary>
-    public class Cart
+    public class Cart : ICloneable
     {
         /// <summary>
         /// Список товаров
