@@ -15,10 +15,11 @@ namespace ObjectOrientedPractics.View.Controls
     {
         private Address _address;
 
-        // Атрибуты скрывают свойство от Дизайнера, чтобы он не ломал код
+        /// <summary>
+        /// Возвращает и задает адрес для отображения.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-
         public Address Address
         {
             get
@@ -44,6 +45,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Создает экземпляр <see cref="AddressControl"/>.
+        /// </summary>
         public AddressControl()
         {
             InitializeComponent();
@@ -100,6 +104,9 @@ namespace ObjectOrientedPractics.View.Controls
             apartmentTextBox.Text = _address.Apartment;
         }
 
+        /// <summary>
+        /// Очищает все текстовые поля управления.
+        /// </summary>
         public void ClearFields()
         {
             postIndexTextBox.Text = "";
@@ -111,6 +118,9 @@ namespace ObjectOrientedPractics.View.Controls
 
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле почтового индекса.
+        /// </summary>
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
         {
             // Если поле пустое, мы не считаем это ошибкой валидации сейчас
@@ -136,6 +146,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле страны.
+        /// </summary>
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_address == null) return;
@@ -161,6 +174,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле города.
+        /// </summary>
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_address == null) return;
@@ -183,6 +199,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле улицы.
+        /// </summary>
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_address == null) return;
@@ -205,6 +224,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле строения.
+        /// </summary>
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_address == null) return;
@@ -227,6 +249,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле номера квартиры.
+        /// </summary>
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
             if (_address == null) return;
@@ -249,20 +274,36 @@ namespace ObjectOrientedPractics.View.Controls
             }
         }
 
+        /// <summary>
+        /// Объект для отображения ошибок валидации.
+        /// </summary>
         private ErrorProvider errorProvider = new ErrorProvider();
 
+        /// <summary>
+        /// Визуализирует ошибку валидации для указанного контрола.
+        /// </summary>
+        /// <param name="control">Контрол, в котором возникла ошибка.</param>
+        /// <param name="message">Сообщение об ошибке.</param>
         private void ShowValidationError(Control control, string message)
         {
             control.BackColor = Color.Pink;
             errorProvider.SetError(control, message);
         }
 
+        /// <summary>
+        /// Очищает визуализацию ошибки валидации для указанного контрола.
+        /// </summary>
+        /// <param name="control">Контрол, для которого нужно очистить ошибку.</param>
         private void ClearValidationError(Control control)
         {
             control.BackColor = SystemColors.Window;
             errorProvider.SetError(control, "");
         }
 
+        /// <summary>
+        /// Проводит полную валидацию всех полей адреса.
+        /// </summary>
+        /// <returns>True, если все поля валидны.</returns>
         private bool ValidateAllFields()
         {
             bool isValid = true;
@@ -290,20 +331,13 @@ namespace ObjectOrientedPractics.View.Controls
                 ClearValidationError(countryTextBox);
             }
 
-            // Аналогично для остальных полей...
-
             return isValid;
         }
 
-        //private void fullNameTextBox_TextChanged(object sender, EventArgs e)
-        //{
-        //if (ObjectOrientedPractics.View.Tabs.CustomersTab.customersListBox.SelectedIndex >= 0)
-        //{
-        //0 UpdateNameProperty(fullNameTextBox, 200, (value) =>
-        //_currentCustomer.Fullname = value);
-        //}
-        //}
-
+        /// <summary>
+        /// Проводит базовую проверку полей (цветовая индикация).
+        /// </summary>
+        /// <returns>True, если поля соответствуют базовым требованиям.</returns>
         private bool ValidateFields()
         {
             bool isValid = true;
@@ -321,11 +355,7 @@ namespace ObjectOrientedPractics.View.Controls
                 // postIndexTextBox.ToolTip = null;
             }
 
-            // Аналогично для других полей при необходимости
-
             return isValid;
         }
-
-        // Можно вызвать ValidateFields перед возвратом Address в геттере.
     }
 }

@@ -39,13 +39,13 @@
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.cityLabel = new System.Windows.Forms.Label();
             this.countryTextBox = new System.Windows.Forms.TextBox();
-            this.postIndexLabel = new System.Windows.Forms.Label();
             this.countryLabel = new System.Windows.Forms.Label();
             this.streetLabel = new System.Windows.Forms.Label();
             this.buildingLabel = new System.Windows.Forms.Label();
             this.deliveryAddressLabel = new System.Windows.Forms.Label();
             this.postIndexTextBox = new System.Windows.Forms.TextBox();
             this.streetTextBox = new System.Windows.Forms.TextBox();
+            this.postIndexLabel = new System.Windows.Forms.Label();
             this.deliveryAddressTableLayoutPanel.SuspendLayout();
             this.buildingApartmentTableLayoutPanel.SuspendLayout();
             this.countryTableLayoutPanel.SuspendLayout();
@@ -174,16 +174,6 @@
             this.countryTextBox.TabIndex = 0;
             this.countryTextBox.TextChanged += new System.EventHandler(this.CountryTextBox_TextChanged);
             // 
-            // postIndexLabel
-            // 
-            this.postIndexLabel.AutoSize = true;
-            this.postIndexLabel.Location = new System.Drawing.Point(3, 16);
-            this.postIndexLabel.Name = "postIndexLabel";
-            this.postIndexLabel.Size = new System.Drawing.Size(67, 15);
-            this.postIndexLabel.TabIndex = 1;
-            this.postIndexLabel.Text = "Post Index:";
-            this.postIndexLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
@@ -245,6 +235,16 @@
             this.streetTextBox.Size = new System.Drawing.Size(325, 20);
             this.streetTextBox.TabIndex = 9;
             this.streetTextBox.TextChanged += new System.EventHandler(this.StreetTextBox_TextChanged);
+            // 
+            // postIndexLabel
+            // 
+            this.postIndexLabel.AutoSize = true;
+            this.postIndexLabel.Location = new System.Drawing.Point(3, 16);
+            this.postIndexLabel.Name = "postIndexLabel";
+            this.postIndexLabel.Size = new System.Drawing.Size(67, 15);
+            this.postIndexLabel.TabIndex = 1;
+            this.postIndexLabel.Text = "Post Index:";
+            this.postIndexLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // AddressControl
             // 
