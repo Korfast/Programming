@@ -29,13 +29,17 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private Item _currentItem;
 
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        // <summary>
+        /// Список товаров, отображаемых в данный момент.
+        /// </summary>
+        private List<Item> _displayedItems = new List<Item>();
 
         /// <summary>
         /// Возвращает и задаёт список товаров.
         /// При установке обновляется отображение ListBox.
         /// </summary>
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<Item> Items
         {
             get
@@ -57,50 +61,13 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обновляет ListBox с текущим списком товаров.
-        /// </summary>
-        private void UpdateListBox()
-        {
-            if (itemsListBox == null)
-            {
-                return;
-            }
-
-            itemsListBox.Items.Clear();
-
-            if (_items == null)
-            {
-                return;
-            }
-
-            foreach (Item item in _items)
-            {
-                itemsListBox.Items.Add(item);
-                // Предположим, что Item переопределяет ToString()
-            }
-        }
-
-        /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="ItemsTab"/>.
         /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
             FillCatagoryComboBox();
-        }
-
-        /// <summary>
-        /// Заполняет список элементов <see cref="itemsListBox"
-        /// /> текущими товарами.
-        /// </summary>
-        private void PopulateItemsListBox()
-        {
-            itemsListBox.Items.Clear();
-
-            foreach (Item item in _items)
-            {
-                itemsListBox.Items.Add($"Товар {item.Id}");
-            }
+            InitializeOrganizingComboBox();
         }
 
         /// <summary>
@@ -117,6 +84,67 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Инициализирует выпадающий список способами сортировки 
+        /// </summary>
+        private void InitializeOrganizingComboBox()
+        {
+            // Очищаем на случай повторного вызова
+            organizingProductsComboBox.Items.Clear();
+
+            // Добавляем варианты сортировки
+            organizingProductsComboBox.Items.AddRange(new string[]
+            {
+                "ID (Default)",
+                "Name",
+                "Cost (Ascending)",
+                "Cost (Descending)"
+            });
+
+            // Устанавливаем сортировку по умолчанию — по имени
+            organizingProductsComboBox.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Обновляет ListBox с текущим списком товаров.
+        /// </summary>
+        private void UpdateListBox()
+        {
+            // Очищаем список всегда, даже если данных нет
+            itemsListBox.Items.Clear();
+
+            // Проверяем именно отображаемый список. 
+            // Если он null или пустой — просто выходим (список уже очищен).
+            if (_displayedItems == null || _displayedItems.Count == 0)
+            {
+                return;
+            }
+
+            foreach (Item item in _displayedItems)
+            {
+                // Используем форматированный вывод
+                itemsListBox.Items.Add($"Товар {item.Id}");
+            }
+        }
+
+        /// <summary>
+        /// Очищает все текстовые поля и сбрасывает выбор в ComboBox.
+        /// </summary>
+        private void ClearItemFields()
+        {
+            _currentItem = null;
+            idTextBox.Text = string.Empty;
+            costTextBox.Text = string.Empty;
+            nameTextBox.Text = string.Empty;
+            descriptionTextBox.Text = string.Empty;
+            categoryComboBox.SelectedIndex = -1;
+
+            // Сбрасываем цвета полей на стандартные
+            costTextBox.BackColor = SystemColors.Window;
+            nameTextBox.BackColor = SystemColors.Window;
+            descriptionTextBox.BackColor = SystemColors.Window;
+        }
+
+        /// <summary>
         /// Обработчик события клика по кнопке добавления нового товара.
         /// Создает случайный товар,
         /// добавляет его в список и обновляет интерфейс.
@@ -126,8 +154,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // Создаем и добавляем новый случайный товар
             _items.Add(Services.ItemFactory.Randomize(0, 100000));
 
-            // Обновляем список отображения
-            PopulateItemsListBox();
+            // Обновляем список отображения - сортируем
+            ApplyFilterAndSort();
 
             // Устанавливаем последний добавленный элемент как выбранный
             itemsListBox.SelectedIndex = itemsListBox.Items.Count - 1;
@@ -141,39 +169,25 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
-            int selectedIndex = itemsListBox.SelectedIndex;
-
-            // Проверка, что что-то выбрано
-            if (selectedIndex >= 0 && selectedIndex < _items.Count)
+            if (itemsListBox.SelectedIndex >= 0 && _currentItem != null)
             {
-                // Удаляем выбранный элемент
-                _items.RemoveAt(selectedIndex);
+                // Удаляем по объекту, а не по индексу
+                // Это гарантирует удаление правильного товара даже при фильтрации
+                _items.Remove(_currentItem);
 
-                // Обновляем отображение списка
-                PopulateItemsListBox();
+                ApplyFilterAndSort();
 
-                // Обновляем выбранный индекс
-                if (_items.Count > 0)
+                if (_displayedItems.Count > 0)
                 {
-                    int newIndex = Math.Min(selectedIndex, _items.Count - 1);
-                    itemsListBox.SelectedIndex = newIndex;
-                    _currentItem = _items[newIndex];
-                    UpdateItemFiledsTextBoxes();
+                    // Выбираем первый элемент в списке после удаления
+                    itemsListBox.SelectedIndex = 0;
+                    _currentItem = _displayedItems[0];
+                    UpdateItemFieldsTextBoxes();
                 }
                 else
                 {
-                    // Если список пуст, очищаем поля
-                    _currentItem = null;
-                    idTextBox.Text = "";
-                    costTextBox.Text = "";
-                    categoryComboBox.SelectedIndex = -1;
-                    nameTextBox.Text = "";
-                    descriptionTextBox.Text = "";
 
-                    // Обнуляем цвет фона
-                    costTextBox.BackColor = SystemColors.Window;
-                    nameTextBox.BackColor = SystemColors.Window;
-                    descriptionTextBox.BackColor = SystemColors.Window;
+                    ClearItemFields(); 
                 }
             }
         }
@@ -245,14 +259,15 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ItemsListBox_SelectedIndexChanged
             (object sender, EventArgs e)
         {
-            if (itemsListBox.SelectedIndex >= 0)
+            int index = itemsListBox.SelectedIndex;
+            if (index >= 0 && index < _displayedItems.Count)
             {
-                _currentItem = _items[itemsListBox.SelectedIndex];
-                UpdateItemFiledsTextBoxes();
-            }
-            else
-            {
-                categoryComboBox.SelectedIndex = -1;
+                // Берем объект из отображаемого списка
+                _currentItem = _displayedItems[index];
+
+                // Теперь мы знаем конкретный объект, и нам не важно, 
+                // какой у него индекс в основном списке _items.
+                UpdateItemFieldsTextBoxes();
             }
         }
 
@@ -260,7 +275,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// Обновляет текстовые поля формы 
         /// текущими свойствами выбранного товара.
         /// </summary>
-        private void UpdateItemFiledsTextBoxes()
+        private void UpdateItemFieldsTextBoxes()
         {
             idTextBox.Text = _currentItem.Id.ToString();
             costTextBox.Text = _currentItem.Cost.ToString();
@@ -336,6 +351,69 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentItem.Category =
                     (Category)categoryComboBox.SelectedIndex;
             }
+        }
+
+        /// <summary>
+        /// Применяет фильтрацию и сортировку одновременно.
+        /// </summary>
+        private void ApplyFilterAndSort()
+        {
+            if (_items == null) return;
+
+            // 1. Фильтрация 
+            string query = findTextBox.Text.ToLower();
+
+            // Используем ваш самодельный делегат ItemFilter
+            _displayedItems = DataTools.FilterItems(_items, (item) =>
+            {
+                // Если строка поиска пуста — возвращаем true (товар подходит)
+                if (string.IsNullOrWhiteSpace(query)) return true;
+
+                // Иначе проверяем, содержит ли имя поисковый запрос
+                return item.Name.ToLower().Contains(query);
+            });
+
+            // 2. Сортировка 
+            // Выбираем способ сортировки на основе ComboBox
+            switch (organizingProductsComboBox.SelectedIndex)
+            {
+                case 0: // По умолчанию (по ID / Индексу)
+                    _displayedItems = DataTools.SortItems(_displayedItems, (x, y) => x.Id.CompareTo(y.Id));
+                    break;
+                case 1: // Name
+                    _displayedItems = DataTools.SortItems(_displayedItems, (x, y) => x.Name.CompareTo(y.Name));
+                    break;
+                case 2: // Cost Asc
+                    _displayedItems = DataTools.SortItems(_displayedItems, (x, y) => x.Cost.CompareTo(y.Cost));
+                    break;
+                case 3: // Cost Desc
+                    _displayedItems = DataTools.SortItems(_displayedItems, (x, y) => y.Cost.CompareTo(x.Cost));
+                    break;
+            }
+
+            UpdateListBox();
+        }
+
+        /// <summary>
+        /// Обработчик события изменения текста в поле поиска.
+        /// Вызывает пересчет фильтрации и сортировки для обновления списка отображаемых товаров.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void FindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ApplyFilterAndSort();
+        }
+
+        /// <summary>
+        /// Обработчик события изменения выбранного способа сортировки в выпадающем списке.
+        /// Обновляет порядок отображения товаров, сохраняя при этом текущую фильтрацию.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void OrganizingProductsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplyFilterAndSort();
         }
     }
 }

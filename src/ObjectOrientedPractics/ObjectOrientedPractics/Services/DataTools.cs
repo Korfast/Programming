@@ -42,6 +42,18 @@ namespace ObjectOrientedPractics.Services
         }
 
         /// <summary>
+        /// Сортирует список товаров по внешнему алгоритму.
+        /// </summary>
+        /// <param name="items">Список для сортировки.</param>
+        /// <param name="sortMethod">Метод сравнения/сортировки.</param>
+        public static List<Item> SortItems(List<Item> items, Comparison<Item> sortMethod)
+        {
+            List<Item> sortedList = new List<Item>(items);
+            sortedList.Sort(sortMethod);
+            return sortedList;
+        }
+
+        /// <summary>
         /// Критерий фильтрации: стоимость товара выше 5000.
         /// </summary>
         public static bool IsExpensive(Item item)

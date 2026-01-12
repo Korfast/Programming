@@ -23,6 +23,11 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _items = new List<Item>();
 
         /// <summary>
+        /// Флаг, указывающий, применена ли в данный момент фильтрация.
+        /// </summary>
+        private bool _isFiltered = false;
+
+        /// <summary>
         /// Создает экземпляр класса <see cref="TestingInterfacesTab"/>.
         /// Инициализирует тестовые данные и элементы управления.
         /// </summary>
@@ -36,8 +41,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
             // Создаем начальный набор тестовых данных для товаров
             _items.Add(new Item("Coffee", "Tasty", 500, Category.Toys));
-            _items.Add(new Item("Apple", "Green", 100, Category.Toys));
+            _items.Add(new Item("Apple", "GreertButton_Click остаются без изменений ...n", 100, Category.Toys));
             _items.Add(new Item("Laptop", "Fast", 50000, Category.Electronics));
+            _items.Add(new Item("Car Toy", "Small", 6000, Category.Automotive));
 
             UpdateItemsListBox();
         }
@@ -89,15 +95,57 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// Обновляет отображение списка товаров в ListBox.
+        /// Обновляет отображение списка товаров. 
+        /// Если передан конкретный список, отображает его, иначе — весь основной список.
         /// </summary>
-        private void UpdateItemsListBox()
+        /// <param name="displayList">Список для отображения (необязательно).</param>
+        private void UpdateItemsListBox(List<Item> displayList = null)
         {
-            itemsListBox.Items.Clear();
-            foreach (var item in _items)
+            // Если список не передан, используем глобальный _items
+            List<Item> currentList = displayList;
+            if (currentList == null)
             {
-                // Выводим стоимость и имя для наглядности результата сортировки
+                currentList = _items;
+            }
+
+            itemsListBox.Items.Clear();
+            foreach (var item in currentList)
+            {
                 itemsListBox.Items.Add($"{item.Cost} - {item.Name}");
+            }
+        }
+
+        /// <summary>
+        /// Обработчик события клика по кнопке фильтрации.
+        /// Тестирует универсальный метод DataTools.FilterItems.
+        /// </summary>
+        private void FilterItemsButton_Click(object sender, EventArgs e)
+        {
+            if (!_isFiltered)
+            {
+                Services.DataTools.ItemFilter filter = Services.DataTools.IsAutomotive;
+
+                // Тестируем делегат и метод FilterItems
+                List<Item> filteredItems = 
+                    Services.DataTools.FilterItems(_items, filter);
+
+                // Обновляем ListBox только отфильтрованными данными
+                UpdateItemsListBox(filteredItems);
+
+                filterItemsButton.Text = "Clear Filter";
+                resultLabel.Text = $"Status: Filter Applied ({filter.Method.Name})";
+                resultLabel.ForeColor = Color.Black;
+                _isFiltered = true;
+            }
+            else
+            {
+                // Сбрасываем фильтр, показывая основной список
+                UpdateItemsListBox();
+
+                filterItemsButton.Text = "Filter Items";
+                resultLabel.Text = "Status: Filter Cleared";
+                resultLabel.ForeColor = Color.Black;
+                _isFiltered = false;
             }
         }
     }

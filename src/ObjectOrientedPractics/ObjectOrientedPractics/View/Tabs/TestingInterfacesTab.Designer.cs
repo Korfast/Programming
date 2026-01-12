@@ -33,6 +33,7 @@
             this.equalsButton = new System.Windows.Forms.Button();
             this.cloneButton = new System.Windows.Forms.Button();
             this.resultLabel = new System.Windows.Forms.Label();
+            this.filterItemsButton = new System.Windows.Forms.Button();
             this.secondAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.firstAddressControl = new ObjectOrientedPractics.View.Controls.AddressControl();
             this.SuspendLayout();
@@ -85,6 +86,16 @@
             this.resultLabel.TabIndex = 4;
             this.resultLabel.Text = "Result:";
             // 
+            // filterItemsButton
+            // 
+            this.filterItemsButton.Location = new System.Drawing.Point(123, 331);
+            this.filterItemsButton.Name = "filterItemsButton";
+            this.filterItemsButton.Size = new System.Drawing.Size(105, 23);
+            this.filterItemsButton.TabIndex = 7;
+            this.filterItemsButton.Text = "Filter Items";
+            this.filterItemsButton.UseVisualStyleBackColor = true;
+            this.filterItemsButton.Click += new System.EventHandler(this.FilterItemsButton_Click);
+            // 
             // secondAddressControl
             // 
             this.secondAddressControl.Location = new System.Drawing.Point(306, 3);
@@ -105,6 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.filterItemsButton);
             this.Controls.Add(this.secondAddressControl);
             this.Controls.Add(this.firstAddressControl);
             this.Controls.Add(this.resultLabel);
@@ -129,5 +141,6 @@
         private System.Windows.Forms.Label resultLabel;
         private ObjectOrientedPractics.View.Controls.AddressControl firstAddressControl;
         private ObjectOrientedPractics.View.Controls.AddressControl secondAddressControl;
+        private System.Windows.Forms.Button filterItemsButton;
     }
 }
