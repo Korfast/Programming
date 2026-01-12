@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Пользовательский элемент управления для управления и тестирования системы скидок.
+    /// </summary>
     public partial class DiscountsTab : UserControl
     {
+        //// <summary>
+        /// Создает экземпляр класса <see cref="DiscountsTab"/>.
+        /// </summary>
         public DiscountsTab()
         {
             InitializeComponent();

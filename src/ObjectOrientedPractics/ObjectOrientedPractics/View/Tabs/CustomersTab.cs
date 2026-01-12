@@ -52,6 +52,14 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Создает экземпляр класса <see cref="CustomersTab"/>.
+        /// </summary>
+        public CustomersTab()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
         /// Обновляет ListBox с текущим списком покупателей.
         /// </summary>
         private void UpdateListBox()
@@ -74,11 +82,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        public CustomersTab()
-        {
-            InitializeComponent();
-        }
-
+        /// <summary>
+        /// Обновляет список скидок выбранного покупателя в соответствующем ListBox.
+        /// Сначала отображает накопительную скидку, затем остальные.
+        /// </summary>
         private void UpdateDiscountsListBox()
         {
             // 1. Очищаем ListBox
@@ -287,6 +294,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик события клика по кнопке добавления новой скидки.
+        /// Открывает диалоговое окно выбора категории и добавляет процентную скидку.
+        /// </summary>
         private void AddDiscountButton_Click(object sender, EventArgs e)
         {
             // Создаем форму для выбора категории (нужно реализовать отдельно)
@@ -318,6 +329,10 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик события клика по кнопке удаления выбранной скидки.
+        /// Удаляет выбранную процентную скидку. Накопительную скидку удалять запрещено.
+        /// </summary>
         private void RemoveDiscountButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = discountsListBox.SelectedIndex;

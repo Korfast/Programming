@@ -62,6 +62,7 @@
     <Compile Include="Model\Enumerations\OrderStatus.cs" />
     <Compile Include="Model\IDiscount.cs" />
     <Compile Include="Services\CustomerFactory.cs" />
+    <Compile Include="Services\DataTools.cs" />
     <Compile Include="Services\ItemFactory.cs" />
     <Compile Include="View\Controls\AddressControl.cs">
       <SubType>UserControl</SubType>
