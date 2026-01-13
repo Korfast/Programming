@@ -38,6 +38,18 @@ namespace ObjectOrientedPractics.View
             cartsTab.Items = _store.Items;
             cartsTab.Customers = _store.Customers;
             ordersTab.Customers = _store.Customers;
+
+            // Подписываемся на событие
+            itemsTab.ItemsChanged += ItemsTab_ItemsChanged;
+        }
+
+        /// <summary>
+        /// Обработчик изменения товаров. Обновляет зависимые вкладки.
+        /// </summary>
+        private void ItemsTab_ItemsChanged(object sender, EventArgs e)
+        {
+            cartsTab.RefreshData();
+            ordersTab.RefreshData();
         }
 
         /// <summary>

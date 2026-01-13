@@ -44,6 +44,11 @@ namespace ObjectOrientedPractics.Model
         private string _apartment;
 
         /// <summary>
+        /// Возникает при изменении любого поля адреса.
+        /// </summary>
+        public event EventHandler<EventArgs> AddressChanged;
+
+        /// <summary>
         /// Возвращает и задаёт почтовый индекс.
         /// Значение должно быть шестизначным числом 
         /// в диапазоне от 100000 до 999999.
@@ -53,9 +58,13 @@ namespace ObjectOrientedPractics.Model
             get { return _index; }
             set
             {
-                ValueValidator.AssertValueInRange
-                    (value, 100000, 999999, nameof(Index));
-                _index = value;
+                if (_index != value)
+                {
+                    ValueValidator.AssertValueInRange
+                        (value, 100000, 999999, nameof(Index));
+                    _index = value;
+                    NotifyAddressChanged();
+                }
             }
         }
 
@@ -68,9 +77,13 @@ namespace ObjectOrientedPractics.Model
             get { return _country; }
             set
             {
-                ValueValidator.AssertStringOnLength
-                    (value, 50, nameof(Country));
-                _country = value;
+                if (_country != value)
+                {
+                    ValueValidator.AssertStringOnLength
+                        (value, 50, nameof(Country));
+                    _country = value;
+                    NotifyAddressChanged();
+                }
             }
         }
 
@@ -83,8 +96,13 @@ namespace ObjectOrientedPractics.Model
             get { return _city; }
             set
             {
-                ValueValidator.AssertStringOnLength(value, 50, nameof(City));
-                _city = value;
+                if (_city != value)
+                {
+                    ValueValidator.AssertStringOnLength
+                        (value, 50, nameof(City));
+                    _city = value;
+                    NotifyAddressChanged();
+                }
             }
         }
 
@@ -97,9 +115,13 @@ namespace ObjectOrientedPractics.Model
             get { return _street; }
             set
             {
-                ValueValidator.AssertStringOnLength
-                    (value, 100, nameof(Street));
-                _street = value;
+                if (_street != value)
+                {
+                    ValueValidator.AssertStringOnLength
+                        (value, 100, nameof(Street));
+                    _street = value;
+                    NotifyAddressChanged();
+                }
             }
         }
 
@@ -112,9 +134,13 @@ namespace ObjectOrientedPractics.Model
             get { return _building; }
             set
             {
-                ValueValidator.AssertStringOnLength
-                    (value, 10, nameof(Building));
-                _building = value;
+                if (_building != value)
+                {
+                    ValueValidator.AssertStringOnLength
+                        (value, 10, nameof(Building));
+                    _building = value;
+                    NotifyAddressChanged();
+                }
             }
         }
 
@@ -127,9 +153,13 @@ namespace ObjectOrientedPractics.Model
             get { return _apartment; }
             set
             {
-                ValueValidator.AssertStringOnLength
-                    (value, 10, nameof(Apartment));
-                _apartment = value;
+                if (_apartment != value)
+                {
+                    ValueValidator.AssertStringOnLength
+                        (value, 10, nameof(Apartment));
+                    _apartment = value;
+                    NotifyAddressChanged();
+                }
             }
         }
 
@@ -214,6 +244,14 @@ namespace ObjectOrientedPractics.Model
                 hash = hash * 23 + (Apartment != null ? Apartment.GetHashCode() : 0);
                 return hash;
             }
+        }
+
+        /// <summary>
+        /// Вызывает событие AddressChanged.
+        /// </summary>
+        private void NotifyAddressChanged()
+        {
+            AddressChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
