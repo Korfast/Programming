@@ -61,6 +61,11 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
+        /// Возникает при изменении списка товаров или любого товара в списке.
+        /// </summary>
+        public event EventHandler<EventArgs> ItemsChanged;
+
+        /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="ItemsTab"/>.
         /// </summary>
         public ItemsTab()
@@ -102,6 +107,14 @@ namespace ObjectOrientedPractics.View.Tabs
 
             // Устанавливаем сортировку по умолчанию — по имени
             organizingProductsComboBox.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Уведомляет подписчиков об изменениях.
+        /// </summary>
+        private void NotifyItemsChanged()
+        {
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -161,6 +174,9 @@ namespace ObjectOrientedPractics.View.Tabs
             itemsListBox.SelectedIndex = itemsListBox.Items.Count - 1;
             // Обновляем текущий выбранный товар
             _currentItem = _items[itemsListBox.SelectedIndex];
+
+            // Уведомляем об изменениях
+            NotifyItemsChanged();
         }
 
         /// <summary>
@@ -189,6 +205,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
                     ClearItemFields(); 
                 }
+
+                // Уведомляем об изменениях
+                NotifyItemsChanged();
             }
         }
 
@@ -206,6 +225,10 @@ namespace ObjectOrientedPractics.View.Tabs
                 if (int.TryParse(textBox.Text, out int value))
                 {
                     updateAction(value);
+
+                    // Уведомляем об изменениях
+                    NotifyItemsChanged();
+
                     textBox.BackColor = SystemColors.Window;
                 }
                 else
@@ -244,6 +267,10 @@ namespace ObjectOrientedPractics.View.Tabs
                     throw new ArgumentOutOfRangeException();
                 }
                 updateAction(value);
+
+                // Уведомляем об изменениях
+                NotifyItemsChanged();
+
                 textBox.BackColor = SystemColors.Window;
             }
             catch
@@ -350,6 +377,9 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentItem.Category =
                     (Category)categoryComboBox.SelectedIndex;
+
+                // Уведомляем об изменениях
+                NotifyItemsChanged();
             }
         }
 

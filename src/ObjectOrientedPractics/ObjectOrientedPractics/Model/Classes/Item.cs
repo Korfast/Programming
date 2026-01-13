@@ -55,8 +55,13 @@ namespace ObjectOrientedPractics.Model
             get { return _name; }
             set
             {
-                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
-                _name = value;
+                if (_name != value)
+                {
+                    ValueValidator.AssertStringOnLength
+                        (value, 200, nameof(Name));
+                    _name = value;
+                    NameChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -68,9 +73,13 @@ namespace ObjectOrientedPractics.Model
             get { return _info; }
             set
             {
-                ValueValidator.AssertStringOnLength
-                    (value, 1000, nameof(Info));
-                _info = value;
+                if (_info != value)
+                {
+                    ValueValidator.AssertStringOnLength
+                        (value, 1000, nameof(Info));
+                    _info = value;
+                    InfoChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -82,9 +91,13 @@ namespace ObjectOrientedPractics.Model
             get { return _cost; }
             set
             {
-                ValueValidator.AssertValueInRange
-                    (value, 0, 100000, nameof(Cost));
-                _cost = value;
+                if (_cost != value)
+                {
+                    ValueValidator.AssertValueInRange
+                        (value, 0, 100000, nameof(Cost));
+                    _cost = value;
+                    CostChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -96,6 +109,21 @@ namespace ObjectOrientedPractics.Model
             get { return _category; }
             set { _category = value; }
         }
+
+        /// <summary>
+        /// Возникает при изменении названия товара.
+        /// </summary>
+        public event EventHandler<EventArgs> NameChanged;
+
+        /// <summary>
+        /// Возникает при изменении описания товара.
+        /// </summary>
+        public event EventHandler<EventArgs> InfoChanged;
+
+        /// <summary>
+        /// Возникает при изменении стоимости товара.
+        /// </summary>
+        public event EventHandler<EventArgs> CostChanged;
 
         /// <summary>
         /// Конструктор с параметрами класса Item
