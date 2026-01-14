@@ -35,11 +35,6 @@ namespace ObjectOrientedPractics.View.Tabs
         private List<Item> _displayedItems = new List<Item>();
 
         /// <summary>
-        /// Возникает при изменении списка товаров или любого товара в списке.
-        /// </summary>
-        public event EventHandler<EventArgs> ItemsChanged;
-
-        /// <summary>
         /// Возвращает и задаёт список товаров.
         /// При установке обновляется отображение ListBox.
         /// </summary>
@@ -64,6 +59,11 @@ namespace ObjectOrientedPractics.View.Tabs
                 UpdateListBox();
             }
         }
+
+        /// <summary>
+        /// Возникает при изменении списка товаров или любого товара в списке.
+        /// </summary>
+        public event EventHandler<EventArgs> ItemsChanged;
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="ItemsTab"/>.

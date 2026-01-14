@@ -48,21 +48,6 @@ namespace ObjectOrientedPractics.Model
         public int Id { get { return _id; } }
 
         /// <summary>
-        /// Возникает при изменении названия товара.
-        /// </summary>
-        public event EventHandler<EventArgs> NameChanged;
-
-        /// <summary>
-        /// Возникает при изменении описания товара.
-        /// </summary>
-        public event EventHandler<EventArgs> InfoChanged;
-
-        /// <summary>
-        /// Возникает при изменении стоимости товара.
-        /// </summary>
-        public event EventHandler<EventArgs> CostChanged;
-
-        /// <summary>
         /// Возвращает и задаёт название товара.
         /// </summary>
         public string Name
@@ -124,6 +109,21 @@ namespace ObjectOrientedPractics.Model
             get { return _category; }
             set { _category = value; }
         }
+
+        /// <summary>
+        /// Возникает при изменении названия товара.
+        /// </summary>
+        public event EventHandler<EventArgs> NameChanged;
+
+        /// <summary>
+        /// Возникает при изменении описания товара.
+        /// </summary>
+        public event EventHandler<EventArgs> InfoChanged;
+
+        /// <summary>
+        /// Возникает при изменении стоимости товара.
+        /// </summary>
+        public event EventHandler<EventArgs> CostChanged;
 
         /// <summary>
         /// Конструктор с параметрами класса Item

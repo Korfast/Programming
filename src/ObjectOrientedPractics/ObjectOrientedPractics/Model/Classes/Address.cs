@@ -44,11 +44,6 @@ namespace ObjectOrientedPractics.Model
         private string _apartment;
 
         /// <summary>
-        /// Возникает при изменении любого поля адреса.
-        /// </summary>
-        public event EventHandler<EventArgs> AddressChanged;
-
-        /// <summary>
         /// Возвращает и задаёт почтовый индекс.
         /// Значение должно быть шестизначным числом 
         /// в диапазоне от 100000 до 999999.
@@ -162,6 +157,11 @@ namespace ObjectOrientedPractics.Model
                 }
             }
         }
+
+        /// <summary>
+        /// Возникает при изменении любого поля адреса.
+        /// </summary>
+        public event EventHandler<EventArgs> AddressChanged;
 
         /// <summary>
         /// Конструктор с параметрами для инициализации всех свойств.
