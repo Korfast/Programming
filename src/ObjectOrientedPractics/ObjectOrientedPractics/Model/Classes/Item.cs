@@ -197,7 +197,7 @@ namespace ObjectOrientedPractics.Model
         public int CompareTo(Item other)
         {
             if (other == null) return 1;
-            // Сравнение по стоимости (пункт 5 ТЗ)
+            // Сравнение по стоимости 
             return Cost.CompareTo(other.Cost);
         }
     }

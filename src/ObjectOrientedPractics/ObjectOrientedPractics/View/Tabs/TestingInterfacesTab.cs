@@ -123,6 +123,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             if (!_isFiltered)
             {
+                // Можно заменить фильтер на IsExpensive
                 Services.DataTools.ItemFilter filter = Services.DataTools.IsAutomotive;
 
                 // Тестируем делегат и метод FilterItems
