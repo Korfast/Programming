@@ -21,12 +21,17 @@ namespace View
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Конструктор главного окна приложения.
+        /// </summary>
         public MainWindow()
         {
             // Инициализация компонентов пользовательского интерфейса, созданных в XAML
             InitializeComponent();
 
-            // Установка контекста данных для окна — привязка к ViewModel главного окна
+            // Устанавливает контекст данных для окна, связывая его с экземпляром ViewModel.
+            // Это позволяет использовать привязки данных (Data Binding) между элементами интерфейса
+            // и свойствами/командами MainVM.
             DataContext = new MainVM();
         }
     }

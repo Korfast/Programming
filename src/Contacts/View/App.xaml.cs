@@ -14,6 +14,11 @@ namespace View
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// Конструктор приложения. Устанавливает программный режим рендеринга
+        /// для предотвращения возможных проблем с отображением элементов интерфейса,
+        /// связанных с аппаратным ускорением графики.
+        /// </summary>
         public App()
         {
             RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
