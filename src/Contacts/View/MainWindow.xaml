@@ -6,7 +6,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
 
-    <Grid Margin="15">
+    <Grid Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="200"/>
             <ColumnDefinition Width="Auto"/>
@@ -15,7 +15,7 @@
 
         <!-- Левая колонка -->
         <Grid Grid.Column="0" Background="#f8f8f8">
-            <Grid Margin="8">
+            <Grid Margin="10" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -28,13 +28,13 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="Find:" Margin="0,0,3,0" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Padding="3"/>
+                    <Label Grid.Column="0" Content="Find:" Margin="0,0,3,0" Padding="0"  VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Padding="0"/>
                 </Grid>
 
                 <!-- Список контактов -->
                 <ListBox Grid.Row="1" ItemsSource="{Binding Contacts}" 
-                         SelectedItem="{Binding SelectedContact}" Margin="0,3,0,0">
+                         SelectedItem="{Binding SelectedContact}" Margin="3" Padding="0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" Margin="3"/>
@@ -43,7 +43,7 @@
                 </ListBox>
 
                 <!-- Кнопки -->
-                <Grid Grid.Row="2" Margin="0,3,0,3">
+                <Grid Grid.Row="2" Margin="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -60,11 +60,11 @@
         </Grid>
 
         <!-- Разделитель -->
-        <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" Background="White"/>
+        <GridSplitter Grid.Column="1" Width="10" HorizontalAlignment="Stretch" Background="White"/>
 
         <!-- Правая колонка -->
         <Grid Grid.Column="2" Background="White">
-            <Grid Margin="8">
+            <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -87,7 +87,7 @@
                 </Grid.RowDefinitions>
 
                 <!-- Метка Name -->
-                <Label Grid.Row="0" Grid.Column="1" Content="Name:" Margin="3" VerticalAlignment="Center"/>
+                <Label Grid.Row="0" Grid.Column="1" Content="Name:" Margin="3" Padding="0" VerticalAlignment="Center"/>
 
                 <!-- Фото (находится в строке с полем Name) -->
                 <Border Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Width="100" Height="100" 
@@ -98,23 +98,23 @@
                 <!-- Поле ввода Name (в той же строке, что и фото) -->
                 <TextBox Grid.Row="1" Grid.Column="1" 
                  Text="{Binding CurrentContact.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 IsReadOnly="{Binding IsReadOnly}" Margin="3" Padding="3"/>
+                 IsReadOnly="{Binding IsReadOnly}" Margin="3" Padding="0"/>
 
                 <!-- Метка Phone -->
-                <Label Grid.Row="2" Grid.Column="1" Content="Phone Number:" Margin="3" VerticalAlignment="Center"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="Phone Number:" Margin="3" Padding="0" VerticalAlignment="Center"/>
 
                 <!-- Поле Phone -->
                 <TextBox Grid.Row="3" Grid.Column="1" 
                  Text="{Binding CurrentContact.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 IsReadOnly="{Binding IsReadOnly}" Margin="3" Padding="3"/>
+                 IsReadOnly="{Binding IsReadOnly}" Margin="3" Padding="0"/>
 
                 <!-- Метка Email -->
-                <Label Grid.Row="4" Grid.Column="1" Content="Email:" Margin="3" VerticalAlignment="Center"/>
+                <Label Grid.Row="4" Grid.Column="1" Content="Email:" Margin="3" Padding="0" VerticalAlignment="Center"/>
 
                 <!-- Поле Email -->
                 <TextBox Grid.Row="5" Grid.Column="1" 
                  Text="{Binding CurrentContact.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 IsReadOnly="{Binding IsReadOnly}" Margin="3" Padding="3"/>
+                 IsReadOnly="{Binding IsReadOnly}" Margin="3" Padding="0"/>
 
                 <!-- Кнопка Apply -->
                 <Button Grid.Row="6" Grid.Column="1" Content="Apply" Width="75" Height="25"
