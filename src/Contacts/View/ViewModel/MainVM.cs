@@ -214,6 +214,7 @@ namespace View.ViewModel
         /// </summary>
         private void ExecuteAdd(object parameter)
         {
+            SelectedContact = null;
             StartEditing(new ContactVM());
         }
 
@@ -293,7 +294,8 @@ namespace View.ViewModel
             if (_editingContact == null)
                 return;
 
-            if (_selectedContact == null) // Режим добавления
+            // Режим добавления
+            if (_selectedContact == null) 
             {
                 ContactVM newContact = new ContactVM();
                 newContact.Name = _editingContact.Name;
@@ -302,7 +304,8 @@ namespace View.ViewModel
                 _contacts.Add(newContact);
                 SelectedContact = newContact;
             }
-            else // Режим редактирования
+            // Режим редактирования
+            else
             {
                 _selectedContact.Name = _editingContact.Name;
                 _selectedContact.Phone = _editingContact.Phone;
