@@ -283,7 +283,7 @@ namespace View.ViewModel
         /// </summary>
         private bool CanExecuteApply(object parameter)
         {
-            return _isEditing && _editingContact != null;
+            return _isEditing && _editingContact != null && !_editingContact.HasErrors;
         }
 
         /// <summary>
@@ -329,12 +329,18 @@ namespace View.ViewModel
         {
             _isEditing = true;
             _editingContact = editingContact;
+
+            // Принудительно запускаем валидацию для нового контакта (покажет ошибки для пустых полей)
+            _editingContact.ValidateAll();
+
+            // Подписываемся на изменение ошибок валидации временного контакта
+            _editingContact.ErrorsChanged += OnEditingContactErrorsChanged;
+
             OnPropertyChanged(nameof(IsReadOnly));
             OnPropertyChanged(nameof(IsApplyVisible));
             OnPropertyChanged(nameof(IsAddEditRemoveEnabled));
             OnPropertyChanged(nameof(IsEditRemoveEnabled));
             OnPropertyChanged(nameof(CurrentContact));
-            // Принудительно обновляем команды
             CommandManager.InvalidateRequerySuggested();
         }
 
@@ -343,8 +349,15 @@ namespace View.ViewModel
         /// </summary>
         private void FinishEditing()
         {
+            // Отписываемся от события ошибок до обнуления
+            if (_editingContact != null)
+            {
+                _editingContact.ErrorsChanged -= OnEditingContactErrorsChanged;
+            }
+
             _isEditing = false;
             _editingContact = null;
+
             OnPropertyChanged(nameof(IsReadOnly));
             OnPropertyChanged(nameof(IsApplyVisible));
             OnPropertyChanged(nameof(IsAddEditRemoveEnabled));
@@ -358,8 +371,18 @@ namespace View.ViewModel
         /// </summary>
         private void CancelEditing()
         {
+            // Отписываемся от события ошибок до обнуления
+            if (_editingContact != null)
+            {
+                _editingContact.ErrorsChanged -= OnEditingContactErrorsChanged;
+            }
+
             _isEditing = false;
             _editingContact = null;
+
+            // Принудительно обновляем валидацию для выбранного контакта (чтобы убрать красные рамки, если они были)
+            _selectedContact?.ValidateAll();
+
             OnPropertyChanged(nameof(IsReadOnly));
             OnPropertyChanged(nameof(IsApplyVisible));
             OnPropertyChanged(nameof(IsAddEditRemoveEnabled));
@@ -420,6 +443,15 @@ namespace View.ViewModel
         private void OnContactsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             SaveContacts();
+        }
+
+        /// <summary>
+        /// Обработчик изменения ошибок валидации временного контакта.
+        /// </summary>
+        private void OnEditingContactErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            // Принудительно обновляем состояние команды Apply
+            CommandManager.InvalidateRequerySuggested();
         }
 
         #endregion
