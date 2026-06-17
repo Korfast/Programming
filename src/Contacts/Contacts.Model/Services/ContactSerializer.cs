@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace View.Model.Services
+namespace Contacts.Model.Services
 {
     /// <summary>
     /// Предоставляет методы для сериализации 
