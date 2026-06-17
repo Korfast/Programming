@@ -57,55 +57,42 @@ namespace Contacts.ViewModel
         /// Возвращает и задаёт имя контакта.
         /// При изменении вызывает валидацию.
         /// </summary>
+        [Required(ErrorMessage = "Имя не может быть пустым.")]
+        [MaxLength(100, ErrorMessage = "Имя не должно превышать 100 символов.")]
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                // SetProperty из ObservableObject обновляет поле и вызывает PropertyChanged.
-                // Параметр true включает валидацию.
-                this.SetProperty(ref _name, value, true);
-            }
+            get { return _name; }
+            set { this.SetProperty(ref _name, value, true); }
         }
 
         /// <summary>
         /// Возвращает и задаёт номер телефона контакта.
         /// При изменении вызывает валидацию.
         /// </summary>
+        [Required(ErrorMessage = "Телефон не может быть пустым.")]
+        [MaxLength(100, ErrorMessage = "Телефон не должен превышать 100 символов.")]
+        [RegularExpression(@"^[0-9+\-()\s]+$", ErrorMessage = "Телефон может содержать только цифры и символы + - ( ).")]
         public string Phone
         {
-            get
-            {
-                return _phone;
-            }
-            set
-            {
-                this.SetProperty(ref _phone, value, true);
-            }
+            get { return _phone; }
+            set { this.SetProperty(ref _phone, value, true); }
         }
 
         /// <summary>
         /// Возвращает и задаёт адрес электронной почты контакта.
         /// При изменении вызывает валидацию.
         /// </summary>
+        [Required(ErrorMessage = "Email не может быть пустым.")]
+        [MaxLength(100, ErrorMessage = "Email не должен превышать 100 символов.")]
+        [RegularExpression(@".*@.*", ErrorMessage = "Email должен содержать символ @.")]
         public string Email
         {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                this.SetProperty(ref _email, value, true);
-            }
+            get { return _email; }
+            set { this.SetProperty(ref _email, value, true); }
         }
 
         // Свойство HasErrors из базового класса ObservableValidator уже существует.
         // Оно возвращает true, если есть ошибки валидации.
-        // Используйте его в привязках, например, для блокировки кнопки Apply.
 
         /// <summary>
         /// Принудительно запускает валидацию для всех свойств.

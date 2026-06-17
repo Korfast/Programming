@@ -1,7 +1,12 @@
-﻿<Window x:Class="View.MainWindow"
+﻿<Window x:Class="Contacts.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="clr-namespace:View.Controls"
+        xmlns:controls="clr-namespace:Contacts.View.Controls"
+        xmlns:viewmodel="clr-namespace:Contacts.ViewModel;assembly=Contacts.ViewModel"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
         Title="Contacts" Height="450" Width="700">
     <Window.Resources>
         <!-- Шаблон элемента списка контактов -->
@@ -11,10 +16,8 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
                 <Border Grid.Column="0" Width="40" Height="40" 
-                    Background="LightGray" CornerRadius="20" Margin="3"/>
-
+                        Background="LightGray" CornerRadius="20" Margin="3"/>
                 <StackPanel Grid.Column="1" Margin="5,0,0,0">
                     <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
                     <TextBlock Text="{Binding Phone}" FontSize="11" Foreground="Gray"/>
@@ -22,7 +25,6 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
-
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
 
@@ -35,7 +37,7 @@
 
         <!-- Левая колонка -->
         <Grid Grid.Column="0" Background="#f8f8f8">
-            <Grid Margin="10" >
+            <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -48,15 +50,15 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Column="0" Content="Find:" Margin="0,0,3,0" Padding="0"  VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Content="Find:" Margin="0,0,3,0" Padding="0" VerticalAlignment="Center"/>
                     <TextBox Grid.Column="1" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Padding="0"/>
                 </Grid>
 
                 <!-- Список контактов -->
                 <ListBox Grid.Row="1" ItemsSource="{Binding Contacts}" 
-                    SelectedItem="{Binding SelectedContact}" 
-                    ItemTemplate="{StaticResource ContactTemplate}"
-                    Margin="3" Padding="0"/>
+                         SelectedItem="{Binding SelectedContact}" 
+                         ItemTemplate="{StaticResource ContactTemplate}"
+                         Margin="3" Padding="0"/>
 
                 <!-- Кнопки -->
                 <Grid Grid.Row="2" Margin="3">
@@ -66,11 +68,11 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Content="Add" Height="25" Margin="0,3,3,3" 
-            Command="{Binding AddCommand}" IsEnabled="{Binding IsAddEditRemoveEnabled}"/>
+                            Command="{Binding AddCommand}" IsEnabled="{Binding IsAddEditRemoveEnabled}"/>
                     <Button Grid.Column="1" Content="Edit" Height="25" Margin="3,3,3,3" 
-            Command="{Binding EditCommand}" IsEnabled="{Binding IsEditRemoveEnabled}"/>
+                            Command="{Binding EditCommand}" IsEnabled="{Binding IsEditRemoveEnabled}"/>
                     <Button Grid.Column="2" Content="Remove" Height="25" Margin="3,3,0,3" 
-            Command="{Binding RemoveCommand}" IsEnabled="{Binding IsEditRemoveEnabled}"/>
+                            Command="{Binding RemoveCommand}" IsEnabled="{Binding IsEditRemoveEnabled}"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -85,17 +87,15 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- ContactControl получает DataContext = CurrentContact -->
             <controls:ContactControl Grid.Row="0" 
-                             DataContext="{Binding CurrentContact}"
-                             IsReadOnly="{Binding DataContext.IsReadOnly, 
-                                        RelativeSource={RelativeSource AncestorType=Window}}"/>
+                                     DataContext="{Binding CurrentContact}"
+                                     IsReadOnly="{Binding DataContext.IsReadOnly, 
+                                                RelativeSource={RelativeSource AncestorType=Window}}"/>
 
-            <!-- Кнопка Apply (остаётся в главном окне) -->
             <Button Grid.Row="1" Content="Apply" Width="75" Height="25"
-            Command="{Binding ApplyCommand}" HorizontalAlignment="Left" 
-            Margin="10,50,0,10"
-            Visibility="{Binding IsApplyVisible, Converter={StaticResource BooleanToVisibility}}"/>
+                    Command="{Binding ApplyCommand}" HorizontalAlignment="Left" 
+                    Margin="10,50,0,10"
+                    Visibility="{Binding IsApplyVisible, Converter={StaticResource BooleanToVisibility}}"/>
         </Grid>
     </Grid>
 </Window>

@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace View.Controls
+namespace Contacts.View.Controls
 {
     /// <summary>
     /// Логика взаимодействия для ContactControl.xaml
@@ -26,7 +15,7 @@ namespace View.Controls
         }
 
         public static readonly DependencyProperty IsReadOnlyProperty =
-        DependencyProperty.Register(nameof(IsReadOnly), typeof(bool), typeof(ContactControl));
+            DependencyProperty.Register(nameof(IsReadOnly), typeof(bool), typeof(ContactControl));
 
         public bool IsReadOnly
         {
@@ -40,15 +29,13 @@ namespace View.Controls
         /// </summary>
         private void OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            // Разрешённые символы
             string allowedChars = "0123456789+-() ";
-
-            // Проверяем каждый вводимый символ
             foreach (char ch in e.Text)
             {
-                if (!allowedChars.Contains(ch))
+                // В .NET Framework 4.8 нет Contains(char), используем IndexOf
+                if (allowedChars.IndexOf(ch) == -1)
                 {
-                    e.Handled = true; // Запрещаем ввод
+                    e.Handled = true;
                     return;
                 }
             }
@@ -62,16 +49,12 @@ namespace View.Controls
             if (e.DataObject.GetDataPresent(typeof(string)))
             {
                 string pastedText = (string)e.DataObject.GetData(typeof(string));
-
-                // Разрешённые символы
                 string allowedChars = "0123456789+-() ";
-
-                // Проверяем каждый символ вставляемого текста
                 foreach (char ch in pastedText)
                 {
-                    if (!allowedChars.Contains(ch))
+                    if (allowedChars.IndexOf(ch) == -1)
                     {
-                        e.CancelCommand(); // Отменяем вставку
+                        e.CancelCommand();
                         return;
                     }
                 }

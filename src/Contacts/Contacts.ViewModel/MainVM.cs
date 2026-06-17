@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using Contacts.Model;
 using Contacts.Model.Services;
+using System.Diagnostics;
 
 namespace Contacts.ViewModel
 {
@@ -86,22 +87,13 @@ namespace Contacts.ViewModel
             }
             set
             {
-                if (_selectedContact == value)
-                {
-                    return;
-                }
-
-                if (this.IsEditing)
-                {
-                    this.CancelEditing();
-                }
-
+                Debug.WriteLine($"SelectedContact setter called, value={value?.GetHashCode()}, IsEditing={IsEditing}");
+                if (_selectedContact == value) return;
+                if (this.IsEditing) this.CancelEditing();
                 _selectedContact = value;
                 this.OnPropertyChanged(nameof(this.SelectedContact));
                 this.OnPropertyChanged(nameof(this.CurrentContact));
                 this.OnPropertyChanged(nameof(this.IsEditRemoveEnabled));
-
-                // Уведомляем команды об изменении доступности
                 this.AddCommand?.NotifyCanExecuteChanged();
                 this.EditCommand?.NotifyCanExecuteChanged();
                 this.RemoveCommand?.NotifyCanExecuteChanged();
@@ -116,12 +108,9 @@ namespace Contacts.ViewModel
         {
             get
             {
-                if (this.IsEditing && _editingContact != null)
-                {
-                    return _editingContact;
-                }
-
-                return _selectedContact;
+                var result = (this.IsEditing && _editingContact != null) ? _editingContact : _selectedContact;
+                Debug.WriteLine($"CurrentContact: IsEditing={IsEditing}, _editingContact={_editingContact?.GetHashCode()}, _selectedContact={_selectedContact?.GetHashCode()}, returning={result?.GetHashCode()}");
+                return result;
             }
         }
 
@@ -315,7 +304,9 @@ namespace Contacts.ViewModel
         /// <returns>true, если в режиме редактирования, временный контакт существует и не имеет ошибок.</returns>
         private bool CanApply()
         {
-            return this.IsEditing && _editingContact != null && !_editingContact.HasErrors;
+            bool result = this.IsEditing && _editingContact != null && !_editingContact.HasErrors;
+            Debug.WriteLine($"CanApply: IsEditing={IsEditing}, _editingContact={_editingContact?.GetHashCode()}, HasErrors={_editingContact?.HasErrors}, result={result}");
+            return result;
         }
 
         /// <summary>
@@ -350,20 +341,19 @@ namespace Contacts.ViewModel
             this.SaveContacts();
         }
 
+
         /// <summary>
         /// Переход в режим редактирования с указанным временным контактом.
         /// </summary>
-        /// <param name="editingContact">Временный контакт.</param>
+        /// <param name="editingContact">Временный контакт, который будет редактироваться.</param>
         private void StartEditing(ContactVM editingContact)
         {
-            this.IsEditing = true;
             _editingContact = editingContact;
-            _editingContact.ValidateAll();
+            this.IsEditing = true;
 
-            // Подписка на событие изменения ошибок валидации
+            _editingContact.ValidateAll();
             _editingContact.ErrorsChanged += this.OnEditingContactErrorsChanged;
 
-            // Уведомление команд об изменении доступности
             this.AddCommand?.NotifyCanExecuteChanged();
             this.EditCommand?.NotifyCanExecuteChanged();
             this.RemoveCommand?.NotifyCanExecuteChanged();
@@ -371,26 +361,8 @@ namespace Contacts.ViewModel
         }
 
         /// <summary>
-        /// Завершение режима редактирования/добавления.
-        /// </summary>
-        private void FinishEditing()
-        {
-            if (_editingContact != null)
-            {
-                _editingContact.ErrorsChanged -= this.OnEditingContactErrorsChanged;
-            }
-
-            this.IsEditing = false;
-            _editingContact = null;
-
-            this.AddCommand?.NotifyCanExecuteChanged();
-            this.EditCommand?.NotifyCanExecuteChanged();
-            this.RemoveCommand?.NotifyCanExecuteChanged();
-            this.ApplyCommand?.NotifyCanExecuteChanged();
-        }
-
-        /// <summary>
-        /// Отмена редактирования без сохранения изменений.
+        /// Отменяет редактирование без сохранения изменений.
+        /// Сбрасывает временный контакт и обновляет валидацию выбранного контакта.
         /// </summary>
         private void CancelEditing()
         {
@@ -402,8 +374,27 @@ namespace Contacts.ViewModel
             this.IsEditing = false;
             _editingContact = null;
 
-            // Обновляем валидацию выбранного контакта (убираем красные рамки)
+            // Принудительно обновляем валидацию выбранного контакта (сбрасываем красные рамки)
             _selectedContact?.ValidateAll();
+
+            this.AddCommand?.NotifyCanExecuteChanged();
+            this.EditCommand?.NotifyCanExecuteChanged();
+            this.RemoveCommand?.NotifyCanExecuteChanged();
+            this.ApplyCommand?.NotifyCanExecuteChanged();
+        }
+
+        /// <summary>
+        /// Завершает режим редактирования/добавления с сохранением изменений.
+        /// </summary>
+        private void FinishEditing()
+        {
+            if (_editingContact != null)
+            {
+                _editingContact.ErrorsChanged -= this.OnEditingContactErrorsChanged;
+            }
+
+            this.IsEditing = false;
+            _editingContact = null;
 
             this.AddCommand?.NotifyCanExecuteChanged();
             this.EditCommand?.NotifyCanExecuteChanged();
